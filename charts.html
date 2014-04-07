@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="canvasjs.min.js"></script>
+		<script type="text/javascript" src="SimpsonChars.js"></script>
+		<script type="text/javascript" src="SimpsonEpisode.js"></script>
+		<script type="text/javascript" src="select2.js"></script>
+		<script type="text/javascript" src="charts.js"></script>
+		<link href="select2.css" rel="stylesheet"/>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+			
+			function getEpi(name) {
+				if(name === "Bart") {
+					return 50;
+				}
+				
+				if(name === "Lisa") {
+					return 30;
+				}
+				return 16;
+			}
+			
+		</script>
+	</head>
+	<body>
+		<input type="hidden" id="e9" style="width:800px"/>
+		<div></div>
+		<div id="chart_div" style="width: 1280; height: 500px;"></div>
+		<form>Select Season
+			<select id="Seasons" onchange="getValue(this)" multiple="multiple">
+			<option></option>
+			<option>Season 1</option>
+			<option>Season 2</option>
+			<option>Season 3</option>
+			<option>Season 4</option>
+			<option>Season 5</option>
+			</select>
+		</form>
+		<form>Select Character
+			<select id="Characters" onchange="getValue(this)" multiple="multiple">
+			<option>Homer</option>
+			<option>Bart</option>
+			<option>Lisa</option>
+			<option>Marge</option>
+			<option>Maggie</option>
+			</select>
+		</form>
+	</body>
+</html>
