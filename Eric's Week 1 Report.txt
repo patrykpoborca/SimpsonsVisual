@@ -1,0 +1,7 @@
+From 4/1 to 4/4
+
+Received the parsed data from Dylan.  Looked up some chart libraries to see which could do what we want.  It was between Google charts, AMCharts, ChartsJS or CanvasJS.  Went with CanvasJS and create a js file for generating and creating new charts.
+
+So far I can generate a chart using hard-coded values.  I tested if I could get the value using a method and it worked.
+
+Files have been uploaded to our shared github repo found at: https://github.com/oorosc/cs424_proj3.
