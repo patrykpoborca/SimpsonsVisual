@@ -43,6 +43,10 @@ count may need to take in the character name and the season for faster searching
 var charaArray = new Array();
 var seasonArray = new Array();
 
+fillArrayAllCharByAppearAmt();
+fillAllEpsArray();
+generateSortedSeasons();
+
 $().ready(function () {
 	var chart = new CanvasJS.Chart("chart_div", {
 		theme: "theme3",
@@ -75,30 +79,49 @@ $().ready(function () {
 				type: "column",
 				legendText: "Bart",
 				showInLegend: true,
-				dataPoints: [
-					{label: "Season 1", y: getEpi("Bart")},
-					{label: "Season 2", y: 15},
-					{label: "Season 3", y: getEpi("Lisa")},
-					{label: "Season 4", y: 20},
-				]
-			}, 
-			{
-				name: "Lisa",
-				type: "column",
-				legendText: "Lisa",
-				showInLegend: true,
-				dataPoints: [
-					{label: "Season 1", y: 1},
-					{label: "Season 2", y: 15},
-					{label: "Season 3", y: getEpi()},
-					{label: "Season 4", y: 20},
-				]
-			}, 
+				dataPoints: generateDefaultData("Bart"),
+			}
 		],
 	});
 	//console.log(chart.options.data);
 	chart.render();
 });
+
+function generateDefaultData(name) {
+	var points = [];
+	for(var i = 0; i < allCharByAppearAmt.length; i++) {
+		if(allCharByAppearAmt[i][0].match(name)) {
+			var index = 0;
+			var k = 0;
+			var appearances = 0;
+			for(var j = 0; j < allCharByAppearAmt[i][7].length; j++) {
+				if(allCharByAppearAmt[i][7][j] == episodesSortedIntoSeasons[index][1][k][0]) {
+					appearances++;
+					k++;
+					if(k == episodesSortedIntoSeasons[index][1].length) {
+						points.push({label: episodesSortedIntoSeasons[index][0].toString(), y: appearances});
+						k = 0;
+						index++;
+						appearances = 0;
+					}
+				} else {
+					k++;
+					if(k == episodesSortedIntoSeasons[index][1].length) {
+						points.push({label: episodesSortedIntoSeasons[index][0].toString(), y: appearances});
+						k = 0;
+						if(index > episodesSortedIntoSeasons.length) {
+							return points;
+						}
+						index++;
+						appearances = 0;
+					}
+					j--;
+				}
+			}
+		}
+	}
+	return points;
+}
 
 function generateData() {
 	var data = [];
@@ -157,9 +180,32 @@ function createSeasonChart() {
 	chart.render();
 }
 
+function getEpisodeBySeason(charaName, seasonNum) {
+	/*
+	var numOfAppearances = 0;
+	for(var i = 0; i < someArray.length; i++) {
+		if(someArray.name == charaName) {
+			for(var j = 0; j < someArray2.length; j++) {
+				for(var k = 0; k < someArray.name.seasonArray; k++) {
+					if(someArray.name.seasonArray[k] == someArray2.seasonNum[j]) {
+						numOfAppearances++;
+					}
+				}
+			}
+		}
+	}
+	return numOfAppearances;
+	*/
+}
 
+function destroyChart() {
+	$("#chart_div").html("");
+}
 
 function getValue(sel) {
+	//console.log(allEpisodesByNumber);
+	console.log(episodesSortedIntoSeasons);
+	console.log(allCharByAppearAmt);
 	if(sel.id == "Seasons") {
 		seasonArray = $(sel).val();
 	} else if (sel.id == "Characters") {
