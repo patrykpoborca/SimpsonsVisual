@@ -30,12 +30,8 @@ function drawChart() {
 /*
 ============================================================================================
 
-For the lines of code that you see y: some integer value, I was thinking that we need a method or something to count the
-amount of appearances through that particular season.  In some of the entries, I wrote a generic method call getEpi that
-returns a number for testing and it works fine.
-
-Advice: Whoever wants to or if I do it after figuring out a way to access that data that I need.  The function to get the episode
-count may need to take in the character name and the season for faster searching.
+Note: I set the chart's background to the Simpson's yellow.  If you guys think it doesn't look good.  Just delete/comment out
+line 48 (backgroundColor: " ";)
 
 ============================================================================================
 */
@@ -49,6 +45,7 @@ generateSortedSeasons();
 
 $().ready(function () {
 	var chart = new CanvasJS.Chart("chart_div", {
+		backgroundColor: "#FFD90F",
 		theme: "theme3",
 		title: {
 			text: "The Simpsons",
@@ -56,11 +53,22 @@ $().ready(function () {
 		},
 		axisX: {
 			title: "Seasons",
-			margin: 0
+			titleFontColor: "black",
+			labelAutoFit: true,
+			labelFontSize: 10,
+			labelFontColor: "black",
+			interval: 1,
+			margin: 0,
+			gridColor: "gray",
+			tickColor: "gray"
 		},
 		axisY: {
 			title: "Appearances of Characters",
-			titleFontSize: 20
+			titleFontSize: 20,
+			titleFontColor: "black",
+			labelFontColor: "black",
+			gridColor: "gray",
+			tickColor: "gray"
 		},
 		legend: {
 			fontFamily: "sans-serif",
@@ -75,12 +83,77 @@ $().ready(function () {
 		},
 		data: [
 			{
-				name: "Bart",
+				name: "Homer Simpson",
 				type: "column",
-				legendText: "Bart",
+				legendText: "Homer Simpson",
 				showInLegend: true,
-				dataPoints: generateDefaultData("Bart"),
-			}
+				/*indexLabel: "{y}",
+				indexLabelPlacement: "outside",  
+				indexLabelOrientation: "horizontal",
+				indexLabelFontColor: "black",
+				indexLabelFontSize: 10,*/
+				dataPoints: [
+					{label: "Season 1", y:13},
+					{label: "Season 2", y:22},
+					{label: "Season 3", y:24},
+					{label: "Season 4", y:22},
+					{label: "Season 5", y:22},
+					{label: "Season 6", y:25},
+					{label: "Season 7", y:25},
+					{label: "Season 8", y:25},
+					{label: "Season 9", y:25},
+					{label: "Season 10", y:23},
+					{label: "Season 11", y:22},
+					{label: "Season 12", y:21},
+					{label: "Season 13", y:22},
+					{label: "Season 14", y:22},
+					{label: "Season 15", y:22},
+					{label: "Season 16", y:21},
+					{label: "Season 17", y:22},
+					{label: "Season 18", y:22},
+					{label: "Season 19", y:20},
+					{label: "Season 20", y:21},
+					{label: "Season 21", y:23},
+					{label: "Season 22", y:22},
+					{label: "Season 23", y:22},
+					{label: "Season 24", y:22},
+					{label: "Season 25", y:18},
+				]
+			},
+			{
+				name: "Marge Simpson",
+				type: "column",
+				legendText: "Marge Simpson",
+				showInLegend: true,
+				/*indexLabel: "{y}",
+				indexLabelPlacement: "outside",  
+				indexLabelOrientation: "horizontal",
+				indexLabelFontColor: "black",
+				indexLabelFontSize: 10,*/
+				dataPoints: generateDefaultData("Marge Simpson"),
+			},
+			{
+				name: "Bart Simpson",
+				type: "column",
+				legendText: "Bart Simpson",
+				showInLegend: true,
+				dataPoints: generateDefaultData("Bart Simpson"),
+			},
+			{
+				name: "Lisa Simpson",
+				type: "column",
+				legendText: "Lisa Simpson",
+				showInLegend: true,
+				dataPoints: generateDefaultData("Lisa Simpson"),
+			},
+			{
+				name: "Maggie Simpson",
+				type: "column",
+				legendText: "Maggie Simpson",
+				showInLegend: true,
+				color: "#546A3F",
+				dataPoints: generateDefaultData("Maggie Simpson"),
+			},
 		],
 	});
 	//console.log(chart.options.data);
@@ -89,16 +162,18 @@ $().ready(function () {
 
 function generateDefaultData(name) {
 	var points = [];
+	var pattern = new RegExp("^"+name);
 	for(var i = 0; i < allCharByAppearAmt.length; i++) {
-		if(allCharByAppearAmt[i][0].match(name)) {
-			var index = 0;
-			var k = 0;
-			var appearances = 0;
+		var index = 0;
+		var k = 0;
+		var appearances = 0;
+		if(allCharByAppearAmt[i][0].match(pattern)) {
 			for(var j = 0; j < allCharByAppearAmt[i][7].length; j++) {
 				if(allCharByAppearAmt[i][7][j] == episodesSortedIntoSeasons[index][1][k][0]) {
 					appearances++;
 					k++;
 					if(k == episodesSortedIntoSeasons[index][1].length) {
+						//console.log(i);
 						points.push({label: episodesSortedIntoSeasons[index][0].toString(), y: appearances});
 						k = 0;
 						index++;
@@ -107,9 +182,10 @@ function generateDefaultData(name) {
 				} else {
 					k++;
 					if(k == episodesSortedIntoSeasons[index][1].length) {
+						//console.log(i);
 						points.push({label: episodesSortedIntoSeasons[index][0].toString(), y: appearances});
 						k = 0;
-						if(index > episodesSortedIntoSeasons.length) {
+						if(index == episodesSortedIntoSeasons.length-1) {
 							return points;
 						}
 						index++;
@@ -118,7 +194,7 @@ function generateDefaultData(name) {
 					j--;
 				}
 			}
-		}
+		} 
 	}
 	return points;
 }

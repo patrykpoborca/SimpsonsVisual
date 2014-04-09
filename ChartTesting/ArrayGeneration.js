@@ -12,7 +12,8 @@ function generateSortedSeasons() {
 		if(k == episodeCount - 1) {
 			seasonNum.push("Season " + (index+1));
 			seasonNum.push(tempEpisode);
-			episodeCount = episodeCount + seasonCount[index++];
+			index++;
+			episodeCount = episodeCount + seasonCount[index];
 			episodesSortedIntoSeasons.push(seasonNum);
 			tempEpisode = [];
 			seasonNum = [];
