@@ -1,0 +1,60 @@
+
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="main.css">
+<script type='text/javascript' src='jquery-1.11.0.min.js'></script>
+<script type='text/javascript' src='interactiveTable.js'></script>
+<script type='text/javascript' src='urlsOfChars.js'></script>
+
+
+
+
+<script type='text/javascript'>   
+
+
+window.onload = function() {
+
+	document.getElementById("pictureTest").innerHTML = "<img src='" + imageUrlsForCharacters[0][1] + "'></img>";
+
+
+
+	fillOverviewTable();
+	console.log("End");
+
+	
+
+
+	
+}
+
+
+
+</script>
+
+
+
+
+</head>
+<body>
+
+<div id="pictureTest">
+
+	</div>
+
+
+<div id="overviewTable" style="overflow:scroll; height:200; width:1400px;">
+
+</div>
+
+
+<div id="testArrayContents">
+</div>
+
+<div id="popupControlBox">
+
+</div>
+
+
+
+</body>
