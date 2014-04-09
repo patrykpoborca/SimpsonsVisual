@@ -1,0 +1,6 @@
+
+Initial parse of Simpsons wikia performed to collect characters and episodes.
+Filled in some of the data holes, formatted for usage with js.
+Created prototype controls to begin rudimentary data viewing.
+
+
