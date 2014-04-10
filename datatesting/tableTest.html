@@ -6,6 +6,8 @@
 <script type='text/javascript' src='jquery-1.11.0.min.js'></script>
 <script type='text/javascript' src='interactiveTable.js'></script>
 <script type='text/javascript' src='urlsOfChars.js'></script>
+<script type='text/javascript' src='SimpsonEpisode.js'></script>
+<script type='text/javascript' src='SimpsonChars.js'></script>
 
 
 
@@ -15,15 +17,16 @@
 
 window.onload = function() {
 
-	document.getElementById("pictureTest").innerHTML = "<img src='" + imageUrlsForCharacters[0][1] + "'></img>";
+	//document.getElementById("pictureTest").innerHTML = "<img src='" + imageUrlsForCharacters[0][1] + "'></img>";
 
 
+	//chars [  name, full, first appear, alias, jobs, relatives, voice actors, episode appearances   ]
+
+	fillArrayAllCharByAppearAmt();
+	fillAllEpsArray();
 
 	fillOverviewTable();
 	console.log("End");
-
-	
-
 
 	
 }
@@ -39,11 +42,12 @@ window.onload = function() {
 <body>
 
 <div id="pictureTest">
-
+<p><h3>Overview</h3> <button onclick="toggleCharIconsOnPopup()">Toggle Icons In popups.</button></p>
 	</div>
 
 
-<div id="overviewTable" style="overflow:scroll; height:200; width:1400px;">
+<!--style="overflow:scroll; height:200; width:1400px;"-->
+<div id="overviewTable" >
 
 </div>
 

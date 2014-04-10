@@ -1,6 +1,10 @@
 
 
 
+div{
+  font-family: Arial;
+}
+
 table, th
 {
   border:1px solid black;
@@ -53,7 +57,7 @@ td.notInThatEps {
   top: 0px;/**/
   margin-top: 50px;
   margin-left: 50px;
-  background-color: green;
+  background-color: #FF9640;
   /*height: 10px;
   width: 10px;*/
   float: top;
