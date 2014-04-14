@@ -35,13 +35,13 @@ UI for app
 	  }
 	  #chart_div
 	  {
-	  position: absolute; 
-	  background-color : green;
-	  top: 20px;
-	  left : 255px;
-	  width: 1280px; 
-	  height: 500px; 
-	  z-index: -1;
+	position: absolute;
+	background-color : green;
+	top: 0px;
+	left : 253px;
+	width: 1280px;
+	height: 500px;
+	z-index: -1;
 	  }
 		
 	  #expandSelectors
@@ -78,7 +78,7 @@ UI for app
 		top : 0px;
 		left : 0px;
 		background-color : beige;
-		width: 250px;
+		width: 253px;
 		height: 50px
 	  }
 	  
@@ -102,11 +102,11 @@ UI for app
 		maxSlider == slider Value for Max value 
 		
 		-->
-		  <div id = "toggler"> Expand/Hide Bar </div>
+	  <div id = "toggler"> Expand/Hide Bar </div>
           <div id="sideBar">
             <ul class="nav">
 				<li id = "minMax"> <!-- min/max slider subcomponents -->
-					<button type="button" id = "expandSliders" class = "sidePanel">Show Sliders</button>	
+					<button type="button" id = "expandSliders" class = "sidePanel btn btn-primary">Show Sliders</button>	
 				</li>   <!-- min/max slider subcomponents -->
 				<li>
 					<label for = "scopeSort" id = "checkScopeText">Numeric Sort</label>
@@ -163,11 +163,11 @@ UI for app
 	 <div id = "expandSelectors"> 
 					<label for = "minTxt" class = "sidePanel"  >Min<br></label>
 					<input  type = "text" name = "minText" value = "50" id = "minTxt" class = "sidePanel" /><br> 
-					 <input type="range"  name="minRange" value = "50" min="0.00" max="99.9" step="0.01" class = "sidePanel dataInit flagger" id = "minSlider" /> <!-- flagger!-->
+					 <input type="range"  name="minRange" value = "50" min="0.00" max="99.9" step="0.01" class = "sidePanel dataInit flagger sliderFlag" id = "minSlider" /> <!-- flagger!-->
 					
 					<label for = "minTxt" class = "sidePanel"  >Max<br></label>
 					 <input  type = "text" name = "minText" value = "51"  id = "maxTxt" class = "sidePanel" /><br> 
-					 <input type="range"  name="minRange" value = "51" min="0.01" max="100" step="0.01" class = "sidePanel dataInit flagger" id = "maxSlider" /> <!-- flagger!-->
+					 <input type="range"  name="minRange" value = "51" min="0.01" max="100" step="0.01" class = "sidePanel dataInit flagger sliderFlag" id = "maxSlider" /> <!-- flagger!-->
 					 <button type="button" id = "minMaxButton" class = "sidePanel" >Update Sliders</button>
 	 
 	 </div>
