@@ -1,4 +1,4 @@
-// Min/Max slider, not dynamic adjustments, saves data upon pressing form's button Patryk Poborca
+// Min/Max slider, added dynamic adjustments for min >= max... Patryk Poborca
 
 //wrapper for this assignment
 function InitSlider(SLIDER, TEXT) { return initSlider(SLIDER, TEXT, $("#"+SLIDER).attr("min"), $("#"+SLIDER).attr("max"), $("#"+SLIDER).attr("step"));}
@@ -40,36 +40,45 @@ return { slider : SLIDER, text : TEXT};
 	
 	}
 	
+//used as a lookup for any entries you might add..
+function sendData()
+{
 	
-var holder = {};
+}
 
-// Binds the click action of a BUTTON html object to updating the values of the sliders into UICOM
-function bindSliders(MIN, MAX, BUTTON)
-{/*
-	holder[MIN+MAX] = { min : MIN, max : MAX}; 
+
+// binds both sliders min/max to one another so they can't exceed the other. MAKE SURE SURE TO have max.max == min.max + step  and max.min -step = min.min....
+
+	function bindSliders(MIN, MAX)
+{
+	 
 	
 	if($('#'+MIN["slider"]).attr("step") != $('#'+MAX["slider"]).attr("step")) 
 		{ $('#'+MIN["slider"]).attr("step", $('#'+MIN["slider"]).attr("step")); console.log("Error catch : bindsliders(min, max) Step != Step2");}//error
 	
 	
-	var mSlider = "#" + MIN['slider'];
+	var minSlider = "#" + MIN['slider'];
 	var maxSlider = "#" + MAX['slider'];
 	
-
-	$(*/
-	
-	
-	$("#"+BUTTON).on('click', function()
-	{
-		updateItem(MIN["slider"], $('#'+MIN["slider"]).val());
-		updateItem(MAX["slider"], $('#'+MAX["slider"]).val());
-		if($('#'+MIN["slider"]).val() >= $('#'+MAX["slider"]).val())
-			{$('#'+MIN["slider"]).val($('#'+MAX["slider"]).val() - $('#'+MIN["slider"]).attr("step"));
-			$('#'+MIN["text"]).val($('#'+MAX["slider"]).val() - $('#'+MIN["slider"]).attr("step"));
-			alert("Remember min slider has to be < max slider");
-			}
-			
+	//slider flag required for this to be used,,, class = "sliderFlag"
+	$(".sliderFlag").on('change',
+	function()
+	{ 
+		if($(this).attr('id') == MIN["slider"]  && $(this).val() >= $(maxSlider).val())
+		{
+			$(maxSlider).val(Number($(this).val()) + Number($(this).attr('step')));
+			$(maxSlider).trigger('change');
+		}
+		else
+			if($(this).attr('id') == MAX["slider"]  && $(this).val() <= $(minSlider).val())
+		{			
+			$(minSlider).val(Number($(this).val()) - Number($(this).attr('step')));
+			$(minSlider).trigger('change');
+		}
+				
 	});
+	
+
 }	
 	
 

@@ -27,11 +27,7 @@ function debugLogCom()
 function initUI()
 {
 	// hiding stuff... moving stuff around...
-	$("#expandSelectors").hide();
-	$("#chart_div").css("top", "0px");
-	$("#toggler").css("position", "absolute"); // **
-	$("#toggler").css("top", "0px"); // ** had to move via js because weird bug...
-	
+	$("#expandSelectors").hide();	
 	//
 	$("#toggler").toggle(  // to toggle the nav bar
 	 function()
