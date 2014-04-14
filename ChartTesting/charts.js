@@ -39,8 +39,10 @@ line 48 (backgroundColor: " ";)
 var charaArray = new Array();
 var seasonArray = new Array();
 
-fillArrayAllCharByAppearAmt();
-fillAllEpsArray();
+console.log(allEpisodesByNumber);
+
+//fillArrayAllCharByAppearAmt();
+//fillAllEpsArray();
 generateSortedSeasons();
 
 $().ready(function () {
@@ -55,7 +57,7 @@ $().ready(function () {
 			title: "Seasons",
 			titleFontColor: "black",
 			labelAutoFit: true,
-			labelFontSize: 10,
+			labelFontSize: 20,
 			labelFontColor: "black",
 			interval: 1,
 			margin: 0,
@@ -79,7 +81,7 @@ $().ready(function () {
 		},
 		creditText: "",
 		toolTip: {
-			shared: true
+			shared: true,
 		},
 		data: [
 			{
@@ -117,7 +119,7 @@ $().ready(function () {
 					{label: "Season 22", y:22},
 					{label: "Season 23", y:22},
 					{label: "Season 24", y:22},
-					{label: "Season 25", y:18},
+					{label: "Season 25", y:11},
 				]
 			},
 			{
@@ -130,46 +132,61 @@ $().ready(function () {
 				indexLabelOrientation: "horizontal",
 				indexLabelFontColor: "black",
 				indexLabelFontSize: 10,*/
-				dataPoints: generateDefaultData("Marge Simpson"),
+				dataPoints: generateDefaultData("Marge Simpson")
 			},
 			{
 				name: "Bart Simpson",
 				type: "column",
 				legendText: "Bart Simpson",
 				showInLegend: true,
-				dataPoints: generateDefaultData("Bart Simpson"),
+				/*indexLabel: "{y}",
+				indexLabelPlacement: "outside",  
+				indexLabelOrientation: "horizontal",
+				indexLabelFontColor: "black",
+				indexLabelFontSize: 10,*/
+				dataPoints: generateDefaultData("Bart Simpson")
 			},
 			{
 				name: "Lisa Simpson",
 				type: "column",
 				legendText: "Lisa Simpson",
 				showInLegend: true,
-				dataPoints: generateDefaultData("Lisa Simpson"),
+				/*indexLabel: "{y}",
+				indexLabelPlacement: "outside",  
+				indexLabelOrientation: "horizontal",
+				indexLabelFontColor: "black",
+				indexLabelFontSize: 10,*/
+				dataPoints: generateDefaultData("Lisa Simpson")
 			},
 			{
 				name: "Maggie Simpson",
 				type: "column",
 				legendText: "Maggie Simpson",
 				showInLegend: true,
-				color: "#546A3F",
-				dataPoints: generateDefaultData("Maggie Simpson"),
-			},
+				/*indexLabel: "{y}",
+				indexLabelPlacement: "outside",  
+				indexLabelOrientation: "horizontal",
+				indexLabelFontColor: "black",
+				indexLabelFontSize: 10,*/
+				dataPoints: generateDefaultData("Maggie Simpson")
+			}
 		],
 	});
 	//console.log(chart.options.data);
+	console.log(allEpisodesByNumber);
 	chart.render();
 });
 
 function generateDefaultData(name) {
 	var points = [];
-	var pattern = new RegExp("^"+name);
+	var pattern = new RegExp("^"+name+"$");
 	for(var i = 0; i < allCharByAppearAmt.length; i++) {
 		var index = 0;
 		var k = 0;
 		var appearances = 0;
 		if(allCharByAppearAmt[i][0].match(pattern)) {
 			for(var j = 0; j < allCharByAppearAmt[i][7].length; j++) {
-				if(allCharByAppearAmt[i][7][j] == episodesSortedIntoSeasons[index][1][k][0]) {
+				if(allCharByAppearAmt[i][7][j] == true) {
 					appearances++;
 					k++;
 					if(k == episodesSortedIntoSeasons[index][1].length) {
@@ -191,7 +208,6 @@ function generateDefaultData(name) {
 						index++;
 						appearances = 0;
 					}
-					j--;
 				}
 			}
 		} 
@@ -256,22 +272,35 @@ function createSeasonChart() {
 	chart.render();
 }
 
+// Get the number of appearances in a given season with a specific character name
 function getEpisodeBySeason(charaName, seasonNum) {
-	/*
 	var numOfAppearances = 0;
-	for(var i = 0; i < someArray.length; i++) {
-		if(someArray.name == charaName) {
-			for(var j = 0; j < someArray2.length; j++) {
-				for(var k = 0; k < someArray.name.seasonArray; k++) {
-					if(someArray.name.seasonArray[k] == someArray2.seasonNum[j]) {
-						numOfAppearances++;
-					}
+	var episodeCount = 0;
+	var index = 0;
+	while(index != (seasonNum-1)) {
+		for(var i = 0; i < episodesSortedIntoSeasons[index][1].length; i++) {
+			episodeCount++;
+			if(i == episodesSortedIntoSeasons[index][1].length - 1) {
+				index++;
+				i = -1;
+				if(index == (seasonNum-1)) {
+					break;
 				}
 			}
 		}
 	}
+	
+	for(var i = 0; i < allCharByAppearAmt.length; i++) {
+		if(allCharByAppearAmt[i][0] == charaName) { 
+			for(var j = 0; j < episodesSortedIntoSeasons[index][1].length; j++) {
+				if(allCharByAppearAmt[i][7][episodeCount] == true) {
+					numOfAppearances++;
+				}
+				episodeCount++;
+			}
+		}
+	}
 	return numOfAppearances;
-	*/
 }
 
 function destroyChart() {
@@ -280,7 +309,7 @@ function destroyChart() {
 
 function getValue(sel) {
 	//console.log(allEpisodesByNumber);
-	console.log(episodesSortedIntoSeasons);
+	//console.log(episodesSortedIntoSeasons);
 	console.log(allCharByAppearAmt);
 	if(sel.id == "Seasons") {
 		seasonArray = $(sel).val();

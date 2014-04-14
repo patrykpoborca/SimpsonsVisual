@@ -1,0 +1,9 @@
+From 4/5 to 4/11
+
+Created a default chart that has the 5 Simpsons characters appearances through the 25 seasons.
+
+Made a couple of function in preparation for receiving input from the user's input.
+
+Tested the functions and it seems that I can pass in character names and seasons to get their appearances and generate a chart.
+
+Notified Dylan about some of the errors in the data because the chart wouldn't generate any data after season 13.  After he fixed the data, everything seems to be correct.
