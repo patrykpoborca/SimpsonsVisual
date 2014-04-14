@@ -1,6 +1,6 @@
 // Min/Max slider, not dynamic adjustments, saves data upon pressing form's button Patryk Poborca
 
-//wrapper for static elements
+//wrapper for this assignment
 function InitSlider(SLIDER, TEXT) { return initSlider(SLIDER, TEXT, $("#"+SLIDER).attr("min"), $("#"+SLIDER).attr("max"), $("#"+SLIDER).attr("step"));}
 
 // *************************
@@ -16,6 +16,7 @@ function InitSlider(SLIDER, TEXT) { return initSlider(SLIDER, TEXT, $("#"+SLIDER
 	$('#'+SLIDER).on('change', function()
 		{
 		$('#'+TEXT).val($('#'+SLIDER).val());
+		
 		});
 
 $('#'+TEXT).on('keyup', function()
@@ -39,7 +40,11 @@ return { slider : SLIDER, text : TEXT};
 	
 	}
 	
+function swapBoolDelay()
+{
 
+}
+var mutexLock = false;	
 // Binds the click action of a BUTTON html object to updating the values of the sliders into UICOM
 function bindSliders(MIN, MAX, BUTTON)
 {
@@ -47,7 +52,32 @@ function bindSliders(MIN, MAX, BUTTON)
 	if($('#'+MIN["slider"]).attr("step") != $('#'+MAX["slider"]).attr("step")) 
 		{ $('#'+MIN["slider"]).attr("step", $('#'+MIN["slider"]).attr("step")); console.log("Error catch : bindsliders(min, max) Step != Step2");}//error
 	
-		
+	
+	var mSlider = "#" + MIN['slider'];
+	var maxSlider = "#" + MAX['slider'];
+	
+	$(mSlider).on('change', 
+function()
+{	
+	
+	if($(this).val() >= $(mSlider).val() && !mutexLock)
+	{$(maxSlider).val($(this).val() + $(this).attr('step'));
+	mutexLock = true;}
+});	
+
+
+$(maxSlider).on('change', 
+setTimeout(function()
+{
+	
+	if($(this).val() <= $(mSlider).val() && !mutexLock)
+	{
+	$(mSlider).val($(this).val() - $(this).attr('step'));
+	mutexLock = true;}
+}, 1));	
+	
+	
+/*		
 	$("#"+BUTTON).on('click', function()
 	{
 		updateItem(MIN["slider"], $('#'+MIN["slider"]).val());
@@ -58,7 +88,7 @@ function bindSliders(MIN, MAX, BUTTON)
 			alert("Remember min slider has to be < max slider");
 			}
 			
-	});
+	});*/
 }	
 	
 
