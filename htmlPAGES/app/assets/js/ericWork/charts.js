@@ -1,36 +1,35 @@
 /*google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart);
 function drawChart() {
-	var data = google.visualization.arrayToDataTable([
-		['Year', 'Sales', 'Expenses'],
-		['2004',  1000,      400],
-		['2005',  1170,      460],
-		['2006',  660,       1120],
-		['2007',  1030,      540]
-	]);
+var data = google.visualization.arrayToDataTable([
+['Year', 'Sales', 'Expenses'],
+['2004', 1000, 400],
+['2005', 1170, 460],
+['2006', 660, 1120],
+['2007', 1030, 540]
+]);
 
-	var options = {
-		title: 'Company Performance',
-		hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
-	};
+var options = {
+title: 'Company Performance',
+hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
+};
 
-	var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-	chart.draw(data, options);
-	
-	var handler = function(e) {
-		var parts = e.targetID.split('#');
-		if (parts.indexOf('label') >= 0) {
-			var idx = parts[parts.indexOf('label') + 1];
-			alert(data.getValue(0, parseInt(idx)));
-		}
-	};
-	google.visualization.events.addListener(chart, 'click', handler);		
+var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+chart.draw(data, options);
+var handler = function(e) {
+var parts = e.targetID.split('#');
+if (parts.indexOf('label') >= 0) {
+var idx = parts[parts.indexOf('label') + 1];
+alert(data.getValue(0, parseInt(idx)));
+}
+};
+google.visualization.events.addListener(chart, 'click', handler);
 }*/
 
 /*
 ============================================================================================
 
-Note: I set the chart's background to the Simpson's yellow.  If you guys think it doesn't look good.  Just delete/comment out
+Note: I set the chart's background to the Simpson's yellow. If you guys think it doesn't look good. Just delete/comment out
 line 48 (backgroundColor: " ";)
 
 ============================================================================================
@@ -90,7 +89,7 @@ function chartFunc() {
 				legendText: "Homer Simpson",
 				showInLegend: true,
 				/*indexLabel: "{y}",
-				indexLabelPlacement: "outside",  
+				indexLabelPlacement: "outside",
 				indexLabelOrientation: "horizontal",
 				indexLabelFontColor: "black",
 				indexLabelFontSize: 10,*/
@@ -128,7 +127,7 @@ function chartFunc() {
 				legendText: "Marge Simpson",
 				showInLegend: true,
 				/*indexLabel: "{y}",
-				indexLabelPlacement: "outside",  
+				indexLabelPlacement: "outside",
 				indexLabelOrientation: "horizontal",
 				indexLabelFontColor: "black",
 				indexLabelFontSize: 10,*/
@@ -140,7 +139,7 @@ function chartFunc() {
 				legendText: "Bart Simpson",
 				showInLegend: true,
 				/*indexLabel: "{y}",
-				indexLabelPlacement: "outside",  
+				indexLabelPlacement: "outside",
 				indexLabelOrientation: "horizontal",
 				indexLabelFontColor: "black",
 				indexLabelFontSize: 10,*/
@@ -152,7 +151,7 @@ function chartFunc() {
 				legendText: "Lisa Simpson",
 				showInLegend: true,
 				/*indexLabel: "{y}",
-				indexLabelPlacement: "outside",  
+				indexLabelPlacement: "outside",
 				indexLabelOrientation: "horizontal",
 				indexLabelFontColor: "black",
 				indexLabelFontSize: 10,*/
@@ -164,7 +163,7 @@ function chartFunc() {
 				legendText: "Maggie Simpson",
 				showInLegend: true,
 				/*indexLabel: "{y}",
-				indexLabelPlacement: "outside",  
+				indexLabelPlacement: "outside",
 				indexLabelOrientation: "horizontal",
 				indexLabelFontColor: "black",
 				indexLabelFontSize: 10,*/
@@ -173,7 +172,7 @@ function chartFunc() {
 		],
 	});
 	//console.log(chart.options.data);
-	console.log(allEpisodesByNumber);
+	//console.log(allEpisodesByNumber);
 	chart.render();
 }
 
@@ -188,8 +187,8 @@ function generateDefaultData(name) {
 			for(var j = 0; j < allCharByAppearAmt[i][7].length; j++) {
 				if(allCharByAppearAmt[i][7][j] == true) {
 					appearances++;
-					k++;
-					if(k == episodesSortedIntoSeasons[index][1].length) {
+						k++;
+						if(k == episodesSortedIntoSeasons[index][1].length) {
 						//console.log(i);
 						points.push({label: episodesSortedIntoSeasons[index][0].toString(), y: appearances});
 						k = 0;
@@ -210,7 +209,7 @@ function generateDefaultData(name) {
 					}
 				}
 			}
-		} 
+		}
 	}
 	return points;
 }
@@ -223,8 +222,8 @@ function generateData() {
 			var seasons = {label: seasonArray[j].toString(), y: 20}
 			points.push(seasons);
 		}
-		var values = { 
-			name: charaArray[i], 
+		var values = {
+			name: charaArray[i],
 			type: "column",
 			legendText: charaArray[i],
 			showInLegend: true,
@@ -260,7 +259,7 @@ function createSeasonChart() {
 			verticalAlign: "bottom",
 			horizontalAlign: "center",
 			cursor: "pointer",
-			// A function call to switch to a more focused chart.  Which will show all the episode in the seasons and show if the characters showed up in the episode
+			// A function call to switch to a more focused chart. Which will show all the episode in the seasons and show if the characters showed up in the episode
 			//itemclick: function
 		},
 		creditText: "",
@@ -289,9 +288,9 @@ function getEpisodeBySeason(charaName, seasonNum) {
 			}
 		}
 	}
-	
+
 	for(var i = 0; i < allCharByAppearAmt.length; i++) {
-		if(allCharByAppearAmt[i][0] == charaName) { 
+		if(allCharByAppearAmt[i][0] == charaName) {
 			for(var j = 0; j < episodesSortedIntoSeasons[index][1].length; j++) {
 				if(allCharByAppearAmt[i][7][episodeCount] == true) {
 					numOfAppearances++;

@@ -51,8 +51,8 @@ function initUI()
 	
 	//initialization...
 	$('#superDiv').on('change', chartFunc());
-	fillArrayAllCharByAppearAmt();
-	fillAllEpsArray();
+	//fillArrayAllCharByAppearAmt();
+	//fillAllEpsArray();
 	chartFunc();
 	$("#chart_div").hide(); //for king div
 	$("#genTable").hide(); //for king div
