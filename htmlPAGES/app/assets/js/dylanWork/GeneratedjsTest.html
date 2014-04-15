@@ -1,0 +1,162 @@
+
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="main.css">
+<script type='text/javascript' src='SimpsonChars.js'></script>
+<script type='text/javascript' src='SimpsonEpisode.js'></script>
+<script type='text/javascript' src='SearchBar.js'></script>
+<script type='text/javascript' src='ChartGeneration.js'></script>
+
+
+<script type='text/javascript'>   
+
+
+window.onload = function() {
+	console.log('After onload. Filling eps array.');
+	fillAllEpsArray();
+	console.log('Filling characters array.');
+	fillArrayAllCharByAppearAmt();
+	console.log('finished with prep work, testing if the arrays work.');
+	//testTheArrays();
+
+	filloutBaseSearchAndSelected();
+
+	console.log("Size of character array" + allCharByAppearAmt.length );
+
+	filloutEpisodeBaseSearchAndSelected();
+
+	(function() {
+    window.onmousemove = handleMouseMove;
+	    function handleMouseMove(event) {
+	        event = event || window.event; // IE-ism
+	        //console.log("Mouse position? " + event.clientX + "," + event.clientY);
+	        // event.clientX and event.clientY contain the mouse position
+
+	        document.getElementById("testArrayContents").style.top = event.clientY - 30;
+	        document.getElementById("testArrayContents").style.left = event.clientX - 30;
+
+	        //console.log("box set to: " + document.getElementById("testArrayContents").style.top);
+	        //console.log("box set to: " + document.getElementById("testArrayContents").style.left);
+	    }
+	})();
+
+}
+
+
+
+</script>
+
+
+</head>
+<body>
+
+
+<div id="clickToShowSearchBar" onclick="showSearch()">
+Click
+To
+Show
+</div>
+
+<div id="searchArea">
+&nbspThis is the search area. <button  onclick="generateCharts()">Generate Charts</button>
+<somethingelse style="float: right;"> <button  onclick="hideSearch()" style="align:right">Hide</button><br></somethingelse>
+<pre> Selected Characters             Selected Episosdes</pre>
+
+	<div id="selectedZone">
+
+	</div>
+	<div id="selectedEpsZone">
+
+	</div>
+
+
+
+
+	<div id="characterSearchSelectAndFilterControls">
+
+		Click on characters in this box to add to the selected characters.
+		<br>
+		<br>
+		Only shows 20 at a time.
+
+		<div id="baseSearchZone">
+
+		</div>
+		<div id="characterFilterControls">
+			Filter controls<br> 
+			<hr>
+
+			Maximum Appearances: <input id="charFilterMaxAppear" type="text" size="5"> (Whole numbers only.)<br> <div></div>
+			Minimum Appearances: <input id="charFilterMinAppear" type="text" size="5"> (Whole numbers only.)<br> <div></div>
+			Name Must contain: <input id="charFilterNameContain" type="text" size="30"><br> <div></div>
+
+			<button onclick="collectCharacterFilters()"> Apply Character Filter</button>
+			<br>
+			<br>
+			<br>
+			<button onclick="showEpisodeSearchSelectAndFilterControls()"> Switch to Episode Filter</button>
+
+
+		</div><!-- End of char filter controls-->
+
+
+
+
+	</div><!-- End of char search select and filter controls-->
+
+
+	<div id="episodeSearchSelectAndFilterControls">
+
+		This is the episode searchselect and filter
+		<br>
+		<br>
+		Only shows 20 at a time.
+
+
+		<div id="episodeBaseSearchZone">
+			nothing in the search zone yet.
+		</div>
+
+	
+		<div id="episodeFilterControls">
+			Filter controls<br> 
+			<hr>
+
+			<div style="float: left;">Show only season: </div>
+			
+			<div style="float: left;">
+			<select id="episodeFilterSeasonSelect">
+				<option>All Seasons</option>
+				<option>Season 1</option><option>Season 2</option><option>Season 3</option><option>Season 4</option><option>Season 5</option>
+				<option>Season 6</option><option>Season 7</option><option>Season 8</option><option>Season 9</option><option>Season 10</option>
+				<option>Season 11</option><option>Season 12</option><option>Season 13</option><option>Season 14</option><option>Season 15</option>
+				<option>Season 16</option><option>Season 17</option><option>Season 18</option><option>Season 19</option><option>Season 20</option>
+				<option>Season 21</option><option>Season 22</option><option>Season 23</option><option>Season 24</option><option>Season 25</option>
+			</select></div>
+			<br><br>
+			<div >
+			Won't do anything: <input id="episodeSomething" type="text" size="5"> (Whole numbers only.)
+		</div>
+			Name Must contain: <input id="episodeFilterNameContain" type="text" size="30"><br> <div></div>
+
+			<button onclick="collectEpisodeFilters()"> Apply Episode Filter</button>
+			<br>
+			<br>
+			<button onclick="showCharacterSearchSelectAndFilterControls()"> Switch to Character Filter</button>
+
+
+		</div><!-- End of eps filter controls-->
+
+
+	</div> <!-- End of eps search select and filter controls-->
+
+</div> <!-- End of search area div-->
+
+<div id="dataDump">
+	Where might this div be located, I would like to see where or how this will respond without a position absolute.
+</div>
+<div id="testArrayContents">
+</div>
+
+</body>

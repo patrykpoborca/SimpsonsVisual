@@ -13,21 +13,37 @@ UI for app
 <meta name="description" content="CS 424 info charts on simpsons">
 <meta name="author" content="Dylan, Patryk,Eric">
 
-   
+   	<link rel="stylesheet" type="text/css" href="assets/js/dylanWork/main.css">
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <style>
-      
+      #tablePosition
+	  {
+		overflow:auto;
+		position: absolute;
+		width: 1030px;
+		height: 360px;
+		background-color: red;  
+		top : 360px;
+		left : 251px;	
+	  }
+	  
+	  .checkBox
+	  {
+		 
+	  }
 	  .flaggerCLASS
 	  {
 	  position: relative;
 	  left : 5px;
 	  }
-	  .textAllign
+	  #queryParser
 	  {
 	  position : relative;
 	  left :17px;
 	  height : 150px;
 	  top : 10px;
+	  width : 205;
+	  background-color: white;
 	  }
 	  #Container
 	  {
@@ -39,8 +55,8 @@ UI for app
 	background-color : green;
 	top: 0px;
 	left : 253px;
-	width: 1280px;
-	height: 500px;
+	width: 1030px;
+	height: 360px;
 	z-index: -1;
 	  }
 		
@@ -87,8 +103,8 @@ UI for app
 </head>
 	<body>
 	
-	<div id = "Container">
-	<div id="chart_div"></div>  <!-- chart div to populate...-->
+ <!-- ############################################expandSelectors indent##################################### --><div id = "Container"> <!-- Container -->
+			<div id="chart_div"></div>  <!-- chart div to populate...-->
 	
 	
 		<!--
@@ -103,84 +119,134 @@ UI for app
 		
 		-->
 	  <div id = "toggler"> Expand/Hide Bar </div>
-          <div id="sideBar">
-            <ul class="nav">
-				<li id = "minMax"> <!-- min/max slider subcomponents -->
-					<button type="button" id = "expandSliders" class = "sidePanel btn btn-primary">Show Sliders</button>	
-				</li>   <!-- min/max slider subcomponents -->
-				<li>
-					<label for = "scopeSort" id = "checkScopeText">Numeric Sort</label>
-					<input type="checkbox" name="scopeSort" id = "scopeCBox" class = "checkBox"> 
-					<input list="scopeChoices" name="scopeList" id = "scopeListChoicesForFlag" class ="flagger"> <!-- flagger!-->
-						<datalist id="scopeChoices">
-						 <option value="debug1">
-						<option value="debug2">
-						  <!-- append html info here with class class : scopeRemovable -->
-						</datalist>
-				</li>
+          <div id="sideBar">  <!-- sidebar div -->
+            <ul class="nav">  <!-- UL -->
+						 <!-- ############################################LI SPLITER##################################### -->
+									<li id = "minMax"> <!-- min/max slider subcomponents -->
+										<button type="button" id = "expandSliders" class = "sidePanel btn btn-primary">Show Sliders</button>	
+									</li>   <!-- min/max slider subcomponents -->
+						 <!-- ############################################LI SPLITER##################################### -->
+									<li>
+										<label for = "scopeSort" id = "checkScopeText">Numeric Sort</label>
+										<input type="checkbox" name="scopeSort" id = "scopeCBox" class = "checkBox"> 
+										<input list="scopeChoices" name="scopeList" id = "scopeListChoicesForFlag" class ="flagger"> <!-- flagger!-->
+											<datalist id="scopeChoices">
+											 <option value="debug1">
+											<option value="debug2">
+											  <!-- append html info here with class class : scopeRemovable -->
+											</datalist>
+									</li>
+						 <!-- ############################################LI SPLITER##################################### -->
+									<li>
+										<label for = "filterSort" id = "filterCEText">Numeric Sort</label>
+										<input type="checkbox" name="filterCESort" id = "filterCEbox" class = "checkBox"> 
+										<input list="filterCEChoices" name="filterCEList" id = "FilterByListChoicesForFlag"  class ="flagger "> <!-- flagger!-->
+										<datalist id="filterCEChoices">
+										
+										<select multiple="multiple">
+										<option value="debug1">
+										<option value="bbbbb">
+										<option value="ccccc">
+										<option value="dddddd">
+										</select>
+										  <!-- append html info here with class class : scopeRemovable -->
+										</datalist>
+										</li>
+						 <!-- ############################################LI SPLITER##################################### -->
+										<li>
+										<div id = "queryParser">
+										</div>
+									</li>
+						 <!-- ############################################LI SPLITER##################################### -->
+									<li>
+										<label for = "voiceSort" id = "filterVoicesLabel">Numeric Sort</label>
+										<input type="checkbox" name="filterVoicesBox" id = "filterVoiceCbox" class = "checkBox"> 
+										<input list="filterVoiceList" name="filterVoiceListN" id = "FilterByVoicesForFlag"  class ="flagger"> <!-- flagger!-->
+											<datalist id="filterVoiceList">
+											<option value="debug1">
+											<option value="debug2">
+											  <!-- append html info here with class class : scopeRemovable -->
+											</datalist>
+									</li>
+						 <!-- ############################################LI SPLITER##################################### -->
+									<li>
+											<label for = "LSort" id = "filterLLabel">Numeric Sort</label>
+											<input type="checkbox" name="filterLBox" id = "filterLCbox" class = "checkBox"> 
+											<input list="filterLocList" name="filterLListN" id = "FilterByLForFlag"  class ="flagger"> <!-- flagger!-->
+												<datalist id="filterLocList">
+												<option value="debug1">
+												<option value="debug2">
+												  <!-- append html info here with class class : scopeRemovable -->
+												</datalist>
+									</li>
 				
-				<li>
-					<label for = "filterSort" id = "filterCEText">Numeric Sort</label>
-					<input type="checkbox" name="filterCESort" id = "filterCEbox" class = "checkBox"> 
-					<input list="filterCEChoices" name="filterCEList" id = "FilterByListChoicesForFlag"  class ="flagger"> <!-- flagger!-->
-						<datalist id="filterCEChoices">
-						<option value="debug1">
-						<option value="debug2">
-						  <!-- append html info here with class class : scopeRemovable -->
-						</datalist>
-				</li>
-				<li>
-				<textarea rows="4" cols="50" id = "queryParser" class = "textAllign"> Query Parser Here
-				</textarea>
-				</li>
-				
-				<li>
-					<label for = "voiceSort" id = "filterVoicesLabel">Numeric Sort</label>
-					<input type="checkbox" name="filterVoicesBox" id = "filterVoiceCbox" class = "checkBox"> 
-					<input list="filterVoiceList" name="filterVoiceListN" id = "FilterByVoicesForFlag"  class ="flagger"> <!-- flagger!-->
-						<datalist id="filterVoiceList">
-						<option value="debug1">
-						<option value="debug2">
-						  <!-- append html info here with class class : scopeRemovable -->
-						</datalist>
-				</li>
-				
-				<li>
-					<label for = "LSort" id = "filterLLabel">Numeric Sort</label>
-					<input type="checkbox" name="filterLBox" id = "filterLCbox" class = "checkBox"> 
-					<input list="filterLocList" name="filterLListN" id = "FilterByLForFlag"  class ="flagger"> <!-- flagger!-->
-						<datalist id="filterLocList">
-						<option value="debug1">
-						<option value="debug2">
-						  <!-- append html info here with class class : scopeRemovable -->
-						</datalist>
-				</li>
-				
-				
-            </ul>
-          </div>
+                
+                
+                
+						 <!-- ############################################LI SPLITER##################################### -->
+									<!-- debug button-->
+									<li>
+											<button type="button" id = "sendData" class = "sidePanel btn btn-primary">debugLogData</button>	
+									</li>
+						 <!-- ############################################LI SPLITER##################################### -->
+            </ul> <!-- UL -->
+          </div> <!-- sidebar div -->
     
-	 <div id = "expandSelectors"> 
-					<label for = "minTxt" class = "sidePanel"  >Min<br></label>
-					<input  type = "text" name = "minText" value = "50" id = "minTxt" class = "sidePanel" /><br> 
-					 <input type="range"  name="minRange" value = "50" min="0.00" max="99.9" step="0.01" class = "sidePanel dataInit flagger sliderFlag" id = "minSlider" /> <!-- flagger!-->
+					<div id = "expandSelectors"> <!-- expandSelectors -->
+						<label for = "minTxt" class = "sidePanel"  >Min<br></label>
+						<input  type = "text" name = "minText" value = "50" id = "minTxt" class = "sidePanel" /><br> 
+						 <input type="range"  name="minRange" value = "50" min="0.00" max="99.9" step="0.01" class = "sidePanel dataInit flagger sliderFlag" id = "minSlider" /> <!-- flagger!-->
+						
+						<label for = "minTxt" class = "sidePanel"  >Max<br></label>
+						 <input  type = "text" name = "minText" value = "51"  id = "maxTxt" class = "sidePanel" /><br> 
+						 <input type="range"  name="minRange" value = "51" min="0.01" max="100" step="0.01" class = "sidePanel dataInit flagger sliderFlag" id = "maxSlider" /> <!-- flagger!-->
+					</div>  <!-- expandSelectors -->
 					
-					<label for = "minTxt" class = "sidePanel"  >Max<br></label>
-					 <input  type = "text" name = "minText" value = "51"  id = "maxTxt" class = "sidePanel" /><br> 
-					 <input type="range"  name="minRange" value = "51" min="0.01" max="100" step="0.01" class = "sidePanel dataInit flagger sliderFlag" id = "maxSlider" /> <!-- flagger!-->
-					 <button type="button" id = "minMaxButton" class = "sidePanel" >Update Sliders</button>
-	 
-	 </div>
-	</div>
+					
+				<div id = "tablePosition"> <!-- table div -->
+						<div id="pictureTest">
+						<p><h3>Overview</h3> <button onClick="toggleCharIconsOnPopup()">Toggle Icons In popups.</button></p>
+							</div>
+
+
+						<!--style="overflow:scroll; height:200; width:1400px;"-->
+						<div id="overviewTable" >
+
+						</div>
+
+
+						<div id="testArrayContents">
+						</div>
+
+						<div id="popupControlBox">
+
+						</div>
+		
+				</div>
+					
+					
+ <!-- ############################################expandSelectors indent##################################### --></div> <!-- container -->
 	
-	<script src="assets/js/jquery-1.8.1.js"></script>  
-	<script src="assets/js/bootstrap.js"></script>
+	
+	
+	
+	<script type='text/javascript' src='assets/js/dylanWork/interactiveTable.js'></script>
+	<script type='text/javascript' src='assets/js/dylanWork/urlsOfChars.js'></script>
+    <script type='text/javascript' src='assets/js/dylanWork/SimpsonEpisode.js'></script>
+    <script type='text/javascript' src='assets/js/dylanWork/SimpsonChars.js'></script>
+    
+    
+	<script src="assets/js/libraries/jquery-1.8.1.js"></script>  
+    <script src="assets/js/libraries/canvasjs.min.js"></script> 
+    <script src="assets/js/ericWork/ArrayGeneration.js"></script>  
+    <script src="assets/js/ericWork/charts.js"></script> 
+	<script src="assets/js/libraries/bootstrap.js"></script>
 	<script src="assets/js/customFunctions.js"></script>
-	<script src = "assets/js/jquery.tools.min.js"></script>
-	<script src = "assets/js/sliderCode.js"></script> <!-- has the slider behaviours in it -->
-	<script src = "assets/js/communicateUI.js"></script> <!-- has the ui init and communication for other .js files in it -->
-	<script src = "assets/js/dropdowns.js"></script> <!-- has the dropdown behaviours in it -->
-	<script src = "assets/js/flagMaker.js"></script> <!-- has the used to create bound flags for a class type -->
+	<script src = "assets/js/libraries/jquery.tools.min.js"></script>
+	<script src = "assets/js/patrykWork/sliderCode.js"></script> <!-- has the slider behaviours in it -->
+	<script src = "assets/js/patrykWork/communicateUI.js"></script> <!-- has the ui init and communication for other .js files in it -->
+	<script src = "assets/js/patrykWork/dropdowns.js"></script> <!-- has the dropdown behaviours in it -->
+	<script src = "assets/js/patrykWork/flagMaker.js"></script> <!-- has the used to create bound flags for a class type -->
 	<script>
 	$(document).ready(function()
 	{//ready start #############################################################################################################
@@ -188,15 +254,20 @@ UI for app
 	$(".dataInit").each(function(){  updateItem($(this).attr("id"), $(this).val());  }); // initializes all values
 	var minObj = InitSlider("minSlider", "minTxt");  // initializes the slider code 
 	var maxObj = InitSlider("maxSlider", "maxTxt");
-	bindSliders(minObj, maxObj, "minMaxButton");
+	bindSliders(minObj, maxObj);
 	////////////////////////
 	attachCheck("scopeCBox", "scopeChoices", "on Scope");
 	attachCheck("filterCEbox", "filterCEChoices", "on filterBy");
 	attachCheck("filterVoiceCbox", "filterVoiceList", "on Voices");
 	attachCheck("filterLCbox", "filterLocList", "on ?Locations?");
 	
+	//debug bind
+	$("#sendData").on('click', debugLogCom);
+	//eo debug bind
 	//last things to be done
 	populateFlags();//needs to populate created elements of a certain type of class
+	chartFunc();
+	fillOverviewTable();
 	}); //end of ready #############################################################################################################
 	
 	
