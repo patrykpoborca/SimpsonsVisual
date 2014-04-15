@@ -1,0 +1,4 @@
+Created the GUI from scratch, http://puu.sh/89ERd.png, http://puu.sh/89ESh.png, http://puu.sh/89ETe.png
+
+created some dynamic functions allowing the user to link checkmarks with boxes, dynamic sliders for min/max, and also created a dynamic table generator, will add more to it
+soon.
