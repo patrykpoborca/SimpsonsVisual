@@ -16,88 +16,109 @@ UI for app
    	<link rel="stylesheet" type="text/css" href="assets/js/dylanWork/main.css">
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <style>
-      #tablePosition
-	  {
+		table,th,td
+		{
+		border:1px solid black;
+		border-collapse:collapse;
+		}
+		
+		#superDiv
+		{
+		overflow:auto;
+		position: absolute;
+		width: 1030px;
+		height: 720px;
+		background-color: beige;  
+		top : 0px;
+		left : 255px;	
+		}
+		#genTable
+		{
 		overflow:auto;
 		position: absolute;
 		width: 1030px;
 		height: 360px;
 		background-color: red;  
 		top : 360px;
-		left : 251px;	
-	  }
-	  
-	  .checkBox
-	  {
-		 
-	  }
-	  .flaggerCLASS
-	  {
-	  position: relative;
-	  left : 5px;
-	  }
-	  #queryParser
-	  {
-	  position : relative;
-	  left :17px;
-	  height : 150px;
-	  top : 10px;
-	  width : 205;
-	  background-color: white;
-	  }
-	  #Container
-	  {
-	  position: relative;
-	  }
-	  #chart_div
-	  {
-	position: absolute;
-	background-color : green;
-	top: 0px;
-	left : 253px;
-	width: 1030px;
-	height: 360px;
-	z-index: -1;
-	  }
-		
-	  #expandSelectors
-	  {
-	  position :absolute;
-	  left : 250px;
-	  background-color : teal;
-	  width : 250px;
-	  border-style:solid;
-	  border-width:3px;
-	  border-color:black;
-	  z-index: 1;
-	  }
-	  .sidePanel
-	  {
+		left : 255px;	
+		}
+
+		.checkBox
+		{
+
+		}
+		.flaggerCLASS
+		{
+		position: relative;
+		left : 5px;
+		}
+		#queryParser
+		{
+		position : relative;
+		left :17px;
+		height : 150px;
+		top : 10px;
+		width : 205;
+		background-color: white;
+		}
+		#Container
+		{
+		position: relative;
+		}
+		#chart_div
+		{
+		position: absolute;
+		background-color : green;
+		top: 0px;
+		left : 255px;
+		width: 1030px;
+		height: 360px;
+		z-index: -1;
+		}
+
+		#expandSelectors
+		{
+		position :absolute;
+		left : 250px;
+		background-color : teal;
+		width : 250px;
+		border-style:solid;
+		border-width:3px;
+		border-color:black;
+		z-index: 1;
+		}
+		.sidePanel
+		{
 		position:relative;
 		left: 10px;
-	  }
-	  
-	  div#sideBar
-	  {
-	  border-style:solid;
-	  border-width:3px;
-	  border-color:black;
-	  position: absolute;
-	  top : 50px;
-	  width : 250px;
-	  height : 500px;
-	  background-color : grey;
-	  }
-	  div#toggler
-	  {
+		}
+
+		div#sideBar
+		{
+		border-style:solid;
+		border-width:3px;
+		border-color:black;
+		position: absolute;
+		top : 50px;
+		width : 250px;
+		height : 500px;
+		background-color : grey;
+		}
+		div#toggler
+		{
 		position :relative;
 		top : 0px;
 		left : 0px;
 		background-color : beige;
-		width: 253px;
+		width: 255px;
 		height: 50px
-	  }
-	  
+		}
+		
+		.inputStuff
+		{
+		position: relative;
+		top : 15px;
+		}
     </style>
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 </head>
@@ -127,7 +148,7 @@ UI for app
 									</li>   <!-- min/max slider subcomponents -->
 						 <!-- ############################################LI SPLITER##################################### -->
 									<li>
-										<label for = "scopeSort" id = "checkScopeText">Numeric Sort</label>
+										<label for = "scopeSort" id = "checkScopeText" class= "sidePanel">Numeric Sort</label>
 										<input type="checkbox" name="scopeSort" id = "scopeCBox" class = "checkBox"> 
 										<input list="scopeChoices" name="scopeList" id = "scopeListChoicesForFlag" class ="flagger"> <!-- flagger!-->
 											<datalist id="scopeChoices">
@@ -138,7 +159,7 @@ UI for app
 									</li>
 						 <!-- ############################################LI SPLITER##################################### -->
 									<li>
-										<label for = "filterSort" id = "filterCEText">Numeric Sort</label>
+										<label for = "filterSort" id = "filterCEText" class ="sidePanel">Numeric Sort</label>
 										<input type="checkbox" name="filterCESort" id = "filterCEbox" class = "checkBox"> 
 										<input list="filterCEChoices" name="filterCEList" id = "FilterByListChoicesForFlag"  class ="flagger "> <!-- flagger!-->
 										<datalist id="filterCEChoices">
@@ -155,13 +176,14 @@ UI for app
 						 <!-- ############################################LI SPLITER##################################### -->
 										<li>
 										<div id = "queryParser">
+										<h3>Click bottom button -> generated chart to toggle chart</h3>
 										</div>
 									</li>
 						 <!-- ############################################LI SPLITER##################################### -->
 									<li>
-										<label for = "voiceSort" id = "filterVoicesLabel">Numeric Sort</label>
-										<input type="checkbox" name="filterVoicesBox" id = "filterVoiceCbox" class = "checkBox"> 
-										<input list="filterVoiceList" name="filterVoiceListN" id = "FilterByVoicesForFlag"  class ="flagger"> <!-- flagger!-->
+										<label for = "voiceSort" id = "filterVoicesLabel" class = "inputStuff sidePanel">Numeric Sort</label>
+										<input type="checkbox" name="filterVoicesBox" id = "filterVoiceCbox" class = "inputStuff checkBox"> 
+										<input list="filterVoiceList" name="filterVoiceListN" id = "FilterByVoicesForFlag"  class ="inputStuff flagger"> <!-- flagger!-->
 											<datalist id="filterVoiceList">
 											<option value="debug1">
 											<option value="debug2">
@@ -170,9 +192,9 @@ UI for app
 									</li>
 						 <!-- ############################################LI SPLITER##################################### -->
 									<li>
-											<label for = "LSort" id = "filterLLabel">Numeric Sort</label>
-											<input type="checkbox" name="filterLBox" id = "filterLCbox" class = "checkBox"> 
-											<input list="filterLocList" name="filterLListN" id = "FilterByLForFlag"  class ="flagger"> <!-- flagger!-->
+											<label for = "LSort" id = "filterLLabel" class= "sidePanel inputStuff">Numeric Sort</label>
+											<input type="checkbox" name="filterLBox" id = "filterLCbox" class = "inputStuff checkBox"> 
+											<input list="filterLocList" name="filterLListN" id = "FilterByLForFlag"  class ="inputStuff flagger"> <!-- flagger!-->
 												<datalist id="filterLocList">
 												<option value="debug1">
 												<option value="debug2">
@@ -186,7 +208,7 @@ UI for app
 						 <!-- ############################################LI SPLITER##################################### -->
 									<!-- debug button-->
 									<li>
-											<button type="button" id = "sendData" class = "sidePanel btn btn-primary">debugLogData</button>	
+											<button type="button" id = "sendData" class = "inputStuff sidePanel btn btn-primary">debugLogData && ToggleCharts</button>	
 									</li>
 						 <!-- ############################################LI SPLITER##################################### -->
             </ul> <!-- UL -->
@@ -194,34 +216,38 @@ UI for app
     
 					<div id = "expandSelectors"> <!-- expandSelectors -->
 						<label for = "minTxt" class = "sidePanel"  >Min<br></label>
-						<input  type = "text" name = "minText" value = "50" id = "minTxt" class = "sidePanel" /><br> 
-						 <input type="range"  name="minRange" value = "50" min="0.00" max="99.9" step="0.01" class = "sidePanel dataInit flagger sliderFlag" id = "minSlider" /> <!-- flagger!-->
+						<input  type = "text" name = "minText" value = "50" id = "minTxt" class = "sidePanel flagger" /><br> <!-- flagger!-->
+						 <input type="range"  name="minRange" value = "50" min="0.00" max="99.9" step="0.01" class = "sidePanel dataInit sliderFlag" id = "minSlider" />
 						
 						<label for = "minTxt" class = "sidePanel"  >Max<br></label>
-						 <input  type = "text" name = "minText" value = "51"  id = "maxTxt" class = "sidePanel" /><br> 
-						 <input type="range"  name="minRange" value = "51" min="0.01" max="100" step="0.01" class = "sidePanel dataInit flagger sliderFlag" id = "maxSlider" /> <!-- flagger!-->
+						 <input  type = "text" name = "minText" value = "51"  id = "maxTxt" class = "flagger sidePanel" /><br>   <!-- flagger!-->
+						 <input type="range"  name="minRange" value = "51" min="0.01" max="100" step="0.01" class = "sidePanel dataInit sliderFlag" id = "maxSlider" /> 
 					</div>  <!-- expandSelectors -->
 					
 					
-				<div id = "tablePosition"> <!-- table div -->
-						<div id="pictureTest">
-						<p><h3>Overview</h3> <button onClick="toggleCharIconsOnPopup()">Toggle Icons In popups.</button></p>
+				<div id = "genTable"> <!-- table div -->
+						
+		
+				</div>
+				<div id= "superDiv">
+							<div id="pictureTest">
+							<p><h3>Overview</h3> <button onclick="toggleCharIconsOnPopup()">Toggle Icons In popups.</button></p>
+								</div>
+
+
+							<!--style="overflow:scroll; height:200; width:1400px;"-->
+							<div id="overviewTable" >
+
 							</div>
 
 
-						<!--style="overflow:scroll; height:200; width:1400px;"-->
-						<div id="overviewTable" >
+							<div id="testArrayContents">
+							</div>
 
-						</div>
+							<div id="popupControlBox">
 
-
-						<div id="testArrayContents">
-						</div>
-
-						<div id="popupControlBox">
-
-						</div>
-		
+							</div>				
+											
 				</div>
 					
 					
@@ -235,7 +261,7 @@ UI for app
     <script type='text/javascript' src='assets/js/dylanWork/SimpsonEpisode.js'></script>
     <script type='text/javascript' src='assets/js/dylanWork/SimpsonChars.js'></script>
     
-    
+    <script src = "assets/js/patrykWork/parseData.js"></script>
 	<script src="assets/js/libraries/jquery-1.8.1.js"></script>  
     <script src="assets/js/libraries/canvasjs.min.js"></script> 
     <script src="assets/js/ericWork/ArrayGeneration.js"></script>  
@@ -244,6 +270,7 @@ UI for app
 	<script src="assets/js/customFunctions.js"></script>
 	<script src = "assets/js/libraries/jquery.tools.min.js"></script>
 	<script src = "assets/js/patrykWork/sliderCode.js"></script> <!-- has the slider behaviours in it -->
+	<script src = "assets/js/patrykWork/tableGenerator.js"></script>
 	<script src = "assets/js/patrykWork/communicateUI.js"></script> <!-- has the ui init and communication for other .js files in it -->
 	<script src = "assets/js/patrykWork/dropdowns.js"></script> <!-- has the dropdown behaviours in it -->
 	<script src = "assets/js/patrykWork/flagMaker.js"></script> <!-- has the used to create bound flags for a class type -->
@@ -266,8 +293,20 @@ UI for app
 	//eo debug bind
 	//last things to be done
 	populateFlags();//needs to populate created elements of a certain type of class
-	chartFunc();
+	
 	fillOverviewTable();
+	var rr = [];
+	var pp = [];
+	for(var a =0; a < 10; a++)
+		{ rr = [];
+		for(var b =0; b < 10; b++)
+			rr.push({data : b%2, color : ""});
+		  pp.push(rr);
+		}	
+		
+	var HOLD = wrapForTable(p_charBySeason());
+	initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, false, false); // rows, columns, divID, data, display
+	
 	}); //end of ready #############################################################################################################
 	
 	
