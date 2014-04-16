@@ -6,8 +6,8 @@
 <script type='text/javascript' src='jquery-1.11.0.min.js'></script>
 <script type='text/javascript' src='interactiveTable.js'></script>
 <script type='text/javascript' src='urlsOfChars.js'></script>
-<script type='text/javascript' src='SimpsonEpisode.js'></script>
-<script type='text/javascript' src='SimpsonChars.js'></script>
+<script type='text/javascript' src='SEpisodes.js'></script>
+<script type='text/javascript' src='SChars.js'></script>
 
 
 
@@ -16,19 +16,24 @@
 
 
 window.onload = function() {
+	console.log("Starting");
 
 	//document.getElementById("pictureTest").innerHTML = "<img src='" + imageUrlsForCharacters[0][1] + "'></img>";
-
-
 	//chars [  name, full, first appear, alias, jobs, relatives, voice actors, episode appearances   ]
 
-	fillArrayAllCharByAppearAmt();
-	fillAllEpsArray();
+
+
+
 
 	fillOverviewTable();
 	console.log("End");
 
-	
+
+	console.log("Testing class retrieve");
+	console.log(document.getElementById('classTest').className);
+	var classes = document.getElementById('classTest').className;
+	console.log(typeof classes);
+
 }
 
 
@@ -57,6 +62,10 @@ window.onload = function() {
 
 <div id="popupControlBox">
 
+</div>
+
+
+<div id="classTest" class="one two apple banana deleteThisDivAfterDoneTesting">
 </div>
 
 

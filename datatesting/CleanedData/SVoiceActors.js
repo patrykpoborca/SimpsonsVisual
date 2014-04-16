@@ -3,25 +3,25 @@
 
 var voiceActorsByCharAmount = [
   ["Hank Azaria",
-    ["Bart Simpson","Milhouse Van Houten","Jonathan Frink","Moe Szyslak","Snake Jailbird","Gary Chalmers","Lenny Leonard","Horatio McCallister","Jeffrey Albertson","Cletus Spuckler","Carl Carlson","Bumblebee Man","Kirk Van Houten","Nick Riviera","Lou","Rafael","Drederick Tatum","Luigi Risotto","Disco Stu","Old Jewish Man","Just Stamp the Ticket Man","List of Star Wars Characters","Gerald Samson","Julio","Akira","Ronald Reagan","Johnny Tightlips","Legs","Dr. Hibbert's First Son","Roger Meyers, Jr.","Pyro","Adolf Hitler","Devil","Doug (nerd)","Abraham Lincoln","Joey Crusher","Mr. Costington","Funzo","Lowblow","Frank Grimes","Mr. Rhenquist","Chazz Busby","Mr. T","Ian (Very Tall Man)","George Washington","Santa Claus","Khlav Kalash vendor","Arthur Crandall","Dr. Hector von Colossus","Gabbo","WALLÃ?Â·E","Coach Krupt","Gunter","Bobby Peterson","The Grumple","The Parson","Orville Simpson","Don Vittorio DiMaggio","Leon Kompowsky","Mr. Mitchell","Mario","Dr. Velimirovic","Bob Hope (character)","Doug (camera man)","The Godfather (character)","Charlton Heston","Corey Masterson","Dalai Lama","Anthony Hopkins","Jim-Jam Bonks","Roofi","Al Gumble","Bud Armstrong","Goose Gladwell","Dr. Foster","Santa's Little Helper's original owner","Mr. Jones","Waylon Smithers, Sr.","Steve Mobbs","Mr. Vanderbilt","Mr. Gammel","Zachary Vaughn","Dexter Colt","Little Moe Szyslak","Sir Widebottom","Amid bin Laden","Brody McKenna","Alcatraaz","Bill Gates","Adam West (character)","Chuck Ellis","Jeremy (network executive)","Number 2","L.T. Smash","Dr. Brentano","Raoul","Cregg Demon","Zack (Springfield Retirement Castle)","Nick Fury","Burly","Ralph Nader","Charles Bronson","Cyrus Simpson","The Happiest Man in Springfield","Iggy Wiggum","Kavi Nahasapeemapetilon","Frank Grimes, Jr.","JosÃ?Â© Flanders","Groundskeeper Seamus","Roy","Bort (man)","Bob Arnold","Geoff Jenkins","Mugger","Norbert Van Houten","Shelbyville Manhattan","Hans (business man)","Fausto","Skipper","The Leader","Race Banyon","Bruno Drundridge","Jericho","Joey (And Maggie Makes Three)","Donny (In Marge We Trust)","Arthur Fortune","EPA Scientist","Jury Foreman","Robby the Automaton","Baron von Herzenberger","Principal Valiant","Asa (WWI)","Grandpa Van Houten","Dr. Egoyan","Bestimus Muchos","Pig of Eden","Linguo","Billy the Kid","Milton Haas","Pet Store Man","Former-Mayor","Milhouse (Shelbyville)","Arcade Cashier","Camping Man","English Scientist","Fernando Vidal","Hey Hey Guy","Bob's Merchandising Team","Vance Connor","Avery Mann","Red Barclay","Max (Ice Cream Man)","The Homer imposter","Ricardo Bomba","Ak","Twinkie the Kid","Senior Dance Instructor","Marshall Goldman","Ron","Benevenstanciano","Wolf the Bounty Hunter","Walt Warren","Homer Simpson (Police Cops)","Jamie Killday","Larry H. Lawyer, Jr.","Bort (boy)","Randy (tour guide)","Buck Mitchell","Wolfguy Jack","Crazy Vaclav","Sinjin Van Hookstrap","Sherpas","William Milo","Christopher","Mr. Sakamoto","Number 15","Mr. Thai","Chuck Garabedian","Mayo Clinic Doctor","Sandy","The Southern Colonel","Head Judge","Count von Count","Alberto","Comic Book Gay","Von Krusten","House of Evil Shopkeeper","Poseidon","Bernie","Unnamed Latino Man","Mr. Becker","Mike (teacher)","Chili Man","Pool Shark Salesman","Amish Man","Dean Bitterman","Construction Worker","Victor","Hugs Bunny","Larry (driver)","Mexican Duffman","Mr. Lacoste","Nick Callahan","Moe-looking Satan","AT-AT","Luke Skywalker (parody)","Yoda (parody)","Andy Warhol","General Krull","Cubby","Platt","Rangemaster","Shelbyville Nelson","Shelbyville lemonade boy's brother","Compost","Trucker 3","Alf","Pixie","Zack (Sneakers)","Patrolman 2","Warrior Comic Book Guy","The Moe imposter","Robusto","Stavros","Upward Bound director","Camping Baby","Sleazy Sam","Pontius Pilate","Rodrigo","Martin Luther King, Jr.","Caleb","Mark (Regarding Margie)","Dave Rothman","Homer's cousin","Stark Richdale","Chett Englebrick","Late shift worker 1","Late shift worker 3","Mathemagician","Springfield Pet Shop owner","Eduardo Barcelona"] //chars
+    ["Bart Simpson","Milhouse Van Houten","Apu Nahasapeemapetilon","Jonathan Frink","Moe Szyslak","Snake Jailbird","Gary Chalmers","Lenny Leonard","Horatio McCallister","Jeffrey Albertson","Cletus Spuckler","Carl Carlson","Bumblebee Man","Kirk Van Houten","Nick Riviera","Lou","Rafael","Drederick Tatum","Luigi Risotto","Disco Stu","Old Jewish Man","Just Stamp the Ticket Man","List of Star Wars Characters","Gerald Samson","Julio","Akira","Ronald Reagan","Johnny Tightlips","Legs","Dr. Hibbert's First Son","Roger Meyers, Jr.","Pyro","Adolf Hitler","Devil","Doug (nerd)","Abraham Lincoln","Joey Crusher","Mr. Costington","Funzo","Lowblow","Frank Grimes","Mr. Rhenquist","Chazz Busby","Mr. T","Ian (Very Tall Man)","Mr. Sparkle","George Washington","Santa Claus","Khlav Kalash vendor","Arthur Crandall","Dr. Hector von Colossus","Gabbo","WALLÃ?Â·E","Coach Krupt","Gunter","Bobby Peterson","The Grumple","The Parson","Orville Simpson","Don Vittorio DiMaggio","Leon Kompowsky","Mr. Mitchell","Mario","Dr. Velimirovic","Bob Hope (character)","Doug (camera man)","The Godfather (character)","Charlton Heston","Corey Masterson","Dalai Lama","Anthony Hopkins","Jim-Jam Bonks","Roofi","Al Gumble","Bud Armstrong","Goose Gladwell","Dr. Foster","Santa's Little Helper's original owner","Mr. Jones","Waylon Smithers, Sr.","Steve Mobbs","Mr. Vanderbilt","Mr. Gammel","Zachary Vaughn","Dexter Colt","Little Moe Szyslak","Sir Widebottom","Amid bin Laden","Brody McKenna","Alcatraaz","Bill Gates","Adam West (character)","Chuck Ellis","Jeremy (network executive)","Number 2","L.T. Smash","Dr. Brentano","Raoul","Cregg Demon","Zack (Springfield Retirement Castle)","Nick Fury","Burly","Ralph Nader","Charles Bronson","Cyrus Simpson","The Happiest Man in Springfield","Iggy Wiggum","Kavi Nahasapeemapetilon","Frank Grimes, Jr.","JosÃ?Â© Flanders","Groundskeeper Seamus","Roy","Bort (man)","Bob Arnold","Geoff Jenkins","Mugger","Norbert Van Houten","Shelbyville Manhattan","Hans (business man)","Fausto","Skipper","The Leader","Race Banyon","Bruno Drundridge","Jericho","Joey (And Maggie Makes Three)","Donny (In Marge We Trust)","Arthur Fortune","EPA Scientist","Jury Foreman","Robby the Automaton","Baron von Herzenberger","Principal Valiant","Asa (WWI)","Grandpa Van Houten","Dr. Egoyan","Bestimus Muchos","Pig of Eden","Linguo","Billy the Kid","Milton Haas","Pet Store Man","Former-Mayor","Milhouse (Shelbyville)","Arcade Cashier","Camping Man","English Scientist","Fernando Vidal","Hey Hey Guy","Bob's Merchandising Team","Vance Connor","Avery Mann","Red Barclay","Max (Ice Cream Man)","The Homer imposter","Ricardo Bomba","Ak","Twinkie the Kid","Senior Dance Instructor","Marshall Goldman","Ron","Benevenstanciano","Wolf the Bounty Hunter","Walt Warren","Homer Simpson (Police Cops)","Jamie Killday","Larry H. Lawyer, Jr.","Bort (boy)","Randy (tour guide)","Buck Mitchell","Wolfguy Jack","Crazy Vaclav","Sinjin Van Hookstrap","Sherpas","William Milo","Christopher","Mr. Sakamoto","Number 15","Mr. Thai","Chuck Garabedian","Mayo Clinic Doctor","Sandy","The Southern Colonel","Head Judge","Count von Count","Alberto","Comic Book Gay","Von Krusten","House of Evil Shopkeeper","Poseidon","Bernie","Unnamed Latino Man","Mr. Becker","Mike (teacher)","Chili Man","Pool Shark Salesman","Amish Man","Dean Bitterman","Construction Worker","Victor","Hugs Bunny","Larry (driver)","Mexican Duffman","Mr. Lacoste","Nick Callahan","Moe-looking Satan","AT-AT","Luke Skywalker (parody)","Yoda (parody)","Andy Warhol","General Krull","Cubby","Platt","Rangemaster","Shelbyville Nelson","Shelbyville lemonade boy's brother","Compost","Trucker 3","Alf","Pixie","Zack (Sneakers)","Patrolman 2","Warrior Comic Book Guy","The Moe imposter","Robusto","Stavros","Upward Bound director","Camping Baby","Sleazy Sam","Pontius Pilate","Rodrigo","Martin Luther King, Jr.","Caleb","Mark (Regarding Margie)","Dave Rothman","Homer's cousin","Stark Richdale","Chett Englebrick","Late shift worker 1","Late shift worker 3","Mathemagician","Springfield Pet Shop owner","Eduardo Barcelona"] //chars
   ], //va
   ["Dan Castellaneta",
-    ["Barney Gumble","Groundskeeper Willie","Abraham Simpson","Krusty the Clown","Melvin Van Horne","Joe Quimby","Larry (barfly)","Hans Moleman","Charlie (SNPP)","Blue-haired lawyer","Gil Gunderson","Rainier Wolfcastle","Jeremy Freedman","Jack Marley","Arnie Pye","The Rich Texan","Marty","Louie (mafia)","The Yes Guy","Scott Christian","Roger Meyers, Jr.","Kodos","Captain Lance Murdock","Devil","Jake the Barber","Abraham Lincoln","Leprechaun","Gary (nerd)","Frankie the Squealer","Rupert Murdoch (character)","Leopold","Cowboy Bob","Jimmy Carter","Santa Claus","Black Teacher","Aristotle Amadopolis","Richie Sakai","Sonic the Hedgehog","Kaiser Wilhelm II","Count Dracula","Mr. Zzyzwicz","Estonian Dwarf","Alfred E. Neuman","John F. Kennedy","Dan Castellaneta (character)","Freddy Quimby","Mrs. Gumble","Mario","Phil (reporter)","Grim Reaper","Ugolin","Doug (camera man)","Gerald Ford","Elf Dwarf","Lugash","Zutroy","Fantastic Dan","McGarnagle","Buddy Hodges","Oscar the Grouch","Gummy Joe","Al Simmons","Angry Dad","Mr. Hoxha","St. Peter","Giant Handed Man","Adam","Fidel Castro","French Chef","An Alien","Serious Homer","George Burns (character)","Stuart","Hiram Simpson","Abbie Simpson","Lord Thistlewick Flanders","Guy Incognito","Phony McRing-Ring","Don Castellaneta","Chet Simpson","Moldy","Gus","Stabbed in Jail Spuckler","Homer's clones","Mr. Bont","Ralph (Dead Putting Society)","Boris Csupowski","Freddy Krueger","The Raving Derelict","Millionaire Actor","Beggar Relative","Prison Snitch (Simpson Relative)","Hurt Leg Simpson Relative","Cletus (I Married Marge)","Can Owner","Frank Sinatra","John S.","B.F. Sherwood","Mr. Glascock","Reformed Dad","News Reporter (Call of the Simpsons)","Mr. Dandy","Mall Cop","Anniversary Singer","The Krusty Burglar","The Raven Narrator","Avery Mann","Etch Westgrin","Morningwood Guard","King Henry VIII","The Scoutmaster","Headmaster Greystash","Faceless Man","Anton Lubchenko","El Homo","Johnny (soldier)","Lee Carvallo","Communist Party Recruiter","Cornelius Chapman","ClownFace","Shelbyville Elementary Groundskeeper","Sailor","Chinese Spy","Emperor Akihito","Dink","Nicky Bluepants Altosaxophony","Old Woman (Marge vs. the Monorail)","Rex (I Love Lisa)","Zeus","Dionysus","Harvard Graduate","The Swedish Chef","Optometrist","Busker","Ice Cream Man","Springfield University Board Member","Punchbowl Student","Site Manager","Man Underneath Bowling Alley","Dr. Bettleheim","Johnny Stabbo","Homer Glumplich","Captain Mordecai Barrows","Anderson","Shelbyville Martin","Shelbyville Abe","Waverly Hills Elementary School groundskeeper","Paul Lynde","4-H leader","County fair judge","Engineer","Trucker 5","Trucker 6","Patrolman 1","Unnamed parent","Fun Homer","Man with the Braces actor","Testing Center employee","Mr. Montone","The Genie","Spanish Squeaky-Voiced Teen","Handsome bachelor","Hans Moleman's family","Questo","Frosty the Snowman","Gay Colonel","Shavings owner"] //chars
+    ["Barney Gumble","Groundskeeper Willie","Abraham Simpson","Krusty the Clown","Melvin Van Horne","Joe Quimby","Larry (barfly)","Hans Moleman","Charlie (SNPP)","Blue-haired lawyer","Hyman Krustofsky","Gil Gunderson","Artie Ziff","Rainier Wolfcastle","Jeremy Freedman","Jack Marley","Arnie Pye","The Rich Texan","Marty","Louie (mafia)","The Yes Guy","Scott Christian","Roger Meyers, Jr.","Kodos","Captain Lance Murdock","Devil","Jake the Barber","Abraham Lincoln","Leprechaun","Bill Clinton","Gary (nerd)","SpongeBob SquarePants","Frankie the Squealer","Rupert Murdoch (character)","Leopold","Cowboy Bob","Jimmy Carter","Santa Claus","Black Teacher","Aristotle Amadopolis","Richie Sakai","Sonic the Hedgehog","Kaiser Wilhelm II","Count Dracula","Mr. Zzyzwicz","Estonian Dwarf","Alfred E. Neuman","John F. Kennedy","Dan Castellaneta (character)","Freddy Quimby","Mrs. Gumble","Mario","Phil (reporter)","Grim Reaper","Ugolin","Doug (camera man)","Gerald Ford","Elf Dwarf","Lugash","Zutroy","Fantastic Dan","McGarnagle","Buddy Hodges","Oscar the Grouch","Gummy Joe","Al Simmons","Angry Dad","Mr. Hoxha","St. Peter","Giant Handed Man","Adam","Fidel Castro","French Chef","An Alien","Serious Homer","Benjamin Franklin","George Burns (character)","Stuart","Hiram Simpson","Abbie Simpson","Lord Thistlewick Flanders","Guy Incognito","Phony McRing-Ring","Don Castellaneta","Chet Simpson","Moldy","Gus","Stabbed in Jail Spuckler","Homer's clones","Mr. Bont","Ralph (Dead Putting Society)","Boris Csupowski","Freddy Krueger","The Raving Derelict","Millionaire Actor","Beggar Relative","Prison Snitch (Simpson Relative)","Hurt Leg Simpson Relative","Cletus (I Married Marge)","Can Owner","Frank Sinatra","John S.","B.F. Sherwood","Mr. Glascock","Reformed Dad","News Reporter (Call of the Simpsons)","Mr. Dandy","Mall Cop","Anniversary Singer","The Krusty Burglar","The Raven Narrator","Avery Mann","Etch Westgrin","Morningwood Guard","King Henry VIII","The Scoutmaster","Headmaster Greystash","Faceless Man","Anton Lubchenko","El Homo","Johnny (soldier)","Lee Carvallo","Communist Party Recruiter","Cornelius Chapman","ClownFace","Shelbyville Elementary Groundskeeper","Sailor","Chinese Spy","Emperor Akihito","Dink","Nicky Bluepants Altosaxophony","Old Woman (Marge vs. the Monorail)","Rex (I Love Lisa)","Zeus","Dionysus","Harvard Graduate","The Swedish Chef","Optometrist","Busker","Ice Cream Man","Springfield University Board Member","Punchbowl Student","Site Manager","Man Underneath Bowling Alley","Dr. Bettleheim","Johnny Stabbo","Homer Glumplich","Captain Mordecai Barrows","Anderson","Shelbyville Martin","Shelbyville Abe","Waverly Hills Elementary School groundskeeper","Paul Lynde","4-H leader","County fair judge","Engineer","Trucker 5","Trucker 6","Patrolman 1","Unnamed parent","Fun Homer","Man with the Braces actor","Testing Center employee","Mr. Montone","The Genie","Spanish Squeaky-Voiced Teen","Handsome bachelor","Hans Moleman's family","Questo","Frosty the Snowman","Gay Colonel","Shavings owner"] //chars
   ], //va
   ["Tress MacNeille",
-    ["Ned Flanders","Agnes Skinner","Lewis","Jimbo Jones","Lindsey Naegle","Dolph Starbeam","Mrs. Muntz","Mona Simpson","Bernice Hibbert","Dr. Hibbert's Daughter","Eleanor Abernathy","Sashi Nahasapeemapetilon","Anoop Nahasapeemapetilon","Alice Glick","Gheet Nahasapeemapetilon","Maggie Simpson","Cosine","Shauna","Mrs. Pommelhorse","Mrs. Vanderbilt","Dubya Spuckler","Queen Elizabeth II","Mrs. Rhenquist","Audrey McConnell","Whitney Spuckler","Jitney Spuckler","Dia-Betty","Michael D'Amico","Adil Hoxha","Daphne Burns","Bashir bin Laden","Carol Jones","Cora","Marge's friend","Billy (actor)","Jeremy Jailbird","Apu's Mother","Gwen the Waitress","Poor Violet","Willie's Mother","Donna","Eloise","Richie Rich","Nancy Drew","Dr. Simpson","Gino Terwilliger","Myra","Medicine Woman","Colin","Grandma Van Houten","Paris Texan","Maya","Debbie Pinson","Kora","Gypsy","Vicki Valentine","Madison McKenna","Millicent","Noah's Mother","Justin","Donna's friend","Miss Wyoming","Cieneta","Lester","Yuma Hickman","June Bellamy","Clara Stetson","Veronica","Belle","Spud","Pepi","Phillips","Ronaldo (Blame It on Lisa)","Emma","Starla Starbeam","Charquelle","Martha (librarian)","Sun Moon","Betsy Bidwell","Erin (Sophie's Mother)","Daphne Beaumont","Megan","Devan Woosterfield","Quenley Woosterfield","The Wicked Queen","Mimi","Evelyn Peters","Noah (Father Knows Worst)","Shelby","Robyn Hannah","Verity Heathbar","Ben Heathbar","Helen Morehouse","Diane (network executive)","Mindy (executive)","Dahlia Brinkley","Velma","Moonhilda","Sylvia","Bodhi","5th Grader","Cute Lamb","Tina","Helen of Troy","Comic Book Girl","Ms. Dubinsky","Titi","Esme Delacroix","Mother Superior","Ms. Marshall","Gym Teacher","Remedial Class Teacher","Professor Wexler","Miss Goodthighs","CJ","Sheila Chow","Waverly Hills Elementary School teacher","Solar Panel","Female actress","Female trucker","Tourist","Prison librarian","Jesminder Bhamra","Juliana Krellner","Mayor Quimby's niece","Rose Quimby","Sister Thomasina","Inga","Hadley Richardson","Pauline Pfeiffer","Sepulveda","Brenda Weingarten","Homer's cousin's wife","Mama Celeste","Brenda","Moe's girlfriend","Ash Ketchum","Cleo","Milly Anne","Mrs. Potts","Lyla","Miss Viola"] //chars
+    ["Ned Flanders","Agnes Skinner","Lewis","Jimbo Jones","Lindsey Naegle","Dolph Starbeam","Mrs. Muntz","Mona Simpson","Bernice Hibbert","Dr. Hibbert's Daughter","Eleanor Abernathy","Sashi Nahasapeemapetilon","Anoop Nahasapeemapetilon","Alice Glick","Database","Gheet Nahasapeemapetilon","Maggie Simpson","Cosine","Shauna","Mrs. Pommelhorse","Mrs. Vanderbilt","Dubya Spuckler","Queen Elizabeth II","Mrs. Rhenquist","Audrey McConnell","Whitney Spuckler","Jitney Spuckler","Dia-Betty","Michael D'Amico","Manjula Nahasapeemapetilon","Adil Hoxha","Daphne Burns","Bashir bin Laden","Carol Jones","Cora","Marge's friend","Billy (actor)","Jeremy Jailbird","Francesca Terwilliger","Apu's Mother","Gwen the Waitress","Poor Violet","Willie's Mother","Donna","Eloise","Richie Rich","Nancy Drew","Dr. Simpson","Gino Terwilliger","Myra","Medicine Woman","Colin","Grandma Van Houten","Paris Texan","Maya","Debbie Pinson","Kora","Gypsy","Vicki Valentine","Madison McKenna","Millicent","Noah's Mother","Justin","Donna's friend","Brandine Spuckler","Miss Wyoming","Cieneta","Lester","Yuma Hickman","June Bellamy","Clara Stetson","Veronica","Belle","Spud","Pepi","Phillips","Ronaldo (Blame It on Lisa)","Emma","Starla Starbeam","Charquelle","Martha (librarian)","Sun Moon","Betsy Bidwell","Erin (Sophie's Mother)","Daphne Beaumont","Megan","Devan Woosterfield","Quenley Woosterfield","The Wicked Queen","Mimi","Evelyn Peters","Noah (Father Knows Worst)","Shelby","Robyn Hannah","Verity Heathbar","Ben Heathbar","Helen Morehouse","Diane (network executive)","Mindy (executive)","Dahlia Brinkley","Velma","Moonhilda","Sylvia","Bodhi","5th Grader","Cute Lamb","Tina","Helen of Troy","Comic Book Girl","Ms. Dubinsky","Titi","Esme Delacroix","Mother Superior","Ms. Marshall","Gym Teacher","Remedial Class Teacher","Professor Wexler","Miss Goodthighs","CJ","Sheila Chow","Waverly Hills Elementary School teacher","Solar Panel","Female actress","Female trucker","Tourist","Prison librarian","Jesminder Bhamra","Juliana Krellner","Mayor Quimby's niece","Rose Quimby","Sister Thomasina","Inga","Hadley Richardson","Pauline Pfeiffer","Sepulveda","Brenda Weingarten","Homer's cousin's wife","Mama Celeste","Brenda","Moe's girlfriend","Ash Ketchum","Cleo","Milly Anne","Mrs. Potts","Lyla","Miss Viola"] //chars
   ], //va
   ["Harry Shearer",
-    ["Charles Montgomery Burns","Julius Hibbert","Seymour Skinner","Ned Flanders","Timothy Lovejoy, Jr.","Sam (barfly)","Lenny Leonard","Kent Brockman","Herman Hermann","Carl Carlson","Sanjay Nahasapeemapetilon","Jasper Beardly","Dewey Largo","Rainier Wolfcastle","Waylon Smithers, Jr.","Eddie","Roy Snyder","Dave Shutton","Marvin Monroe","Bill (KBBL)","J. Loren Pyror","Maggie Simpson","Ronald Reagan","Kang","Sherri and Terri's father","Adolf Hitler","God","Benjamin (nerd)","Devil","George Bush","Harlan Dondelinger","Abraham Lincoln","Mr. Muntz","Nedward Flanders, Sr.","Richard Nixon","Birch Barlow","Clancy Bouvier","Report Card","George Washington","Sheldon Skinner","Smilin' Joe Fission","Ernst","Tom Brokaw","Jebediah Springfeld","Cesar","Mr. Taylor","Roscoe","Phil (reporter)","Wainwright Montgomery Burns","Supporting Man","Count Fudge-ula","William MacDougal II","Dr. Zitsofsky","Malicious Krubb","Hypnotist","Bob Dole","Charles Darwin","Clifford Burns","Great Dad","Dirk Richter","Armando (A Milhouse Divided)","M-Z Counselor","Flanders the Devil","Mr. Black","Fritz","Gaylord Q. Tinkledink","Sebastian Cobb","Godfrey Jones","Nigel (manager)","Glen","Andy (Bart vs. Australia)","Harv Bannister","Dr. H. Boyle","John Travolta","Merl","Melody","Hugh Jass","Annex Adminstrator","Cashier (pawn shop)","Old Dad","French Scientist","SWAT Agent","SWAT Leader","Bob's Merchandising Team","Marge's demons","Congressman 3","Dimoxinil user","Burns' Campaign Leader","Burns' Alien","Nuclear Physics Professor","Patrick Farally","Ted","Ted Flanders","Lance Kaufman","Chief (Police Cops)","Garth Trelawny","Guinness Book of World Records host","Sherpas","Robber (Homer and Apu)","Kwik-E-Mart President","Dr. Bob Kaufman","Kwik-E-Mart Inspector","Mr. Blackheart","Dutch policeman","J.P.","Count von Count","Admiral Mann","Dr. Hibbert's Twin","Canadian Flanders","Hermano Gamelo Hibbert","Shelby's Father","Mr. Starbeam","Red Headed Employee","President Lenny","Guidance Counselor","President of the United States (movie)","Randy Newman","Galactic senator","Mr. Doyle","C. Ebenezer Burns","Cyrus Manley","Waiter","Loading dock worker","Male actor","Trucker 1","Trucker 2","Trucker 4","Clerk","Faun Largo","Milhouse's tutor","Coach Flanagan","Isotots commentator","Nick (1)","Nick (2)","Major Preston","Diablo","Strom Thurmond"] //chars
+    ["Lionel Hutz","Charles Montgomery Burns","Julius Hibbert","Seymour Skinner","Ned Flanders","Timothy Lovejoy, Jr.","Sam (barfly)","Lenny Leonard","Kent Brockman","Herman Hermann","Carl Carlson","Sanjay Nahasapeemapetilon","Jasper Beardly","Dewey Largo","Rainier Wolfcastle","Waylon Smithers, Jr.","Eddie","Roy Snyder","Dave Shutton","Marvin Monroe","Bill (KBBL)","J. Loren Pyror","Maggie Simpson","Ronald Reagan","Kang","Sherri and Terri's father","Adolf Hitler","God","Benjamin (nerd)","Devil","George Bush","Harlan Dondelinger","Abraham Lincoln","Mr. Muntz","Nedward Flanders, Sr.","Richard Nixon","Birch Barlow","Clancy Bouvier","Report Card","George Washington","Sheldon Skinner","Smilin' Joe Fission","Ernst","Tom Brokaw","Jebediah Springfeld","Cesar","Mr. Taylor","Ugolin","Roscoe","Phil (reporter)","Wainwright Montgomery Burns","Supporting Man","Count Fudge-ula","William MacDougal II","Dr. Zitsofsky","Malicious Krubb","Hypnotist","Bob Dole","Charles Darwin","Clifford Burns","Great Dad","Dirk Richter","Armando (A Milhouse Divided)","M-Z Counselor","Flanders the Devil","Mr. Black","Fritz","Gaylord Q. Tinkledink","Sebastian Cobb","Godfrey Jones","Nigel (manager)","Glen","Andy (Bart vs. Australia)","Harv Bannister","Dr. H. Boyle","John Travolta","Merl","Melody","Hugh Jass","Annex Adminstrator","Cashier (pawn shop)","Old Dad","French Scientist","SWAT Agent","SWAT Leader","Bob's Merchandising Team","Marge's demons","Arnold Schwarzenegger","Congressman 3","Dimoxinil user","Burns' Campaign Leader","Burns' Alien","Nuclear Physics Professor","Patrick Farally","Ted","Ted Flanders","Lance Kaufman","Chief (Police Cops)","Garth Trelawny","Guinness Book of World Records host","Sherpas","Robber (Homer and Apu)","Kwik-E-Mart President","Dr. Bob Kaufman","Kwik-E-Mart Inspector","Mr. Blackheart","Dutch policeman","J.P.","Count von Count","Admiral Mann","Dr. Hibbert's Twin","Canadian Flanders","Hermano Gamelo Hibbert","Shelby's Father","Mr. Starbeam","Red Headed Employee","President Lenny","Guidance Counselor","President of the United States (movie)","Randy Newman","Galactic senator","Mr. Doyle","C. Ebenezer Burns","Cyrus Manley","Waiter","Loading dock worker","Male actor","Trucker 1","Trucker 2","Trucker 4","Clerk","Faun Largo","Milhouse's tutor","Coach Flanagan","Isotots commentator","Nick (1)","Nick (2)","Major Preston","Diablo","Strom Thurmond"] //chars
   ], //va
   ["Unknown",
-    ["Tanya","The Happy Little Elves","Freddy","Taylor Spuckler","Art teacher","Joshua and Amber's Mom","Retirement Castle adminstrator (Bart the General)","Yellow Kid","Jer","Kevin (Stealing First Base)","Wizard Twins","Justin's father","Josh","Cheery","Doofy","Haiti Veteran","Mr. Mussolini","Mr. Schindler","Armando (Flaming Moe's)","Northern Irish Leprechaun","The Aristocrat's Bartender","Sister Marilyn","Mall Santa Girl","Springfield Downs Kid","Bullfighter","Singing Girl","Ticket Bouncer","Bigfoot Kid","Bigfoot's Capturer","Sapphire Lounge Guy","Suzie's Dad","Police Officer (The Crepes of Wrath)","Bob's Aide","News Reporter (Some Enchanted Evening 2)","Dimoxinil Actor","Guy Who Watched Homer's Speech 1","Chief Inspector","Hairdresser","Mrs. Pennyfeather","Mrs. Pennywinkle","Esther","Madame Mimi","M.C Birthday","Ms. Finck","Angelo","Boxcar Bob","Otis","Robot Controller","My Ding-a-Ling Kid","Wayne Slater's boss","Springfield Billy","Frankie (Health Inspector)","Stan (Car Salesman)","Duff's CEO","Johnny (Canadian)","Convicted Man","Terrance (prisoner)","Steve (USAF)","Agent Malone","Martha (robber)","Eric","The Commanding Officer","Dwight Diddlehopper's Accomplice","Editor of Everyman","Professor Huntington","New student","Hospital administrator (future)","Dr. Hibbert's assistant","Flight Passenger (future)","Cool Mom 1","Husband of Cool Mom 1","Cool Mom 2","Husband of Cool Mom 2","Husband of Cool Mom 3","Cool mom 3","Son of Cool Mom 2","Son of Cool Mom 3","Stanley","Chicagoan man","Math teacher","Bobby Mindix","Mr. Hobbes","Mrs. Hobbes","Onward Christian Schoolboys Academy teacher","Keith","Keith's wife","Music teacher","El Puerco's first girlfriend","Clarice Dremond","Handsome bachelor's brothers","Kaitlin","French Boy","Mr. Kupferberg","Farmer Billy","Dewey","Howard's son"] //chars
+    ["Tanya","The Happy Little Elves","Freddy","Taylor Spuckler","Art teacher","Joshua and Amber's Mom","Retirement Castle adminstrator (Bart the General)","Yellow Kid","Jer","Kevin (Stealing First Base)","Wizard Twins","Justin's father","Josh","Cheery","Doofy","Haiti Veteran","Mr. Mussolini","Mr. Schindler","Armando (Flaming Moe's)","Northern Irish Leprechaun","The Aristocrat's Bartender","Sister Marilyn","Mall Santa Girl","Springfield Downs Kid","Bullfighter","Singing Girl","Ticket Bouncer","Bigfoot Kid","Bigfoot's Capturer","Sapphire Lounge Guy","Suzie's Dad","Police Officer (The Crepes of Wrath)","Bob's Aide","News Reporter (Some Enchanted Evening 2)","Dimoxinil Actor","Guy Who Watched Homer's Speech 1","Chief Inspector","Hairdresser","Mrs. Pennyfeather","Mrs. Pennywinkle","Esther","Madame Mimi","M.C Birthday","Ms. Finck","Angelo","Boxcar Bob","Otis","Robot Controller","My Ding-a-Ling Kid","Wayne Slater's boss","Springfield Billy","Frankie (Health Inspector)","Stan (Car Salesman)","Duff's CEO","Johnny (Canadian)","Convicted Man","Terrance (prisoner)","Steve (USAF)","Agent Malone","Martha (robber)","Eric","The Commanding Officer","Dwight Diddlehopper's Accomplice","Editor of Everyman","Professor Huntington","New student","Hospital administrator (future)","Dr. Hibbert's assistant","Flight Passenger (future)","Cool Mom 1","Husband of Cool Mom 1","Cool Mom 2","Husband of Cool Mom 2","Husband of Cool Mom 3","Cool mom 3","Son of Cool Mom 2","Son of Cool Mom 3","Stanley","Chicagoan man","Math teacher","Darcy's Father","Darcy's Mother","Bobby Mindix","Mr. Hobbes","Mrs. Hobbes","Onward Christian Schoolboys Academy teacher","Keith","Keith's wife","Music teacher","El Puerco's first girlfriend","Clarice Dremond","Handsome bachelor's brothers","Kaitlin","French Boy","Mr. Kupferberg","Farmer Billy","Dewey","Howard's son","Mike's Son","Hot Dog Oven Bot","Brainy","Flander's Santa","Uranium 235 Rods","Springfield Nuclear Power Plant Wife","Player 1","Player 2","Park Ranger","Theater Guy","Burlesque Guy","Moon Guy","Rev. Lovejoy's Aide","Krusty's Lawyer","Executive 1","Cloisters Academy Headmaster"] //chars
   ], //va
   ["Pamela Hayden",
-    ["Milhouse Van Houten","Becky (Student)","Lewis","Richard","Wendell Borton","Ruth Powers","Janey Powell","Jimbo Jones","Allison Taylor","Coward","Database","Dr. Hibbert's Second Son","Mona Simpson","Sarah Wiggum","Uma Nahasapeemapetilon","Rod Flanders","Poonam Nahasapeemapetilon","Nabendu Nahasapeemapetilon","Ham","Agnes Flanders","Dorothy","Amber Simpson","Pahusacheta Nahasapeemapetilon","Patches","Titania","Female Judge","Margarita","Annette","Susan","Gummy Sue Spuckler","Tattoo Annie","Bart's Younger Son","Celeste","Ashley Grant","Jimbo Jr.","Anya","Fake Lisa Simpson","Tobias Drundridge","Abby","Kindergarten Teacher","German Santa Girl","Son (There's No Disgrace Like Home)","Howard's Mom","Bob's Merchandising Team","Brittany (Krusty Gets Busted)","Milford Van Houten","Jane (Movementarian)","Milhoose","Svetlana","Ruthie","Carrey","Embry Joe Spuckler","Keggy","Worm-eating boy","Red-haired kid","Milhouse (Earthland Realms)","Nureen","Jennifer","Librarian","Mrs. Dexter","Chin Ho","Kevin (St. Jerome's Catholic School)","Tracy","Brittany (Student)"] //chars
+    ["Milhouse Van Houten","Becky (Student)","Lewis","Richard","Wendell Borton","Black Weasel","Ruth Powers","Janey Powell","Jimbo Jones","Allison Taylor","Coward","Database","Dr. Hibbert's Second Son","Mona Simpson","Sarah Wiggum","Uma Nahasapeemapetilon","Rod Flanders","Poonam Nahasapeemapetilon","Nabendu Nahasapeemapetilon","Ham","Agnes Flanders","Dorothy","Amber Simpson","Pahusacheta Nahasapeemapetilon","Patches","Titania","Female Judge","Margarita","Annette","Susan","Gummy Sue Spuckler","Tattoo Annie","Bart's Younger Son","Celeste","Ashley Grant","Stephanie Brockman","Jimbo Jr.","Anya","Fake Lisa Simpson","Tobias Drundridge","Abby","Kindergarten Teacher","German Santa Girl","Son (There's No Disgrace Like Home)","Howard's Mom","Bob's Merchandising Team","Brittany (Krusty Gets Busted)","Milford Van Houten","Jane (Movementarian)","Milhoose","Svetlana","Ruthie","Carrey","Embry Joe Spuckler","Keggy","Worm-eating boy","Red-haired kid","Milhouse (Earthland Realms)","Nureen","Jennifer","Librarian","Mrs. Dexter","Chin Ho","Kevin (St. Jerome's Catholic School)","Tracy","Brittany (Student)"] //chars
   ], //va
   ["Nancy Cartwright",
-    ["Bart Simpson","Lewis","Nina Skalka","Richard","Wendell Borton","Ralph Wiggum","Nelson Muntz","Todd Flanders","Kearney Zzyzwicz","Pria Nahasapeemapetilon","Sandeep Nahasapeemapetilon","El Barto","Maggie Simpson","Ling Bouvier","Britney Brockman","Kearney, Jr.","E-mail","Gavin","Jamshed Nahasapeemapetilon","Nelson Muntz, Jr.","Tom Gammel","Harry Potter (character)","Wolfgang Amadeus Mozart","Bart's Elder Son","Abigail","Timmy O'Toole","Jimmy (actor)","Bubbles","Simon Woosterfield","Mall Santa Boy","Receptionist","Doo-De-Doo Kid","Bart Simpson, Jr.","Canadian Nelson","Jackington","Bart-soundalike Construction Foreman","Katelyn","Cregg Demon's son","Dr. Bartley","Ludwig van Beethoven","Cookie Salesgirl","Sherri and Terri's children","Bartabe Barrows","Cadet leader","Ralph (Waverly Hills)","Kindergarten student","Mrs. Dexter's daughter","Esther (The Great Simpsina)","Homer's cousin's son","Kenny","Ooda","Candy","Shasta"] //chars
+    ["Bart Simpson","Lewis","Nina Skalka","Richard","Wendell Borton","Ralph Wiggum","Nelson Muntz","Todd Flanders","Kearney Zzyzwicz","Pria Nahasapeemapetilon","Sandeep Nahasapeemapetilon","El Barto","Maggie Simpson","Database","Ling Bouvier","Britney Brockman","Kearney, Jr.","E-mail","Gavin","Jamshed Nahasapeemapetilon","Nelson Muntz, Jr.","Tom Gammel","Harry Potter (character)","Wolfgang Amadeus Mozart","Bart's Elder Son","Abigail","White Weasel","Timmy O'Toole","Jimmy (actor)","Bubbles","Simon Woosterfield","Mall Santa Boy","Receptionist","Doo-De-Doo Kid","Bart Simpson, Jr.","Canadian Nelson","Jackington","Bart-soundalike Construction Foreman","Katelyn","Cregg Demon's son","Dr. Bartley","Ludwig van Beethoven","Cookie Salesgirl","Sherri and Terri's children","Bartabe Barrows","Cadet leader","Ralph (Waverly Hills)","Kindergarten student","Mrs. Dexter's daughter","Esther (The Great Simpsina)","Homer's cousin's son","Kenny","Ooda","Candy","Shasta"] //chars
   ], //va
   ["Maggie Roswell",
     ["Richard","Maude Flanders","Helen Lovejoy","Elizabeth Hoover","Luann Van Houten","Mona Simpson","Princess Kashmir","Sylvia Winfield","Martha Quimby","Queen Elizabeth II","Mary Bailey","Female Mail Carrier","Shary Bobbins","Ms. Norton","Faith Crowley","Gavin and Katelyn's Mother","Strawberry","Nana Sophie Mussolini","Barbara Bush","Woman Interviewer","Maude Flanders (ghost)","Retirement Castle Nurse","Mrs. Spencer","Camping Woman","Ms. Bloomenstein","The Fortune Teller","Kindergarten Teacher (Lisa's Sax)","Volleyball Coach","Franklin","Shelbyville lemonade boy","Estelle"] //chars
@@ -30,13 +30,7 @@ var voiceActorsByCharAmount = [
     ["Lisa Simpson","Maggie Simpson","Angelica Button","Estonian Dwarf","Cecile Shapiro","Snow White","Lost in Space","Poppy","Lisa, Jr.","The Raven Narrator","Eliza Simpson","Zia Simpson","Eliza Simpson (Treehouse of Horror XV)","Jake Boyman","Lisakaiah Barrows","Jealousy","Honesty","Conscience","Libido","Queen Helvetica","Toilet"] //chars
   ], //va
   ["Phil Hartman",
-    ["Troy McClure","Fat Tony","Johnny Tightlips","God","Mr. Muntz","The Godfather (character)","Charlton Heston","Lyle Lanley","Judah Ben-Hur","Jimmy Apollo","Tom","Horst","Evan Conover","The Cable Guy","Plato","Stock Broker"] //chars
-  ], //va
-  ["unknown",
-    ["Mike's Son","Hot Dog Oven Bot","Brainy","Flander's Santa","Uranium 235 Rods","Springfield Nuclear Power Plant Wife","Player 1","Player 2","Park Ranger","Theater Guy","Burlesque Guy","Moon Guy","Rev. Lovejoy's Aide","Krusty's Lawyer","Executive 1","Cloisters Academy Headmaster"] //chars
-  ], //va
-  ["None",
-    ["Heather Spuckler","Maria Quimby","Jamie","Yeti","Cody Spuckler","Irish Boy Most Resembling a Potato","Fatov","Timothy Lovejoy, Sr.","Gyro","Kathy Ireland","Jack Tate","Bella","Lewis' grandfather","G.B. Shaw","Viktor's wife","Mr. Burns' older siblings"] //chars
+    ["Lionel Hutz","Troy McClure","Fat Tony","Johnny Tightlips","God","Mr. Muntz","Bill Clinton","The Godfather (character)","Charlton Heston","Lyle Lanley","Judah Ben-Hur","Jimmy Apollo","Tom","Horst","Evan Conover","The Cable Guy","Plato","Stock Broker"] //chars
   ], //va
   ["Karl Wiedergott",
     ["Ned Flanders","Bill Clinton","Legs","Jimmy Carter","Michael Jackson (character)","State Comptroller Atkins","Baron Von Kiss-A-Lot","Cookie","Howell Huser","Hosey the Bear","Emile (executive)","Muntu","Royce Lumpkin","Jesse","Marlin"] //chars
@@ -50,17 +44,11 @@ var voiceActorsByCharAmount = [
   ["Himself",
     ["Mr. T","Luke Perry","50 Cent (character)","Tom Jones","William H. Macy (character)","Richard Gere (character)","Michael Chabon","Jonathan Franzen","Aaron Sorkin"] //chars
   ], //va
-  [")",
-    ["Ned Flanders","Ned Flanders","Apu Nahasapeemapetilon","Mr. Sparkle","Leon Kompowsky","Ugolin","Benjamin Franklin"] //chars
-  ], //va
   ["Jon Lovitz",
-    ["Llewellyn Sinclair","Aristotle Amadopolis","Professor Lombardo","Jay Sherman","Enrico Irritazio","Mr. Seckofsky","Avery Devereaux"] //chars
+    ["Llewellyn Sinclair","Aristotle Amadopolis","Professor Lombardo","Jay Sherman","Enrico Irritazio","Mr. Seckofsky","Avery Devereaux","Artie Ziff"] //chars
   ], //va
   ["Jo Ann Harris",
-    ["Lewis","Richard","Wendell Borton","Ms. Phipps","Colette","Maria Dominguez"] //chars
-  ], //va
-  ["N/A",
-    ["Handsome Pete","Mrs. McFierly","Guard Dog","Crowd","Ref","Bear Actor"] //chars
+    ["Lewis","Richard","Wendell Borton","Ms. Phipps","Colette","Maria Dominguez","Black Weasel"] //chars
   ], //va
   ["Albert Brooks",
     ["Jacques","Cowboy Bob","Hank Scorpio","Russ Cargill","Tab Spangler"] //chars
@@ -73,9 +61,6 @@ var voiceActorsByCharAmount = [
   ], //va
   ["Doris Grau",
     ["Doris Freedman","Lurleen Lumpkin","Ice Cream Lady","Roxie"] //chars
-  ], //va
-  ["Non-speaking",
-    ["Bobo","Rubella Scabies Spuckler","Dylan Spuckler","Inanimate carbon rod"] //chars
   ], //va
   ["Maurice LaMarche",
     ["Cap'n Crunch","George C. Scott","Billy (The Wife Aquatic)","City inspector"] //chars
@@ -94,9 +79,6 @@ var voiceActorsByCharAmount = [
   ], //va
   ["Charles Napier",
     ["The Warden","Officer Krackney","Grant Connor"] //chars
-  ], //va
-  ["none",
-    ["Fred (Simpsons Roasting on an Open Fire)","Pac-Man","European Female Moe"] //chars
   ], //va
   ["Kiefer Sutherland",
     ["Jack Bauer","Army Colonel","Wayne Slater"] //chars
@@ -155,9 +137,6 @@ var voiceActorsByCharAmount = [
   ["Kristen Wiig",
     ["Calliope Juniper","Annie Crawford"] //chars
   ], //va
-  ["Unknow",
-    ["Darcy's Father","Darcy's Mother"] //chars
-  ], //va
   ["Neil Patrick Harris",
     ["Bart Simpson"] //chars
   ], //va
@@ -170,11 +149,8 @@ var voiceActorsByCharAmount = [
   ["Pamela Reed",
     ["Ruth Powers"] //chars
   ], //va
-  ["Hank Azaria Mike Economou",
+  ["Mike Economou",
     ["Apu Nahasapeemapetilon"] //chars
-  ], //va
-  ["Phil Hartman  Harry Shearer",
-    ["Lionel Hutz"] //chars
   ], //va
   ["Winona Ryder",
     ["Allison Taylor"] //chars
@@ -182,10 +158,7 @@ var voiceActorsByCharAmount = [
   ["Joe Mantegna",
     ["Fat Tony"] //chars
   ], //va
-  ["Nancy Cartwright  Tress MacNeille",
-    ["Database"] //chars
-  ], //va
-  ["Jan Hooks and Tress MacNeille and this Unknown or None",
+  ["Jan Hooks",
     ["Manjula Nahasapeemapetilon"] //chars
   ], //va
   ["Greg Berg",
@@ -193,9 +166,6 @@ var voiceActorsByCharAmount = [
   ], //va
   ["Glenn Close",
     ["Mona Simpson"] //chars
-  ], //va
-  ["Tress MacNeille ,",
-    ["Brandine Spuckler"] //chars
   ], //va
   ["Neil Crone",
     ["Brandine Spuckler"] //chars
@@ -209,26 +179,14 @@ var voiceActorsByCharAmount = [
   ["Meryl Streep",
     ["Jessica Lovejoy"] //chars
   ], //va
-  ["Susan Blu , Nancy Cartwright",
-    ["White Weasel"] //chars
-  ], //va
   ["Elle Fanning",
     ["Brown-haired girl"] //chars
   ], //va
   ["Cloris Leachman",
     ["Alice Glick"] //chars
   ], //va
-  ["Dan Castellaneta ,",
-    ["Bill Clinton"] //chars
-  ], //va
-  ["Phil Hartman ,",
-    ["Bill Clinton"] //chars
-  ], //va
   ["Beverly D'Angelo",
     ["Lurleen Lumpkin"] //chars
-  ], //va
-  ["Jo Ann Harris , Pamela Hayden",
-    ["Black Weasel"] //chars
   ], //va
   ["Pamelyn Ferdin",
     ["Maggie Simpson"] //chars
@@ -245,7 +203,7 @@ var voiceActorsByCharAmount = [
   ["Alex Rocco",
     ["Roger Meyers, Jr."] //chars
   ], //va
-  ["Jackie Mason & Dan Castellaneta",
+  ["Jackie Mason",
     ["Hyman Krustofsky"] //chars
   ], //va
   ["Tom Poston",
@@ -258,22 +216,13 @@ var voiceActorsByCharAmount = [
     ["Judge Constance Harm"] //chars
   ], //va
   ["Susan Blu",
-    ["Howard"] //chars
-  ], //va
-  ["Dan Castellaneta & Jon Lovitz",
-    ["Artie Ziff"] //chars
+    ["Howard", "White Weasel"] //chars
   ], //va
   ["Julia Louis-Dreyfus",
     ["Gloria Jailbird"] //chars
   ], //va
   ["Tom Kenny",
     ["SpongeBob SquarePants"] //chars
-  ], //va
-  ["Dan Castellaneta",
-    ["SpongeBob SquarePants"] //chars
-  ], //va
-  ["Pamela Hayden Status=",
-    ["Stephanie Brockman"] //chars
   ], //va
   ["Michelle Pfeiffer",
     ["Mindy Simmons"] //chars
@@ -332,9 +281,6 @@ var voiceActorsByCharAmount = [
   ["David Hyde Pierce",
     ["Cecil Terwilliger"] //chars
   ], //va
-  ["Hank Azaria (",
-    ["Mr. Sparkle"] //chars
-  ], //va
   ["Reese Witherspoon",
     ["Greta Wolfcastle"] //chars
   ], //va
@@ -371,9 +317,6 @@ var voiceActorsByCharAmount = [
   ["Martin Mull",
     ["Seth"] //chars
   ], //va
-  ["Harry Shearer (",
-    ["Ugolin"] //chars
-  ], //va
   ["Andrea Martin",
     ["Apu's Mother"] //chars
   ], //va
@@ -401,7 +344,7 @@ var voiceActorsByCharAmount = [
   ["Elton John",
     ["Elton John (character)"] //chars
   ], //va
-  ["Isabel Murad",
+  ["Isabell Murad",
     ["Female Twin"] //chars
   ], //va
   ["Jess Harnell",
@@ -425,7 +368,7 @@ var voiceActorsByCharAmount = [
   ["Donald Sutherland",
     ["Hollis Hurlbut"] //chars
   ], //va
-  ["Maria Grazia Cucinotta  Tress MacNeille",
+  ["Maria Grazia Cucinotta",
     ["Francesca Terwilliger"] //chars
   ], //va
   ["Helen Hunt",
@@ -437,7 +380,7 @@ var voiceActorsByCharAmount = [
   ["Marisa Tomei",
     ["Sara Sloane"] //chars
   ], //va
-  ["wikipedia:Lawrence Tierney",
+  ["Lawrence Tierney",
     ["Don Brodka"] //chars
   ], //va
   ["Sarah Michelle Gellar",
@@ -446,7 +389,7 @@ var voiceActorsByCharAmount = [
   ["David Duchovny",
     ["Fox Mulder"] //chars
   ], //va
-  ["w:Mike Judge",
+  ["Mike Judge",
     ["Hank Hill"] //chars
   ], //va
   ["Werner Klemperer",
@@ -461,7 +404,7 @@ var voiceActorsByCharAmount = [
   ["Martin Sheen",
     ["Seymour Skinner (real)"] //chars
   ], //va
-  ["wikipedia:Betty White",
+  ["Betty White",
     ["Betty White"] //chars
   ], //va
   ["Apu",
@@ -473,19 +416,16 @@ var voiceActorsByCharAmount = [
   ["Isabella Rossellini",
     ["Astrid Weller"] //chars
   ], //va
-  ["wikipedia:Brian Grazer",
+  ["Brian Grazer",
     ["Brian Grazer"] //chars
   ], //va
   ["Paul Willson",
     ["Howard (florist)"] //chars
   ], //va
-  ["Dan Castellaneta (",
-    ["Benjamin Franklin"] //chars
-  ], //va
   ["James L. Brooks",
     ["James L. Brooks (character)"] //chars
   ], //va
-  ["wikipedia:Stan Lee",
+  ["Stan Lee",
     ["Stan Lee"] //chars
   ], //va
   ["John Goodman",
@@ -575,7 +515,7 @@ var voiceActorsByCharAmount = [
   ["Jeff Goldblum",
     ["MacArthur Parker"] //chars
   ], //va
-  ["wikipedia:Andy Serkis",
+  ["Andy Serkis",
     ["Cleanie"] //chars
   ], //va
   ["Jonathan Taylor Thomas",
@@ -638,7 +578,7 @@ var voiceActorsByCharAmount = [
   ["Gillian Anderson",
     ["Dana Scully"] //chars
   ], //va
-  ["Harry Shearer , Mark Moseley",
+  ["Mark Moseley",
     ["Arnold Schwarzenegger"] //chars
   ], //va
   ["Jack Sheldon",
@@ -659,7 +599,7 @@ var voiceActorsByCharAmount = [
   ["Tom Savini",
     ["Tom Savini (character)"] //chars
   ], //va
-  ["wikipedia:Andy Dick",
+  ["Andy Dick",
     ["Andy Dick"] //chars
   ], //va
   ["nome",
@@ -701,10 +641,10 @@ var voiceActorsByCharAmount = [
   ["Neve Campbell",
     ["Cassandra"] //chars
   ], //va
-  ["wikipedia:Bob Costas",
+  ["Bob Costas",
     ["Bob Costas"] //chars
   ], //va
-  ["wikipedia:Ken Griffey, Jr.",
+  ["Ken Griffey, Jr.",
     ["Ken Griffey, Jr."] //chars
   ], //va
   ["Darryl Strawberry",
@@ -713,13 +653,13 @@ var voiceActorsByCharAmount = [
   ["Linda Ronstadt",
     ["Linda Ronstadt (character)"] //chars
   ], //va
-  ["wikipedia:Bette Midler",
+  ["Bette Midler",
     ["Bette Midler"] //chars
   ], //va
   ["Wren T. Brown",
     ["Virgil Simpson"] //chars
   ], //va
-  ["wikipedia:Helen Fielding",
+  ["Helen Fielding",
     ["Helen Fielding"] //chars
   ], //va
   ["George Harrison",
@@ -743,7 +683,7 @@ var voiceActorsByCharAmount = [
   ["Sacha Baron Cohen",
     ["Jakob"] //chars
   ], //va
-  ["wikipedia:Peter Frampton",
+  ["Peter Frampton",
     ["Peter Frampton"] //chars
   ], //va
   ["Robert Forster",
@@ -904,9 +844,6 @@ var voiceActorsByCharAmount = [
   ], //va
   ["Steve Coogan",
     ["Rowan Priddis"] //chars
-  ], //va
-  ["No Voice",
-    ["Elizabeth Gilbert"] //chars
   ], //va
   ["John Slattery",
     ["Robert Marlow"] //chars
