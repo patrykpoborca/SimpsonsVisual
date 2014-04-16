@@ -28,6 +28,17 @@ var animationQ = [];
 // custom function methods for initiation
 function initUI()
 {
+	//initialization...
+	$('#superDiv').on('change', chartFunc());
+	//fillArrayAllCharByAppearAmt();
+	//fillAllEpsArray();
+	chartFunc();
+	fillOverviewTable();
+	$("#chart_div").hide(); //for king div
+	$("#genTable").hide(); //for king div
+	repopulate("filterCEChoices", "characters", 10, false);
+	// hiding stuff... moving stuff around...
+
 
 	//animation stuff
 	animationQ[0] = { name : "superDiv", status : true};//showing by default.
@@ -49,15 +60,6 @@ function initUI()
 	}	
 	);
 	
-	//initialization...
-	$('#superDiv').on('change', chartFunc());
-	//fillArrayAllCharByAppearAmt();
-	//fillAllEpsArray();
-	chartFunc();
-	$("#chart_div").hide(); //for king div
-	$("#genTable").hide(); //for king div
-	
-	// hiding stuff... moving stuff around...
 	$("#expandSelectors").hide();	
 	//
 	$("#toggler").toggle(  // to toggle the nav bar

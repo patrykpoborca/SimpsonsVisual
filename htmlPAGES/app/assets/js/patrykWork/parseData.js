@@ -16,7 +16,7 @@ function p_charBySeason() {
 	}
 //////////////////////////////
 
-	var episodesRow = [];
+var episodesRow = [];
 	episodesRow[0] = "";
 	for(var ii = 1; ii < dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length +1; ii++) {
 		episodesRow.push(ii);
@@ -39,7 +39,6 @@ function p_charBySeason() {
 	}
 	return finalArray;
 }
-
 var p_count =0;
 //
 function p_iterateCharEpisodes(character) { //condition = function e.g. cond = function(){return true;}; .. todo?
@@ -52,8 +51,8 @@ function p_iterateCharEpisodes(character) { //condition = function e.g. cond = f
 	var gugle = 0;
 
 	for(var a = 0; a < character[7].length; a++) {	
-		if(getSeasonOfEpisodeNumber(getEpsNumber(character[7][a])) != null) {
-			r_val[Number(getSeasonOfEpisodeNumber(getEpsNumber(character[7][a])))] ++;
+		if(character[7][a] != false) {
+			r_val[Number(getSeasonOfEpisodeNumber(a))] ++;
 		}
 	}
 	var debug_string = character[0] + " ";
@@ -62,6 +61,20 @@ function p_iterateCharEpisodes(character) { //condition = function e.g. cond = f
 	//console.log(debug_string);
 	return r_val;
 }
+
+function p_fetchCharIndex(index, range)
+{
+var charHolder = p_fetchChars(range);
+if(range == 0) range = charHolder.length;
+
+var tempArray = [];
+
+for(var x = 0; x < range; x++)
+	tempArray.push(charHolder[x][index]);
+	
+return tempArray;
+}
+
 
 function p_fetchChars(amount) {
 	if(amount == 0) amount = allCharByAppearAmt.length;
@@ -72,7 +85,15 @@ function p_fetchChars(amount) {
 }
 
 
+	
 /////////////////////////// debug functions... save
+function console1D(arr)
+{
+console.log("Debug: \n");
+	for(var x =0; x < arr.length; x++)
+		console.log(arr[x]);
+}
+
 function console2D(arr) {
 	var debugstring = "";
 	for(var first = 0; first < arr.length; first ++) {

@@ -53,7 +53,7 @@ function initTable(rows, columns, divID, data, display, colors) {
 			} //if display kindof histogram style
 			else {
 				if(!display)
-					htmlString +=  " style = 'background-color : #CBE5FF; text-align:center; width : "+ cellDimX +"px; height : "+ cellDimY +"px;'> "+data[R][C]["data"]; //inject data into td/th
+					htmlString +=  " style = 'background-color :" + colors["def"]+" text-align:center; width : "+ cellDimX +"px; height : "+ cellDimY +"px;'> "+data[R][C]["data"]; //inject data into td/th
 				else {
 					if(data[R][C]["color"]) 
 						color = (data[R][C]["data"]) ? data[R][C]["color"] : colors["no"];

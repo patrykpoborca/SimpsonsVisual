@@ -82,29 +82,19 @@ function fillOverviewTable() {
 
 	var inEpsArrayCheck = [];
 
-	for(var i = 0; i < totaleps; i++){
-		inEpsArrayCheck.push(false);
-	}
+	
 
 	for(var i = 0; i < charList.length; i++){
 		lineContent += '<tr><th class="name" colspan="4">' + charList[i][0] + '</th>\n';
 
 
 		//set the eps possibilities to false
-		for(var a = 0; a < totaleps; a++){
-			inEpsArrayCheck[a] = false;
-		}
+		
 
 		//fill out that array for the character.
 		//chars [  name, full, first appear, alias, jobs, relatives, voice actors, episode appearances   ]
 
-		for(var epc = 0; epc < charList[i][7].length;epc++){
-			var tmpEpNum = getEpsNumber(charList[i][7][epc]);
-
-			if(tmpEpNum > 0 && tmpEpNum <= totaleps){
-				inEpsArrayCheck[tmpEpNum-1] = true;
-			}
-		}
+		inEpsArrayCheck= allCharByAppearAmt[i][7];
 
 
 		//for each of the possible episodes being shown.
