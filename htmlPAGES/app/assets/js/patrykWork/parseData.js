@@ -77,7 +77,18 @@ function p_iterateCharEpisodes(character) //condition = function e.g. cond = fun
 	return r_val;
 }
 
+function p_fetchCharIndex(index, range)
+{
+var charHolder = p_fetchChars(range);
+if(range == 0) range = charHolder.length;
 
+var tempArray = [];
+
+for(var x = 0; x < range; x++)
+	tempArray.push(charHolder[x][index]);
+	
+return tempArray;
+}
 
 
 function p_fetchChars(amount)
@@ -93,6 +104,13 @@ for(var x = 0; x < amount; x ++)
 
 	
 /////////////////////////// debug functions... save
+function console1D(arr)
+{
+console.log("Debug: \n");
+	for(var x =0; x < arr.length; x++)
+		console.log(arr[x]);
+}
+
 function console2D(arr)
 {
 	var debugstring = "";

@@ -12,7 +12,8 @@ UI for app
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="CS 424 info charts on simpsons">
 <meta name="author" content="Dylan, Patryk,Eric">
-
+	
+	
    	<link rel="stylesheet" type="text/css" href="assets/js/dylanWork/main.css">
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <style>
@@ -161,17 +162,15 @@ UI for app
 									<li>
 										<label for = "filterSort" id = "filterCEText" class ="sidePanel">Numeric Sort</label>
 										<input type="checkbox" name="filterCESort" id = "filterCEbox" class = "checkBox"> 
-										<input list="filterCEChoices" name="filterCEList" id = "FilterByListChoicesForFlag"  class ="flagger "> <!-- flagger!-->
-										<datalist id="filterCEChoices">
-										
-										<select multiple="multiple">
+										<select id="filterCEChoices" class ="flagger"> <!-- flagger!-->
+	
 										<option value="debug1">
 										<option value="bbbbb">
 										<option value="ccccc">
 										<option value="dddddd">
-										</select>
+										
 										  <!-- append html info here with class class : scopeRemovable -->
-										</datalist>
+										</select>
 										</li>
 						 <!-- ############################################LI SPLITER##################################### -->
 										<li>
@@ -195,11 +194,11 @@ UI for app
 											<label for = "LSort" id = "filterLLabel" class= "sidePanel inputStuff">Numeric Sort</label>
 											<input type="checkbox" name="filterLBox" id = "filterLCbox" class = "inputStuff checkBox"> 
 											<input list="filterLocList" name="filterLListN" id = "FilterByLForFlag"  class ="inputStuff flagger"> <!-- flagger!-->
-												<datalist id="filterLocList">
+												<select>
 												<option value="debug1">
 												<option value="debug2">
 												  <!-- append html info here with class class : scopeRemovable -->
-												</datalist>
+												</select>
 									</li>
 				
                 
@@ -260,7 +259,9 @@ UI for app
 	<script type='text/javascript' src='assets/js/dylanWork/urlsOfChars.js'></script>
     <script type='text/javascript' src='assets/js/dylanWork/SimpsonEpisode.js'></script>
     <script type='text/javascript' src='assets/js/dylanWork/SimpsonChars.js'></script>
-    
+	
+	
+	
     <script src = "assets/js/patrykWork/parseData.js"></script>
 	<script src="assets/js/libraries/jquery-1.8.1.js"></script>  
     <script src="assets/js/libraries/canvasjs.min.js"></script> 
@@ -294,16 +295,6 @@ UI for app
 	//last things to be done
 	populateFlags();//needs to populate created elements of a certain type of class
 	
-	fillOverviewTable();
-	var rr = [];
-	var pp = [];
-	for(var a =0; a < 10; a++)
-		{ rr = [];
-		for(var b =0; b < 10; b++)
-			rr.push({data : b%2, color : ""});
-		  pp.push(rr);
-		}	
-		
 	var HOLD = wrapForTable(p_charBySeason());
 	initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, false, false); // rows, columns, divID, data, display
 	
