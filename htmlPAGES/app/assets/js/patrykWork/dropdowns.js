@@ -13,7 +13,7 @@ $("#"+checkbox).attr("flag", "true");
 $("#"+checkbox).prev().text("Numeric Sort "+ extra);
 $("#"+checkbox).on("change", function(){
 
-repopulate(dropdown);
+
 if($(this).attr("flag") == "true")
 	{
 	$(this).attr("flag", "false");

@@ -1,6 +1,9 @@
 // Interface and initializer for UI elements and other js functions | Patryk Poborca
 
 var dataParams = {};
+var globalSort = false;
+var xxxx = 770;
+var yyyy = 100;
 
 //used to update values AND initialize on load
 function updateItem(name, param)
@@ -38,12 +41,69 @@ function initUI()
 	$("#genTable").hide(); //for king div
 	repopulate("filterCEChoices", "characters", 10, false);
 	// hiding stuff... moving stuff around...
-
-
+	
+	$("#sortButton").toggle(
+	function()
+	{
+		$("#sortButton").text("SortNum");
+		globalSort = true;
+	},
+	function()
+	{
+		$("#sortButton").text("SortAlpha");
+		globalSort = false;
+	});
+	
+	
+	
+	$("#expandSelectors").hide();	
 	//animation stuff
 	animationQ[0] = { name : "superDiv", status : true};//showing by default.
 	animationQ.push({name : "chart_div", status : false}); //hidden
 	animationQ.push({name : "genTable", status : false}); //hidden
+	
+	//////////////////////////////////////////////////////////////////
+	$(".cornerDivs").hover(
+	function()
+	{
+		
+		$(this).animate({
+		opacity : 1}
+		, 1000);
+	}
+	,
+	function()
+	{
+		$(this).animate({
+		opacity : 0}
+		, 1000);
+	});
+	
+	var intervalVal = setInterval(function()
+	{
+			$(".cornerDivs").each(
+			function()
+			{
+				$(this).animate({
+			opacity : 1}
+			, 2000,
+				function()
+				{
+					$(this).animate({
+					opacity : 0}
+					, 1000);
+				}
+			
+			);
+		});
+	
+	},
+	8000);
+	
+	setTimeout(function(){clearInterval(intervalVal);}, 30000);
+	
+	///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////
 	$("#genTable").toggle(function(){
 	$(this).empty();
 	var HOLD = wrapForTable(p_charBySeason());
@@ -60,30 +120,29 @@ function initUI()
 	}	
 	);
 	
-	$("#expandSelectors").hide();	
-	//
-	$("#toggler").toggle(  // to toggle the nav bar
-	 function()
-	 {
-	  $("#sideBar").animate({width : "0px", height : "0px"},1180, function(){$("#sideBar").hide();});
-	  $("#sideBar *").each(function(){$(this).hide();});
-	 $("#expandSelectors").slideUp();
-	 $("#expandSliders").text("Show Sliders");
-	 $(this).animate({width : "50px"}, 1000);
-	 //end of other stuff
-	 for(var z =0 ; z < animationQ.length; z++)
-	 	{var x = animationQ[z];
-		if(x["status"])
-			$("#" + x['name']).animate({left:"50px"}, 1000);
-			}
 	
+	
+	///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////
+	var hiderFunc = function()
+	 {
+										var direct = directionMath("sideBar");
+		 var xx = direct["directx"];
+		 var yy = direct["directy"];
+		 console.log(xx + " " + yy);
+		  $("#sideBar").animate({width : "0px", height : "0px", xx : "0px",  yy : "0px"},1180, function(){$("#sideBar").hide();});
+		  $("#sideBar *").each(function(){$(this).hide();});
+		  
+		 $("#expandSelectors").slideUp();
+		 $("#expandSliders").text("Show Sliders");
+		 //end of other stuff
+	 	 
+	 };
 	 
-	 }
-	 ,
-	 function()
+	 var showerFunc = function()
 	 {
 	 $("#sideBar").show();
-	 $("#sideBar").animate({width : "250px"},500, 
+	 $("#sideBar").animate({width : "270px", top: "100px", left : "500px", height : "200px"},500, 
 		 function(){ 
 		  $("#sideBar").animate({height : "500px"}, 500, 
 			function(){
@@ -91,18 +150,26 @@ function initUI()
 			 });
 		 });
 	  
+	  $("#sideBar").show();
 	 
-	 $(this).animate({width : "255px"});
-	  $("#sideBar").slideDown();
-	   for(var z =0 ; z < animationQ.length; z++)
-	 	{var x = animationQ[z];
-		if(x["status"])
-			$("#" + x['name']).animate({left:"255px"}, 1000);
-			}
-	  
-	 }
-	 ); // end of nav bar toggle
-
+	 $("#expandSelectors").css({ top : yyyy+ 'px', left : xxxx+ "px"});
+	 };
+	
+	/// hide stuff
+	$("#hide").on('click', hiderFunc);
+	
+	///
+	
+	$(".cornerDivs").on('click', 
+	function()
+	{
+	if($("#sideBar").is(":visible"))
+		hiderFunc();
+	else
+		showerFunc();
+	});
+///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////
 	$("#expandSliders").toggle(
 	function()
 	{
@@ -116,7 +183,8 @@ function initUI()
 		$("#expandSelectors").slideUp();	
 	}
 	);
-	
+///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////	
 	$("#sendData").toggle(
 	function()
 	{
@@ -134,8 +202,21 @@ function initUI()
 	$("#genTable").hide();
 	flipFlagsUi();
 	});
+///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////	
 	
+}
+
+
+function directionMath(element)
+{
+	var y = cutPx($("#" + element).css('top'));
+	var x = cutPx($("#" + element).css('left'));
 	
+	return {
+	directx : (x < 640) ? "left" : "right",
+	directy : (y < 360) ? "top" : "bottom"
+	};
 }
 
 

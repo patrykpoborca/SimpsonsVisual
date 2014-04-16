@@ -15,9 +15,9 @@ if(parent == "")
 $("."+cName).each(function()
 	{ 
 	tempID = $(this).attr("id");
-	$("<span class= 'autoCheck'>  <input type='checkbox' name='xxxx' id = '"+  cName+ rR + iterator +"' class = 'checkBox "+ cName+  "CLASS'> </span>").insertAfter($(this)); //hashing the class to avoid potential conflicts
-	
-	//$(this).css({"position": "relative", "left" : $(this).css("left") + 10+"px"}); <- todo add css styling to checkboxes.
+	$("<input type='checkbox' name='xxxx' id = '"+  cName+ rR + iterator +"' class = 'checkBox "+ cName+  "CLASS'> ").insertAfter($(this)); //hashing the class to avoid potential conflicts
+	console.log($(this).css('top'));
+	$("#"+ cName+ rR + iterator).css({"absolute": "absolute", "left" : "5px", top : cutPx($(this).css('top'))+"px"}); // <- todo add css styling to checkboxes.
 	if(tempID == null) alert("ERROR: You forgot to add ID for populationFlags" );
 	bindTwo(tempID, ""+cName+ rR + iterator+"");
 	

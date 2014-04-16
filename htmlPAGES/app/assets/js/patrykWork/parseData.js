@@ -37,6 +37,8 @@ var episodesRow = [];
 		finalArray.push(temp);
 		temp = [];
 	}
+	
+	
 	return finalArray;
 }
 var p_count =0;

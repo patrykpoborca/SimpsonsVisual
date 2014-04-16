@@ -27,38 +27,39 @@ UI for app
 		{
 		overflow:auto;
 		position: absolute;
-		width: 1030px;
+		width: 1280px;
 		height: 720px;
 		background-color: beige;  
 		top : 0px;
-		left : 255px;	
+		left : 0px;	
 		}
 		#genTable
 		{
 		overflow:auto;
 		position: absolute;
-		width: 1030px;
+		width: 1280px;
 		height: 360px;
 		background-color: red;  
 		top : 360px;
-		left : 255px;	
+		left : 0px;	
 		}
 
-		.checkBox
+		.cornerDivs
 		{
-
+		opacity : 0;
+		background-color : red;
+		position : absolute;
+		z-index: 2;
+		width : 50px;
+		height : 50px;
 		}
-		.flaggerCLASS
-		{
-		position: relative;
-		left : 5px;
-		}
+		
 		#queryParser
 		{
-		position : relative;
-		left :17px;
+		position : absolute;
+		left :15px;
 		height : 150px;
-		top : 10px;
+		top : 150px;
 		width : 205;
 		background-color: white;
 		}
@@ -71,8 +72,8 @@ UI for app
 		position: absolute;
 		background-color : green;
 		top: 0px;
-		left : 255px;
-		width: 1030px;
+		left : 0px;
+		width: 1280px;
 		height: 360px;
 		z-index: -1;
 		}
@@ -80,9 +81,11 @@ UI for app
 		#expandSelectors
 		{
 		position :absolute;
-		left : 250px;
+		left : 272px;
+		top : 50px;
 		background-color : teal;
 		width : 250px;
+		height : 180px;
 		border-style:solid;
 		border-width:3px;
 		border-color:black;
@@ -92,6 +95,14 @@ UI for app
 		{
 		position:relative;
 		left: 10px;
+		top : 10px;
+		}
+		
+		
+		
+		div
+		{
+		z-offset : -1;
 		}
 
 		div#sideBar
@@ -101,31 +112,35 @@ UI for app
 		border-color:black;
 		position: absolute;
 		top : 50px;
-		width : 250px;
+		width : 270px;
 		height : 500px;
 		background-color : grey;
+		z-index : 5;
 		}
 		div#toggler
 		{
-		position :relative;
-		top : 0px;
-		left : 0px;
-		background-color : beige;
-		width: 255px;
-		height: 50px
+		position :absolute;
+		top : 360px;
+		left : 640px;
+		z-index : 5;
 		}
 		
-		.inputStuff
-		{
-		position: relative;
-		top : 15px;
-		}
+		
+		
+		
     </style>
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 </head>
 	<body>
 	
- <!-- ############################################expandSelectors indent##################################### --><div id = "Container"> <!-- Container -->
+ <!-- ############################################expandSelectors indent##################################### --><div id = "Container" style = "height : 720; width : 1280;"> <!-- Container -->
+			
+		<!-- 4 cornerDivs -->
+		<div id = "cornerTL" class = "cornerDivs" style = "top : 0px; left : 0px;"> </div>
+		<div id = "cornerBL" class = "cornerDivs" style = "bottom : 0px; left : 0px;"> </div>
+		<div id = "cornerTR" class = "cornerDivs" style = "top : 0px; right: 0px;"> </div>
+		<div id = "cornerBR" class = "cornerDivs" style = "bottom : 0px; right : 0px;"> </div>		
+		<!-- 4 cornerDivs -->	
 			<div id="chart_div"></div>  <!-- chart div to populate...-->
 	
 	
@@ -143,72 +158,84 @@ UI for app
 	  <div id = "toggler"> Expand/Hide Bar </div>
           <div id="sideBar">  <!-- sidebar div -->
             <ul class="nav">  <!-- UL -->
-						 <!-- ############################################LI SPLITER##################################### -->
-									<li id = "minMax"> <!-- min/max slider subcomponents -->
-										<button type="button" id = "expandSliders" class = "sidePanel btn btn-primary">Show Sliders</button>	
-									</li>   <!-- min/max slider subcomponents -->
-						 <!-- ############################################LI SPLITER##################################### -->
+						 
 									<li>
-										<label for = "scopeSort" id = "checkScopeText" class= "sidePanel">Numeric Sort</label>
-										<input type="checkbox" name="scopeSort" id = "scopeCBox" class = "checkBox"> 
-										<input list="scopeChoices" name="scopeList" id = "scopeListChoicesForFlag" class ="flagger"> <!-- flagger!-->
-											<datalist id="scopeChoices">
-											 <option value="debug1">
-											<option value="debug2">
+										<span class = "shiftPanel" style = "position: absolute; left :10px; top : 5px;">
+											
+											<label for = "scopeSort" id = "checkScopeText" class= "">Numeric Sort</label>
+										</span>
+										<select id="scopeListChoicesForFlag" class ="shiftPanel flagger" style = "position: absolute; left :10px; top :30px;"> <!-- flagger!-->
+											<option value="debug1"> a </option>
+											<option value="debug2"> debug </option>
 											  <!-- append html info here with class class : scopeRemovable -->
-											</datalist>
+										</select>
 									</li>
 						 <!-- ############################################LI SPLITER##################################### -->
 									<li>
-										<label for = "filterSort" id = "filterCEText" class ="sidePanel">Numeric Sort</label>
-										<input type="checkbox" name="filterCESort" id = "filterCEbox" class = "checkBox"> 
-										<select id="filterCEChoices" class ="flagger"> <!-- flagger!-->
-	
-										<option value="debug1">
-										<option value="bbbbb">
-										<option value="ccccc">
-										<option value="dddddd">
-										
+										<span class = "shiftPanel" style = "position: absolute; left :10px; top : 80px;">
+											<label for = "filterSort" id = "filterCEText" class ="">Numeric Sort</label>
+											
+										</span>
+										<select id="filterCEChoices" class ="flagger filterSort" style = "position: absolute; left :10px; top :100px;"> <!-- flagger!-->
+											<option value="debug1"> b </option>
+											<option value="bbbbb"> debug </option>
+											<option value="ccccc"> debug </option>
+											<option value="dddddd"> debug </option>
 										  <!-- append html info here with class class : scopeRemovable -->
 										</select>
 										</li>
 						 <!-- ############################################LI SPLITER##################################### -->
 										<li>
-										<div id = "queryParser">
-										<h3>Click bottom button -> generated chart to toggle chart</h3>
-										</div>
-									</li>
+											<div id = "queryParser" class = "shiftPanel" >
+												<h4>Click bottom button -> generated chart to toggle chart</h4>
+											</div>
+										</li>
 						 <!-- ############################################LI SPLITER##################################### -->
 									<li>
-										<label for = "voiceSort" id = "filterVoicesLabel" class = "inputStuff sidePanel">Numeric Sort</label>
-										<input type="checkbox" name="filterVoicesBox" id = "filterVoiceCbox" class = "inputStuff checkBox"> 
-										<input list="filterVoiceList" name="filterVoiceListN" id = "FilterByVoicesForFlag"  class ="inputStuff flagger"> <!-- flagger!-->
-											<datalist id="filterVoiceList">
-											<option value="debug1">
-											<option value="debug2">
+										<span class = "shiftPanel" style = "position: absolute; left :10px; top : 310px;">
+											<label for = "voiceSort" id = "filterVoicesLabel" class = "">Numeric Sort</label>
+											
+										</span>
+										<select id="FilterByVoicesForFlag" class ="flagger shiftPanel" style = "position: absolute; left :10px; top : 330px"> <!-- flagger!-->
+											<option value="debug1"> c</option>
+											<option value="debug2"> debug </option>
 											  <!-- append html info here with class class : scopeRemovable -->
-											</datalist>
+										</select>
 									</li>
 						 <!-- ############################################LI SPLITER##################################### -->
 									<li>
-											<label for = "LSort" id = "filterLLabel" class= "sidePanel inputStuff">Numeric Sort</label>
-											<input type="checkbox" name="filterLBox" id = "filterLCbox" class = "inputStuff checkBox"> 
-											<input list="filterLocList" name="filterLListN" id = "FilterByLForFlag"  class ="inputStuff flagger"> <!-- flagger!-->
-												<select>
-												<option value="debug1">
-												<option value="debug2">
+											<span class = "shiftPanel" style = "position: absolute; left :10px; top : 380px;">
+												
+												<label for = "LSort" id = "filterLLabel" class= "inputStuff">Numeric Sort</label>
+												
+											</span>
+											<select id="FilterByLForFlag" class ="flagger shiftPanel" style = "position: absolute; left :10px; top : 400px;"> <!-- flagger!-->
+												<option value="debug1"> d </option>
+												<option value="debug2"> debug </option>
 												  <!-- append html info here with class class : scopeRemovable -->
-												</select>
+											</select>
 									</li>
-				
+						<!-- ############################################LI SPLITER##################################### -->
+									<li id = "minMax" style = "position: absolute; bottom: 5px; left : 169px;"> <!-- min/max slider subcomponents -->
+										<button type="button" id = "sendData" class = "btn btn-primary">Debug/Tog</button>	
+									</li>   <!-- min/max slider subcomponents -->
+						<!-- ############################################LI SPLITER##################################### -->
+									<li id = "minMax" style = "position: absolute; bottom: 5px; left : 6px;"> <!-- min/max slider subcomponents -->
+										<button type="button" id = "sortButton" class = "btn btn-primary">SortAlpha</button>	
+									</li>   <!-- toggle sort -->
+						 <!-- ############################################LI SPLITER##################################### -->
                 
-                
-                
+						<!-- ############################################LI SPLITER##################################### -->
+									<li id = "minMax" style = "position: absolute; bottom: 37px; left : 76px;"> <!-- min/max slider subcomponents -->
+										<button type="button" id = "expandSliders" class = "btn btn-primary">Show Sliders</button>	
+									</li>   <!-- min/max slider subcomponents -->
+						 <!-- ############################################LI SPLITER##################################### -->
+									<li id = "minMax" style = "position: absolute; bottom: 5px; left : 104px;"> <!-- min/max slider subcomponents -->
+										<button type="button" id = "hide" class = "btn btn-primary">hide</button>	
+									</li>   <!-- min/max slider subcomponents -->
 						 <!-- ############################################LI SPLITER##################################### -->
 									<!-- debug button-->
-									<li>
-											<button type="button" id = "sendData" class = "inputStuff sidePanel btn btn-primary">debugLogData && ToggleCharts</button>	
-									</li>
+									
 						 <!-- ############################################LI SPLITER##################################### -->
             </ul> <!-- UL -->
           </div> <!-- sidebar div -->
@@ -293,10 +320,12 @@ UI for app
 	$("#sendData").on('click', debugLogCom);
 	//eo debug bind
 	//last things to be done
-	populateFlags();//needs to populate created elements of a certain type of class
+	//populateFlags();//needs to populate created elements of a certain type of class
 	
 	var HOLD = wrapForTable(p_charBySeason());
 	initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, false, false); // rows, columns, divID, data, display
+	
+	
 	
 	}); //end of ready #############################################################################################################
 	
