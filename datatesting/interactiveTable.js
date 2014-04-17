@@ -4,7 +4,11 @@ var dkGlobalOverviewTable = {};
 
 dkGlobalOverviewTable.popupInfoPasser = "";
 dkGlobalOverviewTable.showIconInPopup = true;
-dkGlobalOverviewTable.arrayOfEpisodesInSeasons =  [13, 22, 24, 22, 22, 25, 25,25, 25, 23, 22, 21, 22, 22, 22, 21, 22, 22, 20, 21, 23, 22, 22, 22, 11];
+dkGlobalOverviewTable.arrayOfEpisodesInSeasons = 
+     [13, 22, 24, 22, 22, 25, 25,25, 25, 23, 22, 21, 22, 22, 22, 21, 22, 22, 20, 21, 23, 22, 22, 22, 11];
+     // 1  2   3    4  5   6   7  8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25
+
+dkGlobalOverviewTable.totalEps = 0;
 
 dkGlobalOverviewTable.inEpsColor = '#278627';
 dkGlobalOverviewTable.notInEpsColor = '#2B2B2B';
@@ -34,7 +38,7 @@ function tableClick() {
 }
 
 
-function fillOverviewTable() {
+function fillOverviewTable(divIdToFill, arrayOfCharacters, enableHighlight) {
 
 	var contents = "<table onmouseout='hideInfoBox()' onmousemove='showInfoBox()'>\n";
 
@@ -45,10 +49,10 @@ function fillOverviewTable() {
 
 
 	//determine how many episodes are being tracked to figure out how big to make the table.
-	var totaleps = 0;
-	for(var i = 0; i < dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length; i++){
-		totaleps += dkGlobalOverviewTable.arrayOfEpisodesInSeasons[i];
-	}
+	var totaleps = allCharByAppearAmt[0][7].length;
+	console.log("Double check this, the total eps should be 541:" + totaleps);
+
+	dkGlobalOverviewTable.totalEps = totaleps;
 
 	//make one header tag per season. it should span as many columns as that season has episodes.
 	for(var i = 0; i < dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length; i++ ){
@@ -56,22 +60,23 @@ function fillOverviewTable() {
 	}
 	contents += lineContent + "</tr>";
 
-	//this will hold the characters to be displayed on the table.
-	var charList = [];
-	//input only 20 characters for now. this can be changed later to take in an array holding characters.
-	for(var i = 0; i < 20; i++){
-		charList.push( allCharByAppearAmt[i]  );
-	}
-
 
 	lineContent = "";
 
-	for(var i = 0; i < charList.length; i++){
+	for(var i = 0; i < arrayOfCharacters.length; i++){
 
+
+		var appearCounter = 0;
+		for(var epc = 0; epc < arrayOfCharacters[i][7].length;epc++){
+			if(arrayOfCharacters[i][7][epc]){appearCounter++;}
+		}
 
 		//contain the names on one line
-		if(charList[i][0].length > 12){ lineContent += '<tr><th class="name" colspan="4">' + charList[i][0].substring(0,12) + '</th>\n'; }
-		else{ lineContent += '<tr><th class="name" colspan="4">' + charList[i][0] + '</th>\n'; }
+		var shorterName = arrayOfCharacters[i][0];
+		if(shorterName.search(" ") != -1){ shorterName = shorterName.substring(0, shorterName.search(" "));	}
+		if(shorterName.length > 7) { shorterName = shorterName.substring(0,7);}
+
+		lineContent += '<tr><th class="name" colspan="4">' + shorterName +'('+appearCounter+')</th>\n';
 		
 
 		//fill out that array for the character.
@@ -84,17 +89,21 @@ function fillOverviewTable() {
 			lineContent+= '<td id="ovtIDr' + i + 'c' + e + '" ';
 
 			//this would be a check if char is in that eps.
-			if(charList[i][7][e -1]){  lineContent += '<td class="inThatEps '; }
+			if(arrayOfCharacters[i][7][e -1]){  lineContent += '<td class="inThatEps '; }
 			else{ lineContent += '<td class="notInThatEps '; }
 
 			lineContent += 'ovtRow' + i;
 			lineContent += ' ovtCol' + getSeasonOfEpisodeNumber(e); //this needs to be season
-			lineContent += '" onmouseout="hideInfoBox('+i+','+e+')" onmousemove="showInfoBox(\''+ charList[i][0] +'\',\'' + e;
+			lineContent += '" onmouseout="hideInfoBox('+i+','+e+')" onmousemove="showInfoBox(\''+ arrayOfCharacters[i][0] +'\',\'' + e;
 
-			if(charList[i][7][e -1]){  lineContent += '\', true,'+i+','+e+')"'; }
+			var highlightRow = 0; //highlight start disabled.
+			var highlightCol = 0; //if true then give it the char and episode row/column.
+			if(enableHighlight){ highlightRow = i; highlightCol = e; }
+
+			if(arrayOfCharacters[i][7][e -1]){  lineContent += '\', true,'+i+','+e+')"'; }
 			else{ lineContent += '\', false,'+i+','+e+')"'; }
 
-			lineContent += 'onclick="showPopupControlBox(\''+ charList[i][0] +'\', '+e+',' +
+			lineContent += 'onclick="showPopupControlBox(\''+ arrayOfCharacters[i][0] +'\', '+e+',' +
 			  getSeasonOfEpisodeNumber(e)+' )"'+ '></th>\n';
 			
 
@@ -116,11 +125,11 @@ function fillOverviewTable() {
 	}
 	contents += lineContent;
 
-	document.getElementById("overviewTable").innerHTML = contents;
+	document.getElementById(divIdToFill).innerHTML = contents;
 
 	//seed the color
-	for(var row = 0; row < charList.length; row++){
-		for(var col = 1; col < totaleps; col++){
+	for(var row = 0; row < arrayOfCharacters.length; row++){
+		for(var col = 1; col <= totaleps; col++){
 			if(row %2 == 0){
 				if(document.getElementById('ovtIDr' + row + 'c' + col).className.search('notInThatEps') >= 0){
 					document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
@@ -136,11 +145,32 @@ function fillOverviewTable() {
 		}
 	}
 
+	generateHighlightBarsForOverview(divIdToFill);
 
+	//edit the top lvl description. Edit2: actually, unsure how to proceed at the moment.
+	//may need to be removed if doesn't exist in the end app.
+	document.getElementById('pictureTest').innerHTML = '<h3>Overview</h3> <button onclick="toggleCharIconsOnPopup()">Toggle Icons In popups.</button></p>';
 
-}
+} //end filloverview table
 
+function generateHighlightBarsForOverview(divIdToPutBarsOn) {
+	var content = "";
+	var topPx = 115;
+	var leftPx = 144;
+	var width = 0;
+	var height = 21;
 
+	for(var s = 0; s <dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length - 1; s++ ){
+		if(s != 0){ leftPx += dkGlobalOverviewTable.arrayOfEpisodesInSeasons[s] * 2; }
+		//if(s >= 17) {leftPx += 16};
+		//if(s >= 17) {leftPx += 16};
+	content += '<div style="top:' + topPx + ';left:'+leftPx + ';width:' + width + ';height:' + height +
+	   ';float:top;border:1px solid #94002D;border-collapse: collapse; position:absolute"></div>\n';
+	}
+
+	document.getElementById(divIdToPutBarsOn).innerHTML += content;
+
+}//end 
 
 function hideInfoBox(row, col) {
 
@@ -245,9 +275,15 @@ function showPopupControlBox(pcbName, pcbEps, pcbSeason ) {
 	if(pcbName != null){
 		var infoTextAsOne = "Controls for:" + pcbName;
 		infoTextAsOne += '<button onclick="hidePopupControlBox()">Hide</button><br>';
-		infoTextAsOne += 'Search by character: <button onclick="alert(\'Search by character: Not yet implemented\')">'+pcbName+'</button><br>';
-		infoTextAsOne += 'Search by Episode: <button onclick="alert(\'Search by Episode: Not yet implemented\')">'+pcbEps+'</button><br>';
-		infoTextAsOne += 'Search by Season: <button onclick="alert(\'Search by Season: Not yet implemented\')">'+pcbSeason+'</button><br>';
+		if(pcbName.length > 0){
+			infoTextAsOne += 'Search by character: <button onclick="givenACharacterNameFilloutTheView(\'overviewTable\',\''+pcbName+'\')">'+pcbName+'</button><br>';
+		}
+		if(pcbEps >=0){
+			infoTextAsOne += 'Search by Episode: <button onclick="alert(\'Search by Episode: Not yet implemented\')">'+pcbEps+'</button><br>';
+		}
+		if(pcbSeason >=0){
+		infoTextAsOne += 'Search by Season: <button onclick="findCharactersInGivenSeasonAndPopulateInteractiveTable(\'overviewTable\', '+pcbSeason+')">'+pcbSeason+'</button><br>';
+		}
 
 		//console.log("Before the print:");
 		//console.log("Inside of the show info:" + infoTextAsOne);
@@ -260,13 +296,14 @@ function showPopupControlBox(pcbName, pcbEps, pcbSeason ) {
 
 
 
+/**This is based off episode number(not index) but index of season (not number)*/
 function getSeasonOfEpisodeNumber( epsNumber ){
 
 	if(epsNumber > 0){
 		for(var i = 0; i < dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length; i++){
 			epsNumber -= dkGlobalOverviewTable.arrayOfEpisodesInSeasons[i];
 			if(epsNumber <= 0){
-				return i;
+				return i+1;
 			}
 		}
 
