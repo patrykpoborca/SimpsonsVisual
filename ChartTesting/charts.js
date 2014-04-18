@@ -36,55 +36,7 @@ line 48 (backgroundColor: " ";)
 ============================================================================================
 */
 
-var charaArray = new Array();
-var seasonArray = new Array();
-
-console.log(allEpisodesByNumber);
-
-//fillArrayAllCharByAppearAmt();
-//fillAllEpsArray();
-generateSortedSeasons();
-
-$().ready(function () {
-	var chart = new CanvasJS.Chart("chart_div", {
-		backgroundColor: "#FFD90F",
-		theme: "theme3",
-		title: {
-			text: "The Simpsons",
-			fontSize: 30
-		},
-		axisX: {
-			title: "Seasons",
-			titleFontColor: "black",
-			labelAutoFit: true,
-			labelFontSize: 20,
-			labelFontColor: "black",
-			interval: 1,
-			margin: 0,
-			gridColor: "gray",
-			tickColor: "gray"
-		},
-		axisY: {
-			title: "Appearances of Characters",
-			titleFontSize: 20,
-			titleFontColor: "black",
-			labelFontColor: "black",
-			gridColor: "gray",
-			tickColor: "gray"
-		},
-		legend: {
-			fontFamily: "sans-serif",
-			verticalAlign: "bottom",
-			horizontalAlign: "center",
-			cursor: "pointer",
-			//itemclick: function
-		},
-		creditText: "",
-		toolTip: {
-			shared: true,
-		},
-		data: [
-			{
+var homer = {
 				name: "Homer Simpson",
 				type: "column",
 				legendText: "Homer Simpson",
@@ -121,60 +73,18 @@ $().ready(function () {
 					{label: "Season 24", y:22},
 					{label: "Season 25", y:11},
 				]
-			},
-			{
-				name: "Marge Simpson",
-				type: "column",
-				legendText: "Marge Simpson",
-				showInLegend: true,
-				/*indexLabel: "{y}",
-				indexLabelPlacement: "outside",  
-				indexLabelOrientation: "horizontal",
-				indexLabelFontColor: "black",
-				indexLabelFontSize: 10,*/
-				dataPoints: generateDefaultData("Marge Simpson")
-			},
-			{
-				name: "Bart Simpson",
-				type: "column",
-				legendText: "Bart Simpson",
-				showInLegend: true,
-				/*indexLabel: "{y}",
-				indexLabelPlacement: "outside",  
-				indexLabelOrientation: "horizontal",
-				indexLabelFontColor: "black",
-				indexLabelFontSize: 10,*/
-				dataPoints: generateDefaultData("Bart Simpson")
-			},
-			{
-				name: "Lisa Simpson",
-				type: "column",
-				legendText: "Lisa Simpson",
-				showInLegend: true,
-				/*indexLabel: "{y}",
-				indexLabelPlacement: "outside",  
-				indexLabelOrientation: "horizontal",
-				indexLabelFontColor: "black",
-				indexLabelFontSize: 10,*/
-				dataPoints: generateDefaultData("Lisa Simpson")
-			},
-			{
-				name: "Maggie Simpson",
-				type: "column",
-				legendText: "Maggie Simpson",
-				showInLegend: true,
-				/*indexLabel: "{y}",
-				indexLabelPlacement: "outside",  
-				indexLabelOrientation: "horizontal",
-				indexLabelFontColor: "black",
-				indexLabelFontSize: 10,*/
-				dataPoints: generateDefaultData("Maggie Simpson")
-			}
-		],
-	});
-	//console.log(chart.options.data);
-	console.log(allEpisodesByNumber);
-	chart.render();
+			};
+var charaArray = new Array();
+var seasonArray = new Array();
+
+console.log(allEpisodesByNumber);
+
+//fillArrayAllCharByAppearAmt();
+//fillAllEpsArray();
+generateSortedSeasons();
+
+$().ready(function () {
+	top10VAChart(1);
 });
 
 function generateDefaultData(name) {
@@ -215,9 +125,79 @@ function generateDefaultData(name) {
 	return points;
 }
 
-function generateData() {
+// Displays the 10 VA in groups. Group 1, would be the 1st ten VA
+// Group 2 would be the 11th to 20th VA.
+function top10VAChart(group) {
+	var dataArray = [];
+	var vaArray = roleCountOfVA();
+	for(var i = 10*(group-1); i < 10*group; i++) {
+		dataArray.push(vaArray[0].dataPoints[i]);
+	}
+	//console.log(dataArray);
+	var chart = new CanvasJS.Chart("chart_div", {
+		backgroundColor: "#FFD90F",
+		//theme: "theme3",
+		title: {
+			text: "The Simpsons VA",
+			fontSize: 30
+		},
+		axisX: {
+			title: "Voice Actors",
+			titleFontColor: "black",
+			titleFontSize: 24,
+			labelAutoFit: true,
+			labelFontSize: 14.5,
+			labelFontColor: "black",
+			interval: 1,
+			margin: 0,
+			gridColor: "gray",
+			tickColor: "gray"
+		},
+		axisY: {
+			title: "Roles Played",
+			titleFontSize: 24,
+			titleFontColor: "black",
+			labelFontColor: "black",
+			gridColor: "gray",
+			tickColor: "gray"
+		},
+		legend: {
+			fontFamily: "sans-serif",
+			verticalAlign: "bottom",
+			horizontalAlign: "center",
+			cursor: "pointer",
+			//itemclick: function
+		},
+		creditText: "",
+		data: [
+			{
+				type: "column",
+				dataPoints: dataArray,
+			}
+		],
+	});
+	chart.render();
+}
+
+function roleCountOfVA() {
 	var data = [];
-	for(var i = 0; i < charaArray.length; i++) {
+	var points = [];
+	for(var i = 0; i < voiceActorsByCharAmount.length; i++) {
+		var va = {label: voiceActorsByCharAmount[i][0].toString(), y: voiceActorsByCharAmount[i][1].length};
+		points.push(va);
+	}
+	var values = {
+		type: "column",
+		dataPoints: points,
+	}
+	data.push(values);
+	console.log(data);	
+	return data;
+}
+
+function generate5CharaData(seasonNum, arrayOfChara) {
+	var data = [];
+	for(var i = 0; i < arrayOfChara.length; i++) {
 		var points = [];
 		for(var j = 0; j < seasonArray.length; j++) {
 			var seasons = {label: seasonArray[j].toString(), y: 20}
@@ -239,7 +219,7 @@ function generateData() {
 	return data;
 }
 
-function createSeasonChart() {
+function createSeasonChart(seasonNum) {
 	//console.log(generateData());
 	var chart = new CanvasJS.Chart("chart_div", {
 		theme: "theme3",
@@ -248,7 +228,7 @@ function createSeasonChart() {
 			fontSize: 30
 		},
 		axisX: {
-			title: "Seasons",
+			title: "Season" + seasonNum,
 			margin: 0
 		},
 		axisY: {
