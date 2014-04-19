@@ -1,0 +1,19 @@
+Additional data paring to collect locations and voice actors.
+
+Character and episode data format restructured to for easier searching.
+Character data also restructured to include voice actor information.
+
+All datafiles error checked. All problematic entries edited to have an existing entry and as best as possible identify if it should have been associated with an already existing entry. For example "bart" vs "Bart". Problems included source errors(typos, spacing, and format inconsistencies), and parser mistakes. Currently, all data should have entries that exist.
+Note: most of the source error edits were done by hand, but with intention to make sure everything had an existing attribute. The accuracy is not confidently 100%. Some things were confirmed with outsides sources like episode number, but due to lack of knowledge, currently impossible to do accuracy checks on things like full names, jobs, and relatives.
+
+Created project web page. Currently rather bare aside from the intro screen and app link (which is currently just the prototype).
+
+Based on the wikimedia file tag, created a preprocessed file containing links to each of the character pictures generated from the wikimedia link generator api. There seems to be a problem with characters who have had their pictures updated this year(2014), as the link generator doesn't work on them.
+
+Created a table to show overview of characters over all seasons and episodes with color representations. (Honestly unsure what the name is. Looked back through lecture and it was just called "table using colour to help highlight")
+Added a mouse over and click functionality.
+Attempted to create a dynamic aspect where it can be passed a div and parameters to influence where the table will be and what data is 
+
+
+
+
