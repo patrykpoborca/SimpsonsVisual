@@ -40,6 +40,8 @@ function initTable(rows, columns, divID, data, display, colors) {
 		cellDimY = 5;
 	//if(!display) {cellDimX = 10; cellDimY = 10;}
 	//end of init/setup
+	console.log("Inside y : "+data.length + " Inside x " + data[0].length);
+	
 	var leftCornerFlag = false;
 	var C = 0;
 	var color;
@@ -64,6 +66,7 @@ function initTable(rows, columns, divID, data, display, colors) {
 				}
 			}
 			htmlString += ((C != 0 && R == 0) || (C== 0 && R != 0)) ? "</th>\n" : "</td>\n"; 
+		if(C +1 == data[R].length && R +1 == data.length )console.log("Rawrg " + data[R].length);
 		}
 		htmlString += "</tr>\n";
 	}

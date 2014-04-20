@@ -1,5 +1,11 @@
+function p_charBySeason()
+{
+return p_CharBySeason(0, 9999, 9999);
+}
 
-function p_charBySeason() {
+
+//real func, above is wrapper, min = min appearances, max appearances, amount = quantity of fetches over all 
+function p_CharBySeason(min, max, amount) {
 	var printFunc = function() {
 		var debugString = "";
 		for(var it = 0; it < finalArray.length; it++) {
@@ -38,7 +44,7 @@ var episodesRow = [];
 		temp = [];
 	}
 	
-	
+	console.log("Size y = "+ finalArray.length +" size x = " + finalArray[0].length + "Ent 1: " + finalArray[1][1] + " Ent 2 = " + finalArray[1][25]);
 	return finalArray;
 }
 var p_count =0;
@@ -64,12 +70,25 @@ function p_iterateCharEpisodes(character) { //condition = function e.g. cond = f
 	return r_val;
 }
 
+// fetches a range of characters and a certain index from them
 function p_fetchCharIndex(index, range)
 {
+
 var charHolder = p_fetchChars(range);
 if(range == 0) range = charHolder.length;
-
 var tempArray = [];
+if(isNaN(index))
+{
+
+for(var x = 0; x < range; x++)
+	{
+	tempArray.push([]);
+	for(var y = 0; y < charHolder[0].length; y++)
+		if(-1 != index.indexOf(y))tempArray[x].push(charHolder[x][y]);
+	}
+return tempArray;
+}
+
 
 for(var x = 0; x < range; x++)
 	tempArray.push(charHolder[x][index]);
@@ -77,7 +96,7 @@ for(var x = 0; x < range; x++)
 return tempArray;
 }
 
-
+//fetches entire char object 
 function p_fetchChars(amount) {
 	if(amount == 0) amount = allCharByAppearAmt.length;
 		var charList = [];
@@ -85,6 +104,36 @@ function p_fetchChars(amount) {
 		charList.push(allCharByAppearAmt[x]);
 	return charList;		
 }
+
+//post process stuff....
+var globalCharGroups = {};
+var globalDirectorList ={};
+/*
+function p_Directors()
+{
+var ic = {}; //initial count
+var temp;
+	for(var a=0; a < allEpisodesByNumber.length; a++)
+	{	
+		temp = allEpisodesByNumber[a];
+		for(v
+		ic[temp[
+		
+		for(var c = 0; c
+	}
+
+}
+*/
+function p_Groups()
+{
+
+var hold = p_fetchCharIndex([0, 4, 5], 0)
+//console1D(hold[0]);
+}
+
+
+
+
 
 
 	
@@ -106,3 +155,4 @@ function console2D(arr) {
 	console.log(debugstring);
 	}
 }
+

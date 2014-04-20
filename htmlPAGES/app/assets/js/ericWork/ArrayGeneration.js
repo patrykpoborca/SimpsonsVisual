@@ -6,6 +6,7 @@ function generateSortedSeasons() {
 	var tempEpisode = [];
 	var seasonCode = /7G.+/;
 	var index = 0;
+	var allEpisodesByNumber =[];//temporary place holder to stop errors... 
 	var episodeCount = seasonCount[index];
 	for(var k = 0; k < episodeCount; k++) {
 		tempEpisode.push(allEpisodesByNumber[k]);

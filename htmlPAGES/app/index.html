@@ -66,6 +66,8 @@ UI for app
 		#Container
 		{
 		position: relative;
+		height : 720; 
+		width : 1280;
 		}
 		#chart_div
 		{
@@ -133,7 +135,7 @@ UI for app
 </head>
 	<body>
 	
- <!-- ############################################expandSelectors indent##################################### --><div id = "Container" style = "height : 720; width : 1280;"> <!-- Container -->
+ <!-- ############################################expandSelectors indent##################################### --><div id = "Container"> <!-- Container -->
 			
 		<!-- 4 cornerDivs -->
 		<div id = "cornerTL" class = "cornerDivs" style = "top : 0px; left : 0px;"> </div>
@@ -141,7 +143,7 @@ UI for app
 		<div id = "cornerTR" class = "cornerDivs" style = "top : 0px; right: 0px;"> </div>
 		<div id = "cornerBR" class = "cornerDivs" style = "bottom : 0px; right : 0px;"> </div>		
 		<!-- 4 cornerDivs -->	
-			<div id="chart_div"></div>  <!-- chart div to populate...-->
+			<div id="chart_div" class = "draggingClass"></div>  <!-- chart div to populate...-->
 	
 	
 		<!--
@@ -155,16 +157,16 @@ UI for app
 		maxSlider == slider Value for Max value 
 		
 		-->
-	  <div id = "toggler"> Expand/Hide Bar </div>
-          <div id="sideBar">  <!-- sidebar div -->
+	  
+          <div id="sideBar" class = "draggingClass">  <!-- sidebar div -->
             <ul class="nav">  <!-- UL -->
 						 
 									<li>
 										<span class = "shiftPanel" style = "position: absolute; left :10px; top : 5px;">
 											
-											<label for = "scopeSort" id = "checkScopeText" class= "">Numeric Sort</label>
+											<label for = "scopeSort" id = "checkScopeText" class= "">Scope</label>
 										</span>
-										<select id="scopeListChoicesForFlag" class ="shiftPanel flagger" style = "position: absolute; left :10px; top :30px;"> <!-- flagger!-->
+										<select id="ScopeChoice" class ="shiftPanel flagger" style = "position: absolute; left :10px; top :30px;"> <!-- flagger!-->
 											<option value="debug1"> a </option>
 											<option value="debug2"> debug </option>
 											  <!-- append html info here with class class : scopeRemovable -->
@@ -173,7 +175,7 @@ UI for app
 						 <!-- ############################################LI SPLITER##################################### -->
 									<li>
 										<span class = "shiftPanel" style = "position: absolute; left :10px; top : 80px;">
-											<label for = "filterSort" id = "filterCEText" class ="">Numeric Sort</label>
+											<label for = "filterSort" id = "filterCEText" class =""> Filter By</label>
 											
 										</span>
 										<select id="filterCEChoices" class ="flagger filterSort" style = "position: absolute; left :10px; top :100px;"> <!-- flagger!-->
@@ -190,32 +192,32 @@ UI for app
 												<h4>Click bottom button -> generated chart to toggle chart</h4>
 											</div>
 										</li>
-						 <!-- ############################################LI SPLITER##################################### -->
+						 <!-- ############################################LI SPLITER#####################################
 									<li>
 										<span class = "shiftPanel" style = "position: absolute; left :10px; top : 310px;">
 											<label for = "voiceSort" id = "filterVoicesLabel" class = "">Numeric Sort</label>
 											
 										</span>
-										<select id="FilterByVoicesForFlag" class ="flagger shiftPanel" style = "position: absolute; left :10px; top : 330px"> <!-- flagger!-->
+										<select id="FilterByVoicesForFlag" class ="flagger shiftPanel" style = "position: absolute; left :10px; top : 330px"> 
 											<option value="debug1"> c</option>
 											<option value="debug2"> debug </option>
-											  <!-- append html info here with class class : scopeRemovable -->
+											  <!-- append html info here with class class : scopeRemovable
 										</select>
 									</li>
-						 <!-- ############################################LI SPLITER##################################### -->
+						
 									<li>
 											<span class = "shiftPanel" style = "position: absolute; left :10px; top : 380px;">
 												
 												<label for = "LSort" id = "filterLLabel" class= "inputStuff">Numeric Sort</label>
 												
 											</span>
-											<select id="FilterByLForFlag" class ="flagger shiftPanel" style = "position: absolute; left :10px; top : 400px;"> <!-- flagger!-->
+											<select id="FilterByLForFlag" class ="flagger shiftPanel" style = "position: absolute; left :10px; top : 400px;"> 
 												<option value="debug1"> d </option>
 												<option value="debug2"> debug </option>
-												  <!-- append html info here with class class : scopeRemovable -->
+												  <!-- append html info here with class class : scopeRemovable 
 											</select>
 									</li>
-						<!-- ############################################LI SPLITER##################################### -->
+						 ############################################LI SPLITER##################################### -->
 									<li id = "minMax" style = "position: absolute; bottom: 5px; left : 169px;"> <!-- min/max slider subcomponents -->
 										<button type="button" id = "sendData" class = "btn btn-primary">Debug/Tog</button>	
 									</li>   <!-- min/max slider subcomponents -->
@@ -238,24 +240,26 @@ UI for app
 									
 						 <!-- ############################################LI SPLITER##################################### -->
             </ul> <!-- UL -->
-          </div> <!-- sidebar div -->
-    
-					<div id = "expandSelectors"> <!-- expandSelectors -->
+			
+			<div id = "expandSelectors"> <!-- expandSelectors -->
 						<label for = "minTxt" class = "sidePanel"  >Min<br></label>
-						<input  type = "text" name = "minText" value = "50" id = "minTxt" class = "sidePanel flagger" /><br> <!-- flagger!-->
-						 <input type="range"  name="minRange" value = "50" min="0.00" max="99.9" step="0.01" class = "sidePanel dataInit sliderFlag" id = "minSlider" />
+						<input  type = "text" name = "minText" value = "0" id = "minTxt" class = "sidePanel flagger" /><br> <!-- flagger!-->
+						 <input type="range"  name="minRange" value = "0" min="0.00" max="99.9" step="0.01" class = "sidePanel dataInit sliderFlag" id = "minSlider" />
 						
 						<label for = "minTxt" class = "sidePanel"  >Max<br></label>
-						 <input  type = "text" name = "minText" value = "51"  id = "maxTxt" class = "flagger sidePanel" /><br>   <!-- flagger!-->
-						 <input type="range"  name="minRange" value = "51" min="0.01" max="100" step="0.01" class = "sidePanel dataInit sliderFlag" id = "maxSlider" /> 
+						 <input  type = "text" name = "minText" value = "100"  id = "maxTxt" class = "flagger sidePanel" /><br>   <!-- flagger!-->
+						 <input type="range"  name="maxRange" value = "100" min="0.01" max="100" step="0.01" class = "sidePanel dataInit sliderFlag" id = "maxSlider" /> 
 					</div>  <!-- expandSelectors -->
+          </div> <!-- sidebar div -->
+    
 					
 					
-				<div id = "genTable"> <!-- table div -->
+					
+				<div id = "genTable" class = "draggingClass"> <!-- table div -->
 						
 		
 				</div>
-				<div id= "superDiv">
+				<div id= "superDiv" class = "draggingClass">
 							<div id="pictureTest">
 							<p><h3>Overview</h3> <button onclick="toggleCharIconsOnPopup()">Toggle Icons In popups.</button></p>
 								</div>
@@ -279,30 +283,35 @@ UI for app
 					
  <!-- ############################################expandSelectors indent##################################### --></div> <!-- container -->
 	
-	
-	
-	
-	<script type='text/javascript' src='assets/js/dylanWork/interactiveTable.js'></script>
-	<script type='text/javascript' src='assets/js/dylanWork/urlsOfChars.js'></script>
-    <script type='text/javascript' src='assets/js/dylanWork/CleanedData/SChars-Reconvert.js'></script>
-    <script type='text/javascript' src='assets/js/dylanWork/CleanedData/SEpisodes-PF.js'></script>
-	
-	
-	
-    <script src = "assets/js/patrykWork/parseData.js"></script>
+	<!--  Libraries below -->
 	<script src="assets/js/libraries/jquery-1.8.1.js"></script>  
     <script src="assets/js/libraries/canvasjs.min.js"></script> 
-    <script src="assets/js/ericWork/ArrayGeneration.js"></script>  
-    <script src="assets/js/ericWork/charts.js"></script> 
 	<script src="assets/js/libraries/bootstrap.js"></script>
 	<script src="assets/js/customFunctions.js"></script>
 	<script src = "assets/js/libraries/jquery.tools.min.js"></script>
+	
+	
+	<!-- Dylan below -->
+	<script type='text/javascript' src='assets/js/dylanWork/interactiveTable.js'></script>
+	<script type='text/javascript' src='assets/js/dylanWork/urlsOfChars.js'></script>
+    <script type='text/javascript' src='assets/js/dylanWork/SChars.js'></script>
+    <script type='text/javascript' src='assets/js/dylanWork/SEpisodes.js'></script>
+	<script type='text/javascript' src='assets/js/dylanWork/justSeason.js'></script>
+	<script type='text/javascript' src='assets/js/dylanWork/justCharacter.js'></script>
+	<!-- Dylan work above, Patryk work below -->
+	<script src = "assets/js/patrykWork/parseData.js"></script>
 	<script src = "assets/js/patrykWork/sliderCode.js"></script> <!-- has the slider behaviours in it -->
 	<script src = "assets/js/patrykWork/tableGenerator.js"></script>
 	<script src = "assets/js/patrykWork/communicateUI.js"></script> <!-- has the ui init and communication for other .js files in it -->
 	<script src = "assets/js/patrykWork/dropdowns.js"></script> <!-- has the dropdown behaviours in it -->
 	<script src = "assets/js/patrykWork/flagMaker.js"></script> <!-- has the used to create bound flags for a class type -->
-	<script>
+	<!-- Patryk work above, Eric work below -->
+	<script src="assets/js/ericWork/ArrayGeneration.js"></script>  
+    <script src="assets/js/ericWork/charts.js"></script> 
+	
+
+<script>
+
 	$(document).ready(function()
 	{//ready start #############################################################################################################
 	initUI();
@@ -311,26 +320,24 @@ UI for app
 	var maxObj = InitSlider("maxSlider", "maxTxt");
 	bindSliders(minObj, maxObj);
 	////////////////////////
-	attachCheck("scopeCBox", "scopeChoices", "on Scope");
-	attachCheck("filterCEbox", "filterCEChoices", "on filterBy");
-	attachCheck("filterVoiceCbox", "filterVoiceList", "on Voices");
-	attachCheck("filterLCbox", "filterLocList", "on ?Locations?");
+	
 	
 	//debug bind
 	$("#sendData").on('click', debugLogCom);
 	//eo debug bind
 	//last things to be done
-	//populateFlags();//needs to populate created elements of a certain type of class
-	
 	var HOLD = wrapForTable(p_charBySeason());
 	initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, false, false); // rows, columns, divID, data, display
 	
 	
-	
+	setTimeout(initJqueryUi, 500); // load in jquery ui functions after .5 seconds... to avoid errors (just in case), the plugin takes a bit to load in.
+	p_Groups();//post load generation..
 	}); //end of ready #############################################################################################################
 	
-	
 	</script>
+	
+	
+	 <script src = "assets/jqueryUI/js/jquery-ui-1.10.4.custom.js"></script> <!-- moved here to speed up initial load -->
 	
 	</body>
 </html>

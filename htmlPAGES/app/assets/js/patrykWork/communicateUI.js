@@ -31,18 +31,70 @@ var animationQ = [];
 // custom function methods for initiation
 function initUI()
 {
+
 	//initialization...
-	$('#superDiv').on('change', chartFunc());
+	//$('#superDiv').on('change', chartFunc());
 	//fillArrayAllCharByAppearAmt();
 	//fillAllEpsArray();
-	chartFunc();
-	fillOverviewTable();
+	//chartFunc(); // eric's chart function
+	initInteractiveTable(); // fill overview table
 	$("#chart_div").hide(); //for king div
 	$("#genTable").hide(); //for king div
-	repopulate("filterCEChoices", "characters", 10, false);
+	//repopulate("filterCEChoices", "characters", 10, false); //populates a drop down
 	// hiding stuff... moving stuff around...
+	initAnimations(); //initaites toggle/animation behaviours
+	initDropDowns();
 	
-	$("#sortButton").toggle(
+}
+
+
+function directionMath(element)
+{
+	var y = cutPx($("#" + element).css('top'));
+	var x = cutPx($("#" + element).css('left'));
+	
+	return {
+	directx : (x < 640) ? "left" : "right",
+	directy : (y < 360) ? "top" : "bottom"
+	};
+}
+
+
+function flipFlagsUi()
+{
+for(var z =0 ; z < animationQ.length; z++)
+	animationQ[z]["status"] = !animationQ[z]["status"];		
+}
+	
+//place dylans table stuff here!
+function initInteractiveTable()
+{
+	var charList = [];
+	//input only 20 characters for now. this can be changed later to take in an array holding characters.
+	for(var i = 0; i < 10; i++){
+		charList.push( allCharByAppearAmt[i]  );
+}
+
+
+
+
+
+	fillOverviewTable('overviewTable', charList, true);
+	//findCharactersInGivenSeasonAndPopulateInteractiveTable('overviewTable', 1);
+
+
+}
+
+
+
+
+
+
+//Animation/Toggle related stuff
+
+function initAnimations()
+{
+$("#sortButton").toggle(
 	function()
 	{
 		$("#sortButton").text("SortNum");
@@ -104,6 +156,8 @@ function initUI()
 	
 	///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////
+	
+	
 	$("#genTable").toggle(function(){
 	$(this).empty();
 	var HOLD = wrapForTable(p_charBySeason());
@@ -152,7 +206,7 @@ function initUI()
 	  
 	  $("#sideBar").show();
 	 
-	 $("#expandSelectors").css({ top : yyyy+ 'px', left : xxxx+ "px"});
+	
 	 };
 	
 	/// hide stuff
@@ -173,12 +227,14 @@ function initUI()
 	$("#expandSliders").toggle(
 	function()
 	{
+	 
 	$("#expandSliders").text("Hide Sliders");
 	$("#expandSelectors").slideDown();
 	
 	},
 	function()
 	{
+	
 		$("#expandSliders").text("Show Sliders");
 		$("#expandSelectors").slideUp();	
 	}
@@ -204,26 +260,12 @@ function initUI()
 	});
 ///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////	
+
+}
+
+
+function initJqueryUi()
+{
+	$(".draggingClass").each(function(){$(this).draggable();});
 	
 }
-
-
-function directionMath(element)
-{
-	var y = cutPx($("#" + element).css('top'));
-	var x = cutPx($("#" + element).css('left'));
-	
-	return {
-	directx : (x < 640) ? "left" : "right",
-	directy : (y < 360) ? "top" : "bottom"
-	};
-}
-
-
-function flipFlagsUi()
-{
-for(var z =0 ; z < animationQ.length; z++)
-	animationQ[z]["status"] = !animationQ[z]["status"];		
-}
-		
-

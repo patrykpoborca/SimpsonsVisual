@@ -14,13 +14,27 @@ th.name {
   width:10px;
 }
 td.inThatEps {
-  background-color: #278627;
   width: 1px;
 }
 td.notInThatEps {
-  background-color: #8A8A8A;
   width: 1px;
 }
+td.sinThatEps {
+  width: 30px;
+  border:1px solid black;
+  border-collapse: collapse;
+}
+td.snotInThatEps {
+  width: 30px;
+  border:1px solid black;
+  border-collapse: collapse;
+}
+
+#overBar {
+  border:1px solid red;
+  border-collapse: collapse;
+}
+
 
 #hblue
 {

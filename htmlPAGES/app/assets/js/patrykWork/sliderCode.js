@@ -112,7 +112,7 @@ function sendData(sliderName)
 }	
 	
 	
-	
+
 $.fn.enterKey = function (fnc) {
     return this.each(function () {
         $(this).keypress(function (ev) {

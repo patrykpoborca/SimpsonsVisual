@@ -77,7 +77,7 @@ var homer = {
 var charaArray = new Array();
 var seasonArray = new Array();
 
-console.log(allEpisodesByNumber);
+//console.log(allEpisodesByNumber);
 
 //fillArrayAllCharByAppearAmt();
 //fillAllEpsArray();

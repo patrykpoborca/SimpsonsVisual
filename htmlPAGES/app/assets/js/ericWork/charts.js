@@ -38,7 +38,7 @@ line 48 (backgroundColor: " ";)
 var charaArray = new Array();
 var seasonArray = new Array();
 
-console.log(allEpisodesByNumber);
+
 
 //fillArrayAllCharByAppearAmt();
 //fillAllEpsArray();
