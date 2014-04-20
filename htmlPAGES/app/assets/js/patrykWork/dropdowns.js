@@ -48,6 +48,11 @@ switch(grab)
 	index =0;
 	break;
 	
+	case "Character Group":
+	index = 0;
+	return; //todo
+	break;
+	
 	case "resetScope":
 	index = -1;
 	break;
@@ -55,15 +60,18 @@ switch(grab)
 	case "resetFilter":
 	index =-1;
 	break;
+	
 	default:
 	console.log("Wrong param at repop grab");
 	index = 0;
-	return;
+	return; //exit
 	break;
 }
 
 var sTring = "";
 var chosen;
+
+//CHar stuf
 if(grab == "Characters")
 chosen = p_fetchCharIndex(index, range); // fetches a certain amount of characters, and returns one of their "indexes" aka = 0 names
 if(index == -1)
@@ -72,18 +80,16 @@ chosen = ["Characters", "Seasons","Character Group", "Location", "Voice Actor", 
 if(grab == "resetFilter")
 chosen.splice(chosen.indexof(range), 1); // since range isn't used for this parse, we use it to store the val currently being parsed
 }
-
-
-
+// EOF char stuff
 
 if(Sort) 
 	chosen.sort();
 
 if(index != -1)
 sTring += createOption(grab,  "..", parent, false); //iterate up option to go back up
+
 for(var x = 0 ; x < chosen.length; x++)
-{
-		
+{		
 		sTring += createOption(grab,  chosen[x], parent,(x == 0)); //<option selected = "onlyifx==1" value="debug1"> 
 }
 
