@@ -1,0 +1,7 @@
+weekly report week 2 Patryk Poborca
+
+- Drafted up UI
+- Polished UI into Minimilistic design, incorporated draggable
+- setup parser backbone
+- generated arrays for these =  http://puu.sh/8g3Bl.png 
+- setup logic for navigation through selections on UI

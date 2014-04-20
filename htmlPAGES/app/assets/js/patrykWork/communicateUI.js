@@ -44,6 +44,7 @@ function initUI()
 	// hiding stuff... moving stuff around...
 	initAnimations(); //initaites toggle/animation behaviours
 	initDropDowns();
+	p_Directors();
 	
 }
 

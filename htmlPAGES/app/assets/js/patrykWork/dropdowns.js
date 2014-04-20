@@ -76,7 +76,7 @@ if(grab == "Characters")
 chosen = p_fetchCharIndex(index, range); // fetches a certain amount of characters, and returns one of their "indexes" aka = 0 names
 if(index == -1)
 {
-chosen = ["Characters", "Seasons","Character Group", "Location", "Voice Actor", "Show Runner", "Director"];
+chosen = ["Characters", "Seasons","Character Group", "Location", "Voice Actor", "Show Runner", "Writer", "Director"];
 if(grab == "resetFilter")
 chosen.splice(chosen.indexof(range), 1); // since range isn't used for this parse, we use it to store the val currently being parsed
 }
