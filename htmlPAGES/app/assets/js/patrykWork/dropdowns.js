@@ -1,4 +1,5 @@
 // dropdownLinker, links premade checkmark flag and a dropdown along with a prev element which features the "text" info of the sort config Patryk Poborca
+// Patryk Poborca CS 424 UIC
 
 //array structures...
 
@@ -35,7 +36,7 @@ if(meh.indexOf(temp) != -1)
 	}
 });
 
-repopulate("filterBy", "resetFilter", "Characters", false);
+repopulate("filterBy", "resetFilter", "Seasons", false);
 $("#filterBy").enterKey(changeFilter); //step into on enter key.
 $("#filterBy").dblclick(changeFilter);
 
@@ -120,6 +121,7 @@ switch(grab)
 	
 	case "..": //iterate up...
 	index = 0;
+	console.log(" HHHH === " + $("#"+dropdown).find(":selected").attr("current"));
 	grab = parentStruct[parent]; //$("#"+dropdown).find(":selected").attr("parent");
 	repopulate(dropdown, grab, 0, Sort);
 	return;
@@ -182,7 +184,7 @@ var sTring = "";
 //root poopulate
 if(index == -1)
 {
-chosen = ["Characters", "Seasons","Related Characters", "Location", "Voice Actor", "Show Runner", "Writers", "Directors", "Jobs"];
+chosen = ["Seasons", "Characters", "Related Characters", "Location", "Voice Actor", "Show Runner", "Writers", "Directors", "Jobs"];
 if(grab == "resetFilter")
 	chosen.splice(chosen.indexOf(range), 1); // since range isn't used for this parse, we use it to store the val currently being parsed
 }

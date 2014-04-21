@@ -34,9 +34,8 @@ function initUI()
 
 	//initialization...
 	//$('#superDiv').on('change', chartFunc());
-	//fillArrayAllCharByAppearAmt();
-	//fillAllEpsArray();
 	//chartFunc(); // eric's chart function
+
 	initInteractiveTable(); // fill overview table
 	$("#chart_div").hide(); //for king div
 	$("#genTable").hide(); //for king div
@@ -44,6 +43,7 @@ function initUI()
 	// hiding stuff... moving stuff around...
 	initAnimations(); //initaites toggle/animation behaviours
 	initDropDowns();
+	p_initInterp("ScopeChoice", "filterBy", "queryParser", "hhh");
 	//p_Directors();
 	
 	
@@ -205,7 +205,7 @@ $("#sortButton").toggle(
 		 function(){ 
 		  $("#sideBar").animate({height : "500px"}, 500, 
 			function(){
-			 $("#sideBar *").each(function(){$(this).show();});
+			 $("#sideBar *").each(function(){if($(this).attr('id') != "expandSelectors")$(this).show();});
 			 });
 		 });
 	  
