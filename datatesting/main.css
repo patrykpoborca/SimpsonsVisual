@@ -10,6 +10,9 @@ table, th
   border:1px solid black;
   border-collapse: collapse;
 }
+table.borderless{
+  border: none;
+}
 th.name {
   width:10px;
 }
@@ -55,7 +58,7 @@ td.snotInThatEps {
   margin-top: 0;
 }
 
-#testArrayContents {
+#ovtMouseOverPane {
   top: 0px;/**/
   margin-top: 50px;
   margin-left: 50px;
@@ -67,7 +70,7 @@ td.snotInThatEps {
   position: absolute;
 }
 
-#popupControlBox {
+#ovtMouseClickPane {
   top: 0px;/**/
   margin-top: 50px;
   margin-left: 50px;

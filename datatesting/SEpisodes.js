@@ -1,5 +1,9 @@
 
 //This var is based off of the episodes in season count.
+// é = Ã?Â(copyright symbol)
+// è = ""(dots)
+// (reverse r) = Ã?Â¯ = &#1103;
+//  ö = Ã?Â¶  = &ouml;
 
 var episodesInSeasons = 
   [ 13,22,24,22,22,25,25,25,25,23,22,21,22,22,22,21,22,22,20,21,23,22,22,22,11 ];
@@ -76,7 +80,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Matt Groening","Sam Simon"], //end written by array
    ["David Silverman","Kent Butterworth"] //end directed by array
 ], //end of the episode entry
-[ "Bart Gets an  quot;F quot;", 14," 7F03"," October 11, 1990",
+[ "Bart Gets an  'F '", 14," 7F03"," October 11, 1990",
    [], //end show runner array
    ["David M. Stern"], //end written by array
    ["David Silverman"] //end directed by array
@@ -678,7 +682,7 @@ var allEpisodesByNumber = [  //Beginning of array
 ], //end of the episode entry
 [ "Treehouse of Horror VI", 134,"3F04","October 29th, 1995",
    [], //end show runner array
-   ["John Swartzwelder","Scary John Swartzwelder","Steve Tompkins","Steve Tombkins","David X. Cohen","DavidÃ?Â²+S.Ã?Â²+CohenÃ?Â²"], //end written by array
+   ["John Swartzwelder","Scary John Swartzwelder","Steve Tompkins","Steve Tombkins","David X. Cohen","David S Cohen"], //end written by array
    ["Bob Anderson","Bedlam Bob Anderson"] //end directed by array
 ], //end of the episode entry
 [ "King-Size Homer", 135," 3F05"," November 5, 1995",
@@ -756,7 +760,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Richard Appel","David Cohen","Jonathan Collier","Jennifer Crittenden","Greg Daniels","Brent Forrester","Rachel Pulido","Steve Tompkins","Josh Weinstein","Bill Oakley","Matt Groening"], //end written by array
    [] //end directed by array
 ], //end of the episode entry
-[ "Raging Abe Simpson and His Grumbling Grandson in  quot;The Curse of the Flying Hellfish quot;", 150,"3F19","April 28, 1996",
+[ "Raging Abe Simpson and His Grumbling Grandson in  'The Curse of the Flying Hellfish '", 150,"3F19","April 28, 1996",
    [], //end show runner array
    ["Jonathan Collier"], //end written by array
    ["Jeffrey Lynch"] //end directed by array
@@ -1056,12 +1060,12 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Donick Cary"], //end written by array
    ["Mark Kirkland","Matthew Nastuk"] //end directed by array
 ], //end of the episode entry
-[ "Lisa Gets an  quot;A quot;", 210," AABF03"," November 22, 1998",
+[ "Lisa Gets an  'A '", 210," AABF03"," November 22, 1998",
    [], //end show runner array
    ["Ian Maxtone-Graham"], //end written by array
    ["Bob Anderson"] //end directed by array
 ], //end of the episode entry
-[ "Homer Simpson in:  quot;Kidney Trouble quot;", 211,"AABF04","December 6, 1998",
+[ "Homer Simpson in:  'Kidney Trouble '", 211,"AABF04","December 6, 1998",
    [], //end show runner array
    ["John Swartzwelder"], //end written by array
    ["Mike B. Anderson"] //end directed by array
@@ -1096,7 +1100,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Dan Greaney"], //end written by array
    ["Bob Anderson"] //end directed by array
 ], //end of the episode entry
-[ "Marge Simpson in:  quot;Screaming Yellow Honkers quot;", 218," AABF10"," February 21, 1999",
+[ "Marge Simpson in:  'Screaming Yellow Honkers '", 218," AABF10"," February 21, 1999",
    [], //end show runner array
    ["David M. Stern"], //end written by array
    ["Mark Kirkland"] //end directed by array
@@ -1121,7 +1125,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Al Jean"], //end written by array
    ["Steven Dean Moore"] //end directed by array
 ], //end of the episode entry
-[ "The Old Man and the  quot;C quot; Student", 223,"AABF16","April 25, 1999",
+[ "The Old Man and the  'C ' Student", 223,"AABF16","April 25, 1999",
    [], //end show runner array
    ["Julie Thacker"], //end written by array
    ["Mark Kirkland"] //end directed by array
@@ -1254,7 +1258,7 @@ var allEpisodesByNumber = [  //Beginning of array
 [ "Treehouse of Horror XI", 249," BABF21"," November 1, 2000",
    [], //end show runner array
    ["Rob LaZebnik","John Frink (writer)","John Frink","Don Payne","Carolyn Omine"], //end written by array
-   ["Matthew Nastuk","Matt  quot;Groening quot; Nastuk"] //end directed by array
+   ["Matthew Nastuk","Matt  'Groening ' Nastuk"] //end directed by array
 ], //end of the episode entry
 [ "A Tale of Two Springfields", 250," BABF20"," November 5, 2000",
    [], //end show runner array
@@ -1291,7 +1295,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Tim Long"], //end written by array
    ["Lance Kramer"] //end directed by array
 ], //end of the episode entry
-[ "HOMÃ?Â¯", 257," BABF22"," January 7, 2001",
+[ "HOM&#1103", 257," BABF22"," January 7, 2001",
    [], //end show runner array
    ["Al Jean"], //end written by array
    ["Mike B. Anderson"] //end directed by array
@@ -2076,7 +2080,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Joel H. Cohen"], //end written by array
    ["Matthew Nastuk"] //end directed by array
 ], //end of the episode entry
-[ "Dial  quot;N quot; for Nerder", 414,"KABF07","March 9, [[2008]]",
+[ "Dial  'N ' for Nerder", 414,"KABF07","March 9, [[2008]]",
    [], //end show runner array
    ["Carolyn Omine","William Wright"], //end written by array
    ["Bob Anderson"] //end directed by array
@@ -2221,7 +2225,7 @@ var allEpisodesByNumber = [  //Beginning of array
    [], //end written by array
    ["Lance Kramer"] //end directed by array
 ], //end of the episode entry
-[ "Bart Gets a  quot;Z quot;", 443," LABF14"," October 4, 2009",
+[ "Bart Gets a  'Z '", 443," LABF14"," October 4, 2009",
    ["Al Jean"], //end show runner array
    ["Matt Selman"], //end written by array
    ["Mark Kirkland"] //end directed by array
@@ -2361,7 +2365,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Michael Price"], //end written by array
    ["Steven Dean Moore","Steve Dean Moore"] //end directed by array
 ], //end of the episode entry
-[ "How Munched Is That Birdie in the Window?", 471,"NABF02","November 28, 2010 lt;ref name= quot;airdate quot; gt;{{cite web |url=http://www.daemonstv.com/2010/10/30/rachel-weisz-and-danica-patrick-on-the-simpsons-first-photo/?utm_source=feedburner amp;utm_medium=feed amp;utm_campaign=Feed%3A+daemonstv+%28Daemon%27s+TV%29 |title=Rachel Weisz and Danica Patrick on THE SIMPSONS First Photo |publisher=Daemon's TV |accessdate=October 30, 2010}} lt;/ref gt;",
+[ "How Munched Is That Birdie in the Window?", 471,"NABF02","November 28, 2010 lt;ref name= 'airdate ' gt;{{cite web |url=http://www.daemonstv.com/2010/10/30/rachel-weisz-and-danica-patrick-on-the-simpsons-first-photo/?utm_source=feedburner amp;utm_medium=feed amp;utm_campaign=Feed%3A+daemonstv+%28Daemon%27s+TV%29 |title=Rachel Weisz and Danica Patrick on THE SIMPSONS First Photo |publisher=Daemon's TV |accessdate=October 30, 2010}} lt;/ref gt;",
    ["Al Jean"], //end show runner array
    ["Kevin Curran"], //end written by array
    ["Michael Polcino"] //end directed by array
@@ -2556,7 +2560,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Tim Long"], //end written by array
    ["Bob Anderson"] //end directed by array
 ], //end of the episode entry
-[ "Treehouse of Horror XXIII", 510," PABF17 lt;ref name= quot;twitpic quot; gt;[http://twitpic.com/7xgczx http://twitpic.com/7xgczx] lt;/ref gt;"," October 7, 2012",
+[ "Treehouse of Horror XXIII", 510," PABF17 lt;ref name= 'twitpic ' gt;[http://twitpic.com/7xgczx http://twitpic.com/7xgczx] lt;/ref gt;"," October 7, 2012",
    [], //end show runner array
    ["David Mandel","Brian Kelley"], //end written by array
    ["Steven Dean Moore"] //end directed by array
