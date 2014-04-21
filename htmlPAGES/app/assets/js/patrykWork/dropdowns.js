@@ -48,39 +48,18 @@ function changeScope()
 //repopulate("ScopeChoice", "resetScope", 0, true);
 var choice = $("#ScopeChoice").val();
 repopulate("ScopeChoice", choice, 0, false);
-
+$("#ScopeChoice").trigger('change');
+$("#filterBy").trigger('change');
 }
 
 function changeFilter()
 {
 var choice = $("#filterBy").val();
 repopulate("filterBy", choice, currentScope, false);
+$("#filterBy").trigger('change');
 }
 
 
-
-/*
-function isBottom(dropdown)
-{
-var hold =  $("#"+dropdown).find(":selected").attr('parent');
-
-switch(hold)
-{
-case "Related Characters":
-return true;
-break;
-
-case "Characters":
-return true;
-break;
-
-case default:
-return false;
-
-}
-return false;
-}
-*/
 
 var currentScope;
 var parentStruct = {}; // used to iterate back through parents.

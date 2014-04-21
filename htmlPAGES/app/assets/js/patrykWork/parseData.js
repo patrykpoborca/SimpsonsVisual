@@ -62,7 +62,11 @@ globalRunnerList
 //fetches an ARRAY version of the index found... index is a string value, due to original arrays being object literals, choice indicates which of above you wish...
 function p_fetchAnon(choice, index, min, max)
 {
+var holding = [];
 var tempArray =[];
+var length = 1;
+var pos;
+if( index instanceof Array) length = index.length;
 var placeHolder= eval(choice); // quick and painless, you pass which array you want, which 'index' and what range
 if(min + max >=0) // makes range a min/max
 {
@@ -70,11 +74,14 @@ if(min + max >=0) // makes range a min/max
 
 for(key in placeHolder)
 {
-	
-	tempArray.push(placeHolder[key]["name"]);
-	if(choice == "globalCharGroups" && index == "name")
+	holding = [];
+	for(var z = 0; z < length; z++)
+	{
+	pos = (index instanceof Array) ? index[z] : index;
+	tempArray.push(placeHolder[key][pos]);
+	if(choice == "globalCharGroups" && pos == "name")
 		tempArray[tempArray.length-1]+= "'s group";
-	
+	}
 }
 return tempArray;
 }
@@ -84,9 +91,24 @@ function p_populateArr(which, cut)
 {
 var holder = eval(which); //locations/voiceactors etc.
 var temp= [];
+var tempR =[];
+if( cut instanceof Array)
+{
+
+for(var a=0; a < holder.length; a++)
+	{tempR = [];
+	for(var b= 0; b < cut.length; b ++)
+		tempR.push(holder[a][cut[b]])
+		
+	temp.push(tempR);
+	}
+
+}
+else
+{
 for(var a=0; a < holder.length; a++)
 	temp.push(holder[a][cut])
-	
+}
 return temp;
 }
 
@@ -98,7 +120,7 @@ function p_populateSeasons(season)
 	if(season == -1)
 	{
 		
-		r_val.push("All Seasons");
+		r_val.push("All Episodes");
 		for(var a =0 ; a < dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length; a ++)
 		{
 		r_val.push("Season: " + (a+1));

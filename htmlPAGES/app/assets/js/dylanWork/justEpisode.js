@@ -16,7 +16,7 @@ divs that will be created for single selection character view start with ssep
 //This method attempts to be lenient with whether or not episode is a number or the name.
 function givenAnEpisodeFillADiv(divIdToFill, episodeToUse) {
 	document.getElementById(divIdToFill).innerHTML = ""; //remove all content in the div currently.
-
+alert('hi');
 	var episodeIndex = -1;
 
 	if( typeof episodeToUse == "number"){ episodeIndex = episodeToUse; }

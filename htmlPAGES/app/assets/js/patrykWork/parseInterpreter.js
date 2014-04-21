@@ -10,14 +10,36 @@ function p_initInterp(scope, filterby, display, text)
 {//^^ are ID's of html elements, 2 dropdowns, display div, and a text area
 pSCOPE = $("#"+scope); pFILTER = $("#"+ filterby); pDISPLAY = $("#"+ display);  pTXT = $("#"+text);
 
-pSCOPE.on('change', function(){if(pSCOPE.val() == "..") return; p_setQuery(); p_upDisplay()});
-pFILTER.on('change',function(){if(pFILTER.val() == "..") return; p_cWrapper($(this).val(), -2); console.log(parserQueries); p_upDisplay();});
+pSCOPE.on('change', function(){if(pSCOPE.val() == "..") return; p_setQuery(); p_upDisplay(); p_upVisualElements();});
+pFILTER.on('change',function(){if(pFILTER.val() == "..") return; p_cWrapper($(this).val(), -2); console.log(parserQueries); p_upDisplay();  p_upVisualElements();});
 p_initQuery(); 
 p_initPTable();
+var ii = "appearances";
+parserQueries['lookup'] = {
+"Related Characters" : {"i" : ii, a: "globalCharGroups"}, 
+"Characters" : { "i" : 7, "a" : "allCharByAppearAmt" }, 
+"Writers" : { "i" : ii, "a" : "globalWriterList"},
+"Show Runner" : {"i" : ii, "a" : "globalRunnerList"},
+"Directors" : {"i" : ii, "a" : "globalDirectorList"}, 
+"Jobs" : {"i": ii, "a" : "globalJobs"},
+"Location" : {'i': 1, 'a' : 'locationsByAppearAmt'},
+'Voice Actor' : {'i': 2, 'a': 'allVoiceActorsByAppearanceCount'},
+'Seasons' : {'i' : '-1', 'a' : 'episodesInSeasons'},
+'All Episodes' : {'i' : 1, 'a' : 'allEpisodesByNumber'}
+}//["Characters", "Seasons","Related Characters", "Location", "Voice Actor", "Show Runner", "Writers", "Directors", "Jobs"];
 
+var starting = 0;
+for(var aa= 0; aa < episodesInSeasons.length; aa++)
+	{
+	if(aa != 0) starting = parserQueries['lookup']['Season: '+(aa)]['r'];
+	parserQueries['lookup']['Season: '+(aa+1)] = {
+	'i' : 1,
+	'a' : 'allEpisodesByNumber',
+	'r' : ((aa+1)* episodesInSeasons[aa]),
+	's' : starting}
+	};
 
 }
-
 function p_upDisplay()
 {
 pDISPLAY.empty();
@@ -27,20 +49,82 @@ pDISPLAY.empty();
 			sTring+= "<span class = 'pRemove' id = 'pp"+a+"'> ";
 			for(var b =0; b < parserQueries[a].length; b++)
 				for(key in parserQueries[a][b])
-					{sTring+=  key +" = " + parserQueries[a][b][key] + "<br>";}
+					{sTring+=  key +" = " + parserQueries[a][b][key] + "<br>"; 
+					//if(a != 0 && b != 0)
+						//{console.log(parserQueries[a][b][key]); console.log(parserQueries['lookup'][parserQueries[a][b][key]]);}
+						}
 			sTring+= "</span>";
 			pDISPLAY.append(sTring);
 		}
 }
 
 
+function p_upVisualElements(query)
+{
+var arr = p_grabArrays();
+//arr = p_examineElements();
+	
+
+}
 
 
+function p_examineElements(arr)
+{
+var r_val = [];
+for(var a= 1; a < arr.length; a ++)
+	{
+	if(parserQueries[p_Q()][a]['term'] == 'Seasons' || parserQueries[p_Q()][a]['term'].substring(0, 8) == "Season:" || parserQueries[p_Q()][a]['term'] == 'All Episodes')
+	{//special cases for these....
+	r_val
+	}
+	else
+	{
+	
+	}
+
+}
+
+}
 
 
-
-
-
+function p_grabArrays() // returns a array of scope and its filters
+{
+var temp;
+var parent;
+var quer = []; // 0 -> scope, 0< filters
+	for(var a = 1; a < parserQueries[p_Q()].length; a ++)
+	{
+		console.log("here");
+		
+		temp = parserQueries['lookup'][parserQueries[p_Q()][a]['term']];
+		
+		quer[a] = [];
+		
+		if(temp == null)
+		{
+		var finalChoice = parserQueries['lookup'][$(document.activeElement).find(":selected").attr('current')];
+		console.log("->>>>>  " + $(document.activeElement).find(":selected").attr('current'));
+		console.log(finalChoice);
+		
+		break; //exit state, when at bottom level of iteration...
+		}
+		//alert(temp);
+		if(parserQueries[p_Q()][a]['term'] != 'Seasons')
+			{quer[a][1] =(isNaN(temp['i'])) ? p_fetchAnon(temp['a'], ['name', temp['i']], -1, -1) : p_populateArr(temp['a'], [0, temp['i']]); // is the index a number, if so, cut from different things
+			}
+			
+		else { quer[a][1] = eval(temp['a']);}
+		
+		
+		if(temp['r'] != null) //cuts away a range
+			{
+				quer[a].splice(0, temp['s']);
+				quer[a].splice(temp['r']);
+			}
+	}	
+	console.log(quer);
+return quer;
+}
 
 
 
@@ -126,6 +210,7 @@ so if we choose season 10, it has x episodes, but only 1 / 0 values. obviously a
 */
 
 }
+
 // converts array of episode names for a entity into a t/f table of appearnces
 function fetchTF(arr)
 {
