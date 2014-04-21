@@ -9,6 +9,7 @@
 
 function createOption(grab, holdVal, parent,select)
 {
+console.log(grab);
 	if(!select)
 	return "<option current = '"+grab+"' class= 'genOption"+grab+ "' parent = '"+ parent +"' value='" + holdVal+"'>\n"+ holdVal +" </option>";
 	return  "<option selected = 'selected' current ='"+ grab+"' class = 'genOption"+grab+ "' parent = '"+ parent +"' value='" + holdVal+"'>\n"+ holdVal +" </option>";
@@ -19,8 +20,15 @@ function createOption(grab, holdVal, parent,select)
 function initDropDowns()
 {
 
-repopulate("ScopeChoice", "resetScope", 0, true);
+repopulate("ScopeChoice", "resetScope", 0, false);
 $("#ScopeChoice").enterKey(changeScope); //step into on enter key.
+$("#ScopeChoice").dblclick(changeScope);
+
+
+repopulate("filterBy", "resetFilter", "Characters", false);
+$("#filterBy").enterKey(changeFilter); //step into on enter key.
+$("#filterBy").dblclick(changeFilter);
+
 }
 
 //used to determine what array to fetch.
@@ -32,25 +40,40 @@ repopulate("ScopeChoice", choice, 0, true);
 
 }
 
+function changeFilter()
+{
+
+}
 
 
 function repopulate(dropdown, grab, range, Sort)
 {
+var trial = dropdown.index
+
 // fetch data here to repopulate the lists and sort and finally repopulate the lists.
 //clearDrop(dropdown); //clears all populated elements
 
 var index =0;
-var parent = $("#"+dropdown).attr('current');
-$("#"+dropdown).empty(); // clear old data
+var parent = $("#"+dropdown).find(":selected").attr('current');
+var chosen;
+
 switch(grab)
 {
 	case "Characters":
 	index =0;
+	chosen = p_fetchCharIndex(index, range); // fetches a certain amount of characters, and returns one of their "indexes" aka = 0 names
 	break;
 	
-	case "Character Group":
+	case "Related Characters":
 	index = 0;
 	return; //todo
+	break;
+	
+	case "..": //iterate up...
+	index = 0;
+	grab = $("#"+dropdown).find(":selected").attr("parent");
+	repopulate(dropdown, grab, 0, Sort);
+	return;
 	break;
 	
 	case "resetScope":
@@ -67,20 +90,21 @@ switch(grab)
 	return; //exit
 	break;
 }
+$("#"+dropdown).empty(); // clear old data
 
 var sTring = "";
-var chosen;
 
-//CHar stuf
-if(grab == "Characters")
-chosen = p_fetchCharIndex(index, range); // fetches a certain amount of characters, and returns one of their "indexes" aka = 0 names
+
+
+
+//root poopulate
 if(index == -1)
 {
-chosen = ["Characters", "Seasons","Character Group", "Location", "Voice Actor", "Show Runner", "Writer", "Director"];
+chosen = ["Characters", "Seasons","Related Characters", "Location", "Voice Actor", "Show Runner", "Writer", "Director", "Jobs"];
 if(grab == "resetFilter")
-chosen.splice(chosen.indexof(range), 1); // since range isn't used for this parse, we use it to store the val currently being parsed
+	chosen.splice(chosen.indexOf(range), 1); // since range isn't used for this parse, we use it to store the val currently being parsed
 }
-// EOF char stuff
+// eo root populate
 
 if(Sort) 
 	chosen.sort();

@@ -106,10 +106,11 @@ function p_fetchChars(amount) {
 }
 
 //post process stuff....
-var globalCharGroups = [];
+//var globalCharGroups = [];
 var globalDirectorList = [];
 var globalWriterList =[];
 var globalRunnerList = [];
+//var globalJobs = [];
 //
 
 
@@ -164,9 +165,17 @@ var nakedArr =[];
 					
 					}
 					
-				if(master == 6)  globalDirectorList = ic;
-				if(master == 5) globalWriterList =ic;
-				if(master == 4) globalRunnerList = ic;
+				if(master == 6)  {globalDirectorList = ic;
+				}
+				if(master == 5) 
+				{globalWriterList =ic;
+				
+				}
+				if(master == 4) {
+				globalRunnerList = ic;
+				var hole = JSON.stringify(globalRunnerList);
+				console.log(hole);
+				}
 				//console.log(ic);
 			
 }
@@ -204,7 +213,7 @@ for(key in arr)
 var temp = arr[key];
 indexer = holder.indexOf(temp["member1"]);
 if(allC[index][5].indexOf(temp["member1"]) != -1 && allC[indexer][5].indexOf(allC[index][0]) != -1)
-	{console.log("hih"); return key;}
+	{ return key;}
 }
 
 return false;
@@ -270,7 +279,13 @@ var holder;
 			
 			var individual;
 			
-			
+			var tempWipe = {};
+			for(key in ic)
+			{
+			if(ic[key]["members"] >= 2) tempWipe[key] = ic[key];
+			}
+			ic = tempWipe;
+						
 temp = p_fetchCharIndex(0, 0);
 				for(z in ic)
 				{
@@ -298,11 +313,14 @@ temp = p_fetchCharIndex(0, 0);
 					}
 					
 				
-				
+			if(master == 5) globalCharGroup = ic;
+			else globalJobs = ic;
 			
 }
-globalCharGroup = ic;
-console.log(ic);
+var hole = JSON.stringify(globalCharGroup);
+console.log(hole);
+//console.log(globalJobs);
+//console.log(globalCharGroup);
 }
 
 

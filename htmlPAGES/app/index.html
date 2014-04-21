@@ -178,7 +178,7 @@ UI for app
 											<label for = "filterSort" id = "filterCEText" class =""> Filter By</label>
 											
 										</span>
-										<select id="filterCEChoices" class ="flagger filterSort" style = "position: absolute; left :10px; top :100px;"> <!-- flagger!-->
+										<select id="filterBy" class ="flagger filterSort" style = "position: absolute; left :10px; top :100px;"> <!-- flagger!-->
 											<option value="debug1"> b </option>
 											<option value="bbbbb"> debug </option>
 											<option value="ccccc"> debug </option>
@@ -305,6 +305,7 @@ UI for app
 	<script src = "assets/js/patrykWork/communicateUI.js"></script> <!-- has the ui init and communication for other .js files in it -->
 	<script src = "assets/js/patrykWork/dropdowns.js"></script> <!-- has the dropdown behaviours in it -->
 	<script src = "assets/js/patrykWork/flagMaker.js"></script> <!-- has the used to create bound flags for a class type -->
+	<script src = "assets/js/patrykWork/JobsFamilyWritersDirectorsProducers.js"></script>
 	<!-- Patryk work above, Eric work below -->
 	<script src="assets/js/ericWork/ArrayGeneration.js"></script>  
     <script src="assets/js/ericWork/charts.js"></script> 
@@ -331,7 +332,7 @@ UI for app
 	
 	
 	setTimeout(initJqueryUi, 500); // load in jquery ui functions after .5 seconds... to avoid errors (just in case), the plugin takes a bit to load in.
-	p_Groups();//post load generation..
+	//p_Groups();//post load generation..
 	//console.log(globalDirectorList);
 	}); //end of ready #############################################################################################################
 	

@@ -1,5 +1,9 @@
 
 //This var is based off of the episodes in season count.
+// é = Ã?Â(copyright symbol)
+// è = ""(dots)
+// (reverse r) = Ã?Â¯ = &#1103;
+//  ö = Ã?Â¶  = &ouml;
 
 var episodesInSeasons = 
   [ 13,22,24,22,22,25,25,25,25,23,22,21,22,22,22,21,22,22,20,21,23,22,22,22,11 ];
@@ -678,7 +682,7 @@ var allEpisodesByNumber = [  //Beginning of array
 ], //end of the episode entry
 [ "Treehouse of Horror VI", 134,"3F04","October 29th, 1995",
    [], //end show runner array
-   ["John Swartzwelder","Scary John Swartzwelder","Steve Tompkins","Steve Tombkins","David X. Cohen","DavidÃ?Â²+S.Ã?Â²+CohenÃ?Â²"], //end written by array
+   ["John Swartzwelder","Scary John Swartzwelder","Steve Tompkins","Steve Tombkins","David X. Cohen","David S Cohen"], //end written by array
    ["Bob Anderson","Bedlam Bob Anderson"] //end directed by array
 ], //end of the episode entry
 [ "King-Size Homer", 135," 3F05"," November 5, 1995",
@@ -1291,7 +1295,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Tim Long"], //end written by array
    ["Lance Kramer"] //end directed by array
 ], //end of the episode entry
-[ "HOMÃ?Â¯", 257," BABF22"," January 7, 2001",
+[ "HOM&#1103", 257," BABF22"," January 7, 2001",
    [], //end show runner array
    ["Al Jean"], //end written by array
    ["Mike B. Anderson"] //end directed by array

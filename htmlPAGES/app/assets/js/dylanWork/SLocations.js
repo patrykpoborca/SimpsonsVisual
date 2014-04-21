@@ -1,5 +1,8 @@
 //locations have a name and an array of episodes that they were in
-
+// é = Ã?Â(copyright symbol)
+// è = ""(dots)
+// (reverse r) = Ã?Â¯ = &#1103;
+//  ö = Ã?Â¶  = &ouml;
 
 var locationsByAppearAmt = [
   ["Moe's Tavern",
