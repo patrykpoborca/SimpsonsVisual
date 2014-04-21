@@ -76,14 +76,21 @@ function chartFunc() {
 			verticalAlign: "bottom",
 			horizontalAlign: "center",
 			cursor: "pointer",
-			//itemclick: function
+			itemclick: function(e) {
+				console.log(e.dataSeries.name);
+			},
 		},
 		creditText: "",
 		toolTip: {
-			shared: true,
+			//shared: true,
+			content: "{label} <br> {name}: {y}",
 		},
 		data: [
 			{
+				click: function(e) {
+					console.log(e.dataPoint.label + " " + e.dataPoint.y);
+				},
+				cursor: "pointer",
 				name: "Homer Simpson",
 				type: "column",
 				legendText: "Homer Simpson",
@@ -122,6 +129,10 @@ function chartFunc() {
 				]
 			},
 			{
+				click: function(e) {
+					console.log(e.dataPoint.label + " " + e.dataPoint.y);
+				},
+				cursor: "pointer",
 				name: "Marge Simpson",
 				type: "column",
 				legendText: "Marge Simpson",
@@ -134,6 +145,10 @@ function chartFunc() {
 				dataPoints: generateDefaultData("Marge Simpson")
 			},
 			{
+				click: function(e) {
+					console.log(e.dataPoint.label + " " + e.dataPoint.y);
+				},
+				cursor: "pointer",
 				name: "Bart Simpson",
 				type: "column",
 				legendText: "Bart Simpson",
@@ -146,6 +161,10 @@ function chartFunc() {
 				dataPoints: generateDefaultData("Bart Simpson")
 			},
 			{
+				click: function(e) {
+					console.log(e.dataPoint.label + " " + e.dataPoint.y);
+				},
+				cursor: "pointer",
 				name: "Lisa Simpson",
 				type: "column",
 				legendText: "Lisa Simpson",
@@ -158,6 +177,10 @@ function chartFunc() {
 				dataPoints: generateDefaultData("Lisa Simpson")
 			},
 			{
+				click: function(e) {
+					console.log(e.dataPoint.label + " " + e.dataPoint.y);
+				},
+				cursor: "pointer",
 				name: "Maggie Simpson",
 				type: "column",
 				legendText: "Maggie Simpson",
