@@ -176,6 +176,76 @@ function chartFunc() {
 	chart.render();
 }
 
+// Displays the 10 VA in groups. Group 1, would be the 1st ten VA
+// Group 2 would be the 11th to 20th VA.
+function top10VAChart(group) {
+	var dataArray = [];
+	var vaArray = roleCountOfVA();
+	for(var i = 10*(group-1); i < 10*group; i++) {
+		dataArray.push(vaArray[0].dataPoints[i]);
+	}
+	//console.log(dataArray);
+	var chart = new CanvasJS.Chart("chart_div", {
+		backgroundColor: "#FFD90F",
+		//theme: "theme3",
+		title: {
+			text: "The Simpsons VA",
+			fontSize: 30
+		},
+		axisX: {
+			title: "Voice Actors",
+			titleFontSize: 24,
+			titleFontColor: "black",
+			labelAutoFit: true,
+			labelFontSize: 14.5,
+			labelFontColor: "black",
+			interval: 1,
+			margin: 0,
+			gridColor: "gray",
+			tickColor: "gray"
+		},
+		axisY: {
+			title: "Roles Played",
+			titleFontSize: 24,
+			titleFontColor: "black",
+			labelFontColor: "black",
+			gridColor: "gray",
+			tickColor: "gray"
+		},
+		legend: {
+			fontFamily: "sans-serif",
+			verticalAlign: "bottom",
+			horizontalAlign: "center",
+			cursor: "pointer",
+			//itemclick: function
+		},
+		creditText: "",
+		data: [
+			{
+				type: "column",
+				dataPoints: dataArray,
+			}
+		],
+	});
+	chart.render();
+}
+
+function roleCountOfVA() {
+	var data = [];
+	var points = [];
+	for(var i = 0; i < voiceActorsByCharAmount.length; i++) {
+		var va = {label: voiceActorsByCharAmount[i][0].toString(), y: voiceActorsByCharAmount[i][1].length};
+		points.push(va);
+	}
+	var values = {
+		type: "column",
+		dataPoints: points,
+	}
+	data.push(values);
+	console.log(data);	
+	return data;
+}
+
 function generateDefaultData(name) {
 	var points = [];
 	var pattern = new RegExp("^"+name+"$");
@@ -214,16 +284,16 @@ function generateDefaultData(name) {
 	return points;
 }
 
-function generateData() {
+function generate5CharaData(seasonNum, arrayOfChara) {
 	var data = [];
-	for(var i = 0; i < charaArray.length; i++) {
+	for(var i = 0; i < arrayOfChara.length; i++) {
 		var points = [];
 		for(var j = 0; j < seasonArray.length; j++) {
 			var seasons = {label: seasonArray[j].toString(), y: 20}
 			points.push(seasons);
 		}
-		var values = {
-			name: charaArray[i],
+		var values = { 
+			name: charaArray[i], 
 			type: "column",
 			legendText: charaArray[i],
 			showInLegend: true,
@@ -238,7 +308,7 @@ function generateData() {
 	return data;
 }
 
-function createSeasonChart() {
+function createSeasonChart(seasonNum) {
 	//console.log(generateData());
 	var chart = new CanvasJS.Chart("chart_div", {
 		theme: "theme3",
@@ -247,7 +317,7 @@ function createSeasonChart() {
 			fontSize: 30
 		},
 		axisX: {
-			title: "Seasons",
+			title: "Season" + seasonNum,
 			margin: 0
 		},
 		axisY: {
@@ -259,7 +329,7 @@ function createSeasonChart() {
 			verticalAlign: "bottom",
 			horizontalAlign: "center",
 			cursor: "pointer",
-			// A function call to switch to a more focused chart. Which will show all the episode in the seasons and show if the characters showed up in the episode
+			// A function call to switch to a more focused chart.  Which will show all the episode in the seasons and show if the characters showed up in the episode
 			//itemclick: function
 		},
 		creditText: "",
@@ -288,9 +358,9 @@ function getEpisodeBySeason(charaName, seasonNum) {
 			}
 		}
 	}
-
+	
 	for(var i = 0; i < allCharByAppearAmt.length; i++) {
-		if(allCharByAppearAmt[i][0] == charaName) {
+		if(allCharByAppearAmt[i][0] == charaName) { 
 			for(var j = 0; j < episodesSortedIntoSeasons[index][1].length; j++) {
 				if(allCharByAppearAmt[i][7][episodeCount] == true) {
 					numOfAppearances++;
