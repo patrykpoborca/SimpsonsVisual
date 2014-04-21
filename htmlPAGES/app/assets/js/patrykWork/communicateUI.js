@@ -46,7 +46,9 @@ function initUI()
 	initDropDowns();
 	//p_Directors();
 	
-	console.log(globalJobs);
+	
+	
+	console.log(globalCharGroups);
 	console.log(globalWriterList);
 }
 

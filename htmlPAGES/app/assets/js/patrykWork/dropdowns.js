@@ -9,7 +9,7 @@
 
 function createOption(grab, holdVal, parent,select)
 {
-console.log(grab);
+
 	if(!select)
 	return "<option current = '"+grab+"' class= 'genOption"+grab+ "' parent = '"+ parent +"' value='" + holdVal+"'>\n"+ holdVal +" </option>";
 	return  "<option selected = 'selected' current ='"+ grab+"' class = 'genOption"+grab+ "' parent = '"+ parent +"' value='" + holdVal+"'>\n"+ holdVal +" </option>";
@@ -23,7 +23,17 @@ function initDropDowns()
 repopulate("ScopeChoice", "resetScope", 0, false);
 $("#ScopeChoice").enterKey(changeScope); //step into on enter key.
 $("#ScopeChoice").dblclick(changeScope);
+$("#ScopeChoice").on('change', function(){
 
+var temp= $("#ScopeChoice").find(":selected").val();
+var meh = ["Characters", "Seasons","Related Characters", "Location", "Voice Actor", "Show Runner", "Writers", "Directors", "Jobs"];
+
+if(meh.indexOf(temp) != -1)
+	{
+	currentScope = temp;
+	repopulate("filterBy", "resetFilter", currentScope);
+	}
+});
 
 repopulate("filterBy", "resetFilter", "Characters", false);
 $("#filterBy").enterKey(changeFilter); //step into on enter key.
@@ -36,26 +46,61 @@ function changeScope()
 {
 //repopulate("ScopeChoice", "resetScope", 0, true);
 var choice = $("#ScopeChoice").val();
-repopulate("ScopeChoice", choice, 0, true);
+repopulate("ScopeChoice", choice, 0, false);
 
 }
 
 function changeFilter()
 {
-
+var choice = $("#filterBy").val();
+repopulate("filterBy", choice, currentScope, false);
 }
 
 
+
+/*
+function isBottom(dropdown)
+{
+var hold =  $("#"+dropdown).find(":selected").attr('parent');
+
+switch(hold)
+{
+case "Related Characters":
+return true;
+break;
+
+case "Characters":
+return true;
+break;
+
+case default:
+return false;
+
+}
+return false;
+}
+*/
+
+var currentScope;
+var parentStruct = {}; // used to iterate back through parents.
+
 function repopulate(dropdown, grab, range, Sort)
 {
-var trial = dropdown.index
+
+//console.log("What is this : grab = " + grab + "  range = " + range);
+
+
 
 // fetch data here to repopulate the lists and sort and finally repopulate the lists.
 //clearDrop(dropdown); //clears all populated elements
 
 var index =0;
-var parent = $("#"+dropdown).find(":selected").attr('current');
+var parent = $("#"+dropdown).find(":selected").attr('current'); //weird naming convention, but in the curent layer, parent is current, (gets added as parent to later nodes)
+if(grab != "..")
+	parentStruct[parent] = $("#"+dropdown).find(":selected").attr('parent')
 var chosen;
+
+//if(range == 0) currentScope = grab; // we use this as a flag because filter's will use range to eliminate the current scope
 
 switch(grab)
 {
@@ -65,15 +110,29 @@ switch(grab)
 	break;
 	
 	case "Related Characters":
-	index = 0;
-	return; //todo
+	index = 0; 
+	chosen = p_fetchAnon("globalCharGroups", "name", -1, -1);
+	break;
+	
+	case "Seasons":
+	chosen = p_populateSeasons(-1)
 	break;
 	
 	case "..": //iterate up...
 	index = 0;
-	grab = $("#"+dropdown).find(":selected").attr("parent");
+	grab = parentStruct[parent]; //$("#"+dropdown).find(":selected").attr("parent");
 	repopulate(dropdown, grab, 0, Sort);
 	return;
+	break;
+	
+	case "Voice Actor":
+	index =0;
+	chosen = p_populateArr("voiceActorsByCharAmount", 0);
+	break;
+	
+	case "Location":
+	index =0;
+	chosen = p_populateArr("locationsByAppearAmt", 0);
 	break;
 	
 	case "resetScope":
@@ -84,8 +143,33 @@ switch(grab)
 	index =-1;
 	break;
 	
+	case "Show Runner":
+	chosen = p_fetchAnon("globalRunnerList", "name", -1, -1);
+	break;
+	
+	case "Writers":
+	chosen = p_fetchAnon("globalWriterList", "name", -1, -1);
+	break;
+	
+	case "Directors":
+	chosen = p_fetchAnon("globalDirectorList", "name", -1, -1);
+	break;
+	
+	case "Jobs":
+	chosen = p_fetchAnon("globalJobs", "name", -1, -1);
+	break;
+	
+	
 	default:
-	console.log("Wrong param at repop grab");
+	if(typeof(grab) == "string" && grab.indexOf("Season: ") != -1)
+	{
+		chosen = p_populateSeasons(Number(grab.slice(8)));
+		//console.log("!!!!" +Number(grab.slice(8)));
+		break;
+	}
+	
+	
+	//console.log("endof DropDowns");
 	index = 0;
 	return; //exit
 	break;
@@ -95,12 +179,10 @@ $("#"+dropdown).empty(); // clear old data
 var sTring = "";
 
 
-
-
 //root poopulate
 if(index == -1)
 {
-chosen = ["Characters", "Seasons","Related Characters", "Location", "Voice Actor", "Show Runner", "Writer", "Director", "Jobs"];
+chosen = ["Characters", "Seasons","Related Characters", "Location", "Voice Actor", "Show Runner", "Writers", "Directors", "Jobs"];
 if(grab == "resetFilter")
 	chosen.splice(chosen.indexOf(range), 1); // since range isn't used for this parse, we use it to store the val currently being parsed
 }

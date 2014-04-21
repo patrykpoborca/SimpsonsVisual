@@ -44,13 +44,78 @@ var episodesRow = [];
 		temp = [];
 	}
 	
-	console.log("Size y = "+ finalArray.length +" size x = " + finalArray[0].length + "Ent 1: " + finalArray[1][1] + " Ent 2 = " + finalArray[1][25]);
+	//console.log("Size y = "+ finalArray.length +" size x = " + finalArray[0].length + "Ent 1: " + finalArray[1][1] + " Ent 2 = " + finalArray[1][25]);
 	return finalArray;
 }
-var p_count =0;
+
+
+/*
+globalJobs
+globalCharGroups
+globalDirectorList
+globalWriterList
+globalRunnerList
+*/ 
+
+//fetches an ARRAY version of the index found... index is a string value, due to original arrays being object literals, choice indicates which of above you wish...
+function p_fetchAnon(choice, index, min, max)
+{
+var tempArray =[];
+var placeHolder= eval(choice); // quick and painless, you pass which array you want, which 'index' and what range
+if(min + max >=0) // makes range a min/max
+{
+}
+
+for(key in placeHolder)
+{
+	
+	tempArray.push(placeHolder[key]["name"]);
+	if(choice == "globalCharGroups" && index == "name")
+		tempArray[tempArray.length-1]+= "'s group";
+	
+}
+return tempArray;
+}
+
+
+function p_populateArr(which, cut)
+{
+var holder = eval(which); //locations/voiceactors etc.
+var temp= [];
+for(var a=0; a < holder.length; a++)
+	temp.push(holder[a][cut])
+	
+return temp;
+}
+
+
+// pass season as -1 to get all seasons, else specific season to "expand" season...
+function p_populateSeasons(season)
+{	
+	var r_val = [];
+	if(season == -1)
+	{
+		
+		r_val.push("All Seasons");
+		for(var a =0 ; a < dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length; a ++)
+		{
+		r_val.push("Season: " + (a+1));
+		}
+	}	
+	else
+	{
+	//alert("hihi");
+		for(var a=0; a < allEpisodesByNumber.length; a++)
+		if(getSeasonOfEpisodeNumber(a+1) == season)
+			r_val.push(allEpisodesByNumber[a][0] + " -Ep"+(a+1));
+
+	}
+return r_val;
+}
+
 //
 function p_iterateCharEpisodes(character) { //condition = function e.g. cond = function(){return true;}; .. todo?
-	p_count ++;
+	
 	var r_val = [];
 
 	for(var zz = 0; zz < dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length; zz++) {
@@ -70,6 +135,9 @@ function p_iterateCharEpisodes(character) { //condition = function e.g. cond = f
 	return r_val;
 }
 
+
+
+
 // fetches a range of characters and a certain index from them
 function p_fetchCharIndex(index, range)
 {
@@ -84,9 +152,16 @@ for(var x = 0; x < range; x++)
 	{
 	tempArray.push([]);
 	for(var y = 0; y < charHolder[0].length; y++)
-		if(-1 != index.indexOf(y))tempArray[x].push(charHolder[x][y]);
+		if(-1 != index.indexOf(y)) tempArray[x].push(charHolder[x][y]);
 	}
 return tempArray;
+}
+
+if(isNaN(range)) // returns min/max of a range
+{
+for(var x = range[0]; x < range[1]; x++)
+	tempArray.push(charHolder[x][index]);
+
 }
 
 
@@ -95,6 +170,10 @@ for(var x = 0; x < range; x++)
 	
 return tempArray;
 }
+
+
+
+
 
 //fetches entire char object 
 function p_fetchChars(amount) {
@@ -105,14 +184,74 @@ function p_fetchChars(amount) {
 	return charList;		
 }
 
-//post process stuff....
-//var globalCharGroups = [];
-var globalDirectorList = [];
-var globalWriterList =[];
-var globalRunnerList = [];
-//var globalJobs = [];
-//
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+/////////////////////////// debug functions... save
+function console1D(arr)
+{
+console.log("Debug: \n");
+	for(var x =0; x < arr.length; x++)
+		console.log(arr[x]);
+}
+
+function console2D(arr) {
+	var debugstring = "";
+	for(var first = 0; first < arr.length; first ++) {
+		debugstring = "";
+		for(var second = 0; second < arr[first].length; second++) {
+			debugstring+= arr[first][second] + " ";
+		}
+	console.log(debugstring);
+	}
+}
+
+
+
+
+
+/////////////////////////////////////////////// pre-load processing stuff...
 
 function p_Directors()
 {
@@ -323,28 +462,4 @@ console.log(hole);
 //console.log(globalCharGroup);
 }
 
-
-
-
-
-
-	
-/////////////////////////// debug functions... save
-function console1D(arr)
-{
-console.log("Debug: \n");
-	for(var x =0; x < arr.length; x++)
-		console.log(arr[x]);
-}
-
-function console2D(arr) {
-	var debugstring = "";
-	for(var first = 0; first < arr.length; first ++) {
-		debugstring = "";
-		for(var second = 0; second < arr[first].length; second++) {
-			debugstring+= arr[first][second] + " ";
-		}
-	console.log(debugstring);
-	}
-}
 
