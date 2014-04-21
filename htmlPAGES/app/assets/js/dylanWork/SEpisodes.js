@@ -120,7 +120,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Jay Kogen","Wallace Wolodarsky"], //end written by array
    ["Wes Archer"] //end directed by array
 ], //end of the episode entry
-[ "Itchy  & Scratchy  & Marge", 22," 7F09"," December 20, 1990",
+[ "Itchy  amp; Scratchy  amp; Marge", 22," 7F09"," December 20, 1990",
    [], //end show runner array
    ["John Swartzwelder"], //end written by array
    ["Jim Reardon"] //end directed by array
@@ -335,7 +335,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Al Jean","Mike Reiss","Wallace Wolodarsky","Jay Kogen","Sam Simon","Jon Vitti"], //end written by array
    ["Carlos Baeza"] //end directed by array
 ], //end of the episode entry
-[ "Itchy  & Scratchy: The Movie", 65,"9F03","November 2, 1992",
+[ "Itchy  amp; Scratchy: The Movie", 65,"9F03","November 2, 1992",
    ["Al Jean","Mike Reiss"], //end show runner array
    ["John Swartzwelder"], //end written by array
    ["Rich Moore"] //end directed by array
@@ -545,7 +545,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Jon Vitti","Penny Wise"], //end written by array
    ["David Silverman"] //end directed by array
 ], //end of the episode entry
-[ "Itchy  & Scratchy Land", 107,"2F01","",
+[ "Itchy  amp; Scratchy Land", 107,"2F01","",
    ["David Mirkin"], //end show runner array
    [], //end written by array
    [] //end directed by array
@@ -845,7 +845,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Al Jean","Mike Reiss"], //end written by array
    ["Chuck Sheetz"] //end directed by array
 ], //end of the episode entry
-[ "The Itchy  & Scratchy  & Poochie Show", 167," 4F12"," February 9, 1997",
+[ "The Itchy  amp; Scratchy  amp; Poochie Show", 167," 4F12"," February 9, 1997",
    ["Bill Oakley","Josh Weinstein"], //end show runner array
    ["David X. Cohen"], //end written by array
    ["Steven Dean Moore"] //end directed by array
@@ -1945,7 +1945,7 @@ var allEpisodesByNumber = [  //Beginning of array
    [], //end written by array
    [] //end directed by array
 ], //end of the episode entry
-[ "Kill Gil: Vols. 1  & 2", 387," JABF01"," December 17, 2006",
+[ "Kill Gil: Vols. 1  amp; 2", 387," JABF01"," December 17, 2006",
    [], //end show runner array
    ["Jeff Westbrook"], //end written by array
    ["Bob Anderson"] //end directed by array
@@ -2365,7 +2365,7 @@ var allEpisodesByNumber = [  //Beginning of array
    ["Michael Price"], //end written by array
    ["Steven Dean Moore","Steve Dean Moore"] //end directed by array
 ], //end of the episode entry
-[ "How Munched Is That Birdie in the Window?", 471,"NABF02","November 28, 2010 lt;ref name= 'airdate ' gt;{{cite web |url=http://www.daemonstv.com/2010/10/30/rachel-weisz-and-danica-patrick-on-the-simpsons-first-photo/?utm_source=feedburner &utm_medium=feed &utm_campaign=Feed%3A+daemonstv+%28Daemon%27s+TV%29 |title=Rachel Weisz and Danica Patrick on THE SIMPSONS First Photo |publisher=Daemon's TV |accessdate=October 30, 2010}} lt;/ref gt;",
+[ "How Munched Is That Birdie in the Window?", 471,"NABF02","November 28, 2010 lt;ref name= 'airdate ' gt;{{cite web |url=http://www.daemonstv.com/2010/10/30/rachel-weisz-and-danica-patrick-on-the-simpsons-first-photo/?utm_source=feedburner amp;utm_medium=feed amp;utm_campaign=Feed%3A+daemonstv+%28Daemon%27s+TV%29 |title=Rachel Weisz and Danica Patrick on THE SIMPSONS First Photo |publisher=Daemon's TV |accessdate=October 30, 2010}} lt;/ref gt;",
    ["Al Jean"], //end show runner array
    ["Kevin Curran"], //end written by array
    ["Michael Polcino"] //end directed by array

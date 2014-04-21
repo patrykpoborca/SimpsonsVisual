@@ -17,6 +17,8 @@ dkGlobalOverviewTable.notInEpsColor3 = '#3C3C3C';
 dkGlobalOverviewTable.inEpsColorHi = '#006345';
 dkGlobalOverviewTable.notInEpsColorHi = '#005234';
 
+dkGlobalOverviewTable.overviewRowLimit = 25;
+
 /*
 List of functions so can search by name.
 tableClick
@@ -40,7 +42,9 @@ function tableClick() {
 
 function fillOverviewTable(divIdToFill, arrayOfCharacters, enableHighlight) {
 
-	var contents = "<table onmouseout='hideInfoBox()' onmousemove='showInfoBox()'>\n";
+	var contents = "";
+	contents += "<div><h1>Overview</h1></div><div id='ovtPictureToggle'></div>\n";
+	contents += "<table onmouseout='hideInfoBox()' onmousemove='showInfoBox()'>\n";
 
 	contents += '<tr><th colspan="4"></th>';
 
@@ -63,7 +67,10 @@ function fillOverviewTable(divIdToFill, arrayOfCharacters, enableHighlight) {
 
 	lineContent = "";
 
-	for(var i = 0; i < arrayOfCharacters.length; i++){
+	var ovtRowsToFill = dkGlobalOverviewTable.overviewRowLimit;
+	if(arrayOfCharacters.length < dkGlobalOverviewTable.overviewRowLimit){ ovtRowsToFill = arrayOfCharacters.length;}
+
+	for(var i = 0; i < ovtRowsToFill; i++){
 
 
 		var appearCounter = 0;
@@ -126,6 +133,10 @@ function fillOverviewTable(divIdToFill, arrayOfCharacters, enableHighlight) {
 	contents += lineContent;
 
 	document.getElementById(divIdToFill).innerHTML = contents;
+	document.getElementById(divIdToFill).innerHTML += "<div id='ovtMouseOverPane'></div>";
+	document.getElementById(divIdToFill).innerHTML += "<div id='ovtMouseClickPane'></div>";
+
+
 
 	//seed the color
 	for(var row = 0; row < arrayOfCharacters.length; row++){
@@ -145,39 +156,20 @@ function fillOverviewTable(divIdToFill, arrayOfCharacters, enableHighlight) {
 		}
 	}
 
-	generateHighlightBarsForOverview(divIdToFill);
-
 	//edit the top lvl description. Edit2: actually, unsure how to proceed at the moment.
 	//may need to be removed if doesn't exist in the end app.
-	document.getElementById('pictureTest').innerHTML = '<h3>Overview</h3> <button onclick="toggleCharIconsOnPopup()">Toggle Icons In popups.</button></p>';
+	document.getElementById('ovtPictureToggle').innerHTML = '<button onclick="toggleCharIconsOnPopup()">Toggle character icons</button></p>';
 
 } //end filloverview table
 
-function generateHighlightBarsForOverview(divIdToPutBarsOn) {
-	var content = "";
-	var topPx = 115;
-	var leftPx = 144;
-	var width = 0;
-	var height = 21;
 
-	for(var s = 0; s <dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length - 1; s++ ){
-		if(s != 0){ leftPx += dkGlobalOverviewTable.arrayOfEpisodesInSeasons[s] * 2; }
-		//if(s >= 17) {leftPx += 16};
-		//if(s >= 17) {leftPx += 16};
-	content += '<div style="top:' + topPx + ';left:'+leftPx + ';width:' + width + ';height:' + height +
-	   ';float:top;border:1px solid #94002D;border-collapse: collapse; position:absolute"></div>\n';
-	}
-
-	document.getElementById(divIdToPutBarsOn).innerHTML += content;
-
-}//end 
 
 function hideInfoBox(row, col) {
 
-	document.getElementById("testArrayContents").style.top = 0;
-	document.getElementById("testArrayContents").style.left = 0;
+	document.getElementById("ovtMouseOverPane").style.top = 0;
+	document.getElementById("ovtMouseOverPane").style.left = 0;
 
-	document.getElementById("testArrayContents").innerHTML = "";
+	document.getElementById("ovtMouseOverPane").innerHTML = "";
 
 	//for each row
 	for(var radj = 0; radj <= row; radj++){
@@ -214,20 +206,20 @@ function showInfoBox(iname, iepisode, inEps, row, col) {
 		//console.log("Inside of the show info:" + infoTextAsOne);
 
 		if(inEps){
-			document.getElementById("testArrayContents").style.backgroundColor = dkGlobalOverviewTable.inEpsColor;
+			document.getElementById("ovtMouseOverPane").style.backgroundColor = dkGlobalOverviewTable.inEpsColor;
 			infoTextAsOne += "IS in ";
 		}
 		else{
-			document.getElementById("testArrayContents").style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
+			document.getElementById("ovtMouseOverPane").style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
 			infoTextAsOne += "NOT in ";
 		}
 		infoTextAsOne +=  "Episode:" + iepisode + "<br>";
 
 		//if(dkGlobalOverviewTable.showIconInPopup){ infoTextAsOne += "<img width='100px' height='100px' src='" + fetchImgUrlOfChar(iname) + "'></img>"; }
 
-		document.getElementById("testArrayContents").innerHTML = infoTextAsOne;
-		document.getElementById("testArrayContents").style.top = event.clientY - 30;
-		document.getElementById("testArrayContents").style.left = event.clientX - 30;
+		document.getElementById("ovtMouseOverPane").innerHTML = infoTextAsOne;
+		document.getElementById("ovtMouseOverPane").style.top = event.clientY - 30;
+		document.getElementById("ovtMouseOverPane").style.left = event.clientX - 30;
 
 
 	//for each row
@@ -264,9 +256,9 @@ function showInfoBox(iname, iepisode, inEps, row, col) {
 
 function hidePopupControlBox() {
 	console.log("hide");
-	document.getElementById("popupControlBox").style.top = 0;
-	document.getElementById("popupControlBox").style.left = 0;
-	document.getElementById("popupControlBox").innerHTML = "";
+	document.getElementById("ovtMouseClickPane").style.top = 0;
+	document.getElementById("ovtMouseClickPane").style.left = 0;
+	document.getElementById("ovtMouseClickPane").innerHTML = "";
 }
 
 function showPopupControlBox(pcbName, pcbEps, pcbSeason ) {
@@ -288,9 +280,9 @@ function showPopupControlBox(pcbName, pcbEps, pcbSeason ) {
 		//console.log("Before the print:");
 		//console.log("Inside of the show info:" + infoTextAsOne);
 
-		document.getElementById("popupControlBox").innerHTML = infoTextAsOne;
-		document.getElementById("popupControlBox").style.top = event.clientY - 130;
-		document.getElementById("popupControlBox").style.left = event.clientX - 130;
+		document.getElementById("ovtMouseClickPane").innerHTML = infoTextAsOne;
+		document.getElementById("ovtMouseClickPane").style.top = event.clientY - 130;
+		document.getElementById("ovtMouseClickPane").style.left = event.clientX - 130;
 	}
 }
 

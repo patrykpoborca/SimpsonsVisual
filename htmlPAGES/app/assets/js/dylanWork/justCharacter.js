@@ -16,12 +16,22 @@ dkGlobalOverviewTable.notInEpsColor3 = '#3C3C3C';
 dkGlobalOverviewTable.inEpsColorHi = '#006345';
 dkGlobalOverviewTable.notInEpsColorHi = '#005234';
 
+
+
+
+
+divs that will be created for single selection character view start with "sscv"
+intention is to prevent accidentally creating a div that already exists.
+
 */
+
+
+
 
 
 //Assumes that character is a string that matches the allCharByAppearAmt[char][0]
 function givenACharacterNameFilloutTheView(divIdToFill, nameOfCharacter) {
-	hidePopupControlBox(); //because there is a good chance got here from the overview.
+	document.getElementById(divIdToFill).innerHTML = "";
 
 	var charsInThisSeason = []; //find the character that this was given, and put only that character in the array
 	for(var i = 0; i < allCharByAppearAmt.length; i++){
@@ -32,18 +42,78 @@ function givenACharacterNameFilloutTheView(divIdToFill, nameOfCharacter) {
 	}
 	//only make the character page if there was a name match
 	if(charsInThisSeason.length > 0){
-		//try and render the characters now, but with an episode width change.
-		fillCharacterTableAndOtherViewInfo(divIdToFill, charsInThisSeason, false);
 
-		//edit the top lvl description. Edit2: actually, unsure how to proceed at the moment.
-		//may need to be removed if doesn't exist in the end app.
-		document.getElementById('pictureTest').innerHTML = '<button onclick="backToOverviewFromSeason()">Return to overview.</button></p>';
+		//fill in divs for the single selection character view (sscv)
+		createDivsForSscv(divIdToFill);
+
+
+		//try and render the characters now, but with an episode width change.
+		fillCharacterTableAndOtherViewInfo('sscvTableOfAppear', charsInThisSeason, false);
+
+		//edit the divs
+		document.getElementById('sscvToOverviewButton').innerHTML = '<button onclick="backToOverviewFromCharacter(\''+divIdToFill+'\')">Return to overview.</button></p>';
+		document.getElementById('sscvName').innerHTML = '<p><h2 style="float:left">Character:</h2><h1 style="float: left">&nbsp&nbsp'+nameOfCharacter+'</h1>  <h3 style="float: left; margin-top: 30px;">&nbsp&nbsp('+charsInThisSeason[0][1]+')</h3></p>';
+		document.getElementById('sscvAppearTitle').innerHTML = '<br><br><br><br>Appearances over the series:';
+		
+
+		document.getElementById('sscvListOfEpisodesByName').innerHTML = '<h5>Need a function for list of episodes by name, may want links?</h5>';
+		sscvFillListOfEpisodeNames(charsInThisSeason[0]);
+		document.getElementById('sscvVoiceActors').innerHTML = '<h5>need a function for list of voice actors, may want links?</h5>';
+		sscvFillListOfVoiceActors(charsInThisSeason[0]);
+		document.getElementById('sscvTop10CharsWith').innerHTML = '<h5>top 10 chars with</h5>';
+		document.getElementById('sscvTop20CharsWith').innerHTML = '<h5>top 20 chars with</h5>';
+		sscvFillListOfTopWith(charsInThisSeason[0]);
+		document.getElementById('sscvPicture').innerHTML = "<img width='200px' height='300px' src='" + fetchImgUrlOfChar(nameOfCharacter) + "'></img>";
+		document.getElementById('sscvNetworkMapButton').innerHTML = '<button onclick="console.log(\'Doesnt work yet\')">View Network Map</button></p>';
+
+
+
 	}
 	else{
 		console.log("there was no match for the given character name.");
 	}
+	hidePopupControlBox(); //because there is a good chance got here from the overview.
 } //end findCharactersInGivenSeasonAndPopulateInteractiveTable
 
+
+/* Currently the is the idea that character view will have at the top return to over view button
+Then Common name (Full Name)
+
+*/
+function createDivsForSscv(divIdToFill) {
+
+	document.getElementById(divIdToFill).innerHTML += '<div id="sscvToOverviewButton"></div>\n';
+	document.getElementById(divIdToFill).innerHTML += '<div id="sscvName"></div>\n';
+	document.getElementById(divIdToFill).innerHTML += '<div id="sscvAppearTitle"></div>\n';
+	document.getElementById(divIdToFill).innerHTML += '<div id="sscvTableOfAppear"></div>\n';
+	document.getElementById(divIdToFill).innerHTML += '<div id="sscvListOfEpisodesByName"></div>\n';
+	document.getElementById(divIdToFill).innerHTML += '<div id="sscvVoiceActors"></div>\n';
+	document.getElementById(divIdToFill).innerHTML += 
+		'<div id="sscvPicture" style="position:absolute;top:250;left:400;"></div>\n';
+	document.getElementById(divIdToFill).innerHTML +=
+		'<div id="sscvTop10CharsWith" style="position:absolute;top:250;left:700;"></div>\n';
+	document.getElementById(divIdToFill).innerHTML +=
+		'<div id="sscvTop20CharsWith" style="position:absolute;top:250;left:950"></div>\n';
+	document.getElementById(divIdToFill).innerHTML +=
+		'<div id="sscvNetworkMapButton" style="position:absolute;top:500;left:850;"></div>\n';
+	document.getElementById(divIdToFill).innerHTML += 
+		'<div id="sscvMouseOverPanel" style="position:absolute;top:500;left:850;visibility: hidden;border: 1px solid black;"></div>\n';
+	document.getElementById(divIdToFill).innerHTML += 
+		'<div id="sscvMouseClickPanel" style="position:absolute;top:500;left:850;visibility: hidden;border: 1px solid black;"></div>\n';
+
+}
+
+//temporary function to return back to overview. assumes first 10 character grab
+function backToOverviewFromCharacter(divIdToFill){
+	/*
+	var charList = [];
+	for(var i =0; i < 20; i++){
+		charList.push(allCharByAppearAmt[i]);
+	}
+	fillOverviewTable(divIdToFill, charList, true);
+	//*/
+	console.log("back to overview currently disabled.");
+} //end
 
 
 /*
@@ -52,8 +122,7 @@ enableHighlight should be a boolean.
 
 */
 function fillCharacterTableAndOtherViewInfo(divIdToFill, arrayOfCharacters, enableHighlight, season, bEpRange, eEpRange) {
-	var contents;
-	contents = "<div><h2>"+arrayOfCharacters[0][0]+"</h2></div>";
+	var contents = "";
 	contents += "<table onmouseout='chideInfoBox()' onmousemove='cshowInfoBox()'>\n";
 	contents += '<tr><th colspan="4"></th>';
 	var lineContent = "";
@@ -110,7 +179,7 @@ function fillCharacterTableAndOtherViewInfo(divIdToFill, arrayOfCharacters, enab
 			if(arrayOfCharacters[i][7][e -1]){  lineContent += '\', true,'+i+','+e+')"'; }
 			else{ lineContent += '\', false,'+i+','+e+')"'; }
 
-			lineContent += 'onclick="showPopupControlBox(\'\', '+e+',' +
+			lineContent += 'onclick="sscvShowMouseClickPanel('+e+',' +
 			  getSeasonOfEpisodeNumber(e)+' )"'+ '></th>\n';
 			
 
@@ -148,10 +217,11 @@ function fillCharacterTableAndOtherViewInfo(divIdToFill, arrayOfCharacters, enab
 function chideInfoBox(row, col) {
 
 	if(row != null){
-		document.getElementById("testArrayContents").style.top = 0;
-		document.getElementById("testArrayContents").style.left = 0;
+		document.getElementById("sscvMouseOverPanel").style.visibility = 'hidden';
+		document.getElementById("sscvMouseOverPanel").style.top = 0;
+		document.getElementById("sscvMouseOverPanel").style.left = 0;
 
-		document.getElementById("testArrayContents").innerHTML = "";
+		document.getElementById("sscvMouseOverPanel").innerHTML = "";
 
 		if(row %2 == 0){
 			if(document.getElementById('ovtIDr' + row + 'c' + col).className.search('notInThatEps') >= 0){
@@ -173,27 +243,29 @@ function chideInfoBox(row, col) {
 function cshowInfoBox(iname, iepisode, inEps, row, col) {
 
 	if(iname != null){
+
+		document.getElementById("sscvMouseOverPanel").style.visibility = 'visible';
 		var infoTextAsOne = "" + iname + "<br>";
 		//console.log("Before the print:");
 		//console.log("Inside of the show info:" + infoTextAsOne);
 
 		if(inEps){
-			document.getElementById("testArrayContents").style.backgroundColor = dkGlobalOverviewTable.inEpsColor;
+			document.getElementById("sscvMouseOverPanel").style.backgroundColor = dkGlobalOverviewTable.inEpsColor;
 			infoTextAsOne += "IS in ";
 		}
 		else{
-			document.getElementById("testArrayContents").style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
+			document.getElementById("sscvMouseOverPanel").style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
 			infoTextAsOne += "NOT in ";
 		}
-		infoTextAsOne +=  "Episode:" + iepisode + "<br>";
+		infoTextAsOne +=  "Episode:" + iepisode + "(S"+ getSeasonOfEpisodeNumber(iepisode) + ")<br>";
 		infoTextAsOne +=  allEpisodesByNumber[iepisode-1][0] + "<br>";
 
 
 		//infoTextAsOne += "<img width='200px' height='200px' src='" + fetchImgUrlOfChar(iname) + "'></img>";
 
-		document.getElementById("testArrayContents").innerHTML = infoTextAsOne;
-		document.getElementById("testArrayContents").style.top = event.clientY - 30;
-		document.getElementById("testArrayContents").style.left = event.clientX - 30;
+		document.getElementById("sscvMouseOverPanel").innerHTML = infoTextAsOne;
+		document.getElementById("sscvMouseOverPanel").style.top = event.clientY + 10;
+		document.getElementById("sscvMouseOverPanel").style.left = event.clientX + 10;
 
 		//highlight only that particular episode on that particular character
 		document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = '#A61000';
@@ -202,13 +274,144 @@ function cshowInfoBox(iname, iepisode, inEps, row, col) {
 	} //end if params were not null
 } //end show info box
 
-/* Commented out because there already exists this method inside of justSeason. (This file was a copy-paste-edit process)
-//temporary function to return back to overview. assumes first 10 character grab
-function backToOverviewFromSeason(){
-	var charList = [];
-	for(var i =0; i < 10; i++){
-		charList.push(allCharByAppearAmt[i]);
+
+function sscvFillListOfEpisodeNames(sscvCharArrayInfo) {
+
+	var totalNumberOfEpisodeAppearance = 0;
+	for(var i = 0; i < sscvCharArrayInfo[7].length; i++){
+		if(sscvCharArrayInfo[7][i]){totalNumberOfEpisodeAppearance++;}
 	}
-	fillOverviewTable('overviewTable', charList, true);
-} //end
-*/
+
+	document.getElementById('sscvListOfEpisodesByName').innerHTML = '<br><br>' + sscvCharArrayInfo[0] + " episode appearances("+totalNumberOfEpisodeAppearance+"):<br>";
+
+
+	//for some strange reason this is needed. otherwise the /select line will be added before the options.
+	var contentForDiv = "";
+	contentForDiv +=
+		"<select id='sscvEpNameList' onchange=\"sscvEpNameClick()\"  multiple=\"multiple\" size=\"10\" style=\"width:300px\">\n"; 
+
+	for(var i = 0; i < sscvCharArrayInfo[7].length; i++){
+		if(sscvCharArrayInfo[7][i]){
+			contentForDiv += "<option>"+ allEpisodesByNumber[i][0]+ "</option>\n";
+		}
+	}
+
+	contentForDiv+= '</select>';
+	document.getElementById('sscvListOfEpisodesByName').innerHTML += contentForDiv;
+
+}//sscvFillListOfEpisodeNames
+
+function sscvEpNameClick() {
+	console.log("an episode name was clicked:" + document.getElementById('sscvEpNameList').value);
+}
+
+function sscvFillListOfVoiceActors(sscvCharArrayInfo){
+	var contentForDiv = "";
+
+	contentForDiv += "<br><br>" + sscvCharArrayInfo[0] + "'s Voice Actor(s):<br>";
+	contentForDiv +=
+		"<select id='sscvVaNameList' onchange=\"sscvVaNameClick()\"  multiple=\"multiple\" style=\"width:300px; height:100px\">\n"; 
+
+	for(var i = 0; i < sscvCharArrayInfo[6].length; i++){
+		contentForDiv += "<option>"+ sscvCharArrayInfo[6][i] +  "</option>\n";
+	}
+
+	contentForDiv+= '</select>';
+	document.getElementById('sscvVoiceActors').innerHTML = contentForDiv;
+
+} //end  sscvFillListOfVoiceActors
+
+function sscvVaNameClick() {
+	console.log("a va name was clicked:" + document.getElementById('sscvVaNameList').value);
+}
+
+
+function sscvFillListOfTopWith(sscvCharArrayInfo) {
+
+	var indexOfGivenCharacter = 0;
+
+	for(var i = 0; i < allCharByAppearAmt.length; i++){
+		if(sscvCharArrayInfo[0] == allCharByAppearAmt[i][0]){
+			indexOfGivenCharacter = i;
+		}
+	}
+
+	var top20epSharedChars = [];
+	var startingShare = socialNetOfChars[indexOfGivenCharacter][1];
+
+	while(startingShare > 0){
+		for(var c = 0; c < socialNetOfChars.length; c++){
+			if(socialNetOfChars[indexOfGivenCharacter][2][c] == startingShare){
+				top20epSharedChars.push(c);
+			}
+			if(top20epSharedChars.length >= 20){startingShare = 0; break;}
+		}
+		startingShare--;
+	}
+
+	var contentForDiv = "";
+
+	contentForDiv += "Those commonly with "+sscvCharArrayInfo[0]+" in an episode:<br>";
+	contentForDiv +=
+		"<select id='sscvTop10List' onchange=\"sscvTopNameClick(1)\"  multiple=\"multiple\" size=\"11\" style=\"width:300px\">\n"; 
+
+	for(var i = 0; i < 10; i++){
+		contentForDiv += "<option>"+  socialNetOfChars[top20epSharedChars[i]][0] + "("+ socialNetOfChars[indexOfGivenCharacter][2][top20epSharedChars[i]] + ")</option>";
+	}
+	contentForDiv += "</select>";
+	document.getElementById('sscvTop10CharsWith').innerHTML = contentForDiv;
+
+	contentForDiv = "<br>\n";
+	contentForDiv +=
+		"<select id='sscvTop20List' onchange=\"sscvTopNameClick(2)\"  multiple=\"multiple\" size=\"11\" style=\"width:300px\">\n"; 
+
+	for(var i = 10; i < 20; i++){
+		contentForDiv += "<option>"+  socialNetOfChars[top20epSharedChars[i]][0] + "("+ socialNetOfChars[indexOfGivenCharacter][2][top20epSharedChars[i]] + ")</option>";
+	}
+	contentForDiv += "</select>";
+	document.getElementById('sscvTop20CharsWith').innerHTML = contentForDiv;
+
+
+
+} //end sscvFillListOfTopWith
+
+
+function sscvTopNameClick(whichList) {
+	//if came from list 1
+	if(1 == whichList){
+		console.log("top name selected:" + document.getElementById('sscvTop10List').value);
+	}
+	//if came from list 2
+	if(2 == whichList){
+		console.log("top name selected:" + document.getElementById('sscvTop20List').value);
+	}
+
+}
+
+
+function sscvShowMouseClickPanel(epOfClick, seasonOfClick) {
+	var infoTextAsOne = "";
+
+	infoTextAsOne += "Click to <button onclick=\"sscvHideMouseClickPanel()\">Hide</button> panel<br>";
+	infoTextAsOne += "Search by episode <button onclick=\"sscvMouseClickEp("+epOfClick+")\">"+epOfClick+"</button><br>";
+	infoTextAsOne += "Search by season <button onclick=\"sscvMouseClickSeason("+seasonOfClick+")\">"+seasonOfClick+"</button><br>";
+
+	document.getElementById("sscvMouseClickPanel").innerHTML = infoTextAsOne;
+	document.getElementById("sscvMouseClickPanel").style.visibility = 'visible';
+	document.getElementById("sscvMouseClickPanel").style.backgroundColor = '#BF5B30';
+	document.getElementById("sscvMouseClickPanel").style.top = event.clientY + 10;
+	document.getElementById("sscvMouseClickPanel").style.left = event.clientX + 10;
+}
+
+function sscvHideMouseClickPanel() {
+	document.getElementById("sscvMouseClickPanel").style.visibility = 'hidden';
+}
+
+function sscvMouseClickEp(epOfClick) {
+	console.log('clicked on the popup panel for episode:' + epOfClick);
+}
+
+function sscvMouseClickSeason(seasonOfClick) {
+	console.log('clicked on the popup panel for season:' + seasonOfClick);
+}
+
