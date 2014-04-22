@@ -1,0 +1,8 @@
+From 4/12 to 4/18
+
+Worked on creating a chart to display the total roles of each voice actor.
+
+Developed a function to take in a number, the number will dictate which set of 10 Voice Actors to display.  The Voice Actor chart is sorted by appearances.
+
+Worked on testing how to implement the click function for the charts.  As well as finding what kind of data I can pull from the chart.
+
