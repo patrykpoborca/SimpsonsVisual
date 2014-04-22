@@ -72,7 +72,7 @@ UI for app
 		#chart_div
 		{
 		position: absolute;
-		background-color : green;
+		background-color : beige;
 		top: 0px;
 		left : 0px;
 		width: 1280px;
@@ -138,10 +138,10 @@ UI for app
  <!-- ############################################expandSelectors indent##################################### --><div id = "Container"> <!-- Container -->
 			
 		<!-- 4 cornerDivs -->
-		<div id = "cornerTL" class = "cornerDivs" style = "top : 0px; left : 0px;"> </div>
-		<div id = "cornerBL" class = "cornerDivs" style = "bottom : 0px; left : 0px;"> </div>
-		<div id = "cornerTR" class = "cornerDivs" style = "top : 0px; right: 0px;"> </div>
-		<div id = "cornerBR" class = "cornerDivs" style = "bottom : 0px; right : 0px;"> </div>		
+		<div id = "cornerTL" class = "cornerDivs" style = "top : 0px; left : 0px; background-image:url('assets/js/patrykWork/homer.gif');"> </div>
+		<div id = "cornerBL" class = "cornerDivs" style = "bottom : 0px; left : 0px; background-image:url('assets/js/patrykWork/bart.gif');"> </div>
+		<div id = "cornerTR" class = "cornerDivs" style = "top : 0px; right: 0px; background-image:url('assets/js/patrykWork/margesimpson.gif');"> </div>
+		<div id = "cornerBR" class = "cornerDivs" style = "bottom : 0px; right : 0px; background-image:url('assets/js/patrykWork/lisasimp.gif');"> </div>		
 		<!-- 4 cornerDivs -->	
 			<div id="chart_div" class = "draggingClass"></div>  <!-- chart div to populate...-->
 	
@@ -299,6 +299,7 @@ UI for app
     <script type='text/javascript' src='assets/js/dylanWork/SEpisodes.js'></script>
 	<script type='text/javascript' src='assets/js/dylanWork/SVoiceActors.js'></script>
 	<script type='text/javascript' src='assets/js/dylanWork/SVoiceActorsByAppearCount.js'></script>
+	<script type='text/javascript' src='assets/js/dylanWork/SCharsSocialNet.js'></script>
 	<script type='text/javascript' src='assets/js/dylanWork/justSeason.js'></script>
 	<script type='text/javascript' src='assets/js/dylanWork/justCharacter.js'></script>
 	<!-- Dylan work above, Patryk work below -->
@@ -332,6 +333,7 @@ UI for app
 	//eo debug bind
 	//last things to be done
 	var HOLD = wrapForTable(p_charBySeason());
+	
 	initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, false, false); // rows, columns, divID, data, display
 	
 	

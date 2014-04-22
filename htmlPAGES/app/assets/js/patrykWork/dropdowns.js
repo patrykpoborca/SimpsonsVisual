@@ -8,14 +8,15 @@
 
 
 
+
 function createOption(grab, holdVal, parent,select)
 {
 
 	if(!select)
-	return "<option current = '"+grab+"' class= 'genOption"+grab+ "' parent = '"+ parent +"' value='" + holdVal+"'>\n"+ holdVal +" </option>";
-	return  "<option selected = 'selected' current ='"+ grab+"' class = 'genOption"+grab+ "' parent = '"+ parent +"' value='" + holdVal+"'>\n"+ holdVal +" </option>";
+	return "<option current = '"+grab+"' class= 'genOption"+grab+ "' parent = '"+ parent +"' value='" + holdVal+"'>"+ holdVal +"</option>";
+	return  "<option selected = 'selected' current ='"+ grab+"' class = 'genOption"+grab+ "' parent = '"+ parent +"' value='" + holdVal+"'>"+ holdVal +"</option>";
 }
-
+//todo sorting flag...
 
 
 function initDropDowns()
@@ -29,24 +30,30 @@ $("#ScopeChoice").on('change', function(){
 var temp= $("#ScopeChoice").find(":selected").val();
 var meh = ["Characters", "Seasons","Related Characters", "Location", "Voice Actor", "Show Runner", "Writers", "Directors", "Jobs"];
 
+
+
 if(meh.indexOf(temp) != -1)
 	{
 	currentScope = temp;
-	repopulate("filterBy", "resetFilter", currentScope);
+	repopulate("filterBy", "resetFilter", 0, false);
 	}
 });
 
 repopulate("filterBy", "resetFilter", "Seasons", false);
 $("#filterBy").enterKey(changeFilter); //step into on enter key.
 $("#filterBy").dblclick(changeFilter);
-
+$("#ScopeChoice").trigger('change');
 }
 
+var p_rootOptionsArray = ["Seasons", "Characters", "Related Characters", "Location", "Voice Actor", "Show Runner", "Writers", "Directors", "Jobs"];
 //used to determine what array to fetch.
 function changeScope()
 {
 //repopulate("ScopeChoice", "resetScope", 0, true);
 var choice = $("#ScopeChoice").val();
+var temporary = p_rootOptionsArray.indexOf(choice) ;
+currentScope = (temporary != -1) ? p_rootOptionsArray[temporary] : currentScope; 
+
 repopulate("ScopeChoice", choice, 0, false);
 $("#ScopeChoice").trigger('change');
 $("#filterBy").trigger('change');
@@ -55,7 +62,7 @@ $("#filterBy").trigger('change');
 function changeFilter()
 {
 var choice = $("#filterBy").val();
-repopulate("filterBy", choice, currentScope, false);
+repopulate("filterBy", choice, 0, false);
 $("#filterBy").trigger('change');
 }
 
@@ -66,7 +73,7 @@ var parentStruct = {}; // used to iterate back through parents.
 
 function repopulate(dropdown, grab, range, Sort)
 {
-
+Sort = globalSort;
 //console.log("What is this : grab = " + grab + "  range = " + range);
 
 
@@ -102,6 +109,7 @@ switch(grab)
 	index = 0;
 	console.log(" HHHH === " + $("#"+dropdown).find(":selected").attr("current"));
 	grab = parentStruct[parent]; //$("#"+dropdown).find(":selected").attr("parent");
+	if($("#"+dropdown).find(":selected").attr("current") == 'Seasons') grab = (dropdown == 'ScopeChoice') ? 'resetScope' : 'resetFilter';
 	repopulate(dropdown, grab, 0, Sort);
 	return;
 	break;
@@ -121,6 +129,7 @@ switch(grab)
 	break;
 	
 	case "resetFilter":
+	
 	index =-1;
 	break;
 	
@@ -165,7 +174,7 @@ if(index == -1)
 {
 chosen = ["Seasons", "Characters", "Related Characters", "Location", "Voice Actor", "Show Runner", "Writers", "Directors", "Jobs"];
 if(grab == "resetFilter")
-	chosen.splice(chosen.indexOf(range), 1); // since range isn't used for this parse, we use it to store the val currently being parsed
+	{chosen.splice(chosen.indexOf(currentScope), 1);} // since range isn't used for this parse, we use it to store the val currently being parsed
 }
 // eo root populate
 

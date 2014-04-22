@@ -11,11 +11,12 @@ function p_initInterp(scope, filterby, display, text)
 pSCOPE = $("#"+scope); pFILTER = $("#"+ filterby); pDISPLAY = $("#"+ display);  pTXT = $("#"+text);
 
 pSCOPE.on('change', function(){if(pSCOPE.val() == "..") return; p_setQuery(); p_upDisplay(); p_upVisualElements();});
-pFILTER.on('change',function(){if(pFILTER.val() == "..") return; p_cWrapper($(this).val(), -2); console.log(parserQueries); p_upDisplay();  p_upVisualElements();});
+pFILTER.on('change',function(){if(pFILTER.val() == "..") return; p_cWrapper($(this).find(":selected").text(), -2);  p_upDisplay();  p_upVisualElements();});
 p_initQuery(); 
 p_initPTable();
+
 var ii = "appearances";
-parserQueries['lookup'] = {
+parserQueries['lookup'] = {   
 "Related Characters" : {"i" : ii, a: "globalCharGroups"}, 
 "Characters" : { "i" : 7, "a" : "allCharByAppearAmt" }, 
 "Writers" : { "i" : ii, "a" : "globalWriterList"},
@@ -28,6 +29,8 @@ parserQueries['lookup'] = {
 'All Episodes' : {'i' : 1, 'a' : 'allEpisodesByNumber'}
 }//["Characters", "Seasons","Related Characters", "Location", "Voice Actor", "Show Runner", "Writers", "Directors", "Jobs"];
 
+
+
 var starting = 0;
 for(var aa= 0; aa < episodesInSeasons.length; aa++)
 	{
@@ -39,6 +42,8 @@ for(var aa= 0; aa < episodesInSeasons.length; aa++)
 	's' : starting}
 	};
 
+	
+pSCOPE.trigger('change');	
 }
 function p_upDisplay()
 {
@@ -58,72 +63,198 @@ pDISPLAY.empty();
 		}
 }
 
+function visualWrapper()
+{
+var arr = p_grabArrays();
+
+console.log(arr);
+var r_val = [];
+r_val[0] = "";
+var temp = [];
+var count = 0;
+
+
+for(var a= 0; a < arr[1].length; a++) // 1= scope
+	r_val[a+1] = arr[1][a];
+
+	
+for(var a = 1; a < arr.length; a ++)
+{
+count = 0;
+temp =[];
+temp[0] ='reserved';
+	for(var b= 0; b < arr[a][1].length; b++)
+	{
+	if(arr[a][1][b] == true || arr[a][1][b] > 0) count ++;
+	temp.push({ data: ((arr[a][1][b]== true)? 1 : 0), color : ""});  
+	}
+temp[0] ={data: count, color : ""};
+r_val.push(temp);
+}
+console.log(r_val);
+console.log("^^^");
+
+$("#genTable").empty();
+initTable(r_val.length, r_val[0].length, "genTable", r_val, true, false);  
+}
 
 function p_upVisualElements(query)
 {
 var arr = p_grabArrays();
-//arr = p_examineElements();
+
+//p_examineElements(arr);
 	
 
 }
+/*
 
+todo:
+3 stages
+1- set scope to element arr[1] (because arr starts at 1
+2- loop through filters for(var a=2; a < arr.length; a++) and && (or, or [advanced feature]) all filters together
+3- loop through and "and" the filter flags with the scope flag
 
+*/
+
+//iterates through scope and filters of p_grabArrays
 function p_examineElements(arr)
 {
-var r_val = [];
-for(var a= 1; a < arr.length; a ++)
-	{
-	if(parserQueries[p_Q()][a]['term'] == 'Seasons' || parserQueries[p_Q()][a]['term'].substring(0, 8) == "Season:" || parserQueries[p_Q()][a]['term'] == 'All Episodes')
-	{//special cases for these....
-	r_val
+	console.log("$$$$$$$$$$$$$$$$$");
+	console.log(arr[1][0][1].length);
+	console.log("^^^^^^^^^^^");
+	var test = 33;
+	var count = 0;
+	
+	var scope = arr[1];
+	var r_val = []; //adds base array	
+	for(var a = 2; a < arr.length; a ++) //go through filters
+	{	
+		if(arr[a].length != null) //in case it's a single element
+		{
+			for(var b = 0; b < arr[a].length; b++) //go through actual list of people/things
+			{
+			
+				for(var c =0; c < arr[a][b][1].length; c++) //go through the boolean list
+				{
+				
+				}
+			}
+		}
+		else //single element
+		{
+		}
+
 	}
-	else
+	
+	if(scope.length != null) // in case single element
+	{
+	if(arr['lookup'][0] == "locationsByAppearAmt")
+	{
+	//replace arr of locationsByAppearAmt case with t/f table
+	}
+		for(var a= 0; a < scope.length; a++) //list of labels, scope arguments
+		{
+			
+			for(var b=0; b < scope[a].length; b++)//boolean list
+			{
+			if(arr['lookup'][0] != 'allVoiceActorsByAppearanceCount')
+			scope[a][b] = (scope[a][b] && r_val[a][b]); 
+			else
+			scope[a][b] = (0 < scope[a][b] && r_val[a][b]); 
+			}
+		
+		}
+	}
+	else//single element
 	{
 	
 	}
-
+	
 }
 
-}
-
-
+// grabs the CURRENT selection by iterating through where the current query pointer is..
 function p_grabArrays() // returns a array of scope and its filters
 {
 var temp;
 var parent;
-var quer = []; // 0 -> scope, 0< filters
+var quer = []; // 0 -> scope, 0< filters 'lookup' = types
+quer['lookup'] = [];
 	for(var a = 1; a < parserQueries[p_Q()].length; a ++)
 	{
-		console.log("here");
 		
+		
+		//console.log(parserQueries[p_Q()]);
 		temp = parserQueries['lookup'][parserQueries[p_Q()][a]['term']];
 		
-		quer[a] = [];
 		
 		if(temp == null)
 		{
-		var finalChoice = parserQueries['lookup'][$(document.activeElement).find(":selected").attr('current')];
-		console.log("->>>>>  " + $(document.activeElement).find(":selected").attr('current'));
-		console.log(finalChoice);
+		var finalChoice = $(document.activeElement).find(":selected").attr('current'); // 'previous' division (despite
+		var value = $(document.activeElement).find(":selected").text();
+		temp = parserQueries['lookup'][$(document.activeElement).find(":selected").attr('current')];
 		
-		break; //exit state, when at bottom level of iteration...
+		
+				
+		//console.log(value + " = "+ value.indexOf('-Ep')  + " -> " + finalChoice);
+		
+		quer[a] =(isNaN(temp['i'])) ? p_fetchAnon(temp['a'], ['name', temp['i']], -1, -1) : p_populateArr(temp['a'], [0, temp['i']]);
+		
+		
+		if(value.indexOf('-Ep') != -1) 
+			value = value.substring(0, value.indexOf('-Ep')); //cut off extra string
+			
+			
+		var crazy = quer[a].length;
+		
+		value = (value[value.length-1] == ' ') ? value.substring(0, value.length-1) : value;
+		//alert("hhhh " +quer[a].length);
+		for(var aa = 0; aa < crazy; aa ++) //look for segment, grab the cut... we only care about ONE cause this is nitty gritty choice
+			{
+				if(quer[a][aa][0] == value)
+					{
+					
+					quer[a] = [quer[a][aa]];
+					crazy = true; //used as flag
+					break;
+					}
+			}
+		if(crazy === true)
+			{
+			quer['lookup'][a] = temp['a'];
+			continue;
+			}
+		console.log("vallll =@#QRE$#$@$#@ " );
+		
+		break;		//exit state, when at bottom level of iteration...
 		}
+		
+	//////////////////////////===================================================================================================
+		
+		
 		//alert(temp);
 		if(parserQueries[p_Q()][a]['term'] != 'Seasons')
-			{quer[a][1] =(isNaN(temp['i'])) ? p_fetchAnon(temp['a'], ['name', temp['i']], -1, -1) : p_populateArr(temp['a'], [0, temp['i']]); // is the index a number, if so, cut from different things
+			{quer[a] =(isNaN(temp['i'])) ? p_fetchAnon(temp['a'], ['name', temp['i']], -1, -1) : p_populateArr(temp['a'], [0, temp['i']]); // is the index a number, if so, cut from different things
 			}
 			
-		else { quer[a][1] = eval(temp['a']);}
+		else {quer[a]=[];
+		var tempHold = eval(temp['a']); // number of season, aka name
+		
+			for(var zz = 0; zz < tempHold.length; zz++)
+				quer[a].push([tempHold[zz], getSeasonTF(zz+1)]);
+		
+		
+		}
 		
 		
 		if(temp['r'] != null) //cuts away a range
 			{
 				quer[a].splice(0, temp['s']);
-				quer[a].splice(temp['r']);
+				quer[a].splice(temp['r']);	
 			}
+			quer['lookup'][a] = temp['a'];
 	}	
-	console.log(quer);
-return quer;
+	
+return quer; //returns at least quer[0] = scope, quer[1+] = filter
 }
 
 
@@ -139,8 +270,8 @@ function p_initQuery()
 		
 	parserQueries[spot] =[];
 	parserQueries[spot][0] = {currentFilter : 2}; // keeps track of the filter we're currently working on.
-	parserQueries[spot][1]=({term: pSCOPE.val()});
-	parserQueries[spot][2] =({term: pFILTER.val()});
+	parserQueries[spot][1]=({term: pSCOPE.find(":selected").text()});
+	parserQueries[spot][2] =({term: pFILTER.find(":selected").text()});
 	
 	parserQueries[0] =  {currentQuery : parserQueries.length-1}; //initing a new query, changes workign directory 
 }
@@ -174,9 +305,9 @@ function p_changeQuery(id){parserQueries[0] = { currentQuery : id};}//changes po
 function p_setQuery()
 {
 	p_clearFilters(-1);//clears all filters of our current direct
-	parserQueries[p_Q()][1] = {term : pSCOPE.val() }; //change the scope
-	p_cWrapper(pFILTER.val(), -1);//change the filter
-	console.log(parserQueries);
+	parserQueries[p_Q()][1] = {term : pSCOPE.find(":selected").text() }; //change the scope
+	p_cWrapper(pFILTER.find(":selected").text(), -1);//change the filter
+	
 }
 
 function p_initPTable()
@@ -223,3 +354,19 @@ for(var a=0; a < arr.length; a++)
 	
 return r_val;
 }
+
+function getSeasonTF(num)
+{
+var hold = parserQueries['lookup']["Season: " + num];
+var t = p_fetchAnon("allEpisodesByNumber", 1, -1, -1);
+var r_val = [];
+
+for(var a = 0; a < t.length; a++)
+	r_val.push(false);
+	
+for(var a =hold['s']; a < hold['r']; a++)
+	r_val[a] = true;
+
+return r_val;
+}
+

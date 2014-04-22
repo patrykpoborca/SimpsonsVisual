@@ -45,6 +45,7 @@ function initTable(rows, columns, divID, data, display, colors) {
 	var leftCornerFlag = false;
 	var C = 0;
 	var color;
+	
 	for(var R = 0; R < data.length; R++) {
 		htmlString += "<tr>\n";
 	

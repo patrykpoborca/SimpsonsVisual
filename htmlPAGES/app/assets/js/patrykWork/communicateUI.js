@@ -35,7 +35,7 @@ function initUI()
 	//initialization...
 	//$('#superDiv').on('change', chartFunc());
 	//chartFunc(); // eric's chart function
-
+	
 	initInteractiveTable(); // fill overview table
 	$("#chart_div").hide(); //for king div
 	$("#genTable").hide(); //for king div
@@ -44,12 +44,10 @@ function initUI()
 	initAnimations(); //initaites toggle/animation behaviours
 	initDropDowns();
 	p_initInterp("ScopeChoice", "filterBy", "queryParser", "hhh");
-	//p_Directors();
+	//p_Directors();1
+	top10VAChart(1);
 	
-	
-	
-	console.log(globalCharGroups);
-	console.log(globalWriterList);
+
 }
 
 
@@ -102,13 +100,21 @@ function initAnimations()
 $("#sortButton").toggle(
 	function()
 	{
-		$("#sortButton").text("SortNum");
 		globalSort = true;
+		$("#sortButton").text("SortNum");
+		
+		repopulate("ScopeChoice",  $("#ScopeChoice").find(":selected").attr('current'), 0, false);
+		repopulate("filterBy",  $("#filterBy").find(":selected").attr('current'), 0, false);
+		//visualWrapper();
 	},
 	function()
 	{
-		$("#sortButton").text("SortAlpha");
 		globalSort = false;
+		repopulate("ScopeChoice",  $("#ScopeChoice").find(":selected").attr('current'), 0, false);
+		repopulate("filterBy",  $("#filterBy").find(":selected").attr('current'), 0, false);
+		$("#sortButton").text("SortAlpha");
+		
+		
 	});
 	
 	
@@ -164,7 +170,7 @@ $("#sortButton").toggle(
 	
 	
 	$("#genTable").toggle(function(){
-	$(this).empty();
+	$(this).empty(); 
 	var HOLD = wrapForTable(p_charBySeason());
 	initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, true, false); // rows, columns, divID, data, display 
 	HOLD = [];

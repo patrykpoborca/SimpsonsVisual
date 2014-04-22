@@ -29,8 +29,10 @@ var episodesRow = [];
 	for(var ii = 1; ii < dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length +1; ii++) {
 		episodesRow.push(ii);
 	}
-		
+	
+
 	var listOfChars = p_fetchChars(0);
+	
 	var finalArray = [];
 
 	finalArray.push(episodesRow);
@@ -40,6 +42,7 @@ var episodesRow = [];
 	for(var firstTier = 0; firstTier < listOfChars.length; firstTier++) {//start at 1 to avoid dead spot 0/0 
 		temp[0] = listOfChars[firstTier][0]; //save name
 		holder = p_iterateCharEpisodes(listOfChars[firstTier]);
+		
 		for(var secondTier = 0; secondTier < holder.length; secondTier++)
 			temp.push(holder[secondTier]);
 		finalArray.push(temp);
@@ -47,6 +50,8 @@ var episodesRow = [];
 	}
 	
 	//console.log("Size y = "+ finalArray.length +" size x = " + finalArray[0].length + "Ent 1: " + finalArray[1][1] + " Ent 2 = " + finalArray[1][25]);
+	//console.log("hehrehrherhe");
+	//console.log(finalArray);
 	return finalArray;
 }
 
@@ -62,26 +67,36 @@ globalRunnerList
 //fetches an ARRAY version of the index found... index is a string value, due to original arrays being object literals, choice indicates which of above you wish...
 function p_fetchAnon(choice, index, min, max)
 {
-var holding = [];
+var holder = [];
 var tempArray =[];
 var length = 1;
 var pos;
 if( index instanceof Array) length = index.length;
 var placeHolder= eval(choice); // quick and painless, you pass which array you want, which 'index' and what range
+
 if(min + max >=0) // makes range a min/max
 {
 }
-
 for(key in placeHolder)
 {
-	holding = [];
+	holder = [];
 	for(var z = 0; z < length; z++)
 	{
 	pos = (index instanceof Array) ? index[z] : index;
-	tempArray.push(placeHolder[key][pos]);
-	if(choice == "globalCharGroups" && pos == "name")
-		tempArray[tempArray.length-1]+= "'s group";
+		if(index instanceof Array)
+		{
+			holder.push(placeHolder[key][pos]);
+			if(choice == "globalCharGroups" && pos == "name")
+				holder[holder.length-1]+= "'s group";
+		}
+		else
+		{
+			holder = placeHolder[key][pos];
+			if(choice == "globalCharGroups" && pos == "name")
+				tempArray[tempArray.length-1]+= "'s group";
+		}
 	}
+	tempArray.push(holder);
 }
 return tempArray;
 }
@@ -136,26 +151,33 @@ function p_populateSeasons(season)
 	}
 return r_val;
 }
-
+var ppp = 0;
 //
 function p_iterateCharEpisodes(character) { //condition = function e.g. cond = function(){return true;}; .. todo?
 	
 	var r_val = [];
 
-	for(var zz = 0; zz < dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length; zz++) {
+	for(var zz = 1; zz < dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length+1; zz++) {
 		r_val[zz] = 0; 
 	}
 	var gugle = 0;
 
-	for(var a = 0; a < character[7].length; a++) {	
+	for(var a = 1; a <= character[7].length; a++) {	
 		if(character[7][a] != false) {
+			
 			r_val[Number(getSeasonOfEpisodeNumber(a))] ++;
+			
+			
 		}
 	}
+	r_val.splice(0, 1); //fix for Dylan's method change
+	
 	var debug_string = character[0] + " ";
 	for(var x = 0; x < r_val.length; x ++)
-		debug_string += r_val[x];
+		debug_string += r_val[x]+ " ";
+	if(ppp == 0)
 	//console.log(debug_string);
+	ppp = 1;
 	return r_val;
 }
 
