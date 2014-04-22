@@ -71,9 +71,6 @@ var voiceActorsByCharAmount = [
   ["Danny DeVito",
     ["Maggie Simpson","Herbert Powell","The Baby Translator"] //chars
   ], //va
-  ["",
-    ["SpongeBob SquarePants","SpongeBob SquarePants","Female Twin"] //chars
-  ], //va
   ["Eddie Izzard",
     ["Queen Elizabeth II","Nigel Bakerbutcher","Prince Charles"] //chars
   ], //va

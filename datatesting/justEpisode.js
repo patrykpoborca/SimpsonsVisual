@@ -14,11 +14,15 @@ divs that will be created for single selection character view start with ssep
 
 
 //This method attempts to be lenient with whether or not episode is a number or the name.
+//number usage assumes index.
 function givenAnEpisodeFillADiv(divIdToFill, episodeToUse) {
 	document.getElementById(divIdToFill).innerHTML = ""; //remove all content in the div currently.
 
+	dkGlobalOverviewTable.divPassing = divIdToFill;
+
 	var episodeIndex = -1;
 
+	//number usage assumes index
 	if( typeof episodeToUse == "number"){ episodeIndex = episodeToUse; }
 	else if(typeof episodeToUse == "string"){
 		for(var i = 0; i < allEpisodesByNumber.length; i++){
@@ -37,7 +41,9 @@ function givenAnEpisodeFillADiv(divIdToFill, episodeToUse) {
 
 		//edit the created divs
 
-		document.getElementById('ssepToOverviewButton').innerHTML = '<button onclick="backToOverviewFromEpisode()">Return to overview</button></p>';
+		document.getElementById('ssepToOverviewButton').innerHTML =
+			'<button onclick="backToOverviewFromEpisode()">Return to overview</button>'+
+			'<button onclick="backToSeasonFromEpisode('+episodeIndex+')">Go to Season of ' + getSeasonOfEpisodeNumber(episodeIndex+1) + '</button>';
 		document.getElementById('ssepName').innerHTML = '<h1>Episode ' +(episodeIndex + 1)+ ':' + allEpisodesByNumber[episodeIndex][0] + '</h1>';
 		document.getElementById('ssepCharactersIn').innerHTML = 'Characters in the episode';
 		document.getElementById('ssepUniqueCharactersIn').innerHTML = 'Unique Characters';
@@ -56,7 +62,7 @@ function givenAnEpisodeFillADiv(divIdToFill, episodeToUse) {
 	else{
 		console.log("there was no match for the given episode:" + episodeToUse);
 	}
-	hidePopupControlBox(); //because there is a chance got here from the overview.
+	//hidePopupControlBox(); //because there is a chance got here from the overview.
 	//Note: hidepopup will likely error but because it errors at the end of the function it doesn't influence creation
 } //end findCharactersInGivenSeasonAndPopulateInteractiveTable
 
@@ -129,10 +135,12 @@ function ssepFillListCharactersInAndUnique(episodeIndex) {
 
 function ssepCharacterInClick() {
 	console.log("CharacterInList Selection:" + document.getElementById('ssepListOfCharactersIn').value);
+	givenACharacterNameFilloutTheView(dkGlobalOverviewTable.divPassing, document.getElementById('ssepListOfCharactersIn').value);
 }
 
 function ssepUniqueCharactersClick() {
 	console.log("UniqueCharacterList Selection:" + document.getElementById('ssepListOfUniqueCharacters').value);
+	givenACharacterNameFilloutTheView(dkGlobalOverviewTable.divPassing, document.getElementById('ssepListOfUniqueCharacters').value);
 }
 
 function ssepFillListVoiceActorsInAndUnique(episodeIndex){
@@ -165,7 +173,7 @@ function ssepFillListVoiceActorsInAndUnique(episodeIndex){
 		contentForDiv += "<option>"+ uniqueVAForThisEp[i] +  "</option>\n";
 	}
 	contentForDiv+= '</select>';
-	contentForDiv = "Unique Voice Actors in this episode("+uniqueVAForThisEp.length+"):<br>";
+	contentForDiv = "Unique Voice Actors in this episode("+uniqueVAForThisEp.length+"):<br>" + contentForDiv;
 	document.getElementById('ssepUniqueVoiceActorsIn').innerHTML = contentForDiv;
 	ssepMakeVoiceActorPie(voiceActorIndexListForPie, episodeIndex);
 } //end ssepFillListVoiceActorsInAndUnique
@@ -281,6 +289,16 @@ function ssepMakeVoiceActorPie(indexOfVAforPie, episodeIndex) {
 
 
 function backToOverviewFromEpisode() {
-	console.log("Back to overview currently disabled.");
+	var charList = [];
+	for(var i =0; i < 40; i++){
+		charList.push(allCharByAppearAmt[i]);
+	}
+	fillOverviewTable(dkGlobalOverviewTable.divPassing, charList, true);
 }
 
+function backToSeasonFromEpisode(episodeIndex) {
+	console.log("Back to season currently disabled.");
+	findCharactersInGivenSeasonAndPopulateInteractiveTable(dkGlobalOverviewTable.divPassing, getSeasonOfEpisodeNumber(episodeIndex + 1));
+}
+
+	

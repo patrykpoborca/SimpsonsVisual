@@ -19,6 +19,8 @@ dkGlobalOverviewTable.notInEpsColorHi = '#005234';
 
 dkGlobalOverviewTable.overviewRowLimit = 25;
 
+dkGlobalOverviewTable.divPassing;
+
 /*
 List of functions so can search by name.
 tableClick
@@ -41,9 +43,14 @@ function tableClick() {
 
 
 function fillOverviewTable(divIdToFill, arrayOfCharacters, enableHighlight) {
+	dkGlobalOverviewTable.divPassing = divIdToFill;
+
+	//placing this here does not cause the page load first.
+	//will probably need to go in the method that calls this.
+	//document.getElementById(divIdToFill).innerHTML = "<h1>Loading...</h1>";
 
 	var contents = "";
-	contents += "<div><h1>Overview</h1></div><div id='ovtPictureToggle'></div>\n";
+	contents += "<div id='ovtPictureToggle'></div><div><h1>Overview</h1></div>\n";
 	contents += "<table onmouseout='hideInfoBox()' onmousemove='showInfoBox()'>\n";
 
 	contents += '<tr><th colspan="4"></th>';
@@ -133,13 +140,13 @@ function fillOverviewTable(divIdToFill, arrayOfCharacters, enableHighlight) {
 	contents += lineContent;
 
 	document.getElementById(divIdToFill).innerHTML = contents;
-	document.getElementById(divIdToFill).innerHTML += "<div id='ovtMouseOverPane'></div>";
-	document.getElementById(divIdToFill).innerHTML += "<div id='ovtMouseClickPane'></div>";
+	document.getElementById(divIdToFill).innerHTML += "<div id='ovtMouseOverPane' style='visibility:hidden;'></div>";
+	document.getElementById(divIdToFill).innerHTML += "<div id='ovtMouseClickPane'style='visibility:hidden;'></div>";
 
 
 
 	//seed the color
-	for(var row = 0; row < arrayOfCharacters.length; row++){
+	for(var row = 0; row < ovtRowsToFill; row++){
 		for(var col = 1; col <= totaleps; col++){
 			if(row %2 == 0){
 				if(document.getElementById('ovtIDr' + row + 'c' + col).className.search('notInThatEps') >= 0){
@@ -168,6 +175,7 @@ function hideInfoBox(row, col) {
 
 	document.getElementById("ovtMouseOverPane").style.top = 0;
 	document.getElementById("ovtMouseOverPane").style.left = 0;
+	document.getElementById("ovtMouseOverPane").style.visibility = 'hidden';
 
 	document.getElementById("ovtMouseOverPane").innerHTML = "";
 
@@ -207,17 +215,18 @@ function showInfoBox(iname, iepisode, inEps, row, col) {
 
 		if(inEps){
 			document.getElementById("ovtMouseOverPane").style.backgroundColor = dkGlobalOverviewTable.inEpsColor;
-			infoTextAsOne += "IS in ";
+			infoTextAsOne += "&nbsp&nbspIS in ";
 		}
 		else{
 			document.getElementById("ovtMouseOverPane").style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
-			infoTextAsOne += "NOT in ";
+			infoTextAsOne += "&nbsp&nbspNOT in ";
 		}
 		infoTextAsOne +=  "Episode:" + iepisode + "<br>";
 
 		//if(dkGlobalOverviewTable.showIconInPopup){ infoTextAsOne += "<img width='100px' height='100px' src='" + fetchImgUrlOfChar(iname) + "'></img>"; }
 
 		document.getElementById("ovtMouseOverPane").innerHTML = infoTextAsOne;
+		document.getElementById("ovtMouseOverPane").style.visibility = "visible";
 		document.getElementById("ovtMouseOverPane").style.top = event.clientY - 30;
 		document.getElementById("ovtMouseOverPane").style.left = event.clientX - 30;
 
@@ -256,6 +265,7 @@ function showInfoBox(iname, iepisode, inEps, row, col) {
 
 function hidePopupControlBox() {
 	console.log("hide");
+	document.getElementById("ovtMouseClickPane").style.visibility = 'hidden';
 	document.getElementById("ovtMouseClickPane").style.top = 0;
 	document.getElementById("ovtMouseClickPane").style.left = 0;
 	document.getElementById("ovtMouseClickPane").innerHTML = "";
@@ -265,22 +275,23 @@ function showPopupControlBox(pcbName, pcbEps, pcbSeason ) {
 
 
 	if(pcbName != null){
-		var infoTextAsOne = "Controls for:" + pcbName;
-		infoTextAsOne += '<button onclick="hidePopupControlBox()">Hide</button><br>';
+		var infoTextAsOne = "";
+		infoTextAsOne += '<button onclick="hidePopupControlBox()">X</button><br>';
 		if(pcbName.length > 0){
-			infoTextAsOne += 'Search by character: <button onclick="givenACharacterNameFilloutTheView(\'overviewTable\',\''+pcbName+'\')">'+pcbName+'</button><br>';
+			infoTextAsOne += '&nbsp&nbspSearch by character: <button onclick="givenACharacterNameFilloutTheView(\''+dkGlobalOverviewTable.divPassing+'\',\''+pcbName+'\')">'+pcbName+'</button><br>';
 		}
 		if(pcbEps >=0){
-			infoTextAsOne += 'Search by Episode: <button onclick="alert(\'Search by Episode: Not yet implemented\')">'+pcbEps+'</button><br>';
+			infoTextAsOne += '&nbsp&nbspSearch by Episode: <button onclick="givenAnEpisodeFillADiv(\''+dkGlobalOverviewTable.divPassing+'\','+(pcbEps-1)+')">'+pcbEps+'</button><br>';
 		}
 		if(pcbSeason >=0){
-		infoTextAsOne += 'Search by Season: <button onclick="findCharactersInGivenSeasonAndPopulateInteractiveTable(\'overviewTable\', '+pcbSeason+')">'+pcbSeason+'</button><br>';
+			infoTextAsOne += '&nbsp&nbspSearch by Season: <button onclick="findCharactersInGivenSeasonAndPopulateInteractiveTable(\''+dkGlobalOverviewTable.divPassing+'\', '+pcbSeason+')">'+pcbSeason+'</button><br>';
 		}
 
 		//console.log("Before the print:");
 		//console.log("Inside of the show info:" + infoTextAsOne);
 
 		document.getElementById("ovtMouseClickPane").innerHTML = infoTextAsOne;
+		document.getElementById("ovtMouseClickPane").style.visibility = 'visible';
 		document.getElementById("ovtMouseClickPane").style.top = event.clientY - 130;
 		document.getElementById("ovtMouseClickPane").style.left = event.clientX - 130;
 	}
@@ -288,7 +299,7 @@ function showPopupControlBox(pcbName, pcbEps, pcbSeason ) {
 
 
 
-/**This is based off episode number(not index) but index of season (not number)*/
+/**This is based off episode number(not index) and season number (not index)*/
 function getSeasonOfEpisodeNumber( epsNumber ){
 
 	if(epsNumber > 0){

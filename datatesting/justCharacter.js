@@ -30,14 +30,21 @@ intention is to prevent accidentally creating a div that already exists.
 
 
 //Assumes that character is a string that matches the allCharByAppearAmt[char][0]
+//OR the index of the character is given.
 function givenACharacterNameFilloutTheView(divIdToFill, nameOfCharacter) {
 	document.getElementById(divIdToFill).innerHTML = "";
 
+	dkGlobalOverviewTable.divPassing = divIdToFill;
+	//bad naming, I know. Will fix name later if time.
 	var charsInThisSeason = []; //find the character that this was given, and put only that character in the array
-	for(var i = 0; i < allCharByAppearAmt.length; i++){
-		if(allCharByAppearAmt[i][0] == nameOfCharacter){
-			charsInThisSeason.push(allCharByAppearAmt[i]);
-			break;
+	
+	if(typeof nameOfCharacter == "number"){ charsInThisSeason.push(allCharByAppearAmt[nameOfCharacter]);}
+	else if(typeof nameOfCharacter == "string"){
+		for(var i = 0; i < allCharByAppearAmt.length; i++){
+			if(allCharByAppearAmt[i][0] == nameOfCharacter){
+				charsInThisSeason.push(allCharByAppearAmt[i]);
+				break;
+			}
 		}
 	}
 	//only make the character page if there was a name match
@@ -64,7 +71,7 @@ function givenACharacterNameFilloutTheView(divIdToFill, nameOfCharacter) {
 		document.getElementById('sscvTop20CharsWith').innerHTML = '<h5>top 20 chars with</h5>';
 		sscvFillListOfTopWith(charsInThisSeason[0]);
 		document.getElementById('sscvPicture').innerHTML = "<img width='200px' height='300px' src='" + fetchImgUrlOfChar(nameOfCharacter) + "'></img>";
-		document.getElementById('sscvNetworkMapButton').innerHTML = '<button onclick="console.log(\'Doesnt work yet\')">View Network Map</button></p>';
+		document.getElementById('sscvNetworkMapButton').innerHTML = '<button onclick="sscvGoToSocialNet(\''+ charsInThisSeason[0][0] +'\')">View Network Map</button></p>';
 
 
 
@@ -72,7 +79,7 @@ function givenACharacterNameFilloutTheView(divIdToFill, nameOfCharacter) {
 	else{
 		console.log("there was no match for the given character name.");
 	}
-	hidePopupControlBox(); //because there is a good chance got here from the overview.
+	//hidePopupControlBox(); //call no longer needed since div will create the pop and mouse overs divs.
 } //end findCharactersInGivenSeasonAndPopulateInteractiveTable
 
 
@@ -105,14 +112,11 @@ function createDivsForSscv(divIdToFill) {
 
 //temporary function to return back to overview. assumes first 10 character grab
 function backToOverviewFromCharacter(divIdToFill){
-	/*
 	var charList = [];
-	for(var i =0; i < 20; i++){
+	for(var i =0; i < 40; i++){
 		charList.push(allCharByAppearAmt[i]);
 	}
 	fillOverviewTable(divIdToFill, charList, true);
-	//*/
-	console.log("back to overview currently disabled.");
 } //end
 
 
@@ -301,9 +305,16 @@ function sscvFillListOfEpisodeNames(sscvCharArrayInfo) {
 
 }//sscvFillListOfEpisodeNames
 
+
+//VIEWCHANGE
 function sscvEpNameClick() {
-	console.log("an episode name was clicked:" + document.getElementById('sscvEpNameList').value);
+	var nameToUse = document.getElementById('sscvEpNameList').value;
+	console.log("an episode name was clicked:" + nameToUse);
+	givenAnEpisodeFillADiv(dkGlobalOverviewTable.divPassing, nameToUse); 
 }
+
+
+
 
 function sscvFillListOfVoiceActors(sscvCharArrayInfo){
 	var contentForDiv = "";
@@ -321,8 +332,12 @@ function sscvFillListOfVoiceActors(sscvCharArrayInfo){
 
 } //end  sscvFillListOfVoiceActors
 
+
+//VIEWCHANGE
 function sscvVaNameClick() {
-	console.log("a va name was clicked:" + document.getElementById('sscvVaNameList').value);
+	var nameToUse = document.getElementById('sscvVaNameList').value;
+	console.log("a va name was clicked:" + nameToUse);
+	alert("va page not found");
 }
 
 
@@ -376,16 +391,28 @@ function sscvFillListOfTopWith(sscvCharArrayInfo) {
 } //end sscvFillListOfTopWith
 
 
+//VIEWCHANGE 
 function sscvTopNameClick(whichList) {
 	//if came from list 1
+
+	var nameOfCharacter;
+
 	if(1 == whichList){
-		console.log("top name selected:" + document.getElementById('sscvTop10List').value);
+		nameOfCharacter = document.getElementById('sscvTop10List').value;
 	}
 	//if came from list 2
 	if(2 == whichList){
-		console.log("top name selected:" + document.getElementById('sscvTop20List').value);
+		nameOfCharacter = document.getElementById('sscvTop20List').value;
 	}
 
+	var lastParenFind = nameOfCharacter.length-1;
+	while( nameOfCharacter.charAt(lastParenFind) != "("){
+		lastParenFind--;
+	}
+	nameOfCharacter = nameOfCharacter.substring(0, lastParenFind);
+	//console.log("a character name was clicked:" + nameOfCharacter);
+
+	givenACharacterNameFilloutTheView(dkGlobalOverviewTable.divPassing, nameOfCharacter);
 }
 
 
@@ -407,11 +434,21 @@ function sscvHideMouseClickPanel() {
 	document.getElementById("sscvMouseClickPanel").style.visibility = 'hidden';
 }
 
+//VIEWCHANGE
 function sscvMouseClickEp(epOfClick) {
 	console.log('clicked on the popup panel for episode:' + epOfClick);
+	givenAnEpisodeFillADiv(dkGlobalOverviewTable.divPassing, epOfClick-1); //-1 for index
 }
 
+//VIEWCHANGE
 function sscvMouseClickSeason(seasonOfClick) {
 	console.log('clicked on the popup panel for season:' + seasonOfClick);
+	findCharactersInGivenSeasonAndPopulateInteractiveTable(dkGlobalOverviewTable.divPassing, seasonOfClick);
 }
 
+
+//VIEWCHANGE
+function sscvGoToSocialNet(nameOfCharacter) {
+	console.log('attempting switch from character view to social map for' + nameOfCharacter);
+	givenACharacterFillOutSocialNet(dkGlobalOverviewTable.divPassing, nameOfCharacter);
+}
