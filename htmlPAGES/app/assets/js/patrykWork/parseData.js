@@ -2,7 +2,7 @@
 
 function p_charBySeason()
 {
-return p_CharBySeason(0, 9999, 9999);
+return p_CharBySeason(0, 9999, 0);
 }
 
 
@@ -31,7 +31,7 @@ var episodesRow = [];
 	}
 	
 
-	var listOfChars = p_fetchChars(0);
+	var listOfChars = p_fetchChars(amount);
 	
 	var finalArray = [];
 

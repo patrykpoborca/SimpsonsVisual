@@ -14,7 +14,12 @@ function cutPx(r) {
 	return Number(r.substring(0, a));
 }
 
+
+var p_currentTable;
+
 function initTable(rows, columns, divID, data, display, colors) {
+	display = p_HistoSwitch;
+	p_currentTable = data;
 	//init
 	if(isNaN(rows))
 		rows = Number(rows); 
@@ -40,7 +45,7 @@ function initTable(rows, columns, divID, data, display, colors) {
 		cellDimY = 5;
 	//if(!display) {cellDimX = 10; cellDimY = 10;}
 	//end of init/setup
-	console.log("Inside y : "+data.length + " Inside x " + data[0].length);
+	//console.log("Inside y : "+data.length + " Inside x " + data[0].length);
 	
 	var leftCornerFlag = false;
 	var C = 0;
@@ -52,22 +57,33 @@ function initTable(rows, columns, divID, data, display, colors) {
 		for(C = 0; C < data[R].length; C++) {
 			htmlString += ((C != 0 && R == 0) || (C== 0 && R != 0)) ? "<th " + data['type'] : "<td "+ data['type']; 
 			if(!leftCornerFlag) {
-				htmlString += " style = 'background-color : black;  width : "+ cellDimX +"px; height : "+ cellDimY +"px;'> ";leftCornerFlag= true;
+				htmlString +=  " style = 'width : "+ cellDimX +"px; height : "+ cellDimY +"px;'><div id= 'toggleTable' style ='position: relative;" ;  //" style = 'background-color : black;  width : "+ cellDimX +"px; height : "+ cellDimY +"px;'> ";
+				if(!display) htmlString+= "color: white; background-color : black; height: 100%; '><p>Click Here To Toggle</p>"
+				else 
+				htmlString+= "color : black;'><div style = 'background-color : beige;' class = 'tableLi'>"+ colors['yes']+ " => True</div><div style = 'background-color : teal;'>"+ colors['no']+ " => False</div>";
+				htmlString+= "</div>";
+				leftCornerFlag= true;
 			} //if display kindof histogram style
 			else {
 				if(!display)
+					{
+					if(C == 0 || R == 0)
+					htmlString +=  " style = 'background-color : BF9230; text-align:center; width : "+ cellDimX +"px; height : "+ cellDimY +"px;'> "+data[R][C]["data"];
+					else
 					htmlString +=  " style = 'background-color :" + colors["def"]+" text-align:center; width : "+ cellDimX +"px; height : "+ cellDimY +"px;'> "+data[R][C]["data"]; //inject data into td/th
+					
+					}
 				else {
 					if(data[R][C]["color"]) 
-						color = (data[R][C]["data"]) ? data[R][C]["color"] : colors["no"];
+						{color = (data[R][C]["data"]) ? data[R][C]["color"] : colors["no"]; if(C == 0 || R == 0) color = "#BF9230;";}
 					else
-						color = (data[R][C]["data"] == 0) ?  colors["yes"]: colors["no"];
+						{color = (data[R][C]["data"] == 0) ?  colors["no"]: colors["yes"]; if(C == 0 || R == 0) color = "#BF9230;";}
 					htmlString += " style = 'background-color :" + color + " width : "+ cellDimX +"px; height : "+ cellDimY +"px;'> ";
 					htmlString += ((C != 0 && R == 0) || (C== 0 && R != 0)) ? data[R][C]["data"] : ""; 
 				}
 			}
 			htmlString += ((C != 0 && R == 0) || (C== 0 && R != 0)) ? "</th>\n" : "</td>\n"; 
-		if(C +1 == data[R].length && R +1 == data.length )console.log("Rawrg " + data[R].length);
+		//if(C +1 == data[R].length && R +1 == data.length )console.log("Rawrg " + data[R].length);
 		}
 		htmlString += "</tr>\n";
 	}
@@ -75,8 +91,17 @@ function initTable(rows, columns, divID, data, display, colors) {
 
 	//console.log(htmlString);
 	$(divString).append(htmlString);
+	
+	$("#toggleTable").on('click', function(){
+	$("#"+divID).empty(); 
+	var HOLD = p_currentTable;
+	initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, p_HistoSwitch, false); // rows, columns, divID, data, display 
+	p_HistoSwitch = !p_HistoSwitch;
+	HOLD = [];
+	});
+	
 }
-
+var p_HistoSwitch = true;
 
 
 function wrapForTable(arr) {

@@ -101,7 +101,7 @@ $("#sortButton").toggle(
 	function()
 	{
 		globalSort = true;
-		$("#sortButton").text("SortNum");
+		$("#sortButton").text("Numerical");
 		
 		repopulate("ScopeChoice",  $("#ScopeChoice").find(":selected").attr('current'), 0, false);
 		repopulate("filterBy",  $("#filterBy").find(":selected").attr('current'), 0, false);
@@ -112,7 +112,7 @@ $("#sortButton").toggle(
 		globalSort = false;
 		repopulate("ScopeChoice",  $("#ScopeChoice").find(":selected").attr('current'), 0, false);
 		repopulate("filterBy",  $("#filterBy").find(":selected").attr('current'), 0, false);
-		$("#sortButton").text("SortAlpha");
+		$("#sortButton").text("Alphabetical");
 		
 		
 	});
@@ -169,21 +169,7 @@ $("#sortButton").toggle(
 	///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////
 	
 	
-	$("#genTable").toggle(function(){
-	$(this).empty(); 
-	var HOLD = wrapForTable(p_charBySeason());
-	initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, true, false); // rows, columns, divID, data, display 
-	HOLD = [];
-	}
-	,
-	function()
-	{
-	$(this).empty();
-	var HOLD = wrapForTable(p_charBySeason());
-	initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, false, false); // rows, columns, divID, data, display 
-	HOLD = [];
-	}	
-	);
+	
 	
 	
 	
@@ -271,9 +257,22 @@ $("#sortButton").toggle(
 	});
 ///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////// TOGGLER  /////////////////////////////////////////////////////////////////	
+setTimeout(function(){
+if (hiddenHelp == false)
+	$("#help").trigger('click')}, 10000);
 
+$("#help").toggle(
+function(){
+hiddenHelp = true;
+$("#helpBox").hide();
+},
+function(){
+$("#helpBox").show();
+}
+);
 }
 
+var hiddenHelp = false;
 
 function initJqueryUi()
 {

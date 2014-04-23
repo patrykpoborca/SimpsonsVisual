@@ -23,10 +23,10 @@ function initDropDowns()
 {
 
 repopulate("ScopeChoice", "resetScope", 0, false);
-$("#ScopeChoice").enterKey(changeScope); //step into on enter key.
-$("#ScopeChoice").dblclick(changeScope);
-$("#ScopeChoice").on('change', function(){
+$("#checkScopeText").on('click', changeScope);
 
+$("#ScopeChoice").on('change', function(){
+   
 var temp= $("#ScopeChoice").find(":selected").val();
 var meh = ["Characters", "Seasons","Related Characters", "Location", "Voice Actor", "Show Runner", "Writers", "Directors", "Jobs"];
 
@@ -40,15 +40,14 @@ if(meh.indexOf(temp) != -1)
 });
 
 repopulate("filterBy", "resetFilter", "Seasons", false);
-$("#filterBy").enterKey(changeFilter); //step into on enter key.
-$("#filterBy").dblclick(changeFilter);
+$("#filterCEText").on('click', changeFilter);
 $("#ScopeChoice").trigger('change');
 }
 
 var p_rootOptionsArray = ["Seasons", "Characters", "Related Characters", "Location", "Voice Actor", "Show Runner", "Writers", "Directors", "Jobs"];
 //used to determine what array to fetch.
 function changeScope()
-{
+{tempDrop = "#ScopeChoice";
 //repopulate("ScopeChoice", "resetScope", 0, true);
 var choice = $("#ScopeChoice").val();
 var temporary = p_rootOptionsArray.indexOf(choice) ;
@@ -57,10 +56,11 @@ currentScope = (temporary != -1) ? p_rootOptionsArray[temporary] : currentScope;
 repopulate("ScopeChoice", choice, 0, false);
 $("#ScopeChoice").trigger('change');
 $("#filterBy").trigger('change');
+
 }
 
 function changeFilter()
-{
+{ tempDrop = "#filterBy";
 var choice = $("#filterBy").val();
 repopulate("filterBy", choice, 0, false);
 $("#filterBy").trigger('change');
@@ -175,6 +175,8 @@ if(index == -1)
 chosen = ["Seasons", "Characters", "Related Characters", "Location", "Voice Actor", "Show Runner", "Writers", "Directors", "Jobs"];
 if(grab == "resetFilter")
 	{chosen.splice(chosen.indexOf(currentScope), 1);} // since range isn't used for this parse, we use it to store the val currently being parsed
+else
+	chosen = ["Seasons"];
 }
 // eo root populate
 

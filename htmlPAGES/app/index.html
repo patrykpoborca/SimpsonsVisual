@@ -23,6 +23,22 @@ UI for app
 		border-collapse:collapse;
 		}
 		
+		.tableLi
+		{
+		
+		
+		}
+		span.shiftPanel
+		{
+		background-color: #FFC340;
+		width : 100px;
+		text-align:center;
+		border-style:solid;
+		border-width:5px;
+		padding-top:5px;
+		border-radius:25px;
+		}
+		
 		#superDiv
 		{
 		overflow:auto;
@@ -39,9 +55,13 @@ UI for app
 		position: absolute;
 		width: 1280px;
 		height: 360px;
-		background-color: red;  
+		background-color: black;  
 		top : 360px;
 		left : 0px;	
+		}
+		ul
+		{
+		list-style-type: none;
 		}
 
 		.cornerDivs
@@ -56,12 +76,14 @@ UI for app
 		
 		#queryParser
 		{
+		border-style:solid;
+		border-width:3px;
 		position : absolute;
-		left :15px;
+		left :22px;
 		height : 150px;
-		top : 150px;
+		top : 160px;
 		width : 205;
-		background-color: white;
+		background-color: #BF9230;
 		}
 		#Container
 		{
@@ -77,22 +99,22 @@ UI for app
 		left : 0px;
 		width: 1280px;
 		height: 360px;
-		<!-- Need to comment this out to get tooltip
-			z-index: -1;
-		-->
+		
 		}
 
 		#expandSelectors
 		{
 		position :absolute;
-		left : 272px;
+		left : 283px;
 		top : 50px;
-		background-color : teal;
+		background-color : #A6A400;
 		width : 250px;
 		height : 180px;
 		border-style:solid;
 		border-width:3px;
 		border-color:black;
+		border-top-right-radius: 85px;
+		border-bottom-right-radius: 85px;
 		z-index: 1;
 		}
 		.sidePanel
@@ -102,7 +124,27 @@ UI for app
 		top : 10px;
 		}
 		
+		#helpBox
+		{
+		background-color : black;
+		position : absolute;
+		bottom : 65px;
+		right : -262px;
+		width : 270px;
+		z-offset : 1000;
+		border-style:solid;
+		border-width:6px;
+		border-color: #777777;
+		}
+		#helpBox p
+		{ color : white;
+		padding-top:5px;
+		padding-bottom:5px;
+		padding-right:5px;
+		padding-left:5px;
+		text-align:center
 		
+		}
 		
 		div
 		{
@@ -112,13 +154,14 @@ UI for app
 		div#sideBar
 		{
 		border-style:solid;
-		border-width:3px;
+		border-width:6px;
+		border-radius: 25px;
 		border-color:black;
 		position: absolute;
 		top : 50px;
-		width : 270px;
+		width : 280px;
 		height : 500px;
-		background-color : grey;
+		background-color : #ffdd88;
 		z-index : 5;
 		}
 		div#toggler
@@ -129,8 +172,23 @@ UI for app
 		z-index : 5;
 		}
 		
+		#trio
+		{
+		position: absolute;
+		left :15px;
+		top : 40px;
+		}
 		
+		#trio button
+		{
 		
+		width : 110px;
+		height : 50px;
+		padding-top:5px;
+		padding-bottom:0px;
+		padding-right:5px;
+		padding-left:5px;
+		}
 		
     </style>
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
@@ -161,14 +219,45 @@ UI for app
 		-->
 	  
           <div id="sideBar" class = "draggingClass">  <!-- sidebar div -->
-            <ul class="nav">  <!-- UL -->
-						 
+						<ul> 
+									
+										<!-- ############################################LI SPLITER##################################### -->
+									<li id = 'trio'>
+										<button type="button" id = "sendData" class = "btn btn-primary">Debug/Tog</button>	
+									
+						<!-- ############################################LI SPLITER##################################### -->
+								
+										<button type="button" id = "sortButton" class = "btn btn-primary">Alphabetical</button>	
+									
+						 <!-- ############################################LI SPLITER##################################### -->
+									
+						<!-- ############################################LI SPLITER##################################### -->
+									<div style = "padding-top : 5px">
+											
+										<button type="button" id = "todo" class = "btn btn-primary">toDo</button>	
+									
+										<button type="button" id = "expandSliders" class = "btn btn-primary">Show Sliders</button>
+										
+										</div>
+									</li>
+						 <!-- ############################################LI SPLITER##################################### -->
+									<li id = "minMax" style = "position: absolute; top: 5px; left : 15px;"> <!-- min/max slider subcomponents -->
+										<button type="button" id = "hide" class = "btn btn-inverse">X</button>	
+									</li>   <!-- min/max slider subcomponents -->
+						 <!-- ############################################LI SPLITER##################################### -->
 									<li>
-										<span class = "shiftPanel" style = "position: absolute; left :10px; top : 5px;">
+										<div id = 'helpSect'>
+										<button type="button" id = "help" class = "btn btn-info" style = "position: absolute; right : 18px; bottom : 55px; width : 3px; height : 15px;" ><span style = "position : absolute; left: 8px; top : -2px;">?<span></button>
+											<div id = 'helpBox'>
+											<p>Select scope first (changing Scope resets your query), whenever you're satisfied with a filter, add a new one by clicking the '+' sign next to it. Click on corner of screen to show control panel when hidden.
+											</p>
+											</div>
+										</div>
+										<span class = "shiftPanel" style = "position: absolute; left :70px; bottom : 123px;">
 											
 											<label for = "scopeSort" id = "checkScopeText" class= "">Scope</label>
 										</span>
-										<select id="ScopeChoice" class ="shiftPanel flagger" style = "position: absolute; left :10px; top :30px;"> <!-- flagger!-->
+										<select id="ScopeChoice" class ="shiftPanel flagger" style = "position: absolute; left :10px; bottom :80px;"> <!-- flagger!-->
 											<option value="debug1"> a </option>
 											<option value="debug2"> debug </option>
 											  <!-- append html info here with class class : scopeRemovable -->
@@ -176,17 +265,21 @@ UI for app
 									</li>
 						 <!-- ############################################LI SPLITER##################################### -->
 									<li>
-										<span class = "shiftPanel" style = "position: absolute; left :10px; top : 80px;">
-											<label for = "filterSort" id = "filterCEText" class =""> Filter By</label>
+										
+										
+										<span class = "shiftPanel" style = "position: absolute; left :70px; bottom: 43px; ">
+											<label for = "filterSort" id = "filterCEText"  class =""> Filter By</label> 
 											
 										</span>
-										<select id="filterBy" class ="flagger filterSort" style = "position: absolute; left :10px; top :100px;"> <!-- flagger!-->
+										<select id="filterBy" class ="flagger filterSort" style = "position: absolute; left :10px; bottom : 0px;"> <!-- flagger!-->
 											<option value="debug1"> b </option>
 											<option value="bbbbb"> debug </option>
 											<option value="ccccc"> debug </option>
 											<option value="dddddd"> debug </option>
 										  <!-- append html info here with class class : scopeRemovable -->
 										</select>
+										
+										<button type="button" id = "pAddFilter" class = "btn btn-success" style = "position: absolute; right : 18px; bottom : 15px; width : 3px; height : 15px;" ><span style = "position : absolute; left: 8px; top : -2px;">+</span></button>
 										</li>
 						 <!-- ############################################LI SPLITER##################################### -->
 										<li>
@@ -219,25 +312,7 @@ UI for app
 												  <!-- append html info here with class class : scopeRemovable 
 											</select>
 									</li>
-						 ############################################LI SPLITER##################################### -->
-									<li id = "minMax" style = "position: absolute; bottom: 5px; left : 169px;"> <!-- min/max slider subcomponents -->
-										<button type="button" id = "sendData" class = "btn btn-primary">Debug/Tog</button>	
-									</li>   <!-- min/max slider subcomponents -->
-						<!-- ############################################LI SPLITER##################################### -->
-									<li id = "minMax" style = "position: absolute; bottom: 5px; left : 6px;"> <!-- min/max slider subcomponents -->
-										<button type="button" id = "sortButton" class = "btn btn-primary">SortAlpha</button>	
-									</li>   <!-- toggle sort -->
-						 <!-- ############################################LI SPLITER##################################### -->
-                
-						<!-- ############################################LI SPLITER##################################### -->
-									<li id = "minMax" style = "position: absolute; bottom: 37px; left : 76px;"> <!-- min/max slider subcomponents -->
-										<button type="button" id = "expandSliders" class = "btn btn-primary">Show Sliders</button>	
-									</li>   <!-- min/max slider subcomponents -->
-						 <!-- ############################################LI SPLITER##################################### -->
-									<li id = "minMax" style = "position: absolute; bottom: 5px; left : 104px;"> <!-- min/max slider subcomponents -->
-										<button type="button" id = "hide" class = "btn btn-primary">hide</button>	
-									</li>   <!-- min/max slider subcomponents -->
-						 <!-- ############################################LI SPLITER##################################### -->
+					
 									<!-- debug button-->
 									
 						 <!-- ############################################LI SPLITER##################################### -->
@@ -328,13 +403,13 @@ UI for app
 	var maxObj = InitSlider("maxSlider", "maxTxt");
 	bindSliders(minObj, maxObj);
 	////////////////////////
-	
+	//
 	
 	//debug bind
 	$("#sendData").on('click', debugLogCom);
 	//eo debug bind
 	//last things to be done
-	var HOLD = wrapForTable(p_charBySeason());
+	var HOLD = wrapForTable(p_CharBySeason(0, 9999, 20));
 	
 	initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, false, false); // rows, columns, divID, data, display
 	
