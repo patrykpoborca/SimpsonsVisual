@@ -210,7 +210,8 @@ function fillCharacterTableAndOtherViewInfo(divIdToFill, arrayOfCharacters, enab
 		}
 	}
 
-
+	$(".inThatEps").css("border", "0px");
+	$(".notInThatEps").css("border", "0px");
 } //end filloverview table
 
 
