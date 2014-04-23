@@ -57,7 +57,10 @@ function chartFunc() {
 			horizontalAlign: "center",
 			cursor: "pointer",
 			itemclick: function(e) {
-				console.log(e.dataSeries.name);
+				$("#superDiv").show();
+				$("#chart_div").hide();
+				$("#genTable").hide();
+				givenACharacterNameFilloutTheView('superDiv', e.dataSeries.name);
 			},
 		},
 		creditText: "",
@@ -195,9 +198,9 @@ function updatingChartFunc(groupNum) {
 		axisX: {
 			title: "Seasons",
 			titleFontColor: "black",
-			titleFontSize: 24,
+			titleFontSize: 20,
 			labelAutoFit: true,
-			labelFontSize: 20,
+			labelFontSize: 16,
 			labelFontColor: "black",
 			interval: 1,
 			margin: 0,
@@ -209,7 +212,7 @@ function updatingChartFunc(groupNum) {
 			titleFontSize: 18,
 			titleFontColor: "black",
 			labelFontColor: "black",
-			labelFontSize: 20,
+			labelFontSize: 16,
 			interval: 2,
 			gridColor: "gray",
 			tickColor: "gray"
