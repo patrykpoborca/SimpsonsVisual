@@ -224,7 +224,10 @@ function updatingChartFunc(groupNum) {
 			horizontalAlign: "center",
 			cursor: "pointer",
 			itemclick: function(e) {
-				console.log(e.entries);
+				$("#superDiv").show();
+				$("#chart_div").hide();
+				$("#genTable").hide();
+				givenACharacterNameFilloutTheView('superDiv', e.dataSeries.name);
 			},
 		},
 		creditText: "",
@@ -357,15 +360,16 @@ function top10VAChart(group) {
 	}
 	//console.log(dataArray);
 	var chart = new CanvasJS.Chart("chart_div", {
-		backgroundColor: "#FFD90F",
+		backgroundColor: "#beige",
 		//theme: "theme3",
+		width: 1280,
 		title: {
 			text: "The Simpsons VA",
 			fontSize: 30
 		},
 		axisX: {
 			title: "Voice Actors",
-			titleFontSize: 24,
+			titleFontSize: 20,
 			titleFontColor: "black",
 			labelAutoFit: true,
 			labelFontSize: 14.5,
@@ -377,7 +381,7 @@ function top10VAChart(group) {
 		},
 		axisY: {
 			title: "Roles Played",
-			titleFontSize: 24,
+			titleFontSize: 20,
 			titleFontColor: "black",
 			labelFontColor: "black",
 			gridColor: "gray",
@@ -388,7 +392,13 @@ function top10VAChart(group) {
 			verticalAlign: "bottom",
 			horizontalAlign: "center",
 			cursor: "pointer",
-			//itemclick: function
+			itemclick: function(e) {
+				$("#superDiv").show();
+				$("#chart_div").hide();
+				$("#genTable").hide();
+				// If there is a method to call a specific VA
+				//givenACharacterNameFilloutTheView('superDiv', e.dataSeries.name);
+			},
 		},
 		creditText: "",
 		data: [
