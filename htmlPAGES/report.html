@@ -74,27 +74,85 @@
 
 
       	<h2>Weekly Report</h2>
-
+		
+		<hr>
       	<p>
-      		<h4>Week1</h4>
-          <ul class="list-group"> <h6>Eric Wu</h6>
-            <li class="list-group-item">Received the parsed data from Dylan.  Looked up some chart libraries to see which could do what we want.  It was between Google charts, AMCharts, ChartsJS or CanvasJS.  Went with CanvasJS and create a js file for generating and creating new charts.
-            </li>
-            <li class="list-group-item">So far I can generate a chart using hard-coded values.  I tested if I could get the value using a method and it worked. Will continue with my work on getting the chart to do what we want.
-            </li>
-            <li class="list-group-item">Files have been uploaded to our shared github repo found at: https://github.com/oorosc/cs424_proj3.</li>
-          </ul>
+			<h4>Week 1</h4>
+			<ul class="list-group"> <h6>Eric Wu</h6>
+				<li class="list-group-item">From 4/1 to 4/4</li>
+				<li class="list-group-item">Received the parsed data from Dylan.  Looked up some chart libraries to see which could do what we want.  It was between Google charts, AMCharts, ChartsJS or CanvasJS.  Went with CanvasJS and create a js file for generating and creating new charts.
+				</li>
+				<li class="list-group-item">So far I can generate a chart using hard-coded values.  I tested if I could get the value using a method and it worked. Will continue with my work on getting the chart to do what we want.
+				</li>
+				<li class="list-group-item">Files have been uploaded to our shared github repo found at: <a href="https://github.com/oorosc/cs424_proj3">https://github.com/oorosc/cs424_proj3</a>.</li>
+			</ul>
           <br>--------------<br>
-          <ul class="list-group"> <h6>Patryk Poborca</h6>
-            <li class="list-group-item">Created team materials/resources, wrote about page, and came up with design for UI: http://puu.sh/7YP5f.png and began researching how to create
-            all elements of designed UI</li>
-          </ul>
+			<ul class="list-group"> <h6>Patryk Poborca</h6>
+				<li class="list-group-item">Created team materials/resources, wrote about page, and came up with design for UI: <a href="http://puu.sh/7YP5f.png">http://puu.sh/7YP5f.png</a> and began researching how to create
+				all elements of designed UI</li>
+			</ul>
           <br>--------------<br>
-          <ul class="list-group"> <h6>Dylan Kobayashi</h6>
-            <li class="list-group-item">Initial parse of Simpsons wikia performed to collect characters and episodes.</li>
-            <li class="list-group-item">Filled in some of the data holes, formatted for usage with js.</li>
-            <li class="list-group-item">Created prototype controls to begin rudimentary data viewing.</li>
-          </ul>
+			<ul class="list-group"> <h6>Dylan Kobayashi</h6>
+				<li class="list-group-item">Initial parse of Simpsons wikia performed to collect characters and episodes.</li>
+				<li class="list-group-item">Filled in some of the data holes, formatted for usage with js.</li>
+				<li class="list-group-item">Created prototype controls to begin rudimentary data viewing.</li>
+			</ul>
+		<br>
+		<h4>Week 2</h4>
+			<ul class="list-group"> <h6>Eric Wu</h6>
+				<li class="list-group-item">From 4/5 to 4/11</li>
+				<li class="list-group-item">Created a default chart that has the 5 Simpsons characters appearances through the 25 seasons.</li>
+				<li class="list-group-item">Made a couple of function in preparation for receiving input from the user's input. Tested the functions and it seems that I can pass in character names and seasons to get their appearances and generate a chart.</li>
+				<li class="list-group-item">Notified Dylan about some of the errors in the data because the chart wouldn't generate any data after season 13.  After he fixed the data, everything seems to be correct.</li>
+			</ul>
+		<br>--------------<br>
+			<ul class="list-group"> <h6>Patryk Poborca</h6>
+				<li class="list-group-item">Created the GUI from scratch, <a href="http://puu.sh/89ERd.png">http://puu.sh/89ERd.png</a>, <a href="http://puu.sh/89ESh.png">http://puu.sh/89ESh.png</a>, <a href="http://puu.sh/89ETe.png">http://puu.sh/89ETe.png</a></li>
+				<li class="list-group-item">Created some dynamic functions allowing the user to link checkmarks with boxes, dynamic sliders for min/max, and also created a dynamic table generator, will add more to it soon.</li>
+			</ul>
+		<br>--------------<br>
+			<ul class="list-group"> <h6>Dylan Kobayashi</h6>
+				<li class="list-group-item">From last Report to 4/21</li>
+				<li class="list-group-item">Additional data paring to collect locations and voice actors.</li>
+				<li class="list-group-item">Character and episode data format restructured to for easier searching. 
+				<br>Character data also restructured to include voice actor information.</li>
+				<li class="list-group-item">All datafiles error checked. All problematic entries edited to have an existing entry and as best as possible identify if it should have been associated with an already existing entry. For example "bart" vs "Bart". Problems included source errors(typos, spacing, and format inconsistencies), and parser mistakes. Currently, all data should have entries that exist.
+				<br>Note: most of the source error edits were done by hand, but with intention to make sure everything had an existing attribute. The accuracy is not confidently 100%. Some things were confirmed with outsides sources like episode number, but due to lack of knowledge, currently impossible to do accuracy checks on things like full names, jobs, and relatives.</li>
+				<li class="list-group-item">Created project web page. Currently rather bare aside from the intro screen and app link (which is currently just the prototype).</li>
+				<li class="list-group-item">Based on the wikimedia file tag, created a preprocessed file containing links to each of the character pictures generated from the wikimedia link generator api. There seems to be a problem with characters who have had their pictures updated this year(2014), as the link generator doesn't work on them.</li>
+				<li class="list-group-item">Created a table to show overview of characters over all seasons and episodes with color representations. (Honestly unsure what the name is. Looked back through lecture and it was just called "table using colour to help highlight")
+				<br>Added a mouse over and click functionality. 
+				<br>Attempted to create a dynamic aspect where it can be passed a div and parameters to influence where the table will be and what data is</li>
+			</ul>
+		<br>
+		<h4>Week 3</h4>
+			<ul class="list-group"> <h6>Eric Wu</h6>
+				<li class="list-group-item">From 4/12 to 4/23</li>
+				<li class="list-group-item">Worked on creating a chart to display the total roles of each voice actor.</li>
+				<li class="list-group-item">Developed a function to take in a number, the number will dictate which set of 10 Voice Actors to display.  The Voice Actor chart is sorted by appearances.</li>
+				<li class="list-group-item">Worked on testing how to implement the click function for the charts.  As well as finding what kind of data I can pull from the chart.</li>
+				<li class="list-group-item">Documented Interesting Findings and updated the Weekly Reports page.</li>
+				<li class="list-group-item">Implemented a chart that can be updated to display either the next 5 groups of characters or to display the next character while maintaining a 5 character per chart view.  The characters are displayed in a descending order based on total appearances throughout the 25 Seasons.</li>
+				<li class="list-group-item">Fixed the css settings in the index.html so that the chart can display a tooltip when the mouse hovers over the columns.</li>
+			</ul>
+		<br>--------------<br>
+			<ul class="list-group"> <h6>Patryk Poborca</h6>
+				<li class="list-group-item">Drafted up UI.</a></li>
+				<li class="list-group-item">Polished UI into Minimalistic design, incorporated draggable.</li>
+				<li class="list-group-item">setup parser backbone.</li>
+				<li class="list-group-item">generated arrays for these =  <a href="http://puu.sh/8g3Bl.png">http://puu.sh/8g3Bl.png</a>.</li>
+				<li class="list-group-item">setup logic for navigation through selections on UI.</li>
+			</ul>
+		<br>--------------<br>
+			<ul class="list-group"> <h6>Dylan Kobayashi</h6>
+				<li class="list-group-item"></li>
+				<li class="list-group-item"></li>
+				<li class="list-group-item"></li>
+				<li class="list-group-item"></li>
+				<li class="list-group-item"></li>
+				<li class="list-group-item"></li>
+				<li class="list-group-item"></li>
+			</ul>
       	</p>
 
 	  </div>
