@@ -10,16 +10,23 @@ dkGlobalOverviewTable.arrayOfEpisodesInSeasons =
 
 dkGlobalOverviewTable.totalEps = 0;
 
-dkGlobalOverviewTable.inEpsColor = '#278627';
-dkGlobalOverviewTable.notInEpsColor = '#2B2B2B';
-dkGlobalOverviewTable.inEpsColor3 = '#389738';
-dkGlobalOverviewTable.notInEpsColor3 = '#3C3C3C';
+dkGlobalOverviewTable.inEpsColor = '#4284D3'; //278627
+dkGlobalOverviewTable.notInEpsColor = 'black';
+dkGlobalOverviewTable.inEpsColor3 = '#0E53A7'; //389738
+dkGlobalOverviewTable.notInEpsColor3 = 'black';//3C3C3C
 dkGlobalOverviewTable.inEpsColorHi = '#006345';
 dkGlobalOverviewTable.notInEpsColorHi = '#005234';
+
+dkGlobalOverviewTable.singleCellHighlight = '#FF6A00';//some orangy yellow to avoid g/r
+dkGlobalOverviewTable.seasonCellHighlight = '#A40004';//some orangy yellow to avoid g/r
 
 dkGlobalOverviewTable.overviewRowLimit = 25;
 
 dkGlobalOverviewTable.divPassing;
+
+
+dkGlobalOverviewTable.enableOverViewHighligh = false;
+
 
 /*
 List of functions so can search by name.
@@ -51,9 +58,12 @@ function fillOverviewTable(divIdToFill, arrayOfCharacters, enableHighlight) {
 
 	var contents = "";
 	contents += "<div id='ovtPictureToggle'></div><div><h1>Overview</h1></div>\n";
+	contents +=
+		"<div style='top:94;position:absolute;width:1330;height:20;border:1px solid black'>"+
+		"<center>Seasons throughout the series</center></div>";
 	contents += "<table onmouseout='hideInfoBox()' onmousemove='showInfoBox()'>\n";
 
-	contents += '<tr><th colspan="4"></th>';
+	contents += '<tr><th colspan="3" style="text-align:left">Name</th><th>#ofEp</th>';
 
 
 	var lineContent = "";
@@ -67,7 +77,7 @@ function fillOverviewTable(divIdToFill, arrayOfCharacters, enableHighlight) {
 
 	//make one header tag per season. it should span as many columns as that season has episodes.
 	for(var i = 0; i < dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length; i++ ){
-		lineContent += '<th colspan="' + dkGlobalOverviewTable.arrayOfEpisodesInSeasons[i] + '">' + (i+1) + "</th>\n"
+		lineContent += '<th id=\'ovtSeasonNum'+ (i + 1) +'\' colspan="' + dkGlobalOverviewTable.arrayOfEpisodesInSeasons[i] + '">' + (i+1) + "</th>\n"
 	}
 	contents += lineContent + "</tr>";
 
@@ -90,7 +100,10 @@ function fillOverviewTable(divIdToFill, arrayOfCharacters, enableHighlight) {
 		if(shorterName.search(" ") != -1){ shorterName = shorterName.substring(0, shorterName.search(" "));	}
 		if(shorterName.length > 7) { shorterName = shorterName.substring(0,7);}
 
-		lineContent += '<tr><th class="name" colspan="4">' + shorterName +'('+appearCounter+')</th>\n';
+		lineContent += '<tr><th class="name" id="ovtTitleN'+i+'" colspan="3" style="text-align:left">' +
+			shorterName +'</th>\n';
+		lineContent += '<th class="name" id="ovtTitleNA'+i+'" style="text-align:right">' +
+			appearCounter+'&nbsp&nbsp</th>\n';
 		
 
 		//fill out that array for the character.
@@ -142,6 +155,7 @@ function fillOverviewTable(divIdToFill, arrayOfCharacters, enableHighlight) {
 	document.getElementById(divIdToFill).innerHTML = contents;
 	document.getElementById(divIdToFill).innerHTML += "<div id='ovtMouseOverPane' style='visibility:hidden;'></div>";
 	document.getElementById(divIdToFill).innerHTML += "<div id='ovtMouseClickPane'style='visibility:hidden;'></div>";
+	document.getElementById(divIdToFill).innerHTML += "<div id='ovtPictureMouseOver'style='visibility:hidden;'></div>";
 
 
 
@@ -165,51 +179,98 @@ function fillOverviewTable(divIdToFill, arrayOfCharacters, enableHighlight) {
 
 	//edit the top lvl description. Edit2: actually, unsure how to proceed at the moment.
 	//may need to be removed if doesn't exist in the end app.
-	document.getElementById('ovtPictureToggle').innerHTML = '<button onclick="toggleCharIconsOnPopup()">Toggle character icons</button></p>';
-
+	//document.getElementById('ovtPictureToggle').innerHTML = '<button onclick="toggleCharIconsOnPopup()">Toggle character icons</button></p>';
+	toggleCharIconsOnPopup();
 } //end filloverview table
 
 
 
 function hideInfoBox(row, col) {
 
-	document.getElementById("ovtMouseOverPane").style.top = 0;
-	document.getElementById("ovtMouseOverPane").style.left = 0;
-	document.getElementById("ovtMouseOverPane").style.visibility = 'hidden';
+	if(row != null){
+		document.getElementById("ovtMouseOverPane").style.top = 0;
+		document.getElementById("ovtMouseOverPane").style.left = 0;
+		document.getElementById("ovtMouseOverPane").style.visibility = 'hidden';
+		document.getElementById('ovtPictureMouseOver').style.visibility = 'hidden';
 
-	document.getElementById("ovtMouseOverPane").innerHTML = "";
+		document.getElementById("ovtMouseOverPane").innerHTML = "";
 
-	//for each row
-	for(var radj = 0; radj <= row; radj++){
-		//get the episodes 
-		for(var radjCol = 1; getSeasonOfEpisodeNumber(radjCol) <= getSeasonOfEpisodeNumber(col); radjCol++){
-			//if in that column
-			if(  (getSeasonOfEpisodeNumber(radjCol) == getSeasonOfEpisodeNumber(col)) ||
-				 ( radj == row)
-				){
-				if(radj %2 == 0){
-					if(document.getElementById('ovtIDr' + radj + 'c' + radjCol).className.search('notInThatEps') >= 0){
-						document.getElementById('ovtIDr' + radj + 'c' + radjCol).style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
+
+		if(row %2 == 0){
+			if(document.getElementById('ovtIDr' + row + 'c' + col).className.search('notInThatEps') >= 0){
+				document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
+			}
+			else{  document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.inEpsColor;}
+		}
+		else{
+			if(document.getElementById('ovtIDr' + row + 'c' + col).className.search('notInThatEps') >= 0){
+				document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.notInEpsColor3;
+			}
+			else{  document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.inEpsColor3;}
+		}
+		document.getElementById('ovtTitleN'+row).style.backgroundColor = 'white';
+		document.getElementById('ovtTitleNA'+row).style.backgroundColor = 'white';
+		document.getElementById('ovtSeasonNum'+ getSeasonOfEpisodeNumber(col)  ).style.backgroundColor = 'white';
+
+
+		//go up
+		for(var i = col; getSeasonOfEpisodeNumber(i) == getSeasonOfEpisodeNumber(col) ; i++){
+			document.getElementById('ovtIDr' + row + 'c' + i).style.border = 'none';
+		}
+		//then down
+		for(var i = col; getSeasonOfEpisodeNumber(i) == getSeasonOfEpisodeNumber(col) ; i--){
+			document.getElementById('ovtIDr' + row + 'c' + i).style.border = 'none';
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		/* currently disabled entire row/column return.
+		//for each row
+		for(var radj = 0; radj <= row; radj++){
+			//get the episodes 
+			for(var radjCol = 1; getSeasonOfEpisodeNumber(radjCol) <= getSeasonOfEpisodeNumber(col); radjCol++){
+				//if in that column
+				if(  (getSeasonOfEpisodeNumber(radjCol) == getSeasonOfEpisodeNumber(col)) ||
+					 ( radj == row)
+					){
+					if(radj %2 == 0){
+						if(document.getElementById('ovtIDr' + radj + 'c' + radjCol).className.search('notInThatEps') >= 0){
+							document.getElementById('ovtIDr' + radj + 'c' + radjCol).style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
+						}
+						else{  document.getElementById('ovtIDr' + radj + 'c' + radjCol).style.backgroundColor = dkGlobalOverviewTable.inEpsColor;}
 					}
-					else{  document.getElementById('ovtIDr' + radj + 'c' + radjCol).style.backgroundColor = dkGlobalOverviewTable.inEpsColor;}
-				}
-				else{
-					if(document.getElementById('ovtIDr' + radj + 'c' + radjCol).className.search('notInThatEps') >= 0){
-						document.getElementById('ovtIDr' + radj + 'c' + radjCol).style.backgroundColor = dkGlobalOverviewTable.notInEpsColor3;
+					else{
+						if(document.getElementById('ovtIDr' + radj + 'c' + radjCol).className.search('notInThatEps') >= 0){
+							document.getElementById('ovtIDr' + radj + 'c' + radjCol).style.backgroundColor = dkGlobalOverviewTable.notInEpsColor3;
+						}
+						else{  document.getElementById('ovtIDr' + radj + 'c' + radjCol).style.backgroundColor = dkGlobalOverviewTable.inEpsColor3;}
 					}
-					else{  document.getElementById('ovtIDr' + radj + 'c' + radjCol).style.backgroundColor = dkGlobalOverviewTable.inEpsColor3;}
 				}
 			}
-		}
-	}
-
-}
+		} //*/
+	}//end if not null
+} //end hideInfoBox
 
 
 function showInfoBox(iname, iepisode, inEps, row, col) {
 
 	if(iname != null){
-		var infoTextAsOne = "" + iname + "<br>";
+		var infoTextAsOne = "&nbsp&nbsp" + iname + "<br>";
 		//console.log("Before the print:");
 		//console.log("Inside of the show info:" + infoTextAsOne);
 
@@ -228,9 +289,66 @@ function showInfoBox(iname, iepisode, inEps, row, col) {
 		document.getElementById("ovtMouseOverPane").innerHTML = infoTextAsOne;
 		document.getElementById("ovtMouseOverPane").style.visibility = "visible";
 		document.getElementById("ovtMouseOverPane").style.top = event.clientY - 30;
-		document.getElementById("ovtMouseOverPane").style.left = event.clientX - 30;
+		if(event.clientX > 1000){ document.getElementById("ovtMouseOverPane").style.left = 1000;}
+		else {document.getElementById("ovtMouseOverPane").style.left = event.clientX - 30;}
+		document.getElementById("ovtMouseOverPane").style.backgroundColor = "white";
+		document.getElementById("ovtMouseOverPane").style.opacity = 0.8;
 
 
+	document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.singleCellHighlight;
+
+	document.getElementById('ovtTitleN'+row).style.backgroundColor = dkGlobalOverviewTable.singleCellHighlight;
+	document.getElementById('ovtTitleNA'+row).style.backgroundColor = dkGlobalOverviewTable.singleCellHighlight;
+	document.getElementById('ovtSeasonNum'+ getSeasonOfEpisodeNumber(col) ).style.backgroundColor = dkGlobalOverviewTable.singleCellHighlight;
+
+
+
+	//attempt "highlight of the season"
+
+	var currentSeason = getSeasonOfEpisodeNumber(col);
+	var firstEpInSeason;
+	var lastEpInSeason;
+
+	for(var i = col; getSeasonOfEpisodeNumber(i) == currentSeason; i--){ firstEpInSeason = i; }
+	for(var i = col; getSeasonOfEpisodeNumber(i) == currentSeason; i++){ lastEpInSeason = i; }
+
+	if(dkGlobalOverviewTable.enableOverViewHighligh){
+		//the starter should have left, top bottom
+		document.getElementById('ovtIDr' + row + 'c' + firstEpInSeason).style.borderLeft
+		= '1px solid ' + dkGlobalOverviewTable.seasonCellHighlight;
+		document.getElementById('ovtIDr' + row + 'c' + firstEpInSeason).style.borderTop
+		= '1px solid ' + dkGlobalOverviewTable.seasonCellHighlight;
+		document.getElementById('ovtIDr' + row + 'c' + firstEpInSeason).style.borderBottom
+		= '1px solid ' + dkGlobalOverviewTable.seasonCellHighlight;
+		//ender should have right,bottom,top
+		document.getElementById('ovtIDr' + row + 'c' + lastEpInSeason).style.borderRight
+		= '1px solid ' + dkGlobalOverviewTable.seasonCellHighlight;
+		document.getElementById('ovtIDr' + row + 'c' + lastEpInSeason).style.borderTop
+		= '1px solid ' + dkGlobalOverviewTable.seasonCellHighlight;
+		document.getElementById('ovtIDr' + row + 'c' + lastEpInSeason).style.borderBottom
+		= '1px solid ' + dkGlobalOverviewTable.seasonCellHighlight;
+
+		//inner cells
+		for(var i = firstEpInSeason + 1; i < lastEpInSeason; i++){
+			document.getElementById('ovtIDr' + row + 'c' + i).style.borderTop =
+				'1px solid ' + dkGlobalOverviewTable.seasonCellHighlight;
+			document.getElementById('ovtIDr' + row + 'c' + i).style.borderBottom =
+				'1px solid ' + dkGlobalOverviewTable.seasonCellHighlight;
+		}
+	}
+
+	if(dkGlobalOverviewTable.showIconInPopup){
+		document.getElementById('ovtPictureMouseOver').innerHTML = 
+			"<img width='100px' height='150px' src='" + fetchImgUrlOfChar(iname) + "'></img>";
+		document.getElementById('ovtPictureMouseOver').style.top = event.clientY + 20;
+		document.getElementById('ovtPictureMouseOver').style.left = 10;
+		document.getElementById('ovtPictureMouseOver').style.visibility = 'visible';
+		document.getElementById('ovtPictureMouseOver').style.position = 'absolute';
+	}
+
+
+
+	/*  currently disabled is the whole row highlight.
 	//for each row
 	for(var radj = 0; radj <= row; radj++){
 		//get the episodes 
@@ -255,7 +373,7 @@ function showInfoBox(iname, iepisode, inEps, row, col) {
 		}
 	}
 
-
+	//*/
 
 
 	} //end if params were not null
@@ -276,15 +394,15 @@ function showPopupControlBox(pcbName, pcbEps, pcbSeason ) {
 
 	if(pcbName != null){
 		var infoTextAsOne = "";
-		infoTextAsOne += '<button onclick="hidePopupControlBox()">X</button><br>';
+		infoTextAsOne += '&nbsp<button onclick="hidePopupControlBox()">X</button><br>';
 		if(pcbName.length > 0){
 			infoTextAsOne += '&nbsp&nbspSearch by character: <button onclick="givenACharacterNameFilloutTheView(\''+dkGlobalOverviewTable.divPassing+'\',\''+pcbName+'\')">'+pcbName+'</button><br>';
 		}
 		if(pcbEps >=0){
-			infoTextAsOne += '&nbsp&nbspSearch by Episode: <button onclick="givenAnEpisodeFillADiv(\''+dkGlobalOverviewTable.divPassing+'\','+(pcbEps-1)+')">'+pcbEps+'</button><br>';
+			infoTextAsOne += '&nbsp&nbspSearch by Episode:&nbsp&nbsp<button onclick="givenAnEpisodeFillADiv(\''+dkGlobalOverviewTable.divPassing+'\','+(pcbEps-1)+')">'+pcbEps+'</button><br>';
 		}
 		if(pcbSeason >=0){
-			infoTextAsOne += '&nbsp&nbspSearch by Season: <button onclick="findCharactersInGivenSeasonAndPopulateInteractiveTable(\''+dkGlobalOverviewTable.divPassing+'\', '+pcbSeason+')">'+pcbSeason+'</button><br>';
+			infoTextAsOne += '&nbsp&nbspSearch by Season:&nbsp&nbsp&nbsp<button onclick="findCharactersInGivenSeasonAndPopulateInteractiveTable(\''+dkGlobalOverviewTable.divPassing+'\', '+pcbSeason+')">'+pcbSeason+'</button><br>';
 		}
 
 		//console.log("Before the print:");
@@ -292,8 +410,9 @@ function showPopupControlBox(pcbName, pcbEps, pcbSeason ) {
 
 		document.getElementById("ovtMouseClickPane").innerHTML = infoTextAsOne;
 		document.getElementById("ovtMouseClickPane").style.visibility = 'visible';
-		document.getElementById("ovtMouseClickPane").style.top = event.clientY - 130;
-		document.getElementById("ovtMouseClickPane").style.left = event.clientX - 130;
+		document.getElementById("ovtMouseClickPane").style.top = event.clientY -30;
+		if(event.clientX > 1000){ document.getElementById("ovtMouseClickPane").style.left = 1000;}
+		else {document.getElementById("ovtMouseClickPane").style.left = event.clientX - 30;}
 	}
 }
 
@@ -345,6 +464,11 @@ function fetchImgUrlOfChar( charName) {
 
 function toggleCharIconsOnPopup() {
 dkGlobalOverviewTable.showIconInPopup = ! dkGlobalOverviewTable.showIconInPopup;
+if(dkGlobalOverviewTable.showIconInPopup){
+document.getElementById('ovtPictureToggle').innerHTML = "<button onclick='toggleCharIconsOnPopup()'>Toggle Picture: OFF</button>";
+} else{
+document.getElementById('ovtPictureToggle').innerHTML = "<button onclick='toggleCharIconsOnPopup()'>Toggle Picture: ON</button>";
+}
 }
 
 

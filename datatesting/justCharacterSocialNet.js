@@ -18,6 +18,7 @@ function givenACharacterFillOutSocialNet(divIdToFill, characterToUse) {
 
 	var characterIndexToMakeNetWith = -1;
 	if(typeof characterToUse == 'string'){
+		characterToUse = characterToUse.trim();
 		for(var i = 0; i < allCharByAppearAmt.length; i++){
 			if(characterToUse == allCharByAppearAmt[i][0]){
 				characterIndexToMakeNetWith = i;
@@ -39,7 +40,10 @@ function givenACharacterFillOutSocialNet(divIdToFill, characterToUse) {
 			'<button onclick="backToCharacterFromSocialNet(\''+divIdToFill+'\',\''+ characterIndexToMakeNetWith +'\')">Return to character</button>';
 		document.getElementById('ssnetName').innerHTML = 
 			'<h1>Social Network of ' + socialNetOfChars[characterIndexToMakeNetWith][0] + ' ('+socialNetOfChars[characterIndexToMakeNetWith][1]+' episodes)</h1> ';
-		document.getElementById('ssnetPicture').innerHTML = "<img width='100px' height='150px' src='" + fetchImgUrlOfChar(allCharByAppearAmt[characterIndexToMakeNetWith][0]) + "'></img>";
+		document.getElementById('ssnetPicture').innerHTML =
+			"<img width='140px' height='210px' src='" +
+			fetchImgUrlOfChar(allCharByAppearAmt[characterIndexToMakeNetWith][0]) + "'></img><br><center><b>"+
+			socialNetOfChars[characterIndexToMakeNetWith][0] + "</b></center>";
 
 		document.getElementById('ssnetHighTier').innerHTML = "High";
 		document.getElementById('ssnetMedTier').innerHTML = "Med";
@@ -65,32 +69,32 @@ function createDivsForSsnet(divIdToFill) {
 	document.getElementById(divIdToFill).innerHTML +=
 		'<div id="ssnetName" style="position:absolute;top:0;left:300;"></div>\n';
 	document.getElementById(divIdToFill).innerHTML += 
-		'<div id="ssnetPicture" style="position:absolute;top:300;left:50;border: 1px solid black;"></div>\n';
+		'<div id="ssnetPicture" style="position:absolute;top:250;left:25;width:140;"></div>\n';
 	
 	document.getElementById(divIdToFill).innerHTML += 
-		'<div id="ssnetHTLabel" style="position:absolute;top:130;left:200;width:300;height:450;"></div>';
+		'<div id="ssnetHTLabel" style="position:absolute;top:80;left:225;height:450;"></div>';
 	document.getElementById(divIdToFill).innerHTML += 
 		'<div id="ssnetHighTier" '+
-		'style="position:absolute;top:150;left:200;width:300;height:450;'+
+		'style="position:absolute;top:100;left:225;width:250;height:550;'+
 		'overflow-y:scroll; border: 1px solid black;"></div>\n';
 	
 	document.getElementById(divIdToFill).innerHTML += 
-		'<div id="ssnetMTLabel" style="position:absolute;top:130;left:550;width:300;height:450;"></div>';
+		'<div id="ssnetMTLabel" style="position:absolute;top:80;left:580;width:300;height:450;"></div>';
 	document.getElementById(divIdToFill).innerHTML += 
 		'<div id="ssnetMedTier" '+
-		'style="position:absolute;top:150;left:550;width:300;height:450;'+
+		'style="position:absolute;top:100;left:580;width:250;height:550;'+
 		'overflow-y:scroll; border: 1px solid black;"></div>\n';
 	
 
 	document.getElementById(divIdToFill).innerHTML += 
-		'<div id="ssnetLTLabel" style="position:absolute;top:130;left:900;width:300;height:450;"></div>';
+		'<div id="ssnetLTLabel" style="position:absolute;top:80;left:930;width:300;height:550;"></div>';
 	document.getElementById(divIdToFill).innerHTML += 
 		'<div id="ssnetLowTier" '+
-		'style="position:absolute;top:150;left:900;width:300;height:450;'+
+		'style="position:absolute;top:100;left:930;width:250;height:550;'+
 		'overflow-y:scroll; border: 1px solid black;"></div>\n';
 
 	document.getElementById(divIdToFill).innerHTML += 
-		'<div id="ssnetExcludeLabel" style="position:absolute;top:650;left:800;"></div>';
+		'<div id="ssnetExcludeLabel" style="position:absolute;top:660;left:800;"></div>';
 }
 
 //function to return back to overview. 
@@ -265,44 +269,44 @@ function ssnetFillTiers(indexOfGivenCharacter) {
 
 	contentForDiv = "";
 	for(var i = 0; i < hTierArray.length; i++){
-		contentForDiv += "<div onclick='ssnetCharcterClick("+hTierArray[i][0]+")'>";
-		contentForDiv += "<img width='100px' height='150px' src='" + fetchImgUrlOfChar(allCharByAppearAmt[  hTierArray[i][0]  ]  [0]) + "'></img><br>";
+		contentForDiv += "<div onclick='ssnetCharcterClick("+hTierArray[i][0]+")'><center>";
+		contentForDiv += "&nbsp&nbsp<img width='60px' height='90px' src='" + fetchImgUrlOfChar(allCharByAppearAmt[  hTierArray[i][0]  ]  [0]) + "'></img><br>&nbsp&nbsp&nbsp";
 		contentForDiv += allCharByAppearAmt[  hTierArray[i][0]  ]  [0] + "<br>";
-		contentForDiv += "Shared " + hTierArray[i][1] + " eps("+hTierArray[i][2]+"%)";
+		contentForDiv += "&nbsp&nbsp&nbspShared " + hTierArray[i][1] + " eps("+hTierArray[i][2]+"%)";
 		contentForDiv += "<hr>";
-		contentForDiv += "</div>";
+		contentForDiv += "</center></div>";
 	}
 
 	document.getElementById('ssnetHighTier').innerHTML = contentForDiv;
-	document.getElementById('ssnetHTLabel').innerHTML = "Those most seen with " + allCharByAppearAmt[indexOfGivenCharacter][0] + "("+hTierArray.length+"):";
+	document.getElementById('ssnetHTLabel').innerHTML = "&nbsp<b>Most seen with " + allCharByAppearAmt[indexOfGivenCharacter][0] + "("+hTierArray.length+"):</b>";
 
 
 	contentForDiv = "";
 	for(var i = 0; i < mTierArray.length; i++){
-		contentForDiv += "<div onclick='ssnetCharcterClick("+mTierArray[i][0]+")'>";
-		contentForDiv += "<img width='100px' height='150px' src='" + fetchImgUrlOfChar(allCharByAppearAmt[  mTierArray[i][0]  ]  [0]) + "'></img><br>";
+		contentForDiv += "<div onclick='ssnetCharcterClick("+mTierArray[i][0]+")'><center>";
+		contentForDiv += "&nbsp&nbsp<img width='60px' height='90px' src='" + fetchImgUrlOfChar(allCharByAppearAmt[  mTierArray[i][0]  ]  [0]) + "'></img><br>&nbsp&nbsp&nbsp";
 		contentForDiv += allCharByAppearAmt[  mTierArray[i][0]  ]  [0] + "<br>";
-		contentForDiv += "Shared " + mTierArray[i][1] + " eps("+mTierArray[i][2]+"%)";
+		contentForDiv += "&nbsp&nbsp&nbspShared " + mTierArray[i][1] + " eps("+mTierArray[i][2]+"%)";
 		contentForDiv += "<hr>";
-		contentForDiv += "</div>";
+		contentForDiv += "</center></div>";
 	}
 
 	document.getElementById('ssnetMedTier').innerHTML = contentForDiv;
-	document.getElementById('ssnetMTLabel').innerHTML = "Commonly seen with("+mTierArray.length+"):";
+	document.getElementById('ssnetMTLabel').innerHTML = "&nbsp<b>Commonly seen with("+mTierArray.length+"):</b>";
 
 
 	contentForDiv = "";
 	for(var i = 0; i < lTierArray.length; i++){
-		contentForDiv += "<div onclick='ssnetCharcterClick("+lTierArray[i][0]+")'>";
-		contentForDiv += "<img width='100px' height='150px' src='" + fetchImgUrlOfChar(allCharByAppearAmt[  lTierArray[i][0]  ]  [0]) + "'></img><br>";
+		contentForDiv += "<div onclick='ssnetCharcterClick("+lTierArray[i][0]+")'><center>";
+		contentForDiv += "&nbsp&nbsp<img width='60px' height='90px' src='" + fetchImgUrlOfChar(allCharByAppearAmt[  lTierArray[i][0]  ]  [0]) + "'></img><br>&nbsp&nbsp&nbsp";
 		contentForDiv += allCharByAppearAmt[  lTierArray[i][0]  ]  [0] + "<br>";
-		contentForDiv += "Shared " + lTierArray[i][1] + " eps("+lTierArray[i][2]+"%)";
+		contentForDiv += "&nbsp&nbsp&nbspShared " + lTierArray[i][1] + " eps("+lTierArray[i][2]+"%)";
 		contentForDiv += "<hr>";
-		contentForDiv += "</div>";
+		contentForDiv += "</center></div>";
 	}
 
 	document.getElementById('ssnetLowTier').innerHTML = contentForDiv;
-	document.getElementById('ssnetLTLabel').innerHTML = "Occasionally seen with("+lTierArray.length+"):";
+	document.getElementById('ssnetLTLabel').innerHTML = "&nbsp<b>Occasionally seen with("+lTierArray.length+"):</b>";
 
 
 	if(excludedEntries > 0){

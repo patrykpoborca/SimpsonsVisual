@@ -99,7 +99,7 @@ enableHighlight should be a boolean.
 function fillSeasonInteractTable(divIdToFill, arrayOfCharacters, enableHighlight, season, bEpRange, eEpRange) {
 
 	var contents = "<table onmouseout='shideInfoBox()' onmousemove='sshowInfoBox()'>\n";
-	contents += '<tr><th colspan="4"></th>';
+	contents += '<tr><th colspan="3">Name</th><th>#ofEp</th>';
 	var lineContent = "";
 
 	//determine how many episodes are being tracked to figure out how big to make the table.
@@ -123,7 +123,8 @@ function fillSeasonInteractTable(divIdToFill, arrayOfCharacters, enableHighlight
 		if(shorterName.search(" ") != -1){ shorterName = shorterName.substring(0, shorterName.search(" "));	}
 		if(shorterName.length > 12) { shorterName = shorterName.substring(0,12);}
 
-		lineContent += '<tr><th class="name" colspan="4">' + shorterName +'('+appearCounter+')</th>\n';
+		lineContent += '<tr><th class="name" colspan="3">' + shorterName +
+		'</th><th>'+appearCounter+'</th>\n';
 		
 
 		//fill out that array for the character.
@@ -187,9 +188,9 @@ function fillSeasonInteractTable(divIdToFill, arrayOfCharacters, enableHighlight
 function seassShowMouseClickPanel(characterOfClick, epOfClick, seasonOfClick) {
 	var infoTextAsOne = "";
 
-	infoTextAsOne += "Click to <button onclick=\"seassHideMouseClickPanel()\">Hide</button> panel<br>";
-	infoTextAsOne += "Search by character <button onclick=\"seassMouseClickCharacter(\'"+characterOfClick+"\')\">"+characterOfClick+"</button><br>";
-	infoTextAsOne += "Search by episode <button onclick=\"seassMouseClickEp("+epOfClick+")\">"+epOfClick+"</button><br>";
+	infoTextAsOne += "&nbsp<button onclick=\"seassHideMouseClickPanel()\">X</button><br>";
+	infoTextAsOne += "&nbsp&nbspSearch by character&nbsp<button onclick=\"seassMouseClickCharacter(\'"+characterOfClick+"\')\">"+characterOfClick+"</button><br>";
+	infoTextAsOne += "&nbsp&nbspSearch by episode&nbsp&nbsp&nbsp<button onclick=\"seassMouseClickEp("+epOfClick+")\">"+epOfClick+"</button><br>";
 
 	document.getElementById("seassMouseClickPanel").innerHTML = infoTextAsOne;
 	document.getElementById("seassMouseClickPanel").style.visibility = 'visible';
@@ -242,19 +243,19 @@ function shideInfoBox(row, col) {
 function sshowInfoBox(iname, iepisode, inEps, row, col) {
 
 	if(iname != null){
-		var infoTextAsOne = "" + iname + "<br>";
+		var infoTextAsOne = "&nbsp&nbsp" + iname + "<br>";
 		//console.log("Before the print:");
 		//console.log("Inside of the show info:" + infoTextAsOne);
 
 		if(inEps){
 			document.getElementById("seassMouseOverPanel").style.backgroundColor = dkGlobalOverviewTable.inEpsColor;
-			infoTextAsOne += "IS in ";
+			infoTextAsOne += "&nbsp&nbspIS in ";
 		}
 		else{
 			document.getElementById("seassMouseOverPanel").style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
-			infoTextAsOne += "NOT in ";
+			infoTextAsOne += "&nbsp&nbspNOT in ";
 		}
-		infoTextAsOne +=  "Episode:" + iepisode + "<br>";
+		infoTextAsOne +=  "Episode:" + iepisode + "<br>&nbsp&nbsp";
 		infoTextAsOne +=  allEpisodesByNumber[iepisode-1][0] + "<br>";
 
 
@@ -264,7 +265,8 @@ function sshowInfoBox(iname, iepisode, inEps, row, col) {
 		document.getElementById("seassMouseOverPanel").style.visibility = 'visible';
 		document.getElementById("seassMouseOverPanel").style.top = 200;
 		document.getElementById("seassMouseOverPanel").style.left =
-			280 + 30* dkGlobalOverviewTable.arrayOfEpisodesInSeasons[getSeasonOfEpisodeNumber(iepisode)-1];
+			300 + 30* dkGlobalOverviewTable.arrayOfEpisodesInSeasons[getSeasonOfEpisodeNumber(iepisode)-1];
+		document.getElementById("seassMouseOverPanel").style.backgroundColor = "white";
 			//console.log(document.getElementById("seassMouseOverPanel").style.left);
 
 		//highlight only that particular episode on that particular character
