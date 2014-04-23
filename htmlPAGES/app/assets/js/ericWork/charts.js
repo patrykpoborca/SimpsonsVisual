@@ -65,7 +65,7 @@ function chartFunc() {
 		},
 		axisY: {
 			title: "Appearances of Characters",
-			titleFontSize: 20,
+			titleFontSize: 15,
 			titleFontColor: "black",
 			labelFontColor: "black",
 			gridColor: "gray",
@@ -82,8 +82,8 @@ function chartFunc() {
 		},
 		creditText: "",
 		toolTip: {
-			//shared: true,
-			content: "{label} <br> {name}: {y}",
+			shared: true,
+			//content: "{label} <br> {name}: {y}",
 		},
 		data: [
 			{
@@ -307,6 +307,112 @@ function generateDefaultData(name) {
 	return points;
 }
 
+// Creates a chart using groups of 5 character at a time, currently uses
+// Dylan's numerically sorted files.
+function generateDynamic(groupNum) {
+	var dataAS = [];
+	for(var i = (groupNum-1)*5; i < groupNum*5; i++) {
+		var points = [];
+		var index = 0;
+		var k = 0;
+		var appearances = 0;
+		if(i == allCharByAppearAmt.length) {
+			return dataAS;
+		}
+		for(var j = 0; j < allCharByAppearAmt[i][7].length; j++) {
+			if(allCharByAppearAmt[i][7][j] == true) {
+				appearances++;
+				k++;
+				if(k == episodesSortedIntoSeasons[index][1].length) {
+					//console.log(i);
+					points.push({label: episodesSortedIntoSeasons[index][0].toString(), y: appearances});
+					k = 0;
+					index++;
+					appearances = 0;
+				}
+			} else {
+				k++;
+				if(k == episodesSortedIntoSeasons[index][1].length) {
+					//console.log(i);
+					points.push({label: episodesSortedIntoSeasons[index][0].toString(), y: appearances});
+					k = 0;
+					index++;
+					appearances = 0;
+				}
+			}
+		}
+		if(i == (groupNum*5) -1) {
+			var values = { 
+				name: allCharByAppearAmt[i][0], 
+				type: "column",
+				legendText: allCharByAppearAmt[i][0],
+				showInLegend: true,
+				color: "#0F6F9D",
+				dataPoints: points,
+			}
+		} else {
+			var values = {
+				click: function(e) {
+					console.log(e);
+				},
+				name: allCharByAppearAmt[i][0], 
+				type: "column",
+				legendText: allCharByAppearAmt[i][0],
+				showInLegend: true,
+				dataPoints: points,
+			}
+		}
+		dataAS.push(values);
+		//console.log(dataAS);
+	}
+	//console.log(dataAS);
+	return dataAS;
+}
+
+// To add a specific character at a specific index in Dylan's file to the chart.
+// Currently using Dylan's numerically sorted file.
+function appendToDynamic(charaIndex) {
+	var dataAS = [];
+	var points = [];
+	var index = 0;
+	var k = 0;
+	var appearances = 0;
+	for(var j = 0; j < allCharByAppearAmt[charaIndex][7].length; j++) {
+		if(allCharByAppearAmt[charaIndex][7][j] == true) {
+			appearances++;
+			k++;
+			if(k == episodesSortedIntoSeasons[index][1].length) {
+				//console.log(i);
+				points.push({label: episodesSortedIntoSeasons[index][0].toString(), y: appearances});
+				k = 0;
+				index++;
+				appearances = 0;
+			}
+		} else {
+			k++;
+			if(k == episodesSortedIntoSeasons[index][1].length) {
+				//console.log(i);
+				points.push({label: episodesSortedIntoSeasons[index][0].toString(), y: appearances});
+				k = 0;
+				index++;
+				appearances = 0;
+			}
+		}
+	}
+	var values = { 
+		name: allCharByAppearAmt[charaIndex][0], 
+		type: "column",
+		legendText: allCharByAppearAmt[charaIndex][0],
+		showInLegend: true,
+		dataPoints: points,
+	}
+	
+	dataAS.push(values);
+	//console.log(dataAS);
+	//console.log(dataAS);
+	return dataAS;
+}
+
 function generate5CharaData(seasonNum, arrayOfChara) {
 	var data = [];
 	for(var i = 0; i < arrayOfChara.length; i++) {
@@ -314,6 +420,54 @@ function generate5CharaData(seasonNum, arrayOfChara) {
 		for(var j = 0; j < seasonArray.length; j++) {
 			var seasons = {label: seasonArray[j].toString(), y: 20}
 			points.push(seasons);
+		}
+		var values = { 
+			name: charaArray[i], 
+			type: "column",
+			legendText: charaArray[i],
+			showInLegend: true,
+			dataPoints: points,
+		}
+		if(charaArray.length == 1) {
+			values["color"] = "#FFD90F";
+		}
+		data.push(values);
+	}
+	//console.log(data);
+	return data;
+}
+
+function generateDynamic(groupNum) {
+	var data = [];
+	for(var i = (groupNum-1)*5; i < 5*groupNum; i++) {
+		var points = [];
+		var index = 0;
+		var k = 0;
+		var appearances = 0;
+		for(var j = 0; j < allCharByAppearAmt[i][7].length; j++) {
+			if(allCharByAppearAmt[i][7][j] == true) {
+				appearances++;
+				k++;
+				if(k == episodesSortedIntoSeasons[index][1].length) {
+					//console.log(i);
+					points.push({label: episodesSortedIntoSeasons[index][0].toString(), y: appearances});
+					k = 0;
+					index++;
+					appearances = 0;
+				}
+			} else {
+				k++;
+				if(k == episodesSortedIntoSeasons[index][1].length) {
+					//console.log(i);
+					points.push({label: episodesSortedIntoSeasons[index][0].toString(), y: appearances});
+					k = 0;
+					if(index == episodesSortedIntoSeasons.length-1) {
+						return points;
+					}
+					index++;
+					appearances = 0;
+				}
+			}
 		}
 		var values = { 
 			name: charaArray[i], 

@@ -33,8 +33,8 @@ function initUI()
 {
 
 	//initialization...
-	//$('#superDiv').on('change', chartFunc());
-	//chartFunc(); // eric's chart function
+	$('#superDiv').on('change', chartFunc());
+	chartFunc(); // eric's chart function
 	
 	initInteractiveTable(); // fill overview table
 	$("#chart_div").hide(); //for king div
@@ -45,7 +45,7 @@ function initUI()
 	initDropDowns();
 	p_initInterp("ScopeChoice", "filterBy", "queryParser", "hhh");
 	//p_Directors();1
-	top10VAChart(1);
+	//top10VAChart(1);
 	
 
 }
