@@ -79,8 +79,9 @@ function chartFunc2(inArray) {
 }
 
 function getTheValue(theArray) {
+console.log(theArray);
 				var data = [];
-				for(var i = 1; i < theArray.length; i++) {
+				for(var i = 1; i < theArray.length-1; i++) {
 					var points = [];
 					for(var j = 2; j < theArray[i].length; j++) {
 						if(theArray[i][j] == true) {
@@ -89,13 +90,24 @@ function getTheValue(theArray) {
 							points.push({label: theArray[0][j], y: 0});
 						}
 					}
-					var values = { 
-						name: theArray[i][0], 
-						type: "column",
-						legendText: theArray[i][0],
-						showInLegend: true,
-						//color: "#0F6F9D",
-						dataPoints: points,
+					if(i == theArray.length-1) {
+						var values = { 
+							name: theArray[i][0], 
+							type: "column",
+							legendText: theArray[i][0],
+							showInLegend: true,
+							color: "#0F6F9D",
+							dataPoints: points,
+						}
+					} else {
+						var values = { 
+							name: theArray[i][0], 
+							type: "column",
+							legendText: theArray[i][0],
+							showInLegend: true,
+							//color: "#0F6F9D",
+							dataPoints: points,
+						}
 					}
 					data.push(values);
 				}
