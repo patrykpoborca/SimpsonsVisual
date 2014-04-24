@@ -59,8 +59,8 @@ function fillOverviewTable(divIdToFill, arrayOfCharacters, enableHighlight) {
 	var contents = "";
 	contents += "<div id='ovtPictureToggle'></div><div><h1>Overview</h1></div>\n";
 	contents +=
-		"<div style='top:94;position:absolute;width:1330;height:20;border:1px solid black'>"+
-		"<center>Seasons throughout the series</center></div>";
+		"<div style='top:60;position:absolute;width:1330;height:20;'>"+
+		"<b><center>Seasons throughout the series</center></b></div>";
 	contents += "<table onmouseout='hideInfoBox()' onmousemove='showInfoBox()'>\n";
 
 	contents += '<tr><th colspan="3" style="text-align:left">Name</th><th>#ofEp</th>';

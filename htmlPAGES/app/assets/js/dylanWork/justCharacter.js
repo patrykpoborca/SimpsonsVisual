@@ -60,7 +60,7 @@ function givenACharacterNameFilloutTheView(divIdToFill, nameOfCharacter) {
 
 		//edit the divs
 		document.getElementById('sscvToOverviewButton').innerHTML = '<button onclick="backToOverviewFromCharacter(\''+divIdToFill+'\')">Return to overview</button></p>';
-		document.getElementById('sscvName').innerHTML = '<p><h2 style="float:left">Character:</h2><h1 style="float: left">&nbsp&nbsp'+nameOfCharacter+'</h1>  <h3 style="float: left; margin-top: 30px;">&nbsp&nbsp('+charsInThisSeason[0][1]+')</h3></p>';
+		document.getElementById('sscvName').innerHTML = '<p><h2 style="float:left">&nbsp&nbsp&nbsp&nbsp&nbspCharacter:</h2><h1 style="float: left">&nbsp&nbsp'+nameOfCharacter+'</h1>  <h3 style="float: left; margin-top: 30px;">&nbsp&nbsp('+charsInThisSeason[0][1]+')</h3></p>';
 		document.getElementById('sscvAppearTitle').innerHTML = '<br><br><br><br><b>Appearances over the seasons:</b>';
 		
 
@@ -94,8 +94,10 @@ function createDivsForSscv(divIdToFill) {
 	document.getElementById(divIdToFill).innerHTML += '<div id="sscvName"></div>\n';
 	document.getElementById(divIdToFill).innerHTML += '<div id="sscvAppearTitle"></div>\n';
 	document.getElementById(divIdToFill).innerHTML += '<div id="sscvTableOfAppear"></div>\n';
-	document.getElementById(divIdToFill).innerHTML += '<div id="sscvListOfEpisodesByName"></div>\n';
-	document.getElementById(divIdToFill).innerHTML += '<div id="sscvVoiceActors"></div>\n';
+	document.getElementById(divIdToFill).innerHTML +=
+	 '<div id="sscvListOfEpisodesByName" style="position:absolute;top:200;left:20"></div>\n';
+	document.getElementById(divIdToFill).innerHTML +=
+	 '<div id="sscvVoiceActors" style="position:absolute;top:450;left:20"></div>\n';
 	document.getElementById(divIdToFill).innerHTML += 
 		'<div id="sscvPicture" style="position:absolute;top:250;left:400;"></div>\n';
 	document.getElementById(divIdToFill).innerHTML +=

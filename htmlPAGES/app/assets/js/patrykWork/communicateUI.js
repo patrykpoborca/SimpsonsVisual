@@ -74,9 +74,9 @@ function initInteractiveTable()
 {
 	var charList = [];
 	//input only 20 characters for now. this can be changed later to take in an array holding characters.
-	for(var i = 0; i < 10; i++){
+	for(var i = 0; i < 40; i++){
 		charList.push( allCharByAppearAmt[i]  );
-}
+	}
 
 
 
