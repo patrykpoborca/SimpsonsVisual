@@ -250,6 +250,11 @@ function ssvaFillTable(vaiByCharAmt, vaiByAppearAmt) {
 		}
 
 
+
+	$(".inThatEps").css("border", "0px");
+	$(".notInThatEps").css("border", "0px");
+
+
 } //end filloverview table
 
 
