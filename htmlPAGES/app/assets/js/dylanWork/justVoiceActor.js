@@ -82,7 +82,7 @@ function givenAVoiceActorFilloutTheView(divIdToFill, voiceActorToUse) {
 
 		document.getElementById('ssvaToOverviewButton').innerHTML = '<button onclick="backToOverviewFromVoiceActor(\''+divIdToFill+'\')">Return to overview</button></p>';
 		document.getElementById('ssvaName').innerHTML =
-		 '<center><h1>Voice Actor:' + allVoiceActorsByAppearanceCount[indexOfVaOnAppearCount][0] +"</h1></center>";
+		 '<center><h1>Voice Actor:&nbsp' + allVoiceActorsByAppearanceCount[indexOfVaOnAppearCount][0] +"</h1></center>";
 		document.getElementById('ssvaAppearTitle').innerHTML = 
 		'<b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAppearances over the seasons:</b>';
 		document.getElementById('ssvaTableOfAppear').innerHTML = 
@@ -97,6 +97,8 @@ function givenAVoiceActorFilloutTheView(divIdToFill, voiceActorToUse) {
 		'mouse click';
 		
 		ssvaFillTable(indexOfVa, indexOfVaOnAppearCount);
+		ssvaFillListOfEpisodeNames(indexOfVa, indexOfVaOnAppearCount);
+		ssvaFillListOfCharacters();
 
 		/*
 		//try and render the characters now, but with an episode width change.
@@ -139,9 +141,11 @@ function createDivsForssva(divIdToFill) {
 	 '<div id="ssvaName"></div>\n';
 	document.getElementById(divIdToFill).innerHTML += '<div id="ssvaAppearTitle"></div>\n';
 	document.getElementById(divIdToFill).innerHTML += '<div id="ssvaTableOfAppear"></div>\n';
-	document.getElementById(divIdToFill).innerHTML += '<div id="ssvaListOfEpisodesByName"></div>\n';
+	document.getElementById(divIdToFill).innerHTML +=
+	'<div id="ssvaListOfEpisodesByName" style="position:absolute;top:230;left:40"></div>\n';
 	document.getElementById(divIdToFill).innerHTML += 
-		'<div id="ssvaCharacters" style="position:absolute;top:250;left:400;"></div>\n';
+		'<div id="ssvaCharacters" style="position:absolute;top:230;left:360;width:920;height:400;overflow-y:scroll;"'+
+		' onmouseout="vahideInfoBox()" ></div>\n';
 	document.getElementById(divIdToFill).innerHTML += 
 		'<div id="ssvaMouseOverPanel" style="position:absolute;top:500;left:850;visibility: hidden;border: 1px solid black;"></div>\n';
 	document.getElementById(divIdToFill).innerHTML += 
@@ -302,45 +306,24 @@ function vashowInfoBox(iepisode, vaiByCharAmt, vaiByAppearAmt) {
 } //end show info box
 
 
+function ssvaFillListOfEpisodeNames(vaiByCharAmt, vaiByAppearAmt) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function ssvaFillListOfEpisodeNames(ssvaCharArrayInfo) {
-
-	var totalNumberOfEpisodeAppearance = 0;
-	for(var i = 0; i < ssvaCharArrayInfo[7].length; i++){
-		if(ssvaCharArrayInfo[7][i]){totalNumberOfEpisodeAppearance++;}
-	}
-
-	document.getElementById('ssvaListOfEpisodesByName').innerHTML = '<br><br><b>' + ssvaCharArrayInfo[0] + " episode appearances("+totalNumberOfEpisodeAppearance+"):</b><br>";
-
-
+	var appearCounter = 0;
 	//for some strange reason this is needed. otherwise the /select line will be added before the options.
 	var contentForDiv = "";
 	contentForDiv +=
-		"<select id='ssvaEpNameList' onchange=\"ssvaEpNameClick()\"  multiple=\"multiple\" size=\"10\" style=\"width:300px\">\n"; 
+		"<select id='ssvaEpNameList' onchange=\"ssvaEpNameClick()\"  multiple=\"multiple\" size=\"20\" style=\"width:300px\">\n"; 
 
-	for(var i = 0; i < ssvaCharArrayInfo[7].length; i++){
-		if(ssvaCharArrayInfo[7][i]){
-			contentForDiv += "<option>&nbsp&nbsp"+ allEpisodesByNumber[i][0]+ "</option>\n";
+	for(var epc = 0; epc < allVoiceActorsByAppearanceCount[vaiByAppearAmt][2].length;epc++){
+		if(allVoiceActorsByAppearanceCount[vaiByAppearAmt][2][epc] > 0){
+			appearCounter++;
+			contentForDiv += "<option>&nbsp&nbsp"+ allEpisodesByNumber[epc][0]+ "</option>\n";
 		}
 	}
+	contentForDiv+= '</select>';	
+	contentForDiv = "<b>&nbspEpisodes this voice actor was in("+appearCounter+"):</b><br>" + contentForDiv;
+	document.getElementById('ssvaListOfEpisodesByName').innerHTML = contentForDiv;
 
-	contentForDiv+= '</select>';
-	document.getElementById('ssvaListOfEpisodesByName').innerHTML += contentForDiv;
 
 }//ssvaFillListOfEpisodeNames
 
@@ -355,104 +338,81 @@ function ssvaEpNameClick() {
 
 
 
-function ssvaFillListOfVoiceActors(ssvaCharArrayInfo){
+function ssvaFillListOfCharacters(){
 	var contentForDiv = "";
 
-	contentForDiv += "<br><br><b>" + ssvaCharArrayInfo[0] + "'s Voice Actor(s):</b><br>";
-	contentForDiv +=
-		"<select id='ssvaVaNameList' onchange=\"ssvaVaNameClick()\"  multiple=\"multiple\" style=\"width:300px; height:100px\">\n"; 
+	//	dkGlobalOverviewTable.ssvaCharIndexesOfVa;
 
-	for(var i = 0; i < ssvaCharArrayInfo[6].length; i++){
-		contentForDiv += "<option>&nbsp&nbsp"+ ssvaCharArrayInfo[6][i] +  "</option>\n";
+	contentForDiv += "<b>Characters by this voice actor("+dkGlobalOverviewTable.ssvaCharIndexesOfVa.length+"):</b><br>";
+	//contentForDiv +=
+	//	"<select id='ssvaCharNameList' onchange=\"ssvaCharNameClick()\"  multiple=\"multiple\" style=\"width:300px; height:100px\">\n"; 
+
+	//contentForDiv += "";
+	for(var i = 0; i < Math.floor(dkGlobalOverviewTable.ssvaCharIndexesOfVa.length/2); i++){
+		contentForDiv += "<div onclick='ssvaCharNameClick("+
+			dkGlobalOverviewTable.ssvaCharIndexesOfVa[i]+
+			")' onmousemove='ssvaCharPicHover("+dkGlobalOverviewTable.ssvaCharIndexesOfVa[i]
+			+")' style='float:left'><center><img width='100px' height='150px' src='" +
+			fetchImgUrlOfChar(allCharByAppearAmt[dkGlobalOverviewTable.ssvaCharIndexesOfVa[i]][0]) +
+			 "'></img></center></div>\n";
+	}
+	contentForDiv += "<br>\n";
+	for(var i = Math.floor(dkGlobalOverviewTable.ssvaCharIndexesOfVa.length/2); i < dkGlobalOverviewTable.ssvaCharIndexesOfVa.length; i++){
+		contentForDiv += "<div onclick='ssvaCharNameClick("+
+			dkGlobalOverviewTable.ssvaCharIndexesOfVa[i]+
+			")' onmousemove='ssvaCharPicHover("+dkGlobalOverviewTable.ssvaCharIndexesOfVa[i]
+			+")' style='float:left'><center><img width='100px' height='150px' src='" +
+			fetchImgUrlOfChar(allCharByAppearAmt[dkGlobalOverviewTable.ssvaCharIndexesOfVa[i]][0]) +
+			 "'></img></center></div>\n";
 	}
 
-	contentForDiv+= '</select>';
-	document.getElementById('ssvaVoiceActors').innerHTML = contentForDiv;
+	//contentForDiv+= '</scroll>';
+	document.getElementById('ssvaCharacters').innerHTML = contentForDiv;
 
 } //end  ssvaFillListOfVoiceActors
 
 
 //VIEWCHANGE
-function ssvaVaNameClick() {
-	var nameToUse = document.getElementById('ssvaVaNameList').value;
-	console.log("a va name was clicked:" + nameToUse);
-	alert("va page not found");
+function ssvaCharNameClick(indexOfGivenCharacter) {
+	var nameToUse = allCharByAppearAmt[indexOfGivenCharacter][0];
+	console.log("a char name was clicked:" + nameToUse);
+	givenACharacterNameFilloutTheView(dkGlobalOverviewTable.divPassing, nameToUse); 
+}
+
+function ssvaCharPicHover(indexOfGivenCharacter) {
+
+	if(indexOfGivenCharacter != null){
+		document.getElementById("ssvaMouseOverPanel").style.visibility = 'visible';
+		document.getElementById("ssvaMouseOverPanel").innerHTML = 
+			allCharByAppearAmt[indexOfGivenCharacter][0];
+
+		document.getElementById("ssvaMouseOverPanel").style.top = event.clientY + 10;
+		document.getElementById("ssvaMouseOverPanel").style.backgroundColor = "white";
+		document.getElementById("ssvaMouseOverPanel").style.opacity = 0.8;
+
+		if(event.clientY + 10 > 1000){
+		document.getElementById("ssvaMouseOverPanel").style.left = 1000;
+		}else{ document.getElementById("ssvaMouseOverPanel").style.left = event.clientX + 10; }
+
+	}
 }
 
 
-function ssvaFillListOfTopWith(ssvaCharArrayInfo) {
-
-	var indexOfGivenCharacter = 0;
-
-	for(var i = 0; i < allCharByAppearAmt.length; i++){
-		if(ssvaCharArrayInfo[0] == allCharByAppearAmt[i][0]){
-			indexOfGivenCharacter = i;
-		}
-	}
-
-	var top20epSharedChars = [];
-	var startingShare = socialNetOfChars[indexOfGivenCharacter][1];
-
-	while(startingShare > 0){
-		for(var c = 0; c < socialNetOfChars.length; c++){
-			if(socialNetOfChars[indexOfGivenCharacter][2][c] == startingShare){
-				top20epSharedChars.push(c);
-			}
-			if(top20epSharedChars.length >= 20){startingShare = 0; break;}
-		}
-		startingShare--;
-	}
-
-	var contentForDiv = "";
-
-	contentForDiv += "<b>Those commonly with "+ssvaCharArrayInfo[0]+" in an episode:</b><br>";
-	contentForDiv +=
-		"<select id='ssvaTop10List' onchange=\"ssvaTopNameClick(1)\"  multiple=\"multiple\" size=\"11\" style=\"width:300px\">\n"; 
-
-	for(var i = 0; i < 10; i++){
-		contentForDiv += "<option>&nbsp&nbsp"+  socialNetOfChars[top20epSharedChars[i]][0] + "&nbsp&nbsp("+ socialNetOfChars[indexOfGivenCharacter][2][top20epSharedChars[i]] + ")</option>";
-	}
-	contentForDiv += "</select>";
-	document.getElementById('ssvaTop10CharsWith').innerHTML = contentForDiv;
-
-	contentForDiv = "<br>\n";
-	contentForDiv +=
-		"<select id='ssvaTop20List' onchange=\"ssvaTopNameClick(2)\"  multiple=\"multiple\" size=\"11\" style=\"width:300px\">\n"; 
-
-	for(var i = 10; i < 20; i++){
-		contentForDiv += "<option>&nbsp&nbsp"+  socialNetOfChars[top20epSharedChars[i]][0] + "&nbsp&nbsp("+ socialNetOfChars[indexOfGivenCharacter][2][top20epSharedChars[i]] + ")</option>";
-	}
-	contentForDiv += "</select>";
-	document.getElementById('ssvaTop20CharsWith').innerHTML = contentForDiv;
 
 
 
-} //end ssvaFillListOfTopWith
 
 
-//VIEWCHANGE 
-function ssvaTopNameClick(whichList) {
-	//if came from list 1
 
-	var nameOfCharacter;
 
-	if(1 == whichList){
-		nameOfCharacter = document.getElementById('ssvaTop10List').value;
-	}
-	//if came from list 2
-	if(2 == whichList){
-		nameOfCharacter = document.getElementById('ssvaTop20List').value;
-	}
 
-	var lastParenFind = nameOfCharacter.length-1;
-	while( nameOfCharacter.charAt(lastParenFind) != "("){
-		lastParenFind--;
-	}
-	nameOfCharacter = nameOfCharacter.substring(0, lastParenFind);
-	//console.log("a character name was clicked:" + nameOfCharacter);
 
-	givenACharacterNameFilloutTheView(dkGlobalOverviewTable.divPassing, nameOfCharacter);
-}
+
+
+
+
+
+
 
 
 function ssvaShowMouseClickPanel(epOfClick, vaiByCharAmt, vaiByAppearAmt) {
@@ -461,6 +421,16 @@ function ssvaShowMouseClickPanel(epOfClick, vaiByCharAmt, vaiByAppearAmt) {
 	infoTextAsOne += "&nbsp&nbsp<button onclick=\"ssvaHideMouseClickPanel()\">X</button><br>";
 	infoTextAsOne += "&nbsp&nbspSearch by episode <button onclick=\"ssvaMouseClickEp("+epOfClick+")\">"+epOfClick+"</button><br>";
 	infoTextAsOne += "&nbsp&nbspSearch by season &nbsp&nbsp<button onclick=\"ssvaMouseClickSeason("+getSeasonOfEpisodeNumber(epOfClick)+")\">"+getSeasonOfEpisodeNumber(epOfClick)+"</button><br>";
+
+	for(var i = 0; i < dkGlobalOverviewTable.ssvaCharIndexesOfVa.length; i++){
+		if(allCharByAppearAmt[dkGlobalOverviewTable.ssvaCharIndexesOfVa[i]][7][epOfClick-1]){
+		infoTextAsOne += "&nbsp&nbspSearch by char &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button onclick=\"ssvaMouseClickChar("+
+			dkGlobalOverviewTable.ssvaCharIndexesOfVa[i]+")\">"+
+			allCharByAppearAmt[dkGlobalOverviewTable.ssvaCharIndexesOfVa[i]][0]+"</button>&nbsp&nbsp<br>";
+		}
+	}
+
+
 
 	document.getElementById("ssvaMouseClickPanel").innerHTML = infoTextAsOne;
 	document.getElementById("ssvaMouseClickPanel").style.visibility = 'visible';
@@ -488,9 +458,8 @@ function ssvaMouseClickSeason(seasonOfClick) {
 	findCharactersInGivenSeasonAndPopulateInteractiveTable(dkGlobalOverviewTable.divPassing, seasonOfClick);
 }
 
-
 //VIEWCHANGE
-function ssvaGoToSocialNet(nameOfCharacter) {
-	console.log('attempting switch from character view to social map for' + nameOfCharacter);
-	givenACharacterFillOutSocialNet(dkGlobalOverviewTable.divPassing, nameOfCharacter);
+function ssvaMouseClickChar(indexOfGivenCharacter) {
+	console.log('clicked on the popup panel for character:' + allCharByAppearAmt[indexOfGivenCharacter][0]);
+	givenACharacterNameFilloutTheView(dkGlobalOverviewTable.divPassing, allCharByAppearAmt[indexOfGivenCharacter][0]);
 }

@@ -343,7 +343,7 @@ function sscvFillListOfVoiceActors(sscvCharArrayInfo){
 function sscvVaNameClick() {
 	var nameToUse = document.getElementById('sscvVaNameList').value;
 	console.log("a va name was clicked:" + nameToUse);
-	alert("va page not found");
+	givenAVoiceActorFilloutTheView(dkGlobalOverviewTable.divPassing, nameToUse);
 }
 
 

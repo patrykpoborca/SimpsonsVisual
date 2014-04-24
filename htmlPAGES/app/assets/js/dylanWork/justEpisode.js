@@ -180,11 +180,13 @@ function ssepFillListVoiceActorsInAndUnique(episodeIndex){
 } //end ssepFillListVoiceActorsInAndUnique
 
 function ssepVoiceActorsInClick() {
-	console.log("CharacterInList Selection:" + document.getElementById('ssepListOfVoiceActorsIn').value);
+	console.log("VAInList Selection:" + document.getElementById('ssepListOfVoiceActorsIn').value);
+	givenAVoiceActorFilloutTheView(dkGlobalOverviewTable.divPassing, document.getElementById('ssepListOfVoiceActorsIn').value);
 }
 
 function ssepUniqueVoiceActorsClick() {
-	console.log("UniqueCharacterList Selection:" + document.getElementById('ssepListOfUniqueVoiceActors').value);
+	console.log("UniqueVAList Selection:" + document.getElementById('ssepListOfUniqueVoiceActors').value);
+	givenAVoiceActorFilloutTheView(dkGlobalOverviewTable.divPassing, document.getElementById('ssepListOfUniqueVoiceActors').value);
 }
 
 
