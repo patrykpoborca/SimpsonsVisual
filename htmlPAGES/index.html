@@ -13,6 +13,25 @@
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
+	  
+	   .loaded
+	  {
+	  color : #CC3300;
+	  }
+	  .borderama
+	  {
+	  background-color : #ffdd88;
+		border-style:solid;
+		border-width:6px;
+		border-radius: 25px;
+		border-color:black;
+		padding-top:5px;
+		padding-bottom:5px;
+		padding-right:5px;
+		padding-left:5px;
+	  
+	  }
+	  
     </style>
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -73,28 +92,27 @@
       <div class="span11">
 
 
-      	<h2>ICS Data Visualization Project 3: We are family</h2>
+      	<h1 style = 'text-align:center;'>ICS Data Visualization Project 3: We are family</h2>
 
-<h4> About: </h4>
-<p>
-The page features a dataviewing area and a pop-up control panel. The panel itselt if draggable and can be minimized when not in usage. Data has two main styles. There is a single selection view for the overview, season, episode, and character which will be devoted to one type of information. The other is a split display where the upper portion shows charts relating to the particular filter settings and the bottom display has textual information. Filter settings are controlled by the pop-up contorl panel.
+<h3 style = 'text-align:center;'>Team members </h3>
+<div class = 'borderama'>
+<p class = 'lead'>
+-  <span class = 'loaded'>Dylan Kobayashi</span> in charge of parsing wiki data and character/season explorer <br>
+-  <span class = 'loaded'>Patryk Poborca</span> in charge of UI and Data parser <br>
+-  <span class = 'loaded'>Eric Wu</span> in charge on providing interpretations of data via charts <br>
 </p>
-<img src = "ICSDataVisP3FrontPage.png"> 
-<p>
-The controls work in a dynamic and dependant fashion. There are two lists populated with options, the upper list called "Scope" defines what is what the fields sorted from the second list "filter by" will be grouped by. <br>
-Example 1: "Scope: Seasons, Filter by: Bart Simpson" we shall tabulate the amount of appearances Bart Simpson has in each season.
-<br>
-Example 2: "Scope: Season 2, Filter by: Homer Simpson" will display the count of appearances of Homer by episodes within that season. 
-<br>
-Example 3: "Scope: Homer Simpson, Filter by: Seasons" will display in how many seasons Homer was seen, so if there are 20 seasons, the result would be 20. Which is a bit pointless in itself, but using multiple selections you will e.g. "Scope: Homer, Lisa, etc, Filter by: Seasons" will result in the characters that are recurring in each season. THe most practical approach to this matter would be: "Scope: Homer, Lisa, etc, Filter by: Season 3" which would tell us how many episodes featured each of the characters within the season.
-<br>
-Each list is by default set to display the characters in order by population but as shown in the image above there is a flag which switches between alphabetical and appearance based ordering. The only other "flag" on the search controls is at the top which switches terms between image and textual. Search bar functionality will be implemented as well unless space constraints dictate otherwise. Another option barring space constrictions will be a "display" window where things you select will have their portrait populated to visually represent your filter options, it is the window towards the top with the words "Name at top" inside of its borders.
-<br>
-Moving down once more to the "Filter Threshold" we have another filter option for the user to use. As per the requirement on the project 3 page, you have the ability for quantities exceeding a certain % or Quantity to not appear on your generated charts. Meaning if you want to do: "Scope: Characters (all), Filter by: Season 4" and set the threshold to min= 2 and max=10 major characters would be excluded from the chart but so would characters who only appear once in season 4.
-<br>
-The window at the bottom left is really a list which is populated by past search queries, if you wish to iterate back and forth between a couple queries and compare the data generated. On the left side of the default table and chart, we see a sub window with labels: "C1, C2, C3, C..., Cn, T" allows that window to display the filtered data via a certain chart or table. Last but not least, the Exclusive or indicates only one or the other in the Scope may be selected. Based upon the selection the filter by either gets (based on Characters) || (based on seasons) thus the "Seasons | Characters" and the mirrored options "Voice actor | Voice actor" (which is independant of the selection). These Filter by options can be chosen in conjunction (And) resulting in a comparison where the selections appeared simultaneously. E.g. "Scope: Characters, Filter by: Season 8, Voice ActorZZ" will only tally episodes in season 8 where Voice ActorZZ was listed along with the character appearing in it. 
- <br>
+</div>   	
+
+<h3 style = 'text-align:center;'>The vision</h3>
+<div class = 'borderama'>
+<p class = 'lead'>
+-  <span class = 'loaded'>Dynamic:</span> a UI that is not overly limited by the creator's imagination, a high level customisation is provided for the end user. <br>
+-  <span class = 'loaded'>Informative:</span>  your data exploration doesn't have to end at the data parser, you can delve deeper into seasons/episodes/characters through the explorer<br>
+-  <span class = 'loaded'>Minimalistic:</span> allows the user have an unimpeded view of the data along with all options<br>
+-  <span class = 'loaded'>Divided:</span> two separate views permit the user to explore grouped data on one side and specific information on the other.<br>
 </p>
+</div>   
+
 	  </div>
 		
     </div> <!-- /container -->
