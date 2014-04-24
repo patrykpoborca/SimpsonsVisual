@@ -60,7 +60,7 @@ function initTable(rows, columns, divID, data, display, colors) {
 				htmlString +=  " style = 'width : "+ cellDimX +"px; height : "+ cellDimY +"px;'><div id= 'toggleTable' style ='position: relative;" ;  //" style = 'background-color : black;  width : "+ cellDimX +"px; height : "+ cellDimY +"px;'> ";
 				if(!display) htmlString+= "color: white; background-color : black; height: 100%; '><p>Click Here To Toggle</p>"
 				else 
-				htmlString+= "color : black;'><div style = 'background-color : beige;' class = 'tableLi'>"+ colors['yes'].substring(0, colors['yes'].length-1)+ " => True</div><div style = 'background-color : teal;'>"+ colors['no'].substring(0, colors['no'].length-1)+ " => False</div>";
+				htmlString+= "color : black;'><div style = 'background-color : beige;' class = 'tableLi'>"+ colors['yes'].substring(0, colors['yes'].length-1)+ " => True</div><div style = 'background-color : teal;'>"+ colors['yes'].substring(0, colors['no'].length-1)+ " => False</div>";
 				htmlString+= "</div>";
 				leftCornerFlag= true;
 			} //if display kindof histogram style
