@@ -8,10 +8,25 @@ var pSCOPE; var pFILTER; var pDISPLAY; var pTXT; var parserTable;
 
 function p_initInterp(scope, filterby, display, text)
 {//^^ are ID's of html elements, 2 dropdowns, display div, and a text area
+
+$("#todo").toggle(function()
+{
+
+$(this).text("And Comparison");
+globalAndFlag = true;
+p_updateAll();
+},
+function(){ $(this).text("Or Comparison");
+globalAndFlag = false;
+
+p_updateAll();});
+
+
+
 pSCOPE = $("#"+scope); pFILTER = $("#"+ filterby); pDISPLAY = $("#"+ display);  pTXT = $("#"+text);
 
-pSCOPE.on('change', function(){if(pSCOPE.val() == "..") return; p_setQuery(); tempFilterStorage = [];   p_upDisplay(); p_upVisualElements(); }); //null out tempFilterStorage on scope change to reprocess it..
-pFILTER.on('change',function(){if(pFILTER.val() == "..") return; p_cWrapper($(this).find(":selected").text(), -2);  p_upDisplay();  p_upVisualElements();});
+pSCOPE.on('change', function(){if(pSCOPE.val() == "..") return; p_setQuery();  resetFilters = true; p_upDisplay(); p_updateAll();}); //null out tempFilterStorage on scope change to reprocess it..
+pFILTER.on('change',function(){if(pFILTER.val() == "..") return; p_cWrapper($(this).find(":selected").text(), -2);  p_upDisplay();  p_updateAll();});
 p_initQuery(); 
 p_initPTable();
 
@@ -26,7 +41,7 @@ function(){
 tempFilterStorage.push(currentModFilter);
 p_changeFilter(pFILTER.find(":selected").text(), -1);
 $(pFILTER).trigger('change');
-	console.log(p_upVisualElements())
+
 });
 
 
@@ -91,18 +106,21 @@ filterRow[1] = arr[1][1];
 					filterRow[b] = filterRow[b] || arr[a][b];
 				
 				if(before != arr[a][b])
-				magnitude = (before == false) ? magnitude-1 : magnitude +1; //basically add or subtract one based on whether we went true->false or false ->true
+				magnitude += (filterRow[b]) ? 1 : 0; //basically add or subtract one based on whether we went true->false or false ->true
 			}
 			else
 				filterRow[b] = arr[a][b];
 			
 		}
-	filterRow[1] += magnitude; //add or subtract based on prior operations	
+	
+	filterRow[1] = magnitude; //add or subtract based on prior operations	
 	}
 r_val.push(filterRow);	
 
 return r_val;//returns added
 }
+
+var globalAndFlag = false;
 
 function p_remerge(arr, scope)//2d array filled with headers...
 {
@@ -113,22 +131,37 @@ var superArr= arr;
 arr = arr[0];
 var r_val = []; //r_val.push(arr[0]); //overall header
 
-
+tempArr.push("");
+tempArr.push('Count');
 for(var h = 0; h < scope.length; h++)
 		tempArr.push(arr[0][scope[h]]);
+		
+var merger = []; 
+var magnitude =0;
+
 r_val.push(tempArr);
+
 for(var out = 0; out < superArr.length; out++)
 {
 	arr = superArr[out];
 	for(var a=1; a< arr.length; a+=2) //going through rows..
 	 {
 	 tempArr =[];
+	 magnitude = 0;
 	 tempArr[0] = arr[a][0]; //name, count
-	
+	 tempArr[1] = arr[a][1]
 	 for(var cols = 0; cols < scope.length; cols++)
 	 {
+	 
 	  tempArr.push(arr[a][scope[cols]]);
+	  magnitude += (arr[a][scope[cols]]) ? 1 : 0;
+	  /*if(out == 0 && a == 1) merger.push(arr[a][scope[cols]]); //adding first set...
+	  else
+		merger = (tempArr[tempArr.length-1] && merger[tempArr.length-1] || (!globalAndFlag && (tempArr[tempArr.length-1] || merger[tempArr.length-1])))
+		? true : false;
+	   */
 	 }
+	 tempArr[1] = magnitude;
 	 r_val.push(tempArr);
 	 }
 	 
@@ -139,6 +172,12 @@ for(var out = 0; out < superArr.length; out++)
 
 }
 
+
+function p_getCurTable()
+{
+return currentGlobalTable;
+}
+
 /*
 #################################################################################################################################################
 #################################################################################################################################################
@@ -146,21 +185,26 @@ for(var out = 0; out < superArr.length; out++)
 #################################################################################################################################################
 */
 
-
+var currentGlobalTable;
+var newArr =[];
 var currentModFilter;
+var resetFilters = false;
 
 function p_upVisualElements()
 {
 var arr = p_grabArrays(); //gets initial 'dirty' arrays, just holding bare data
 
+
 //if(arr['lookup']indexOf('allEpisodesByNumber'
 
+newArr = [];
 
-var newArr =[];
 var switchFlag = false;
 
 
-if(tempFilterStorage.length ==0)
+
+
+if(tempFilterStorage.length ==0 )
 {	
 	var whichColumns = p_mergeTable(p_cLogicTable(arr[1]), false, arr['lookup'][1], false); // basically will create a table which decides which columns will be kept....
 	
@@ -168,7 +212,7 @@ if(tempFilterStorage.length ==0)
 	whichColumns = truthToInt(whichColumns[1]);
 	
 	tempFilterStorage[1] = whichColumns; //save the scope as well...
-	
+	newArr.push(whichColumns);
 }
 else
 	switchFlag = true; // basically we already have the param's saved... 
@@ -177,6 +221,7 @@ else
 if(switchFlag == true)
 		for(key in tempFilterStorage) {newArr.push(tempFilterStorage[key]); }
 	
+var finalIt = 0;	
 for(var a=2; a < arr.length; a++) //grab all filters
 	{
     a = (a ==2 && tempFilterStorage.length != 1 && switchFlag) ? tempFilterStorage.length : a; //if first loop, and filterStorage contains more than scope...
@@ -187,8 +232,9 @@ for(var a=2; a < arr.length; a++) //grab all filters
 		tempFilterStorage[a] = newArr[newArr.length -1];
 		else
 		currentModFilter = newArr[newArr.length -1];
+		finalIt = a;
 	}
-
+	if(arr.length > finalIt + 1) console.log('holy shit dawg');
 	
 //iterate through arr, checking to see if scope is different, which then converts the arrays,  **** NewVar only contains filters...
  //console.log("END OF UP THING");
@@ -197,8 +243,8 @@ for(var a=2; a < arr.length; a++) //grab all filters
 var tester= [];
 //tester.shift(); //remove the scope
 var r_value = null;
-if(newArr.length >2)
-{
+
+
 for(var ttt =0; ttt< newArr.length-1; ttt++)
 	tester[ttt] = newArr[ttt+1]
 /*
@@ -208,15 +254,33 @@ console.log(newArr);
 console.log("testing...");
 */
 var r_value = p_remerge(tester, newArr[0]);
+
+var fryer = p_mergeTable(r_value, globalAndFlag, 'Total =');
+r_value.push(fryer[1]); // push the merged stuff....
+
+var sumTotal = 0;
+for(var total = 2; total < r_value[r_value.length-1].length; total++)
+	sumTotal += (r_value[r_value.length-1][total]) ? 1 : 0;
+r_value[r_value.length -1][1] = sumTotal;
+
+return r_value;
 }
-$("#todo").click(function(){
-var HOLD = wrapForTable(newArr[0]);
+
+function p_updateAll()
+{
+
+
+//if(resetFilters) { resetFilters= false; return;}
+var r_value = p_upVisualElements();
+currentGlobalTable = r_value;
+var HOLD = wrapForTable(r_value);
 $("#genTable").empty();
 initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, true, false);
 
-	});
-return r_value;
+console.log('locooclcoclcooc  ' + resetFilters);
+
 }
+
 /*
 #################################################################################################################################################
 #################################################################################################################################################
@@ -233,6 +297,8 @@ console.log(" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");	*/
 function p_cLogicTable(arr)
 {
 
+console.log('failure');
+console.log(arr);
 
 // if bottom level, just one element. 1 = index, 0 = name, lookup
 var table = []; //collection of rows
@@ -288,13 +354,14 @@ var tempFilterStorage = [];
 function p_grabArrays() // returns a array of scope and its filters
 {
 
-
+console.log(parserQueries);
 var temp;
 var parent;
 var quer = []; // 0 -> scope, 0< filters 'lookup' = types
 quer['lookup'] = [];
 	for(var a = 1; a < parserQueries[p_Q()].length; a ++)
 	{
+	
 		if(tempFilterStorage.length !=0)
 			{
 			
@@ -317,8 +384,9 @@ quer['lookup'] = [];
 		var value = $(tempDrop).find(":selected").text();
 		temp = parserQueries['lookup'][$(tempDrop).find(":selected").attr('current')];
 		
-		
-				
+		console.log('debugg');
+		console.log(finalChoice + "  =  " + value + "  == " ); console.log( temp);
+		console.log('debugg');		
 		//console.log(value + " = "+ value.indexOf('-Ep')  + " -> " + finalChoice);
 		
 		quer[a] =(isNaN(temp['i'])) ? p_fetchAnon(temp['a'], ['name', temp['i']], -1, -1) : p_populateArr(temp['a'], [0, temp['i']]);
@@ -369,7 +437,7 @@ quer['lookup'] = [];
 			quer['lookup'][a] = temp['a'];
 			continue;
 			}
-		console.log("vallll =@#QRE$#$@$#@ " );
+		console.log("vallll =@#QRE$#$@$#@ " +  temp);
 		
 		break;		//exit state, when at bottom level of iteration...
 		}
@@ -551,8 +619,7 @@ var r_val = [];
 
 
 for(var a=2; a < arr.length; a++)
-	if(arr[a]) r_val.push(a-1)
-
+	if(arr[a]) r_val.push(a)
 
 	
 
