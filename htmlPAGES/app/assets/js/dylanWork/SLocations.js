@@ -6,31 +6,31 @@
 
 var locationsByAppearAmt = [
   ["Moe's Tavern",
-    ["Simpsons Roasting on an Open Fire","Homer's Odyssey","There's No Disgrace Like Home","Moaning Lisa","The Telltale Head","Homer's Night Out","Some Enchanted Evening","Bart Gets an  'F '","Simpson and Delilah","Two Cars in Every Garage and Three Eyes on Every Fish","Dancin' Homer","Bart the Daredevil","Bart Gets Hit by a Car","One Fish, Two Fish, Blowfish, Blue Fish","Homer vs. Lisa and the 8th Commandment","Principal Charming","Blood Feud","When Flanders Failed","Homer Defined","Like Father, Like Clown","Treehouse of Horror II","Flaming Moe's","Burns Verkaufen der Kraftwerk","Lisa the Greek","Brother, Can You Spare Two Dimes?","Lisa the Beauty Queen","New Kid on the Block","Homer's Triple Bypass","Duffless","Krusty Gets Kancelled","Marge on the Lam","The Last Temptation of Homer","Homer the Vigilante","Deep Space Homer","Homer Loves Flanders","Sideshow Bob Roberts","Fear of Flying","Homer vs. Patty and Selma","Who Shot Mr. Burns? (Part One)","Radioactive Man","Bart Sells His Soul","Team Homer","Lisa the Iconoclast","Homer the Smithers","Bart on the Road","The Homer They Fall","El Viaje Misterioso de Nuestro Jomer (The Mysterious Voyage of Homer)","The Springfield Files","Simpsoncalifragilisticexpiala(Annoyed Grunt)cious","Homer vs. the Eighteenth Amendment","My Sister, My Sitter","In Marge We Trust","Homer's Enemy","The Simpsons Spin-Off Showcase","The City of New York vs. Homer Simpson","The Cartridge Family","Miracle on Evergreen Terrace","Simpson Tide","Dumbbell Indemnity","Trash of the Titans","When You Dish Upon a Star","Homer Simpson in:  'Kidney Trouble '","Mayored to the Mob","Wild Barts Can't Be Broken","Sunday, Cruddy Sunday","I'm with Cupid","Mom and Pop Art","They Saved Lisa's Brain","Pygmoelian","A Tale of Two Springfields","Lisa the Tree Hugger","Homer vs. Dignity","HOM&#1103","Trilogy of Error","Homer the Moe","The Blunder Years","Jaws Wired Shut","Helter Shelter","Large Marge","Pray Anything","The Dad Who Knew Too Little","The Strong Arms of the Ma","The Great Louse Detective","Barting Over","Dude, Where's My Ranch?","Moe Baby Blues","Simpson Christmas Stories","Moe'N'a Lisa","The Boys of Bummer","Marge Gamer","Yokel Chords","Any Given Sundance","The Wife Aquatic","E. Pluribus Wiggum","All About Lisa","Lost Verizon","Eeny Teeny Maya, Moe","Four Great Women and a Manicure","Coming to Homerica","Homer the Whopper","Moe Letter Blues","Judge Me Tender","Loan-a Lisa","Flaming Moe","The Man in the Blue Flannel Pants"] //eps
+    ["Simpsons Roasting on an Open Fire","Homer's Odyssey","There's No Disgrace Like Home","Moaning Lisa","The Telltale Head","Homer's Night Out","Some Enchanted Evening","Bart Gets an \"F\"","Simpson and Delilah","Two Cars in Every Garage and Three Eyes on Every Fish","Dancin' Homer","Bart the Daredevil","Bart Gets Hit by a Car","One Fish, Two Fish, Blowfish, Blue Fish","Homer vs. Lisa and the 8th Commandment","Principal Charming","Blood Feud","When Flanders Failed","Homer Defined","Like Father, Like Clown","Treehouse of Horror II","Flaming Moe's","Burns Verkaufen der Kraftwerk","Lisa the Greek","Brother, Can You Spare Two Dimes?","Lisa the Beauty Queen","New Kid on the Block","Homer's Triple Bypass","Duffless","Krusty Gets Kancelled","Marge on the Lam","The Last Temptation of Homer","Homer the Vigilante","Deep Space Homer","Homer Loves Flanders","Sideshow Bob Roberts","Fear of Flying","Homer vs. Patty and Selma","Who Shot Mr. Burns? (Part One)","Radioactive Man","Bart Sells His Soul","Team Homer","Lisa the Iconoclast","Homer the Smithers","Bart on the Road","The Homer They Fall","El Viaje Misterioso de Nuestro Jomer (The Mysterious Voyage of Homer)","The Springfield Files","Simpsoncalifragilisticexpiala(Annoyed Grunt)cious","Homer vs. the Eighteenth Amendment","My Sister, My Sitter","In Marge We Trust","Homer's Enemy","The Simpsons Spin-Off Showcase","The City of New York vs. Homer Simpson","The Cartridge Family","Miracle on Evergreen Terrace","Simpson Tide","Dumbbell Indemnity","Trash of the Titans","When You Dish Upon a Star","Homer Simpson in: \"Kidney Trouble\"","Mayored to the Mob","Wild Barts Can't Be Broken","Sunday, Cruddy Sunday","I'm with Cupid","Mom and Pop Art","They Saved Lisa's Brain","Pygmoelian","A Tale of Two Springfields","Lisa the Tree Hugger","Homer vs. Dignity","HOM\u042f","Trilogy of Error","Homer the Moe","The Blunder Years","Jaws Wired Shut","Helter Shelter","Large Marge","Pray Anything","The Dad Who Knew Too Little","The Strong Arms of the Ma","The Great Louse Detective","Barting Over","Dude, Where's My Ranch?","Moe Baby Blues","Simpson Christmas Stories","Moe'N'a Lisa","The Boys of Bummer","Marge Gamer","Yokel Chords","Any Given Sundance","The Wife Aquatic","E. Pluribus Wiggum","All About Lisa","Lost Verizon","Eeny Teeny Maya, Moe","Four Great Women and a Manicure","Coming to Homerica","Homer the Whopper","Moe Letter Blues","Judge Me Tender","Loan-a Lisa","Flaming Moe","The Man in the Blue Flannel Pants"] //eps
   ], //loc
   ["Springfield Elementary School",
-    ["Simpsons Roasting on an Open Fire","Bart the Genius","Homer's Odyssey","Bart the General","Moaning Lisa","Homer's Night Out","The Crepes of Wrath","Bart Gets an  'F '","Dancin' Homer","Bart the Daredevil","Principal Charming","Lisa's Substitute","Homer Defined","Bart the Lover","Separate Vocations","Bart's Friend Falls in Love","The Otto Show","Kamp Krusty","Itchy  amp; Scratchy: The Movie","I Love Lisa","Whacking Day","Boy-Scoutz 'n the Hood","The Last Temptation of Homer","Bart Gets Famous","Sweet Seymour Skinner's Baadasssss Song","The Boy Who Knew Too Much","Lisa's Rival","Sideshow Bob Roberts","Bart's Girlfriend","Lisa on Ice","Homer the Great","Bart's Comet","Homer vs. Patty and Selma","The PTA Disbands","Lemon of Troy","Who Shot Mr. Burns? (Part One)","Radioactive Man","Home Sweet Homediddly-Dum-Doodily","Lisa the Vegetarian","Treehouse of Horror VI","Team Homer","Lisa the Iconoclast","Bart on the Road","Summer of 4 Ft. 2","Grade School Confidential","Lisa the Simpson","Lisa Gets an  'A '","Brother's Little Helper","Grift of the Magi","Trilogy of Error","Bart vs. Lisa vs. the Third Grade","Pokey Mom","Special Edna","The Good, the Sad and the Drugly","Skinner's Sense of Snow","Bye Bye Nerdie","Trilogy of Error","24 Minutes","The Debarted","Bart Gets a  'Z '","Stealing First Base","MoneyBART","500 Keys","Holidays of Future Passed","Penny-Wiseguys","The Day the Earth Stood Cool","A Test Before Trying","Love is a Many Splintered Thing","Black-eyed Please","Dark Knight Court","What Animated Women Want","Pulpit Friction","Yolo","The Kid is All Right"] //eps
+    ["Simpsons Roasting on an Open Fire","Bart the Genius","Homer's Odyssey","Bart the General","Moaning Lisa","Homer's Night Out","The Crepes of Wrath","Bart Gets an \"F\"","Dancin' Homer","Bart the Daredevil","Principal Charming","Lisa's Substitute","Homer Defined","Bart the Lover","Separate Vocations","Bart's Friend Falls in Love","The Otto Show","Kamp Krusty","Itchy & Scratchy: The Movie","I Love Lisa","Whacking Day","Boy-Scoutz 'n the Hood","The Last Temptation of Homer","Bart Gets Famous","Sweet Seymour Skinner's Baadasssss Song","The Boy Who Knew Too Much","Lisa's Rival","Sideshow Bob Roberts","Bart's Girlfriend","Lisa on Ice","Homer the Great","Bart's Comet","Homer vs. Patty and Selma","The PTA Disbands","Lemon of Troy","Who Shot Mr. Burns? (Part One)","Radioactive Man","Home Sweet Homediddly-Dum-Doodily","Lisa the Vegetarian","Treehouse of Horror VI","Team Homer","Lisa the Iconoclast","Bart on the Road","Summer of 4 Ft. 2","Grade School Confidential","Lisa the Simpson","Lisa Gets an \"A\"","Brother's Little Helper","Grift of the Magi","Trilogy of Error","Bart vs. Lisa vs. the Third Grade","Pokey Mom","Special Edna","The Good, the Sad and the Drugly","Skinner's Sense of Snow","Bye Bye Nerdie","Trilogy of Error","24 Minutes","The Debarted","Bart Gets a \"Z\"","Stealing First Base","MoneyBART","500 Keys","Holidays of Future Passed","Penny-Wiseguys","The Day the Earth Stood Cool","A Test Before Trying","Love is a Many Splintered Thing","Black-eyed Please","Dark Knight Court","What Animated Women Want","Pulpit Friction","Yolo","The Kid is All Right"] //eps
   ], //loc
   ["Springfield Nuclear Power Plant",
-    ["Simpsons Roasting on an Open Fire","Homer's Odyssey","There's No Disgrace Like Home","Life on the Fast Lane","Homer's Night Out","Krusty Gets Busted","Simpson and Delilah","Two Cars in Every Garage and Three Eyes on Every Fish","Bart Gets Hit by a Car","Homer vs. Lisa and the 8th Commandment","Bart's Dog Gets an F","Brush with Greatness","Blood Feud","Stark Raving Dad","When Flanders Failed","Bart the Murderer","Homer Defined","Lisa's Pony","Burns Verkaufen der Kraftwerk","Homer at the Bat","Brother, Can You Spare Two Dimes?","Marge Gets a Job","Homer's Triple Bypass","Marge vs. the Monorail","Duffless","Last Exit to Springfield","Rosebud","Homer Goes to College","The Last Temptation of Homer","Deep Space Homer","Burns' Heir","Lady Bouvier's Lover","Homer Badman","Homer the Great","And Maggie Makes Three","Homie the Clown","A Star is Burns","Lisa's Wedding","Who Shot Mr. Burns? (Part One)","Radioactive Man","Lisa the Vegetarian","King-Size Homer","Team Homer","Homer the Smithers","Bart on the Road","Raging Abe Simpson and His Grumbling Grandson in  'The Curse of the Flying Hellfish '","Burns, Baby Burns","The Springfield Files","The Twisted World of Marge Simpson","Mountain of Madness","The Old Man and the Lisa","Homer's Enemy","Lost Our Lisa","D'oh-in' in the Wind","Homer to the Max","Monty Can't Buy Me Love","Hello Gutter, Hello Fadder","Missionary: Impossible","A Tale of Two Springfields","Homer vs. Dignity","The Computer Wore Menace Shoes","The Parent Rap","Flaming Moe","The Falcon and the D'ohman","Replaceable You","The Man in the Blue Flannel Pants","How I Wet Your Mother","Penny-Wiseguys","The Day the Earth Stood Cool","Black-eyed Please","What Animated Women Want"] //eps
+    ["Simpsons Roasting on an Open Fire","Homer's Odyssey","There's No Disgrace Like Home","Life on the Fast Lane","Homer's Night Out","Krusty Gets Busted","Simpson and Delilah","Two Cars in Every Garage and Three Eyes on Every Fish","Bart Gets Hit by a Car","Homer vs. Lisa and the 8th Commandment","Bart's Dog Gets an F","Brush with Greatness","Blood Feud","Stark Raving Dad","When Flanders Failed","Bart the Murderer","Homer Defined","Lisa's Pony","Burns Verkaufen der Kraftwerk","Homer at the Bat","Brother, Can You Spare Two Dimes?","Marge Gets a Job","Homer's Triple Bypass","Marge vs. the Monorail","Duffless","Last Exit to Springfield","Rosebud","Homer Goes to College","The Last Temptation of Homer","Deep Space Homer","Burns' Heir","Lady Bouvier's Lover","Homer Badman","Homer the Great","And Maggie Makes Three","Homie the Clown","A Star is Burns","Lisa's Wedding","Who Shot Mr. Burns? (Part One)","Radioactive Man","Lisa the Vegetarian","King-Size Homer","Team Homer","Homer the Smithers","Bart on the Road","Raging Abe Simpson and His Grumbling Grandson in \"The Curse of the Flying Hellfish\"","Burns, Baby Burns","The Springfield Files","The Twisted World of Marge Simpson","Mountain of Madness","The Old Man and the Lisa","Homer's Enemy","Lost Our Lisa","D'oh-in' in the Wind","Homer to the Max","Monty Can't Buy Me Love","Hello Gutter, Hello Fadder","Missionary: Impossible","A Tale of Two Springfields","Homer vs. Dignity","The Computer Wore Menace Shoes","The Parent Rap","Flaming Moe","The Falcon and the D'ohman","Replaceable You","The Man in the Blue Flannel Pants","How I Wet Your Mother","Penny-Wiseguys","The Day the Earth Stood Cool","Black-eyed Please","What Animated Women Want"] //eps
   ], //loc
   ["Springfield General Hospital",
-    ["Krusty Gets Busted","I Married Marge","Bart the Daredevil","Bart Gets Hit by a Car","The Way We Was","Oh Brother, Where Art Thou?","Blood Feud","Colonel Homer","Homer's Triple Bypass","Lisa's First Word","So It's Come to This: A Simpsons Clip Show","Marge in Chains","Homer Goes to College","Bart of Darkness","And Maggie Makes Three","A Star is Burns","'Round Springfield","Who Shot Mr. Burns? (Part Two)","Treehouse of Horror VI","22 Short Films About Springfield","Simpsoncalifragilisticexpiala(Annoyed Grunt)cious","Lost Our Lisa","Homer Simpson in:  'Kidney Trouble '","Monty Can't Buy Me Love","D'oh-in' in the Wind","Behind the Laughter","Worst Episode Ever","Trilogy of Error","Children of a Lesser Clod","A Tale of Two Springfields","Half-Decent Proposal","I Am Furious Yellow","Poppa's Got a Brand New Badge","Little Big Mom","Eight Misbehavin'","Three Gays of the Condo","Goo Goo Gai Pan","The Heartbroke Kid","Gone Maggie Gone","Eeny Teeny Maya, Moe","Million Dollar Maybe","Chief of Hearts","The Fool Monty","Holidays of Future Passed","The D'oh-cial Network","Ned 'N Edna's Blend","A Tree Grows in Springfield"] //eps
+    ["Krusty Gets Busted","I Married Marge","Bart the Daredevil","Bart Gets Hit by a Car","The Way We Was","Oh Brother, Where Art Thou?","Blood Feud","Colonel Homer","Homer's Triple Bypass","Lisa's First Word","So It's Come to This: A Simpsons Clip Show","Marge in Chains","Homer Goes to College","Bart of Darkness","And Maggie Makes Three","A Star is Burns","'Round Springfield","Who Shot Mr. Burns? (Part Two)","Treehouse of Horror VI","22 Short Films About Springfield","Simpsoncalifragilisticexpiala(Annoyed Grunt)cious","Lost Our Lisa","Homer Simpson in: \"Kidney Trouble\"","Monty Can't Buy Me Love","D'oh-in' in the Wind","Behind the Laughter","Worst Episode Ever","Trilogy of Error","Children of a Lesser Clod","A Tale of Two Springfields","Half-Decent Proposal","I Am Furious Yellow","Poppa's Got a Brand New Badge","Little Big Mom","Eight Misbehavin'","Three Gays of the Condo","Goo Goo Gai Pan","The Heartbroke Kid","Gone Maggie Gone","Eeny Teeny Maya, Moe","Million Dollar Maybe","Chief of Hearts","The Fool Monty","Holidays of Future Passed","The D'oh-cial Network","Ned 'N' Edna's Blend","A Tree Grows in Springfield"] //eps
   ], //loc
   ["Kwik-E-Mart",
     ["The Telltale Head","Homer's Night Out","Krusty Gets Busted","Homer vs. Lisa and the 8th Commandment","Principal Charming","Stark Raving Dad","Lisa's Pony","Separate Vocations","Dog of Death","The Otto Show","Homer the Heretic","Whacking Day","Marge on the Lam","Boy-Scoutz 'n the Hood","Homer the Vigilante","Bart Gets Famous","Homer and Apu","Sweet Seymour Skinner's Baadasssss Song","Homie the Clown","The Springfield Connection","Bart Sells His Soul","Lisa the Vegetarian","Two Bad Neighbors","Scenes from the Class Struggle in Springfield","Bart the Fink","Lisa the Iconoclast","Hurricane Neddy","The Principal and the Pauper","The Cartridge Family","Bart Star","The Two Mrs. Nahasapeemapetilons","Lisa the Simpson","Bart the Mother","Treehouse of Horror IX","I'm with Cupid","The Computer Wore Menace Shoes","The Old Man and the Key","Helter Shelter","The Strong Arms of the Ma","The Sweetest Apu"] //eps
   ], //loc
   ["742 Evergreen Terrace",
-    ["Simpsons Roasting on an Open Fire","Bart the Genius","Homer's Odyssey","There's No Disgrace Like Home","Bart the General","Moaning Lisa","The Call of the Simpsons","The Telltale Head","Life on the Fast Lane","Homer's Night Out","The Crepes of Wrath","Krusty Gets Busted","Some Enchanted Evening","Bart Gets an  'F '","Simpson and Delilah","Treehouse of Horror","Two Cars in Every Garage and Three Eyes on Every Fish","Dancin' Homer","Dead Putting Society","Bart vs. Thanksgiving","Bart the Daredevil","Itchy  amp; Scratchy  amp; Marge","Bart Gets Hit by a Car","One Fish, Two Fish, Blowfish, Blue Fish","The Way We Was","Homer vs. Lisa and the 8th Commandment","Principal Charming","Oh Brother, Where Art Thou?","Bart's Dog Gets an F","Old Money","Brush with Greatness","Lisa's Substitute","The War of the Simpsons","Three Men and a Comic Book","Blood Feud"] //eps
+    ["Simpsons Roasting on an Open Fire","Bart the Genius","Homer's Odyssey","There's No Disgrace Like Home","Bart the General","Moaning Lisa","The Call of the Simpsons","The Telltale Head","Life on the Fast Lane","Homer's Night Out","The Crepes of Wrath","Krusty Gets Busted","Some Enchanted Evening","Bart Gets an \"F\"","Simpson and Delilah","Treehouse of Horror","Two Cars in Every Garage and Three Eyes on Every Fish","Dancin' Homer","Dead Putting Society","Bart vs. Thanksgiving","Bart the Daredevil","Itchy & Scratchy & Marge","Bart Gets Hit by a Car","One Fish, Two Fish, Blowfish, Blue Fish","The Way We Was","Homer vs. Lisa and the 8th Commandment","Principal Charming","Oh Brother, Where Art Thou?","Bart's Dog Gets an F","Old Money","Brush with Greatness","Lisa's Substitute","The War of the Simpsons","Three Men and a Comic Book","Blood Feud"] //eps
   ], //loc
   ["First Church of Springfield",
-    ["The Pagans","The Telltale Head","Krusty Gets Busted","Homer's Night Out","Homer vs. Lisa and the 8th Commandment","Principal Charming","The War of the Simpsons","Lisa the Greek","Homer the Heretic","Homer's Barbershop Quartet","Bart's Inner Child","Homer Loves Flanders","Lady Bouvier's Lover","Bart's Girlfriend","Bart Sells His Soul","Hurricane Neddy","The Springfield Files","The Twisted World of Marge Simpson","My Sister, My Sitter","In Marge We Trust","The Joy of Sect","Lisa Gets an  'A '","Viva Ned Flanders","Simpsons Bible Stories","Take My Wife, Sleaze","Faith Off","The Frying Game","Poppa's Got a Brand New Badge","Special Edna","The Strong Arms of the Ma","Pray Anything","Wedding for Disaster","The D'oh-cial Network","Pulpit Friction","Four Regrettings and a Funeral"] //eps
+    ["The Pagans","The Telltale Head","Krusty Gets Busted","Homer's Night Out","Homer vs. Lisa and the 8th Commandment","Principal Charming","The War of the Simpsons","Lisa the Greek","Homer the Heretic","Homer's Barbershop Quartet","Bart's Inner Child","Homer Loves Flanders","Lady Bouvier's Lover","Bart's Girlfriend","Bart Sells His Soul","Hurricane Neddy","The Springfield Files","The Twisted World of Marge Simpson","My Sister, My Sitter","In Marge We Trust","The Joy of Sect","Lisa Gets an \"A\"","Viva Ned Flanders","Simpsons Bible Stories","Take My Wife, Sleaze","Faith Off","The Frying Game","Poppa's Got a Brand New Badge","Special Edna","The Strong Arms of the Ma","Pray Anything","Wedding for Disaster","The D'oh-cial Network","Pulpit Friction","Four Regrettings and a Funeral"] //eps
   ], //loc
   ["Krustylu Studios",
-    ["The Telltale Head","Krusty Gets Busted","Itchy  amp; Scratchy  amp; Marge","Like Father, Like Clown","Treehouse of Horror II","Lisa the Greek","Dog of Death","Treehouse of Horror III","Marge Gets a Job","Lisa's First Word","The Front","Krusty Gets Kancelled","Homer Goes to College","Bart Gets Famous","Bart of Darkness","Itchy  amp; Scratchy  amp; Marge","Homie the Clown","'Round Springfield","Sideshow Bob's Last Gleaming","Bart the Fink","The Last Temptation of Krust","The Itchy  amp; Scratchy  amp; Poochie Show","Brother from Another Series","Hello Gutter, Hello Fadder","Day of the Jackanapes","The Lastest Gun in the West","I Am Furious Yellow","All About Lisa","Pranks and Greens","Once Upon a Time in Springfield"] //eps
+    ["The Telltale Head","Krusty Gets Busted","Itchy & Scratchy & Marge","Like Father, Like Clown","Treehouse of Horror II","Lisa the Greek","Dog of Death","Treehouse of Horror III","Marge Gets a Job","Lisa's First Word","The Front","Krusty Gets Kancelled","Homer Goes to College","Bart Gets Famous","Bart of Darkness","Itchy & Scratchy Land","Homie the Clown","'Round Springfield","Sideshow Bob's Last Gleaming","Bart the Fink","The Last Temptation of Krust","The Itchy & Scratchy & Poochie Show","Brother from Another Series","Hello Gutter, Hello Fadder","Day of the Jackanapes","The Lastest Gun in the West","I Am Furious Yellow","All About Lisa","Pranks and Greens","Once Upon a Time in Springfield"] //eps
   ], //loc
   ["Springfield Retirement Castle",
-    ["Bart the General","The Telltale Head","Two Cars in Every Garage and Three Eyes on Every Fish","Bart vs. Thanksgiving","One Fish, Two Fish, Blowfish, Blue Fish","Old Money","Homer Defined","Itchy  amp; Scratchy: The Movie","New Kid on the Block","Brother from the Same Planet","I Love Lisa","The Front","Grampa vs. Sexual Inadequacy","Two Dozen and One Greyhounds","'Round Springfield","Who Shot Mr. Burns? (Part One)","Raging Abe Simpson and His Grumbling Grandson in  'The Curse of the Flying Hellfish '","Hurricane Neddy","The Springfield Files","The Old Man and the Lisa","The Two Mrs. Nahasapeemapetilons","Miracle on Evergreen Terrace","Girly Edition","Homer Simpson in:  'Kidney Trouble '","The Old Man and the  'C ' Student","Treehouse of Horror XI","The Great Money Caper","The Old Man and the Key","The Good, the Sad and the Drugly"] //eps
+    ["Bart the General","The Telltale Head","Two Cars in Every Garage and Three Eyes on Every Fish","Bart vs. Thanksgiving","One Fish, Two Fish, Blowfish, Blue Fish","Old Money","Homer Defined","Itchy & Scratchy: The Movie","New Kid on the Block","Brother from the Same Planet","I Love Lisa","The Front","Grampa vs. Sexual Inadequacy","Two Dozen and One Greyhounds","'Round Springfield","Who Shot Mr. Burns? (Part One)","Raging Abe Simpson and His Grumbling Grandson in \"The Curse of the Flying Hellfish\"","Hurricane Neddy","The Springfield Files","The Old Man and the Lisa","The Two Mrs. Nahasapeemapetilons","Miracle on Evergreen Terrace","Girly Edition","Homer Simpson in: \"Kidney Trouble\"","The Old Man and the \"C\" Student","Treehouse of Horror XI","The Great Money Caper","The Old Man and the Key","The Good, the Sad and the Drugly"] //eps
   ], //loc
   ["744 Evergreen Terrace",
     ["Simpsons Roasting on an Open Fire","The Call of the Simpsons","Dead Putting Society","One Fish, Two Fish, Blowfish, Blue Fish","When Flanders Failed","Radio Bart","Bart the Lover","Homer the Heretic","A Streetcar Named Marge","Lisa's First Word","Marge in Chains","Cape Feare","The Last Temptation of Homer","Homer the Vigilante","Homer Loves Flanders","Home Sweet Homediddly-Dum-Doodily","Lisa the Vegetarian","Lisa's Date with Density","Hurricane Neddy","My Sister, My Sitter ","Bart Star","Miracle on Evergreen Terrace","The Joy of Sect","The Trouble with Trillions","Little Big Mom","Alone Again, Natura-Diddily","I'm Goin' to Praiseland","The Bart of War"] //eps
@@ -39,16 +39,16 @@ var locationsByAppearAmt = [
     ["Old Money","Three Men and a Comic Book","Boy-Scoutz 'n the Hood","Secrets of a Successful Marriage","And Maggie Makes Three","A Star is Burns","Who Shot Mr. Burns? (Part Two)","King-Size Homer","Two Bad Neighbors","Bart the Fink","Scenes from the Class Struggle in Springfield","22 Short Films About Springfield","Miracle on Evergreen Terrace","Lard of the Dance","Lisa the Tree Hugger","Brother's Little Helper","Day of the Jackanapes","Little Girl in the Big Ten","I'm Spelling as Fast as I Can","He Loves to Fly and He D'ohs","Husbands and Knives","Treehouse of Horror XX"] //eps
   ], //loc
   ["Springfield Town Square",
-    ["The Telltale Head","Simpson and Delilah","Old Money","Treehouse of Horror II","Flaming Moe's","The Otto Show","Bart's Inner Child","$pringfield (Or, How I Learned to Stop Worrying and Love Legalized Gambling)","Bart's Girlfriend","Bart's Comet","Radioactive Man","Treehouse of Horror VI","Lisa the Iconoclast","Hurricane Neddy","Homer vs. the Eighteenth Amendment","Trash of the Titans","Bart the Mother","The Old Man and the  'C ' Student","'Tis the Fifteenth Season","Midnight Towboy","Treehouse of Horror XIX"] //eps
+    ["The Telltale Head","Simpson and Delilah","Old Money","Treehouse of Horror II ","Flaming Moe's","The Otto Show","Bart's Inner Child","$pringfield (Or, How I Learned to Stop Worrying and Love Legalized Gambling)","Bart's Girlfriend","Bart's Comet","Radioactive Man","Treehouse of Horror VI ","Lisa the Iconoclast","Hurricane Neddy","Homer vs. the Eighteenth Amendment","Trash of the Titans","Bart the Mother","The Old Man and the \"C\" Student","'Tis the Fifteenth Season","Midnight Towboy","Treehouse of Horror XIX"] //eps
   ], //loc
-  ["The Android's Dungeon amp; Baseball Card Shop",
-    ["Three Men and a Comic Book","Mr. Plow","Lady Bouvier's Lover","'Round Springfield","Radioactive Man","Bart Sells His Soul","Marge Be Not Proud","Team Homer","The Day the Violence Died","22 Short Films About Springfield","The Itchy  amp; Scratchy  amp; Poochie Show","The Canine Mutiny","Homer vs. Dignity","Worst Episode Ever","I Am Furious Yellow","'Tis the Fifteenth Season","Husbands and Knives","Homer the Whopper","Moms I'd Like to Forget"] //eps
+  ["The Android's Dungeon & Baseball Card Shop",
+    ["Three Men and a Comic Book","Mr. Plow","Lady Bouvier's Lover","'Round Springfield","Radioactive Man","Bart Sells His Soul","Marge Be Not Proud","Team Homer","The Day the Violence Died","22 Short Films About Springfield","The Itchy & Scratchy & Poochie Show","The Canine Mutiny","Homer vs. Dignity","Worst Episode Ever","I Am Furious Yellow","'Tis the Fifteenth Season","Husbands and Knives","Homer the Whopper","Moms I'd Like to Forget"] //eps
   ], //loc
   ["Springfield Town Hall",
     ["Homer's Odyssey","The Telltale Head","Marge vs. the Monorail","$pringfield (Or, How I Learned to Stop Worrying and Love Legalized Gambling)","Bart's Comet","A Star is Burns","Who Shot Mr. Burns? (Part One)","Much Apu About Nothing","Bart After Dark","The Trouble with Trillions","Trash of the Titans","Poppa's Got a Brand New Badge","Treehouse of Horror XIX","See Homer Run","E. Pluribus Wiggum","Papa Don't Leech","Postcards From the Wedge","To Surveil With Love","At Long Last Leave"] //eps
   ], //loc
   ["Aztec Theater",
-    ["The Telltale Head","Principal Charming","Oh Brother, Where Art Thou?","Bart's Friend Falls in Love","Itchy  amp; Scratchy: The Movie","Cape Feare","$pringfield (Or, How I Learned to Stop Worrying and Love Legalized Gambling)","Burns' Heir","The Boy Who Knew Too Much","And Maggie Makes Three","A Star is Burns","King-Size Homer","Bart on the Road","Burns, Baby Burns","Grade School Confidential","Natural Born Kissers","HOM&#1103","Replaceable You"] //eps
+    ["The Telltale Head","Principal Charming","Oh Brother, Where Art Thou?","Bart's Friend Falls in Love","Itchy & Scratchy: The Movie","Cape Feare","$pringfield (Or, How I Learned to Stop Worrying and Love Legalized Gambling)","Burns' Heir","The Boy Who Knew Too Much","And Maggie Makes Three","A Star is Burns","King-Size Homer","Bart on the Road","Burns, Baby Burns","Grade School Confidential","Natural Born Kissers","HOM\u042f","Replaceable You"] //eps
   ], //loc
   ["Springfield County Court House",
     ["Krusty Gets Busted","Bart Gets Hit by a Car","Bart the Murderer","Marge in Chains","Sideshow Bob Roberts","The Boy Who Knew Too Much","The Day the Violence Died","Lisa the Skeptic","Bart the Mother","The Great Money Caper","Sweets and Sour Marge","Weekend at Burnsie's","The Frying Game","The Parent Rap","Barting Over","Brake My Wife, Please","The Monkey Suit","Rome-Old and Julie-Eh"] //eps
@@ -60,34 +60,34 @@ var locationsByAppearAmt = [
     ["Dancin' Homer","Treehouse of Horror II","Flaming Moe's","Homer at the Bat","Marge vs. the Monorail","Duffless","The Twisted World of Marge Simpson","The Cartridge Family","Trash of the Titans","Wild Barts Can't Be Broken","Homer vs. Dignity","'Scuse Me While I Miss the Sky","The Bart of War","Treehouse of Horror XIV","Today, I Am a Clown","Homer and Ned's Hail Mary Pass","Thank God It's Doomsday"] //eps
   ], //loc
   ["Springfield Mall",
-    ["Simpsons Roasting on an Open Fire","Life on the Fast Lane","Simpson and Delilah","Bart Gets Hit by a Car","Principal Charming","Bart's Dog Gets an F","Blood Feud","The Homer They Fall","The Itchy  amp; Scratchy  amp; Poochie Show","The Last Temptation of Krust","Simpson Tide","Please Homer, Don't Hammer 'Em","G.I. (Annoyed Grunt)","Rome-Old and Julie-Eh","The Devil Wears Nada","Beware My Cheating Bart"] //eps
+    ["Simpsons Roasting on an Open Fire","Life on the Fast Lane","Simpson and Delilah","Bart Gets Hit by a Car","Principal Charming","Bart's Dog Gets an F","Blood Feud","The Homer They Fall","The Itchy & Scratchy & Poochie Show","The Last Temptation of Krust","Simpson Tide","Please Homer, Don't Hammer 'Em","G.I. (Annoyed Grunt)","Rome-Old and Julie-Eh","The Devil Wears Nada","Beware My Cheating Bart"] //eps
   ], //loc
   ["Burns Manor",
     ["There's No Disgrace Like Home","Bart vs. Thanksgiving","Bart Gets Hit by a Car","Blood Feud","Burns' Heir","Two Dozen and One Greyhounds","Team Homer","Homer the Smithers","Burns, Baby Burns","The Mansion Family","Tennis the Menace","Crook and Ladder","Springfield Up","American History X-cellent","Treehouse of Horror XXIV"] //eps
   ], //loc
   ["Springfield State Prison",
-    ["Homer's Odyssey","The War of the Simpsons","Bart the Murderer","Colonel Homer","Black Widower","Itchy  amp; Scratchy: The Movie","Homer's Barbershop Quartet","Cape Feare","Sideshow Bob Roberts","Lisa on Ice","Hurricane Neddy","Brother from Another Series","Realty Bites","Children of a Lesser Clod"] //eps
+    ["Homer's Odyssey","The War of the Simpsons","Bart the Murderer","Colonel Homer","Black Widower","Itchy & Scratchy: The Movie","Homer's Barbershop Quartet","Cape Feare","Sideshow Bob Roberts","Lisa on Ice","Hurricane Neddy","Brother from Another Series","Realty Bites","Children of a Lesser Clod"] //eps
   ], //loc
   ["Skinner's House",
-    ["Sweet Seymour Skinner's Baadasssss Song","Lisa's Rival","The Springfield Connection","Bart the Fink","22 Short Films About Springfield","Lisa's Date with Density","Grade School Confidential","The Principal and the Pauper","The Old Man and the  'C ' Student","Grift of the Magi","Worst Episode Ever","The Computer Wore Menace Shoes","Trilogy of Error","Sex, Pies, and Idiot Scrapes"] //eps
+    ["Sweet Seymour Skinner's Baadasssss Song","Lisa's Rival","The Springfield Connection","Bart the Fink","22 Short Films About Springfield","Lisa's Date with Density","Grade School Confidential","The Principal and the Pauper","The Old Man and the \"C\" Student","Grift of the Magi","Worst Episode Ever","The Computer Wore Menace Shoes","Trilogy of Error","Sex, Pies, and Idiot Scrapes"] //eps
   ], //loc
   ["Springfield International Airport",
-    ["Simpsons Roasting on an Open Fire","The Crepes of Wrath","Homer and Apu","Homerland","Fear of Flying","Lisa's Wedding","Mother Simpson","The Two Mrs. Nahasapeemapetilons","The Joy of Sect","Thirty Minutes Over Tokyo","Mr. Spritz Goes to Washington","Elementary School Musical","Politically Inept, with Homer Simpson"] //eps
+    ["Simpsons Roasting on an Open Fire","The Crepes of Wrath","Homer and Apu","Homerland","Fear of Flying","Lisa's Wedding","Mother Simpson","The Two Mrs. Nahasapeemapetilons","The Joy of Sect","Thirty Minutes Over Tokyo","Mr. Spritz Goes to Washington"," Elementary School Musical","Politically Inept, with Homer Simpson"] //eps
   ], //loc
   ["316 Pikeland Ave.",
-    ["Itchy  amp; Scratchy  amp; Marge","Homer Defined","The Otto Show","Bart's Friend Falls in Love","Radioactive Man","Bart Sells His Soul","Marge Be Not Proud","Lisa's Date with Density","Faith Off","Days of Wine and D'oh'ses","Milhouse of Sand and Fog","Lost Verizon","Moe Goes from Rags to Riches"] //eps
+    ["Itchy & Scratchy & Marge","Homer Defined","The Otto Show","Bart's Friend Falls in Love","Radioactive Man","Bart Sells His Soul","Marge Be Not Proud","Lisa's Date with Density","Faith Off","Days of Wine and D'oh'ses","Milhouse of Sand and Fog","Lost Verizon","Moe Goes from Rags to Riches"] //eps
   ], //loc
   ["Barney's Bowlarama",
     ["Moaning Lisa","Life on the Fast Lane","Colonel Homer","The Last Temptation of Homer","Homer vs. the Eighteenth Amendment","And Maggie Makes Three","Team Homer","Hurricane Neddy","Hello Gutter, Hello Fadder","A Hunka Hunka Burns in Love","He Loves to Fly and He D'ohs","Penny-Wiseguys"] //eps
   ], //loc
   ["Springfield Convention Center",
-    ["Three Men and a Comic Book","Brother, Can You Spare Two Dimes?","Mr. Plow","Homer Badman","The Twisted World of Marge Simpson","King of the Hill","Mayored to the Mob","Make Room for Lisa","Thirty Minutes Over Tokyo","The Mansion Family","HOM&#1103","The Squirt and the Whale"] //eps
+    ["Three Men and a Comic Book","Brother, Can You Spare Two Dimes?","Mr. Plow","Homer Badman","The Twisted World of Marge Simpson","King of the Hill","Mayored to the Mob","Make Room for Lisa","Thirty Minutes Over Tokyo","The Mansion Family","HOM\u042f","The Squirt and the Whale"] //eps
   ], //loc
   ["Springfield High School",
     ["The Way We Was","The Front","Homer Goes to College","Marge on the Lam","Homerpalooza","Half-Decent Proposal","Weekend at Burnsie's","She Used to Be My Girl","Springfield Up","Take My Life, Please","Moms I'd Like to Forget"] //eps
   ], //loc
   ["Costington's",
-    ["Trash of the Titans","Homer to the Max","Homer vs. Dignity","Poppa's Got a Brand New Badge","Moe Baby Blues","Future-Drama","Kill Gil: Vols. 1  amp; 2","The Boys of Bummer","Crook and Ladder","Loan-a Lisa","The Wandering Juvie"] //eps
+    ["Trash of the Titans","Homer to the Max","Homer vs. Dignity","Poppa's Got a Brand New Badge","Moe Baby Blues","Future-Drama","Kill Gil: Vols. 1 & 2","The Boys of Bummer","Crook and Ladder","Loan-a Lisa","The Wandering Juvie"] //eps
   ], //loc
   ["Rural Route 27",
     ["Bart Gets an Elephant","22 Short Films About Springfield","The Twisted World of Marge Simpson","The Joy of Sect","Days of Wine and D'oh'ses","Sweets and Sour Marge","I'm Spelling as Fast as I Can","Yokel Chords","Apocalypse Cow","Lisa Goes Gaga","Moonshine River"] //eps
@@ -99,7 +99,7 @@ var locationsByAppearAmt = [
     ["Principal Charming","The Otto Show","Homer vs. Patty and Selma","A Fish Called Selma","Bart on the Road","The Old Man and the Key","Kiss Kiss Bang Bangalore","Rome-Old and Julie-Eh","The Real Housewives of Fat Tony","The Falcon and the D'ohman"] //eps
   ], //loc
   ["Grocery Store",
-    ["Homer vs. Lisa and the 8th Commandment","The War of the Simpsons","Homer Alone","The Springfield Connection","King-Size Homer","Marge Simpson in: 'Screaming Yellow Honkers'","The Old Man and the Lisa","Tennis the Menace","Million Dollar Abie","The Blue and the Gray"] //eps
+    ["Homer vs. Lisa and the 8th Commandment","The War of the Simpsons","Homer Alone","The Springfield Connection","King-Size Homer","Marge Simpson in: \"Screaming Yellow Honkers\"","The Old Man and the Lisa","Tennis the Menace","Million Dollar Abie","The Blue and the Gray"] //eps
   ], //loc
   ["Semi-Painless Dentistry",
     ["Bart the Genius","Homer's Odyssey","There's No Disgrace Like Home","Moaning Lisa","The Call of the Simpsons","The Telltale Head","Homer's Night Out","The Crepes of Wrath","Krusty Gets Busted","Some Enchanted Evening"] //eps
@@ -108,16 +108,16 @@ var locationsByAppearAmt = [
     ["Bart the Lover","Dumbbell Indemnity","Natural Born Kissers","Guess Who's Coming to Criticize Dinner?","Alone Again, Natura-Diddily","Today, I Am a Clown","My Fair Laddy","Rome-Old and Julie-Eh","The Homer of Seville"] //eps
   ], //loc
   ["Springfield City Zoo",
-    ["Bart's Comet","Flaming Moe's","Bart's Inner Child","Two Dozen and One Greyhounds","In Marge We Trust","Guess Who's Coming to Criticize Dinner?","Marge Simpson in: 'Screaming Yellow Honkers'","Homer vs. Dignity","Eight Misbehavin'"] //eps
+    ["Bart's Comet","Flaming Moe's","Bart's Inner Child","Two Dozen and One Greyhounds","In Marge We Trust","Guess Who's Coming to Criticize Dinner?","Marge Simpson in: \"Screaming Yellow Honkers\"","Homer vs. Dignity","Eight Misbehavin'"] //eps
   ], //loc
   ["Spinster City Apartments",
     ["Life on the Fast Lane","Principal Charming","Homer Alone","Selma's Choice","The Cartridge Family","Half-Decent Proposal","Kiss Kiss Bang Bangalore","Wedding for Disaster","The Book Job"] //eps
   ], //loc
   ["Springfield Penitentiary",
-    ["Krusty Gets Busted","Marge Simpson in: 'Screaming Yellow Honkers'","The Ziff Who Came to Dinner","I Don't Wanna Know Why the Caged Bird Sings","The Burns and the Bees","American History X-cellent","The Bob Next Door","Donnie Fatso","The Ned-liest Catch"] //eps
+    ["Krusty Gets Busted","Marge Simpson in: \"Screaming Yellow Honkers\"","The Ziff Who Came to Dinner","I Don't Wanna Know Why the Caged Bird Sings","The Burns and the Bees","American History X-cellent","The Bob Next Door","Donnie Fatso","The Ned-liest Catch"] //eps
   ], //loc
   ["Old Springfield Library",
-    ["Like Father, Like Clown","Lisa the Greek","Separate Vocations","Sideshow Bob Roberts","In Marge We Trust","Bart the Mother","HOM&#1103","Sweets and Sour Marge","The Color Yellow"] //eps
+    ["Like Father, Like Clown","Lisa the Greek","Separate Vocations","Sideshow Bob Roberts","In Marge We Trust","Bart the Mother","HOM\u042f","Sweets and Sour Marge","The Color Yellow"] //eps
   ], //loc
   ["Springfield Union Station",
     ["Lisa's Substitute","Homer Alone","Burns, Baby Burns","The Principal and the Pauper","To Surveil With Love","Thursdays with Abie","The Fool Monty","The Man in the Blue Flannel Pants","Lisa Goes Gaga"] //eps
@@ -129,10 +129,10 @@ var locationsByAppearAmt = [
     ["Simpsons Roasting On An Open Fire","Principal Charming","Homer Goes to College","Faith Off","Little Girl in the Big Ten","Any Given Sundance","That '90s Show","Love is a Many Strangled Thing"] //eps
   ], //loc
   ["Noise Land Video Arcade",
-    ["Moaning Lisa","Bart Gets an  'F '","The War of the Simpsons","When Flanders Failed","Boy-Scoutz 'n the Hood","The Springfield Files","Bart the Mother","The Real Housewives of Fat Tony"] //eps
+    ["Moaning Lisa","Bart Gets an \"F\"","The War of the Simpsons","When Flanders Failed","Boy-Scoutz 'n the Hood","The Springfield Files","Bart the Mother","The Real Housewives of Fat Tony"] //eps
   ], //loc
   ["Springfield Tire Yard",
-    ["Homer's Odyssey","The Otto Show","Sideshow Bob Roberts","The Old Man and the  'C ' Student","Grift of the Magi","Poppa's Got a Brand New Badge","The Squirt and the Whale","Homer's Paternity Coot"] //eps
+    ["Homer's Odyssey","The Otto Show","Sideshow Bob Roberts","The Old Man and the \"C\" Student","Grift of the Magi","Poppa's Got a Brand New Badge","The Squirt and the Whale","Homer's Paternity Coot"] //eps
   ], //loc
   ["Statue of Jebediah Springfield",
     ["The Telltale Head","The Otto Show","Bart's Girlfriend","Bart's Comet","Radioactive Man","Lisa the Iconoclast","Trash of the Titans","Poppa's Got a Brand New Badge"] //eps
@@ -153,10 +153,10 @@ var locationsByAppearAmt = [
     ["Bart vs. Thanksgiving","The Springfield Connection","Bart Sells His Soul","The Day the Violence Died","'Tis the Fifteenth Season","The Food Wife","Them, Robot"] //eps
   ], //loc
   ["82 Evergreen Terrace",
-    ["Bart the Lover","Grade School Confidential","The Principal and the Pauper","Wild Barts Can't Be Broken","Alone Again, Natura-Diddily","My Big Fat Geek Wedding","Bart Gets a  'Z '"] //eps
+    ["Bart the Lover","Grade School Confidential","The Principal and the Pauper","Wild Barts Can't Be Broken","Alone Again, Natura-Diddily","My Big Fat Geek Wedding","Bart Gets a \"Z\""] //eps
   ], //loc
   ["Alley",
-    ["Separate Vocations","Bart's Friend Falls in Love","The Springfield Connection","Trilogy of Error","The Great Louse Detective","Sex, Pies, and Idiot Scrapes","Waverly Hills 9-0-2-1-(Annoying Grunt)"] //eps
+    ["Separate Vocations","Bart's Friend Falls in Love","The Springfield Connection","Trilogy of Error","The Great Louse Detective","Sex, Pies, and Idiot Scrapes","Waverly Hills 9-0-2-1-D'oh"] //eps
   ], //loc
   ["732 Evergreen Terrace",
     ["Two Dozen and One Greyhounds","My Sister, My Sitter","Grade School Confidential","Lisa the Simpson","This Little Wiggy","Grift of the Magi","Sweets and Sour Marge"] //eps
@@ -177,7 +177,7 @@ var locationsByAppearAmt = [
     ["Two Cars in Every Garage and Three Eyes on Every Fish","Homer Loves Flanders","Lemon of Troy","When You Dish Upon a Star","There's Something About Marrying","How I Wet Your Mother"] //eps
   ], //loc
   ["First Bank of Springfield",
-    ["Homer vs. Patty and Selma","Bart the Fink","Missionary: Impossible","HOM&#1103","I Don't Wanna Know Why the Caged Bird Sings","Chief of Hearts"] //eps
+    ["Homer vs. Patty and Selma","Bart the Fink","Missionary: Impossible","HOM\u042f","I Don't Wanna Know Why the Caged Bird Sings","Chief of Hearts"] //eps
   ], //loc
   ["Barney's apartment",
     ["Homer's Night Out","One Fish, Two Fish, Blowfish, Blue Fish","I Married Marge","Dog of Death","Days of Wine and D'oh'ses","D'oh-in' in the Wind"] //eps
@@ -228,7 +228,7 @@ var locationsByAppearAmt = [
     ["The Boy Who Knew Too Much","Lisa the Skeptic","'Scuse Me While I Miss the Sky","The Monkey Suit","Smart and Smarter"] //eps
   ], //loc
   ["Prince House",
-    ["Bart's Friend Falls in Love","Bart of Darkness","Bart on the Road","Grade School Confidential","Dial  'N ' for Nerder"] //eps
+    ["Bart's Friend Falls in Love","Bart of Darkness","Bart on the Road","Grade School Confidential","Dial \"N\" for Nerder"] //eps
   ], //loc
   ["Lenny's House",
     ["Secrets of a Successful Marriage","Homer the Great","The Springfield Connection","Two Bad Neighbors","The Girl Who Slept Too Little"] //eps
@@ -285,7 +285,7 @@ var locationsByAppearAmt = [
     ["Blood Feud","Mother Simpson","The Trouble with Trillions","Sunday, Cruddy Sunday"] //eps
   ], //loc
   ["Bookaccino's",
-    ["Diatribe of a Mad Housewife","Smoke on the Daughter","Bart Gets a  'Z '","The Book Job"] //eps
+    ["Diatribe of a Mad Housewife","Smoke on the Daughter","Bart Gets a \"Z\"","The Book Job"] //eps
   ], //loc
   ["All Creatures Great and Cheap",
     ["Lisa's Pony","Duffless","Two Dozen and One Greyhounds","The Last Temptation of Krust"] //eps
@@ -321,7 +321,7 @@ var locationsByAppearAmt = [
     ["Bart the Fink","The Dad Who Knew Too Little","Dude, Where's My Ranch?","Yellow Subterfuge"] //eps
   ], //loc
   ["Hooters",
-    ["Bart Star","Mobile Homer","Sleeping with the Enemy","Bart Gets a  'Z '"] //eps
+    ["Bart Star","Mobile Homer","Sleeping with the Enemy","Bart Gets a \"Z\""] //eps
   ], //loc
   ["Duff Brewery",
     ["Duffless","Homer vs. the Eighteenth Amendment","Mypods and Boomsticks"] //eps
@@ -399,7 +399,7 @@ var locationsByAppearAmt = [
     ["Funeral for a Fiend","Thursdays with Abie","The D'oh-cial Network"] //eps
   ], //loc
   ["Sleep-Eazy Motel",
-    ["The Cartridge Family","Dial  'N ' for Nerder","The Falcon and the D'ohman"] //eps
+    ["The Cartridge Family","Dial \"N\" for Nerder","The Falcon and the D'ohman"] //eps
   ], //loc
   ["Springfield Dam",
     ["Lisa the Vegetarian","Mother Simpson","Brother from Another Series"] //eps
@@ -416,8 +416,8 @@ var locationsByAppearAmt = [
   ["Springfield Hall of Records",
     ["Sideshow Bob Roberts","Mother Simpson","Hurricane Neddy"] //eps
   ], //loc
-  ["Itchy amp; Scratchy International",
-    ["Itchy  amp; Scratchy  amp; Marge","The Day the Violence Died","The Itchy  amp; Scratchy  amp; Poochie Show"] //eps
+  ["Itchy & Scratchy International",
+    ["Itchy & Scratchy & Marge","The Day the Violence Died","The Itchy & Scratchy & Poochie Show"] //eps
   ], //loc
   ["Dr. Julius Hibbert, M.D. Family Practice",
     ["Bart the Fink","Lisa the Simpson","Homer vs. Dignity"] //eps
@@ -447,7 +447,7 @@ var locationsByAppearAmt = [
     ["Ice Cream of Margie (with the Light Blue Hair)","E. Pluribus Wiggum","All About Lisa"] //eps
   ], //loc
   ["Peanut Street Hotel",
-    ["Brake My Wife, Please","Kill Gil: Vols. 1  amp; 2","The D'oh-cial Network"] //eps
+    ["Brake My Wife, Please","Kill Gil: Vols. 1 & 2","The D'oh-cial Network"] //eps
   ], //loc
   ["Food Court",
     ["Fraudcast News","Postcards From the Wedge","Beware My Cheating Bart"] //eps
@@ -455,7 +455,7 @@ var locationsByAppearAmt = [
   ["Spiffany's",
     ["Poppa's Got a Brand New Badge","Politically Inept, with Homer Simpson","The D'oh-cial Network"] //eps
   ], //loc
-  ["Neat amp; Tidy Piano Movers",
+  ["Neat & Tidy Piano Movers",
     ["Homer the Smithers","D'oh-in' in the Wind","The Daughter Also Rises"] //eps
   ], //loc
   ["754 Evergreen Terrace",
@@ -540,7 +540,7 @@ var locationsByAppearAmt = [
     ["Homer's Odyssey","I Married Marge"] //eps
   ], //loc
   ["Springfield Palace of Fine Arts",
-    ["Itchy  amp; Scratchy  amp; Marge","Brush with Greatness"] //eps
+    ["Itchy & Scratchy & Marge","Brush with Greatness"] //eps
   ], //loc
   ["Springwood Minimum Security Prison",
     ["Sideshow Bob Roberts","Sideshow Bob's Last Gleaming"] //eps
@@ -564,7 +564,7 @@ var locationsByAppearAmt = [
     ["I Married Marge","A Milhouse Divided"] //eps
   ], //loc
   ["Waverly Hills",
-    ["Waverly Hills 9-0-2-1-(Annoying Grunt)","Bart Stops to Smell the Roosevelts"] //eps
+    ["Waverly Hills 9-0-2-1-D'oh","Bart Stops to Smell the Roosevelts"] //eps
   ], //loc
   ["Springfield Opera House",
     ["Bart the Genius","The Homer of Seville"] //eps
@@ -594,7 +594,7 @@ var locationsByAppearAmt = [
     ["Lisa the Beauty Queen","Bart of Darkness"] //eps
   ], //loc
   ["Skates 'n' Such Ice Rink",
-    ["Boy Meets Curl","Kill Gil: Vols. 1  amp; 2"] //eps
+    ["Boy Meets Curl","Kill Gil: Vols. 1 & 2"] //eps
   ], //loc
   ["SH\u00d8P",
     ["Lisa the Beauty Queen","Eight Misbehavin'"] //eps
@@ -602,8 +602,8 @@ var locationsByAppearAmt = [
   ["Storytown Village",
     ["Lisa the Vegetarian","I'm Goin' to Praiseland"] //eps
   ], //loc
-  ["Itchy  amp; Scratchy  amp; Marge (Theme Park)",
-    ["Itchy  amp; Scratchy  amp; Marge","Mommie Beerest"] //eps
+  ["Itchy & Scratchy Land (Theme Park)",
+    ["Itchy & Scratchy Land","Mommie Beerest"] //eps
   ], //loc
   ["Capitol Building",
     ["Two Cars In Every Garage And Three Eyes On Every Fish","Bart vs. Lisa vs. the Third Grade"] //eps
@@ -627,7 +627,7 @@ var locationsByAppearAmt = [
     ["I, (Annoyed Grunt)-Bot","Jazzy and the Pussycats"] //eps
   ], //loc
   ["Five Corners",
-    ["Itchy  amp; Scratchy  amp; Marge","The Bob Next Door"] //eps
+    ["Itchy & Scratchy Land","The Bob Next Door"] //eps
   ], //loc
   ["Springfield Animal Hospital",
     ["Dog of Death","Who Shot Mr. Burns? (Part One)"] //eps
@@ -822,7 +822,7 @@ var locationsByAppearAmt = [
     ["Bart After Dark"] //eps
   ], //loc
   ["Bloodbath Gulch",
-    ["Homer Simpson in:  'Kidney Trouble '"] //eps
+    ["Homer Simpson in: \"Kidney Trouble\""] //eps
   ], //loc
   ["Screamville",
     ["Cape Feare"] //eps
@@ -842,7 +842,7 @@ var locationsByAppearAmt = [
   ["Speed-E-Mart",
     ["Lemon of Troy"] //eps
   ], //loc
-  ["The Itchy amp; Scratchy Store",
+  ["The Itchy & Scratchy Store",
     ["My Sister, My Sitter"] //eps
   ], //loc
   ["New Horrorfield",
@@ -932,10 +932,10 @@ var locationsByAppearAmt = [
   ["Springfield Plasma Center",
     ["Bart vs. Thanksgiving"] //eps
   ], //loc
-  ["Coolsville Comics amp; Toys",
+  ["Coolsville Comics & Toys",
     ["Husbands and Knives"] //eps
   ], //loc
-  ["Bloodbath amp; Beyond Gun Shop",
+  ["Bloodbath & Beyond Gun Shop",
     ["The Cartridge Family"] //eps
   ], //loc
   ["Old Jewish Man's House",
@@ -987,7 +987,7 @@ var locationsByAppearAmt = [
     ["Homer's Phobia"] //eps
   ], //loc
   ["Eatie Gourmet's",
-    ["Lisa Gets an  'A '"] //eps
+    ["Lisa Gets an \"A\""] //eps
   ], //loc
   ["Eye Caramba",
     ["Last Tap Dance in Springfield"] //eps
@@ -1065,7 +1065,7 @@ var locationsByAppearAmt = [
     ["Simpsons Roasting on an Open Fire"] //eps
   ], //loc
   ["Highway Nine Bird Sanctuary",
-    ["Itchy  amp; Scratchy  amp; Marge"] //eps
+    ["Itchy & Scratchy Land"] //eps
   ], //loc
   ["Aced Shoe",
     ["There's No Disgrace Like Home"] //eps
@@ -1149,7 +1149,7 @@ var locationsByAppearAmt = [
     ["Some Enchanted Evening"] //eps
   ], //loc
   ["Bike Track",
-    ["Bart Gets an  'F '"] //eps
+    ["Bart Gets an \"F\""] //eps
   ], //loc
   ["Karl's Apartment",
     ["Simpson and Delilah"] //eps
@@ -1191,7 +1191,7 @@ var locationsByAppearAmt = [
     ["Lisa on Ice"] //eps
   ], //loc
   ["Screaming Monkey Medical Research Center",
-    ["HOM&#1103"] //eps
+    ["HOM\u042f"] //eps
   ], //loc
   ["Fast-Food Boulevard",
     ["E. Pluribus Wiggum"] //eps
@@ -1235,14 +1235,14 @@ var locationsByAppearAmt = [
   ["Junkytown Legal Clinic",
     ["The Springfield Connection"] //eps
   ], //loc
-  ["G. Bannister amp; Associates",
+  ["G. Bannister & Associates",
     ["Lemon of Troy"] //eps
   ], //loc
-  ["Coffee amp; Tea",
+  ["Coffee & Tea",
     ["Lemon of Troy"] //eps
   ], //loc
   ["Larry's Cane Store",
-    ["Raging Abe Simpson and His Grumbling Grandson in  'The Curse of the Flying Hellfish '"] //eps
+    ["Raging Abe Simpson and His Grumbling Grandson in \"The Curse of the Flying Hellfish\""] //eps
   ], //loc
   ["Discount Fashion",
     ["Homerpalooza"] //eps
@@ -1277,8 +1277,8 @@ var locationsByAppearAmt = [
   ["Elm Street Video Arcade",
     ["Bart the General"] //eps
   ], //loc
-  ["Euro-Itchy  amp; Scratchy  amp; Marge",
-    ["Itchy  amp; Scratchy  amp; Marge"] //eps
+  ["Euro-Itchy & Scratchy Land",
+    ["Itchy & Scratchy Land"] //eps
   ], //loc
   ["Weasel Island",
     ["Moe Letter Blues"] //eps
@@ -1299,7 +1299,7 @@ var locationsByAppearAmt = [
     ["The Bob Next Door"] //eps
   ], //loc
   ["Muffin Store",
-    ["Bart Gets a  'Z '"] //eps
+    ["Bart Gets a \"Z\""] //eps
   ], //loc
   ["O'Flanagan's Pub",
     ["In the Name of the Grandfather"] //eps
@@ -1455,7 +1455,7 @@ var locationsByAppearAmt = [
     ["Lisa the Iconoclast"] //eps
   ], //loc
   ["I.P.O. Friday's",
-    ["HOM&#1103"] //eps
+    ["HOM\u042f"] //eps
   ], //loc
   ["Springfield Hunting Supplies",
     ["Homer's Phobia"] //eps
@@ -1542,7 +1542,7 @@ var locationsByAppearAmt = [
     ["Simpson Tide"] //eps
   ], //loc
   ["Waverly Hills Elementary School",
-    ["Waverly Hills 9-0-2-1-(Annoying Grunt)"] //eps
+    ["Waverly Hills 9-0-2-1-D'oh"] //eps
   ], //loc
   ["Springfield Heights Promenade",
     ["'Tis the Fifteenth Season"] //eps
@@ -1559,7 +1559,7 @@ var locationsByAppearAmt = [
   ["Escalator to Nowhere",
     ["Marge vs. the Monorail"] //eps
   ], //loc
-  ["Pay, Park amp; Pay",
+  ["Pay, Park & Pay",
     [" Sideshow Bob Roberts"] //eps
   ], //loc
   ["Li'l Valu-Mart",
@@ -1880,7 +1880,7 @@ var locationsByAppearAmt = [
   ["Nouveau Bitch",
     ["The D'oh-cial Network"] //eps
   ], //loc
-  ["Markups amp; Spender",
+  ["Markups & Spender",
     ["The D'oh-cial Network"] //eps
   ], //loc
   ["Nothing Under a Thousand",
@@ -1919,7 +1919,7 @@ var locationsByAppearAmt = [
   ["XO",
     ["The D'oh-cial Network"] //eps
   ], //loc
-  ["Abercrombie amp; The Other Guy",
+  ["Abercrombie & The Other Guy",
     ["The D'oh-cial Network"] //eps
   ], //loc
   ["Book Cellar",
@@ -2024,7 +2024,7 @@ var locationsByAppearAmt = [
   ["The Big T Building",
     ["Homer the Vigilante"] //eps
   ], //loc
-  ["Big T Burgers amp; Fries",
+  ["Big T Burgers & Fries",
     ["Homer the Vigilante"] //eps
   ], //loc
   ["Big T Theatre",
@@ -2036,7 +2036,7 @@ var locationsByAppearAmt = [
   ["Veterans of One War",
     ["Midnight Rx"] //eps
   ], //loc
-  ["Burns amp; Noble",
+  ["Burns & Noble",
     ["The D'oh-cial Network"] //eps
   ], //loc
   ["Cropduster Video",
@@ -2106,7 +2106,7 @@ var locationsByAppearAmt = [
     ["Selma's Choice"] //eps
   ], //loc
   ["Fireworks, Candy, and Puppy Dogs Store",
-    ["The Old Man and the  'C ' Student"] //eps
+    ["The Old Man and the \"C\" Student"] //eps
   ], //loc
   ["Snowball II Municipal Cat Park",
     ["Old Yeller-Belly"] //eps
@@ -2171,14 +2171,14 @@ var locationsByAppearAmt = [
   ["Cheddarbarrel Farm and 4-H Center",
     ["Apocalypse Cow"] //eps
   ], //loc
-  ["Abbattoir amp; Costello LLC.",
+  ["Abbattoir & Costello LLC.",
     ["Apocalypse Cow"] //eps
   ], //loc
   ["Mental Institution",
     ["How I Spent My Strummer Vacation"] //eps
   ], //loc
   ["German Castle",
-    ["Raging Abe Simpson and His Grumbling Grandson in  'The Curse of the Flying Hellfish '"] //eps
+    ["Raging Abe Simpson and His Grumbling Grandson in \"The Curse of the Flying Hellfish\""] //eps
   ], //loc
   ["Toys '\u042f' Us",
     ["Marge vs. Singles, Seniors, Childless Couples and Teens and Gays"] //eps
@@ -2196,13 +2196,13 @@ var locationsByAppearAmt = [
     ["Maximum Homerdrive"] //eps
   ], //loc
   ["Taj Mah-All-You-Can-Eat",
-    ["Dial  'N ' for Nerder"] //eps
+    ["Dial \"N\" for Nerder"] //eps
   ], //loc
   ["Pudding on the Ritz",
-    ["Dial  'N ' for Nerder"] //eps
+    ["Dial \"N\" for Nerder"] //eps
   ], //loc
   ["Springfield National Park",
-    ["Dial  'N ' for Nerder"] //eps
+    ["Dial \"N\" for Nerder"] //eps
   ], //loc
   ["Island",
     ["Little Orphan Millie"] //eps
@@ -2228,7 +2228,7 @@ var locationsByAppearAmt = [
   ["Nudes Nudes Nudes",
     ["The Last of the Red Hat Mamas"] //eps
   ], //loc
-  ["Vic Tayback Hotel amp; Casino",
+  ["Vic Tayback Hotel & Casino",
     ["The Last of the Red Hat Mamas"] //eps
   ], //loc
   ["Springfield Cosmetic Surgery Clinic",
@@ -2331,7 +2331,7 @@ var locationsByAppearAmt = [
     ["Lisa the Drama Queen"] //eps
   ], //loc
   ["Springfield Gas",
-    ["Bart Gets a  'Z '"] //eps
+    ["Bart Gets a \"Z\""] //eps
   ], //loc
   ["Chazz Busby Ballet Academy",
     ["Smoke on the Daughter"] //eps
@@ -2523,13 +2523,13 @@ var locationsByAppearAmt = [
     ["Regarding Margie"] //eps
   ], //loc
   ["Sandy Beach",
-    ["Itchy  amp; Scratchy  amp; Marge"] //eps
+    ["Itchy & Scratchy Land"] //eps
   ], //loc
   ["Amish Country",
-    ["Itchy  amp; Scratchy  amp; Marge"] //eps
+    ["Itchy & Scratchy Land"] //eps
   ], //loc
   ["Motel",
-    ["Itchy  amp; Scratchy  amp; Marge"] //eps
+    ["Itchy & Scratchy Land"] //eps
   ], //loc
   ["Turban Outfitters",
     ["My Sister, My Sitter"] //eps
@@ -2708,7 +2708,7 @@ var locationsByAppearAmt = [
   ["Itchy's Glass-Blowing",
     ["Girly Edition"] //eps
   ], //loc
-  ["Motel (Itchy amp; Scratchy)",
+  ["Motel (Itchy & Scratchy)",
     ["Girly Edition"] //eps
   ], //loc
   ["Fortress of Choclitude",
