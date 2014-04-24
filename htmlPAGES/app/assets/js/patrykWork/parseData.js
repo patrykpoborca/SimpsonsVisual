@@ -135,7 +135,7 @@ function p_populateSeasons(season)
 	if(season == -1)
 	{
 		
-		r_val.push("All Episodes");
+		//r_val.push("All Episodes");
 		for(var a =0 ; a < dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length; a ++)
 		{
 		r_val.push("Season: " + (a+1));

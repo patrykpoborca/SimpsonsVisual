@@ -10,7 +10,7 @@ function p_initInterp(scope, filterby, display, text)
 {//^^ are ID's of html elements, 2 dropdowns, display div, and a text area
 pSCOPE = $("#"+scope); pFILTER = $("#"+ filterby); pDISPLAY = $("#"+ display);  pTXT = $("#"+text);
 
-pSCOPE.on('change', function(){if(pSCOPE.val() == "..") return; p_setQuery(); p_upDisplay(); p_upVisualElements();});
+pSCOPE.on('change', function(){if(pSCOPE.val() == "..") return; p_setQuery(); tempFilterStorage = [];   p_upDisplay(); p_upVisualElements(); }); //null out tempFilterStorage on scope change to reprocess it..
 pFILTER.on('change',function(){if(pFILTER.val() == "..") return; p_cWrapper($(this).find(":selected").text(), -2);  p_upDisplay();  p_upVisualElements();});
 p_initQuery(); 
 p_initPTable();
@@ -23,8 +23,10 @@ pSCOPE.trigger('change');
 
 $("#pAddFilter").on('click',
 function(){
+tempFilterStorage.push(currentModFilter);
 p_changeFilter(pFILTER.find(":selected").text(), -1);
 $(pFILTER).trigger('change');
+	console.log(p_upVisualElements())
 });
 
 
@@ -74,7 +76,7 @@ for(var a = 0; a < arr[0].length; a++) //save header data
 var filterRow = [];
 filterRow[0] = type;
 filterRow[1] = arr[1][1];
-	for(var a = 1; a < arr.length-1; a ++ ) // avoid headers
+	for(var a = 1; a < arr.length; a ++ ) // avoid headers
 	{
 	magnitude = 0;
 		for(var b= 2; b < arr[a].length; b++) //avoid count/row names
@@ -102,13 +104,38 @@ r_val.push(filterRow);
 return r_val;//returns added
 }
 
-function p_remerge(arr)//2d array filled with headers...
+function p_remerge(arr, scope)//2d array filled with headers...
 {
-var r_val = []; r_val.push(arr[0]); //overall header
-for(var a=1; a< arr.length; a+=2)
- r_val.push(arr[a]);
- 
- console.log(r_val);
+
+
+var tempArr=[];
+var superArr= arr;
+arr = arr[0];
+var r_val = []; //r_val.push(arr[0]); //overall header
+
+
+for(var h = 0; h < scope.length; h++)
+		tempArr.push(arr[0][scope[h]]);
+r_val.push(tempArr);
+for(var out = 0; out < superArr.length; out++)
+{
+	arr = superArr[out];
+	for(var a=1; a< arr.length; a+=2) //going through rows..
+	 {
+	 tempArr =[];
+	 tempArr[0] = arr[a][0]; //name, count
+	
+	 for(var cols = 0; cols < scope.length; cols++)
+	 {
+	  tempArr.push(arr[a][scope[cols]]);
+	 }
+	 r_val.push(tempArr);
+	 }
+	 
+	 //r_val.push(arr[a]);
+	 
+}
+ return(r_val);
 
 }
 
@@ -120,32 +147,75 @@ for(var a=1; a< arr.length; a+=2)
 */
 
 
-var test;
-function p_upVisualElements(query)
+var currentModFilter;
+
+function p_upVisualElements()
 {
 var arr = p_grabArrays(); //gets initial 'dirty' arrays, just holding bare data
-test = p_cLogicTable(arr[2]);
+
+//if(arr['lookup']indexOf('allEpisodesByNumber'
+
+
 var newArr =[];
+var switchFlag = false;
 
-var whichColumns = p_mergeTable(p_cLogicTable(arr[1]), false, arr['lookup'][1], false); // basically will create a table which decides which columns will be kept....
-whichColumns = truthToInt(whichColumns);
 
+if(tempFilterStorage.length ==0)
+{	
+	var whichColumns = p_mergeTable(p_cLogicTable(arr[1]), false, arr['lookup'][1], false); // basically will create a table which decides which columns will be kept....
+	
+	
+	whichColumns = truthToInt(whichColumns[1]);
+	
+	tempFilterStorage[1] = whichColumns; //save the scope as well...
+	
+}
+else
+	switchFlag = true; // basically we already have the param's saved... 
+
+	
+if(switchFlag == true)
+		for(key in tempFilterStorage) {newArr.push(tempFilterStorage[key]); }
+	
 for(var a=2; a < arr.length; a++) //grab all filters
+	{
+    a = (a ==2 && tempFilterStorage.length != 1 && switchFlag) ? tempFilterStorage.length : a; //if first loop, and filterStorage contains more than scope...
+	
 	newArr.push(p_mergeTable(p_cLogicTable(arr[a]), false, arr['lookup'][a], whichColumns)); //switch false for global and operator... TODO
+	
+	if(a+1 != arr.length) //only add if not last filter element
+		tempFilterStorage[a] = newArr[newArr.length -1];
+		else
+		currentModFilter = newArr[newArr.length -1];
+	}
 
-console.log('here');
-console.log(arr);
-//iterate through arr, checking to see if scope is different, which then converts the arrays, 
+	
+//iterate through arr, checking to see if scope is different, which then converts the arrays,  **** NewVar only contains filters...
+ //console.log("END OF UP THING");
+//console.log(newArr);
 
-tempFilterStorage[p_F()] = arr[p_F()];
-
+var tester= [];
+//tester.shift(); //remove the scope
+var r_value = null;
+if(newArr.length >2)
+{
+for(var ttt =0; ttt< newArr.length-1; ttt++)
+	tester[ttt] = newArr[ttt+1]
+/*
+console.log('lksdfljksd');
+console.log(tester);
+console.log(newArr);
+console.log("testing...");
+*/
+var r_value = p_remerge(tester, newArr[0]);
+}
 $("#todo").click(function(){
 var HOLD = wrapForTable(newArr[0]);
 $("#genTable").empty();
 initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, true, false);
 
 	});
-
+return r_value;
 }
 /*
 #################################################################################################################################################
@@ -163,10 +233,12 @@ console.log(" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");	*/
 function p_cLogicTable(arr)
 {
 
+
 // if bottom level, just one element. 1 = index, 0 = name, lookup
 var table = []; //collection of rows
 var singleRow = []; singleRow[0] = ""; //filler
 singleRow.push("Count");
+
 for(var a=0; a < arr[0][1].length; a++) //initialize season #'s
 singleRow.push(a+1);
 table.push(singleRow);
@@ -201,34 +273,42 @@ var HOLD = wrapForTable(table);
 $("#genTable").empty();
 initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, true, false);
 */
+
+
 return table;
 }
+
+
+
+
 
 var tempDrop; //temporary drop down holder global.
 var tempFilterStorage = [];
 // grabs the CURRENT selection by iterating through where the current query pointer is..
 function p_grabArrays() // returns a array of scope and its filters
 {
-console.log ("temppp");
-console.log(tempFilterStorage);
+
+
 var temp;
 var parent;
 var quer = []; // 0 -> scope, 0< filters 'lookup' = types
 quer['lookup'] = [];
 	for(var a = 1; a < parserQueries[p_Q()].length; a ++)
 	{
-		
-		
+		if(tempFilterStorage.length !=0)
+			{
+			
+			
+			a = p_F(); // if we already have saved 'filters' skip ahead to current filter being changed...
+			for(var inner = 1; inner < tempFilterStorage.length; inner++) //start at 1...
+				quer[inner] = tempFilterStorage[inner];
+			
+			}
+			
+			
 		//console.log(parserQueries[p_Q()]);
 		temp = parserQueries['lookup'][parserQueries[p_Q()][a]['term']];
-		if(temp == null)
-			{
-			for(key in tempFilterStorage)
-				{temp = (tempFilterStorage[key] == parserQueries['lookup'][parserQueries[p_Q()][a]['term']]) ? key : null; console.log("->>>> " + key); //fix if comparisson TODO on these guys, tempFilter[key] is a DB
-				if(temp != null) {quer[a] = tempFilterStorage[key]; temp  = -999;}
-				}
-				if( temp == -999) continue;
-			}
+		
 		
 		if(temp == null)
 		{
@@ -266,6 +346,14 @@ quer['lookup'] = [];
 							quer[a][aa][1][zet] = (tempH-1 == zet) ? true : false;
 							}
 						}
+					if(finalChoice == 'Location')
+					{
+					
+					
+					quer[a][aa][1] = fetchTF(quer[a][aa][1]);
+					
+					}
+					
 					quer[a] = [quer[a][aa]];
 					//console.log("freak");
 					//console.log(quer[a]);
@@ -273,6 +361,9 @@ quer['lookup'] = [];
 					break;
 					}
 			}
+			
+			
+			
 		if(crazy === true)
 			{
 			quer['lookup'][a] = temp['a'];
@@ -288,18 +379,20 @@ quer['lookup'] = [];
 	//////////////////////////===================================================================================================
 		
 		//alert(temp);
-		if(parserQueries[p_Q()][a]['term'] != 'Seasons')
+		if(parserQueries[p_Q()][a]['term'] != 'Seasons' )//&& parserQueries[p_Q()][a]['term'] != 'All Episodes' )
 			{
 			
 			if(parserQueries[p_Q()][a]['term'].substring(0,7) == "Season:")
 				{
-				quer[a] = [];
-				quer[a][1] = getSeasonTF(Number(parserQueries[p_Q()][a]['term'].substring(8)));
-				quer[a][0] = parserQueries[p_Q()][a]['term'];		
-				console.log(quer[a]);
+				var bs
+				bs = [];
+				bs[1] = getSeasonTF(Number(parserQueries[p_Q()][a]['term'].substring(8)));
+				bs[0] = parserQueries[p_Q()][a]['term'];		
+				quer[a] = [bs];
+			
 				}
 			else
-			quer[a] =(isNaN(temp['i'])) ? p_fetchAnon(temp['a'], ['name', temp['i']], -1, -1) : p_populateArr(temp['a'], [0, temp['i']]); // is the index a number, if so, cut from different things
+				quer[a] =(isNaN(temp['i'])) ? p_fetchAnon(temp['a'], ['name', temp['i']], -1, -1) : p_populateArr(temp['a'], [0, temp['i']]); // is the index a number, if so, cut from different things
 						
 			if(parserQueries[p_Q()][a]['term'] == 'Location')
 				{
@@ -311,6 +404,7 @@ quer['lookup'] = [];
 			}
 		else
 				{
+					//if('All Episodes' == parserQueries[p_Q()][a]['term']) temp = parserQueries['lookup']['Seasons'];
 					quer[a]=[];
 					var tempHold = eval(temp['a']); // number of season, aka name
 					
@@ -322,13 +416,7 @@ quer['lookup'] = [];
 				}
 		
 		
-		if(temp['r'] != null) //cuts away a range
-			{	
-				
-				quer[a].splice(0, temp['s']);
-				quer[a].splice(temp['r']);	
-				
-			}
+		
 			quer['lookup'][a] = temp['a'];
 	}	
 	
@@ -437,7 +525,7 @@ for(var a=0; a < arr.length; a++)
 return r_val;
 }
 
-function getSeasonTF(num)
+function getSeasonTF(num) //works...
 {
 var hold = parserQueries['lookup']["Season: " + num];
 var t = p_fetchAnon("allEpisodesByNumber", 1, -1, -1);
@@ -449,17 +537,25 @@ for(var a = 0; a < t.length; a++)
 for(var a =hold['s']; a < hold['r']; a++)
 	r_val[a] = true;
 
+	
 return r_val;
 }
 
-//takes 1d array of a row, iterates over and tells which 
+//takes 1d array of a row, and each value pushed onto r_val is a column # -1 of which we wish to keep
 function truthToInt(arr)
 {
+
 var r_val = [];
-r_val[0] = 0; //we need the count column to be kept
-r_val[1] = 1; // same with name
+//r_val[0] = arr[0]; //we need the count column to be kept
+//r_val[1] = arr[1]; // same with name
+
+
 for(var a=2; a < arr.length; a++)
-	if(arr[a]) r_val.push(a)
+	if(arr[a]) r_val.push(a-1)
+
+
+	
+
 return r_val;
 }
 

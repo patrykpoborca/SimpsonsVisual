@@ -56,7 +56,7 @@ UI for app
 		width: 1280px;
 		height: 320px;
 		background-color: black;  
-		top : 400px;
+		top : 360px;
 		left : 0px;	
 		}
 		ul
@@ -76,6 +76,7 @@ UI for app
 		
 		#queryParser
 		{
+		overflow:auto;
 		border-style:solid;
 		border-width:3px;
 		position : absolute;
@@ -203,7 +204,7 @@ UI for app
 		<div id = "cornerTR" class = "cornerDivs" style = "top : 0px; right: 0px; background-image:url('assets/js/patrykWork/margesimpson.gif');"> </div>
 		<div id = "cornerBR" class = "cornerDivs" style = "bottom : 0px; right : 0px; background-image:url('assets/js/patrykWork/lisasimp.gif');"> </div>		
 		<!-- 4 cornerDivs -->	
-			<div id="chart_div" class = "draggingClass"></div>  <!-- chart div to populate...-->
+			<div id="chart_div" class = ""></div>  <!-- chart div to populate...-->
 	
 	
 		<!--
@@ -223,7 +224,7 @@ UI for app
 									
 										<!-- ############################################LI SPLITER##################################### -->
 									<li id = 'trio'>
-										<button type="button" id = "sendData" class = "btn btn-primary">Debug/Tog</button>	
+										<button type="button" id = "sendData" class = "btn btn-primary">Switch View</button>	
 									
 						<!-- ############################################LI SPLITER##################################### -->
 								
@@ -234,7 +235,7 @@ UI for app
 						<!-- ############################################LI SPLITER##################################### -->
 									<div style = "padding-top : 5px">
 											
-										<button type="button" id = "todo" class = "btn btn-primary">toDo</button>	
+										<button type="button" id = "todo" class = "btn btn-primary">Auto Update</button>	
 									
 										<button type="button" id = "expandSliders" class = "btn btn-primary">Show Sliders</button>
 										
@@ -332,11 +333,11 @@ UI for app
 					
 					
 					
-				<div id = "genTable" class = "draggingClass"> <!-- table div -->
+				<div id = "genTable" class = ""> <!-- table div -->
 						
 		
 				</div>
-				<div id= "superDiv" class = "draggingClass">
+				<div id= "superDiv" class = "">
 							<div id="pictureTest">
 							<p><h3>Overview</h3> <button onclick="toggleCharIconsOnPopup()">Toggle Icons In popups.</button></p>
 								</div>
@@ -404,7 +405,7 @@ UI for app
 	bindSliders(minObj, maxObj);
 	////////////////////////
 	//
-	
+
 	//debug bind
 	$("#sendData").on('click', debugLogCom);
 	//eo debug bind
@@ -417,6 +418,8 @@ UI for app
 	setTimeout(initJqueryUi, 500); // load in jquery ui functions after .5 seconds... to avoid errors (just in case), the plugin takes a bit to load in.
 	//p_Groups();//post load generation..
 	//console.log(globalDirectorList);
+	
+
 	}); //end of ready #############################################################################################################
 	
 	</script>
