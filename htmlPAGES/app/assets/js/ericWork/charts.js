@@ -90,7 +90,7 @@ console.log(theArray);
 							points.push({label: theArray[0][j], y: 0});
 						}
 					}
-					if(i == theArray.length-1) {
+					if(i == theArray.length-2) {
 						var values = { 
 							name: theArray[i][0], 
 							type: "column",
