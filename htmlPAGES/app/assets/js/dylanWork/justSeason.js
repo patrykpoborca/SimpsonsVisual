@@ -19,12 +19,15 @@ dkGlobalOverviewTable.notInEpsColorHi = '#005234';
 */
 
 
-//Assumes that season is a number
+//Assumes that season is a number 
 //Will probably need more parameters and functionality to interact with the control panel.
 //For example, this will currently grab all valid characters and pass them, but that doesn't fit on the screen.
 function findCharactersInGivenSeasonAndPopulateInteractiveTable(divIdToFill, season) {
-	hidePopupControlBox(); //because there is a good chance got here from the overview.
+	//hidePopupControlBox(); //because there is a good chance got here from the overview.
 	console.log("attempting to create the season only view with:" + divIdToFill + "," + season);
+	dkGlobalOverviewTable.divPassing = divIdToFill;
+	document.getElementById(divIdToFill).innerHTML= "";
+	createDivsForSeass(divIdToFill);
 
 	var charsInThisSeason = [];
 	var beginEpisodeRange = -1;
@@ -39,6 +42,9 @@ function findCharactersInGivenSeasonAndPopulateInteractiveTable(divIdToFill, sea
 	for(var e = 0; e < dkGlobalOverviewTable.totalEps; e++){
 		if(season == getSeasonOfEpisodeNumber(e + 1) && beginEpisodeRange == -1){ beginEpisodeRange = e;}
 		if(season != getSeasonOfEpisodeNumber(e + 1) && beginEpisodeRange >= 0){ endEpisodeRange = e-1; break;}
+	}
+	if(endEpisodeRange == -1){
+		endEpisodeRange = allCharByAppearAmt[0][7].length -1;
 	}
 
 	console.log("The following episodes are in this season:" +  (beginEpisodeRange+1) + " to " + (endEpisodeRange+1));
@@ -57,15 +63,31 @@ function findCharactersInGivenSeasonAndPopulateInteractiveTable(divIdToFill, sea
 
 	console.log("There are "+charsInThisSeason.length + " characters in this season.");
 
+
 	//try and render the characters now, but with an episode width change.
 	fillSeasonInteractTable(divIdToFill, charsInThisSeason, false, season,beginEpisodeRange+1, endEpisodeRange+1);
 
 
 	//edit the top lvl description. Edit2: actually, unsure how to proceed at the moment.
 	//may need to be removed if doesn't exist in the end app.
-	document.getElementById('pictureTest').innerHTML = '<button onclick="backToOverviewFromSeason()">Return to overview.</button></p>';
+	document.getElementById('seassName').innerHTML =
+		'<h1>Season '+season+'(episodes '+  (beginEpisodeRange+1) + " to " + (endEpisodeRange+1)+')</h1>';
+	document.getElementById('seassToOverviewButton').innerHTML = '<button onclick="backToOverviewFromSeason(\''+divIdToFill+'\')">Return to overview.</button></p>';
 
 } //end findCharactersInGivenSeasonAndPopulateInteractiveTable
+
+function createDivsForSeass(divIdToFill) {
+
+	document.getElementById(divIdToFill).innerHTML = '<div id="seassToOverviewButton"></div>\n';
+	document.getElementById(divIdToFill).innerHTML += 
+		'<div id="seassName" style="position:absolute;top:20;left:50;"></div>\n';
+	document.getElementById(divIdToFill).innerHTML +=
+		'<div id="seassInteractTable" style="position:absolute;top:100;left:50;border: 1px solid black"></div>\n';
+	document.getElementById(divIdToFill).innerHTML += 
+		'<div id="seassMouseOverPanel" style="position:absolute;top:500;left:1000;visibility: hidden;border: 1px solid black;"></div>\n';
+	document.getElementById(divIdToFill).innerHTML += 
+		'<div id="seassMouseClickPanel" style="position:absolute;top:500;left:850;visibility: hidden;border: 1px solid black;"></div>\n';
+} // end createDivsForSeass
 
 
 
@@ -77,7 +99,7 @@ enableHighlight should be a boolean.
 function fillSeasonInteractTable(divIdToFill, arrayOfCharacters, enableHighlight, season, bEpRange, eEpRange) {
 
 	var contents = "<table onmouseout='shideInfoBox()' onmousemove='sshowInfoBox()'>\n";
-	contents += '<tr><th colspan="4"></th>';
+	contents += '<tr><th colspan="3">Name</th><th>#ofEp</th>';
 	var lineContent = "";
 
 	//determine how many episodes are being tracked to figure out how big to make the table.
@@ -101,7 +123,8 @@ function fillSeasonInteractTable(divIdToFill, arrayOfCharacters, enableHighlight
 		if(shorterName.search(" ") != -1){ shorterName = shorterName.substring(0, shorterName.search(" "));	}
 		if(shorterName.length > 12) { shorterName = shorterName.substring(0,12);}
 
-		lineContent += '<tr><th class="name" colspan="4">' + shorterName +'('+appearCounter+')</th>\n';
+		lineContent += '<tr><th class="name" colspan="3">' + shorterName +
+		'</th><th>'+appearCounter+'</th>\n';
 		
 
 		//fill out that array for the character.
@@ -127,7 +150,7 @@ function fillSeasonInteractTable(divIdToFill, arrayOfCharacters, enableHighlight
 			if(arrayOfCharacters[i][7][e -1]){  lineContent += '\', true,'+i+','+e+')"'; }
 			else{ lineContent += '\', false,'+i+','+e+')"'; }
 
-			lineContent += 'onclick="showPopupControlBox(\''+ arrayOfCharacters[i][0] +'\', '+e+', -1 )"'+ '></th>\n';
+			lineContent += 'onclick="seassShowMouseClickPanel(\''+ arrayOfCharacters[i][0] +'\', '+e+', -1 )"'+ '></th>\n';
 			
 
 		}
@@ -137,7 +160,7 @@ function fillSeasonInteractTable(divIdToFill, arrayOfCharacters, enableHighlight
 	contents += lineContent;
 	contents += "</table>\n";
 
-	document.getElementById(divIdToFill).innerHTML = contents;
+	document.getElementById('seassInteractTable').innerHTML = contents;
 
 	//seed the color
 	for(var row = 0; row < arrayOfCharacters.length; row++){
@@ -161,13 +184,44 @@ function fillSeasonInteractTable(divIdToFill, arrayOfCharacters, enableHighlight
 } //end filloverview table
 
 
+
+function seassShowMouseClickPanel(characterOfClick, epOfClick, seasonOfClick) {
+	var infoTextAsOne = "";
+
+	infoTextAsOne += "&nbsp<button onclick=\"seassHideMouseClickPanel()\">X</button><br>";
+	infoTextAsOne += "&nbsp&nbspSearch by character&nbsp<button onclick=\"seassMouseClickCharacter(\'"+characterOfClick+"\')\">"+characterOfClick+"</button><br>";
+	infoTextAsOne += "&nbsp&nbspSearch by episode&nbsp&nbsp&nbsp<button onclick=\"seassMouseClickEp("+epOfClick+")\">"+epOfClick+"</button><br>";
+
+	document.getElementById("seassMouseClickPanel").innerHTML = infoTextAsOne;
+	document.getElementById("seassMouseClickPanel").style.visibility = 'visible';
+	document.getElementById("seassMouseClickPanel").style.backgroundColor = '#BF5B30';
+	document.getElementById("seassMouseClickPanel").style.top = event.clientY + 10;
+	document.getElementById("seassMouseClickPanel").style.left = event.clientX + 10;
+}
+
+function seassHideMouseClickPanel() {
+	document.getElementById("seassMouseClickPanel").style.visibility = 'hidden';
+}
+
+function seassMouseClickCharacter(characterToUse) {
+	console.log("Clicked on character:" + characterToUse);
+	givenACharacterNameFilloutTheView(dkGlobalOverviewTable.divPassing, characterToUse);
+}
+
+function seassMouseClickEp(epsToUse) {
+	console.log("Clicked on ep:" + epsToUse);
+	givenAnEpisodeFillADiv(dkGlobalOverviewTable.divPassing, (epsToUse-1)); //-1 for index
+}
+
+
 function shideInfoBox(row, col) {
 
 	if(row != null){
-		document.getElementById("testArrayContents").style.top = 0;
-		document.getElementById("testArrayContents").style.left = 0;
+		document.getElementById("seassMouseOverPanel").style.visibility = 'hidden';
+		document.getElementById("seassMouseOverPanel").style.top = 0;
+		document.getElementById("seassMouseOverPanel").style.left = 0;
 
-		document.getElementById("testArrayContents").innerHTML = "";
+		document.getElementById("seassMouseOverPanel").innerHTML = "";
 
 		if(row %2 == 0){
 			if(document.getElementById('ovtIDr' + row + 'c' + col).className.search('snotInThatEps') >= 0){
@@ -189,29 +243,31 @@ function shideInfoBox(row, col) {
 function sshowInfoBox(iname, iepisode, inEps, row, col) {
 
 	if(iname != null){
-		var infoTextAsOne = "" + iname + "<br>";
+		var infoTextAsOne = "&nbsp&nbsp" + iname + "<br>";
 		//console.log("Before the print:");
 		//console.log("Inside of the show info:" + infoTextAsOne);
 
 		if(inEps){
-			document.getElementById("testArrayContents").style.backgroundColor = dkGlobalOverviewTable.inEpsColor;
-			infoTextAsOne += "IS in ";
+			document.getElementById("seassMouseOverPanel").style.backgroundColor = dkGlobalOverviewTable.inEpsColor;
+			infoTextAsOne += "&nbsp&nbspIS in ";
 		}
 		else{
-			document.getElementById("testArrayContents").style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
-			infoTextAsOne += "NOT in ";
+			document.getElementById("seassMouseOverPanel").style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
+			infoTextAsOne += "&nbsp&nbspNOT in ";
 		}
-		infoTextAsOne +=  "Episode:" + iepisode + "<br>";
+		infoTextAsOne +=  "Episode:" + iepisode + "<br>&nbsp&nbsp";
 		infoTextAsOne +=  allEpisodesByNumber[iepisode-1][0] + "<br>";
 
 
 		infoTextAsOne += "<img width='200px' height='200px' src='" + fetchImgUrlOfChar(iname) + "'></img>";
 
-		document.getElementById("testArrayContents").innerHTML = infoTextAsOne;
-		document.getElementById("testArrayContents").style.top = 200;
-		document.getElementById("testArrayContents").style.left =
-			200 + 30* dkGlobalOverviewTable.arrayOfEpisodesInSeasons[getSeasonOfEpisodeNumber(iepisode)-1];
-			//console.log(document.getElementById("testArrayContents").style.left);
+		document.getElementById("seassMouseOverPanel").innerHTML = infoTextAsOne;
+		document.getElementById("seassMouseOverPanel").style.visibility = 'visible';
+		document.getElementById("seassMouseOverPanel").style.top = 200;
+		document.getElementById("seassMouseOverPanel").style.left =
+			300 + 30* dkGlobalOverviewTable.arrayOfEpisodesInSeasons[getSeasonOfEpisodeNumber(iepisode)-1];
+		document.getElementById("seassMouseOverPanel").style.backgroundColor = "white";
+			//console.log(document.getElementById("seassMouseOverPanel").style.left);
 
 		//highlight only that particular episode on that particular character
 		document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = '#A61000';
@@ -222,10 +278,10 @@ function sshowInfoBox(iname, iepisode, inEps, row, col) {
 
 
 //temporary function to return back to overview. assumes first 10 character grab
-function backToOverviewFromSeason(){
+function backToOverviewFromSeason(divIdToFill){
 	var charList = [];
-	for(var i =0; i < 10; i++){
+	for(var i =0; i < 40; i++){
 		charList.push(allCharByAppearAmt[i]);
 	}
-	fillOverviewTable('overviewTable', charList, true);
+	fillOverviewTable(divIdToFill, charList, true);
 } //end

@@ -30,14 +30,22 @@ intention is to prevent accidentally creating a div that already exists.
 
 
 //Assumes that character is a string that matches the allCharByAppearAmt[char][0]
+//OR the index of the character is given.
 function givenACharacterNameFilloutTheView(divIdToFill, nameOfCharacter) {
 	document.getElementById(divIdToFill).innerHTML = "";
 
+	dkGlobalOverviewTable.divPassing = divIdToFill;
+	//bad naming, I know. Will fix name later if time.
 	var charsInThisSeason = []; //find the character that this was given, and put only that character in the array
-	for(var i = 0; i < allCharByAppearAmt.length; i++){
-		if(allCharByAppearAmt[i][0] == nameOfCharacter){
-			charsInThisSeason.push(allCharByAppearAmt[i]);
-			break;
+	
+	if(typeof nameOfCharacter == "number"){ charsInThisSeason.push(allCharByAppearAmt[nameOfCharacter]);}
+	else if(typeof nameOfCharacter == "string"){
+		nameOfCharacter = nameOfCharacter.trim();
+		for(var i = 0; i < allCharByAppearAmt.length; i++){
+			if(allCharByAppearAmt[i][0] == nameOfCharacter){
+				charsInThisSeason.push(allCharByAppearAmt[i]);
+				break;
+			}
 		}
 	}
 	//only make the character page if there was a name match
@@ -51,9 +59,9 @@ function givenACharacterNameFilloutTheView(divIdToFill, nameOfCharacter) {
 		fillCharacterTableAndOtherViewInfo('sscvTableOfAppear', charsInThisSeason, false);
 
 		//edit the divs
-		document.getElementById('sscvToOverviewButton').innerHTML = '<button onclick="backToOverviewFromCharacter(\''+divIdToFill+'\')">Return to overview.</button></p>';
+		document.getElementById('sscvToOverviewButton').innerHTML = '<button onclick="backToOverviewFromCharacter(\''+divIdToFill+'\')">Return to overview</button></p>';
 		document.getElementById('sscvName').innerHTML = '<p><h2 style="float:left">Character:</h2><h1 style="float: left">&nbsp&nbsp'+nameOfCharacter+'</h1>  <h3 style="float: left; margin-top: 30px;">&nbsp&nbsp('+charsInThisSeason[0][1]+')</h3></p>';
-		document.getElementById('sscvAppearTitle').innerHTML = '<br><br><br><br>Appearances over the series:';
+		document.getElementById('sscvAppearTitle').innerHTML = '<br><br><br><br><b>Appearances over the seasons:</b>';
 		
 
 		document.getElementById('sscvListOfEpisodesByName').innerHTML = '<h5>Need a function for list of episodes by name, may want links?</h5>';
@@ -64,7 +72,7 @@ function givenACharacterNameFilloutTheView(divIdToFill, nameOfCharacter) {
 		document.getElementById('sscvTop20CharsWith').innerHTML = '<h5>top 20 chars with</h5>';
 		sscvFillListOfTopWith(charsInThisSeason[0]);
 		document.getElementById('sscvPicture').innerHTML = "<img width='200px' height='300px' src='" + fetchImgUrlOfChar(nameOfCharacter) + "'></img>";
-		document.getElementById('sscvNetworkMapButton').innerHTML = '<button onclick="console.log(\'Doesnt work yet\')">View Network Map</button></p>';
+		document.getElementById('sscvNetworkMapButton').innerHTML = '<button onclick="sscvGoToSocialNet(\''+ charsInThisSeason[0][0] +'\')">View Network Map</button></p>';
 
 
 
@@ -72,7 +80,7 @@ function givenACharacterNameFilloutTheView(divIdToFill, nameOfCharacter) {
 	else{
 		console.log("there was no match for the given character name.");
 	}
-	hidePopupControlBox(); //because there is a good chance got here from the overview.
+	//hidePopupControlBox(); //call no longer needed since div will create the pop and mouse overs divs.
 } //end findCharactersInGivenSeasonAndPopulateInteractiveTable
 
 
@@ -105,14 +113,11 @@ function createDivsForSscv(divIdToFill) {
 
 //temporary function to return back to overview. assumes first 10 character grab
 function backToOverviewFromCharacter(divIdToFill){
-	/*
 	var charList = [];
-	for(var i =0; i < 20; i++){
+	for(var i =0; i < 40; i++){
 		charList.push(allCharByAppearAmt[i]);
 	}
 	fillOverviewTable(divIdToFill, charList, true);
-	//*/
-	console.log("back to overview currently disabled.");
 } //end
 
 
@@ -124,7 +129,7 @@ enableHighlight should be a boolean.
 function fillCharacterTableAndOtherViewInfo(divIdToFill, arrayOfCharacters, enableHighlight, season, bEpRange, eEpRange) {
 	var contents = "";
 	contents += "<table onmouseout='chideInfoBox()' onmousemove='cshowInfoBox()'>\n";
-	contents += '<tr><th colspan="4"></th>';
+	contents += '<tr><th colspan="3">Name</th><th>#ofEp</th>';
 	var lineContent = "";
 
 	//determine how many episodes are being tracked to figure out how big to make the table.
@@ -153,7 +158,8 @@ function fillCharacterTableAndOtherViewInfo(divIdToFill, arrayOfCharacters, enab
 		if(shorterName.search(" ") != -1){ shorterName = shorterName.substring(0, shorterName.search(" "));	}
 		if(shorterName.length > 7) { shorterName = shorterName.substring(0,7);}
 
-		lineContent += '<tr><th class="name" colspan="4">' + shorterName +'('+appearCounter+')</th>\n';
+		lineContent += '<tr><th class="name" colspan="3">' +
+		 shorterName +'</th><th>'+appearCounter+'</th>\n';
 		
 
 		//fill out that array for the character.
@@ -209,7 +215,6 @@ function fillCharacterTableAndOtherViewInfo(divIdToFill, arrayOfCharacters, enab
 			}
 		}
 	}
-
 	$(".inThatEps").css("border", "0px");
 	$(".notInThatEps").css("border", "0px");
 } //end filloverview table
@@ -221,7 +226,6 @@ function chideInfoBox(row, col) {
 		document.getElementById("sscvMouseOverPanel").style.visibility = 'hidden';
 		document.getElementById("sscvMouseOverPanel").style.top = 0;
 		document.getElementById("sscvMouseOverPanel").style.left = 0;
-
 		document.getElementById("sscvMouseOverPanel").innerHTML = "";
 
 		if(row %2 == 0){
@@ -246,20 +250,20 @@ function cshowInfoBox(iname, iepisode, inEps, row, col) {
 	if(iname != null){
 
 		document.getElementById("sscvMouseOverPanel").style.visibility = 'visible';
-		var infoTextAsOne = "" + iname + "<br>";
+		var infoTextAsOne = "&nbsp&nbsp" + iname + "<br>";
 		//console.log("Before the print:");
 		//console.log("Inside of the show info:" + infoTextAsOne);
 
 		if(inEps){
 			document.getElementById("sscvMouseOverPanel").style.backgroundColor = dkGlobalOverviewTable.inEpsColor;
-			infoTextAsOne += "IS in ";
+			infoTextAsOne += "&nbsp&nbspIS in ";
 		}
 		else{
 			document.getElementById("sscvMouseOverPanel").style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
-			infoTextAsOne += "NOT in ";
+			infoTextAsOne += "&nbsp&nbspNOT in ";
 		}
-		infoTextAsOne +=  "Episode:" + iepisode + "(S"+ getSeasonOfEpisodeNumber(iepisode) + ")<br>";
-		infoTextAsOne +=  allEpisodesByNumber[iepisode-1][0] + "<br>";
+		infoTextAsOne +=  "Episode:" + iepisode + "(S"+ getSeasonOfEpisodeNumber(iepisode) + ")&nbsp&nbsp<br>&nbsp&nbsp";
+		infoTextAsOne +=  allEpisodesByNumber[iepisode-1][0] + "&nbsp&nbsp<br>";
 
 
 		//infoTextAsOne += "<img width='200px' height='200px' src='" + fetchImgUrlOfChar(iname) + "'></img>";
@@ -267,6 +271,9 @@ function cshowInfoBox(iname, iepisode, inEps, row, col) {
 		document.getElementById("sscvMouseOverPanel").innerHTML = infoTextAsOne;
 		document.getElementById("sscvMouseOverPanel").style.top = event.clientY + 10;
 		document.getElementById("sscvMouseOverPanel").style.left = event.clientX + 10;
+		document.getElementById("sscvMouseOverPanel").style.backgroundColor = "white";
+		document.getElementById("sscvMouseOverPanel").style.opacity = 0.8;
+
 
 		//highlight only that particular episode on that particular character
 		document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = '#A61000';
@@ -283,7 +290,7 @@ function sscvFillListOfEpisodeNames(sscvCharArrayInfo) {
 		if(sscvCharArrayInfo[7][i]){totalNumberOfEpisodeAppearance++;}
 	}
 
-	document.getElementById('sscvListOfEpisodesByName').innerHTML = '<br><br>' + sscvCharArrayInfo[0] + " episode appearances("+totalNumberOfEpisodeAppearance+"):<br>";
+	document.getElementById('sscvListOfEpisodesByName').innerHTML = '<br><br><b>' + sscvCharArrayInfo[0] + " episode appearances("+totalNumberOfEpisodeAppearance+"):</b><br>";
 
 
 	//for some strange reason this is needed. otherwise the /select line will be added before the options.
@@ -293,7 +300,7 @@ function sscvFillListOfEpisodeNames(sscvCharArrayInfo) {
 
 	for(var i = 0; i < sscvCharArrayInfo[7].length; i++){
 		if(sscvCharArrayInfo[7][i]){
-			contentForDiv += "<option>"+ allEpisodesByNumber[i][0]+ "</option>\n";
+			contentForDiv += "<option>&nbsp&nbsp"+ allEpisodesByNumber[i][0]+ "</option>\n";
 		}
 	}
 
@@ -302,19 +309,26 @@ function sscvFillListOfEpisodeNames(sscvCharArrayInfo) {
 
 }//sscvFillListOfEpisodeNames
 
+
+//VIEWCHANGE
 function sscvEpNameClick() {
-	console.log("an episode name was clicked:" + document.getElementById('sscvEpNameList').value);
+	var nameToUse = document.getElementById('sscvEpNameList').value;
+	console.log("an episode name was clicked:" + nameToUse);
+	givenAnEpisodeFillADiv(dkGlobalOverviewTable.divPassing, nameToUse); 
 }
+
+
+
 
 function sscvFillListOfVoiceActors(sscvCharArrayInfo){
 	var contentForDiv = "";
 
-	contentForDiv += "<br><br>" + sscvCharArrayInfo[0] + "'s Voice Actor(s):<br>";
+	contentForDiv += "<br><br><b>" + sscvCharArrayInfo[0] + "'s Voice Actor(s):</b><br>";
 	contentForDiv +=
 		"<select id='sscvVaNameList' onchange=\"sscvVaNameClick()\"  multiple=\"multiple\" style=\"width:300px; height:100px\">\n"; 
 
 	for(var i = 0; i < sscvCharArrayInfo[6].length; i++){
-		contentForDiv += "<option>"+ sscvCharArrayInfo[6][i] +  "</option>\n";
+		contentForDiv += "<option>&nbsp&nbsp"+ sscvCharArrayInfo[6][i] +  "</option>\n";
 	}
 
 	contentForDiv+= '</select>';
@@ -322,8 +336,12 @@ function sscvFillListOfVoiceActors(sscvCharArrayInfo){
 
 } //end  sscvFillListOfVoiceActors
 
+
+//VIEWCHANGE
 function sscvVaNameClick() {
-	console.log("a va name was clicked:" + document.getElementById('sscvVaNameList').value);
+	var nameToUse = document.getElementById('sscvVaNameList').value;
+	console.log("a va name was clicked:" + nameToUse);
+	alert("va page not found");
 }
 
 
@@ -352,12 +370,12 @@ function sscvFillListOfTopWith(sscvCharArrayInfo) {
 
 	var contentForDiv = "";
 
-	contentForDiv += "Those commonly with "+sscvCharArrayInfo[0]+" in an episode:<br>";
+	contentForDiv += "<b>Those commonly with "+sscvCharArrayInfo[0]+" in an episode:</b><br>";
 	contentForDiv +=
 		"<select id='sscvTop10List' onchange=\"sscvTopNameClick(1)\"  multiple=\"multiple\" size=\"11\" style=\"width:300px\">\n"; 
 
 	for(var i = 0; i < 10; i++){
-		contentForDiv += "<option>"+  socialNetOfChars[top20epSharedChars[i]][0] + "("+ socialNetOfChars[indexOfGivenCharacter][2][top20epSharedChars[i]] + ")</option>";
+		contentForDiv += "<option>&nbsp&nbsp"+  socialNetOfChars[top20epSharedChars[i]][0] + "&nbsp&nbsp("+ socialNetOfChars[indexOfGivenCharacter][2][top20epSharedChars[i]] + ")</option>";
 	}
 	contentForDiv += "</select>";
 	document.getElementById('sscvTop10CharsWith').innerHTML = contentForDiv;
@@ -367,7 +385,7 @@ function sscvFillListOfTopWith(sscvCharArrayInfo) {
 		"<select id='sscvTop20List' onchange=\"sscvTopNameClick(2)\"  multiple=\"multiple\" size=\"11\" style=\"width:300px\">\n"; 
 
 	for(var i = 10; i < 20; i++){
-		contentForDiv += "<option>"+  socialNetOfChars[top20epSharedChars[i]][0] + "("+ socialNetOfChars[indexOfGivenCharacter][2][top20epSharedChars[i]] + ")</option>";
+		contentForDiv += "<option>&nbsp&nbsp"+  socialNetOfChars[top20epSharedChars[i]][0] + "&nbsp&nbsp("+ socialNetOfChars[indexOfGivenCharacter][2][top20epSharedChars[i]] + ")</option>";
 	}
 	contentForDiv += "</select>";
 	document.getElementById('sscvTop20CharsWith').innerHTML = contentForDiv;
@@ -377,25 +395,37 @@ function sscvFillListOfTopWith(sscvCharArrayInfo) {
 } //end sscvFillListOfTopWith
 
 
+//VIEWCHANGE 
 function sscvTopNameClick(whichList) {
 	//if came from list 1
+
+	var nameOfCharacter;
+
 	if(1 == whichList){
-		console.log("top name selected:" + document.getElementById('sscvTop10List').value);
+		nameOfCharacter = document.getElementById('sscvTop10List').value;
 	}
 	//if came from list 2
 	if(2 == whichList){
-		console.log("top name selected:" + document.getElementById('sscvTop20List').value);
+		nameOfCharacter = document.getElementById('sscvTop20List').value;
 	}
 
+	var lastParenFind = nameOfCharacter.length-1;
+	while( nameOfCharacter.charAt(lastParenFind) != "("){
+		lastParenFind--;
+	}
+	nameOfCharacter = nameOfCharacter.substring(0, lastParenFind);
+	//console.log("a character name was clicked:" + nameOfCharacter);
+
+	givenACharacterNameFilloutTheView(dkGlobalOverviewTable.divPassing, nameOfCharacter);
 }
 
 
 function sscvShowMouseClickPanel(epOfClick, seasonOfClick) {
 	var infoTextAsOne = "";
 
-	infoTextAsOne += "Click to <button onclick=\"sscvHideMouseClickPanel()\">Hide</button> panel<br>";
-	infoTextAsOne += "Search by episode <button onclick=\"sscvMouseClickEp("+epOfClick+")\">"+epOfClick+"</button><br>";
-	infoTextAsOne += "Search by season <button onclick=\"sscvMouseClickSeason("+seasonOfClick+")\">"+seasonOfClick+"</button><br>";
+	infoTextAsOne += "&nbsp&nbsp<button onclick=\"sscvHideMouseClickPanel()\">X</button><br>";
+	infoTextAsOne += "&nbsp&nbspSearch by episode <button onclick=\"sscvMouseClickEp("+epOfClick+")\">"+epOfClick+"</button><br>";
+	infoTextAsOne += "&nbsp&nbspSearch by season &nbsp&nbsp<button onclick=\"sscvMouseClickSeason("+seasonOfClick+")\">"+seasonOfClick+"</button><br>";
 
 	document.getElementById("sscvMouseClickPanel").innerHTML = infoTextAsOne;
 	document.getElementById("sscvMouseClickPanel").style.visibility = 'visible';
@@ -408,11 +438,21 @@ function sscvHideMouseClickPanel() {
 	document.getElementById("sscvMouseClickPanel").style.visibility = 'hidden';
 }
 
+//VIEWCHANGE
 function sscvMouseClickEp(epOfClick) {
 	console.log('clicked on the popup panel for episode:' + epOfClick);
+	givenAnEpisodeFillADiv(dkGlobalOverviewTable.divPassing, epOfClick-1); //-1 for index
 }
 
+//VIEWCHANGE
 function sscvMouseClickSeason(seasonOfClick) {
 	console.log('clicked on the popup panel for season:' + seasonOfClick);
+	findCharactersInGivenSeasonAndPopulateInteractiveTable(dkGlobalOverviewTable.divPassing, seasonOfClick);
 }
 
+
+//VIEWCHANGE
+function sscvGoToSocialNet(nameOfCharacter) {
+	console.log('attempting switch from character view to social map for' + nameOfCharacter);
+	givenACharacterFillOutSocialNet(dkGlobalOverviewTable.divPassing, nameOfCharacter);
+}

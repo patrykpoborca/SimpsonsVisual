@@ -71,9 +71,6 @@ var voiceActorsByCharAmount = [
   ["Danny DeVito",
     ["Maggie Simpson","Herbert Powell","The Baby Translator"] //chars
   ], //va
-  ["",
-    ["SpongeBob SquarePants","SpongeBob SquarePants","Female Twin"] //chars
-  ], //va
   ["Eddie Izzard",
     ["Queen Elizabeth II","Nigel Bakerbutcher","Prince Charles"] //chars
   ], //va
@@ -231,7 +228,7 @@ var voiceActorsByCharAmount = [
     ["Alex Whitney"] //chars
   ], //va
   ["John DiMaggio",
-    ["Bender Bending RodrÃ?Â­guez"] //chars
+    ["Bender Bending Rodr&#237;guez"] //chars
   ], //va
   ["Rupert Murdoch",
     ["Rupert Murdoch (character)"] //chars
