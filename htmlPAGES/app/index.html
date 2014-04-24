@@ -56,7 +56,7 @@ UI for app
 		width: 1280px;
 		height: 320px;
 		background-color: black;  
-		top : 360px;
+		top : 400px;
 		left : 0px;	
 		}
 		ul
@@ -398,11 +398,12 @@ UI for app
 
 	$(document).ready(function()
 	{//ready start #############################################################################################################
-	initUI();
+	
 	$(".dataInit").each(function(){  updateItem($(this).attr("id"), $(this).val());  }); // initializes all values
 	var minObj = InitSlider("minSlider", "minTxt");  // initializes the slider code 
 	var maxObj = InitSlider("maxSlider", "maxTxt");
 	bindSliders(minObj, maxObj);
+	initUI();
 	////////////////////////
 	//
 

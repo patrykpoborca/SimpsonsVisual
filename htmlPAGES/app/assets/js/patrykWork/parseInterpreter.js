@@ -25,8 +25,8 @@ p_updateAll();});
 
 pSCOPE = $("#"+scope); pFILTER = $("#"+ filterby); pDISPLAY = $("#"+ display);  pTXT = $("#"+text);
 
-pSCOPE.on('change', function(){if(pSCOPE.val() == "..") return; p_setQuery();  resetFilters = true; p_upDisplay(); p_updateAll();}); //null out tempFilterStorage on scope change to reprocess it..
-pFILTER.on('change',function(){if(pFILTER.val() == "..") return; p_cWrapper($(this).find(":selected").text(), -2);  p_upDisplay();  p_updateAll();});
+pSCOPE.on('change', function(){if(pSCOPE.val() == "..") return; p_setQuery();tempFilterStorage = [];  resetFilters = true; p_upDisplay(); p_updateAll(); }); //null out tempFilterStorage on scope change to reprocess it..
+pFILTER.on('change',function(){if(pFILTER.val() == "..") return; p_cWrapper($(this).find(":selected").text(), -2);  p_upDisplay();  p_updateAll(); });
 p_initQuery(); 
 p_initPTable();
 
@@ -234,7 +234,7 @@ for(var a=2; a < arr.length; a++) //grab all filters
 		currentModFilter = newArr[newArr.length -1];
 		finalIt = a;
 	}
-	if(arr.length > finalIt + 1) console.log('holy shit dawg');
+	if(arr.length > finalIt + 1) console.log('it > length');
 	
 //iterate through arr, checking to see if scope is different, which then converts the arrays,  **** NewVar only contains filters...
  //console.log("END OF UP THING");
@@ -257,10 +257,44 @@ var r_value = p_remerge(tester, newArr[0]);
 
 var fryer = p_mergeTable(r_value, globalAndFlag, 'Total =');
 r_value.push(fryer[1]); // push the merged stuff....
+//experiment
+if(r_value.length > 3)
+{
+	
+	var min_ =dataParams['minSlider'];
+	var max_ =dataParams['maxSlider'];
+	var lowest =99999;
+	var highest = 0;
 
-var sumTotal = 0;
-for(var total = 2; total < r_value[r_value.length-1].length; total++)
+	var sumTotal = 0;
+	for(var total = 1; total < r_value.length-1; total++)
+		{
+		 highest = (r_value[total][1] > highest ) ? r_value[total][1] : highest;
+		 lowest = (r_value[total][1] < lowest) ? r_value[total][1] : lowest;
+		}
+	var reVal =[];
+	reVal.push(r_value[0]);
+	lowest = (min_/100) * highest;
+	highest = (max_/100) * highest;
+	
+	for(var total = 1; total < r_value.length-1; total++)
+		{
+		if(highest < r_value[total][1] || lowest > r_value[total][1])
+		{}
+		else
+		reVal.push(r_value[total]);
+		}
+	reVal.push(r_value[r_value.length-1]);
+	r_value = reVal;
+}
+
+
+	
+//experiment
+for(var total = 2; total < r_value[r_value.length-2].length; total++)
+	{
 	sumTotal += (r_value[r_value.length-1][total]) ? 1 : 0;
+	}
 r_value[r_value.length -1][1] = sumTotal;
 
 return r_value;
@@ -277,7 +311,7 @@ var HOLD = wrapForTable(r_value);
 $("#genTable").empty();
 initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, true, false);
 
-console.log('locooclcoclcooc  ' + resetFilters);
+
 
 }
 
@@ -297,8 +331,6 @@ console.log(" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");	*/
 function p_cLogicTable(arr)
 {
 
-console.log('failure');
-console.log(arr);
 
 // if bottom level, just one element. 1 = index, 0 = name, lookup
 var table = []; //collection of rows
@@ -354,15 +386,19 @@ var tempFilterStorage = [];
 function p_grabArrays() // returns a array of scope and its filters
 {
 
-console.log(parserQueries);
+
 var temp;
 var parent;
-var quer = []; // 0 -> scope, 0< filters 'lookup' = types
-quer['lookup'] = [];
+var quer = 0;
+quer = new Array(); // 0 -> scope, 0< filters 'lookup' = types
+
+quer['lookup'] = new Array();
 	for(var a = 1; a < parserQueries[p_Q()].length; a ++)
 	{
 	
-		if(tempFilterStorage.length !=0)
+
+	
+		if(tempFilterStorage.length !=0 )
 			{
 			
 			
@@ -372,21 +408,39 @@ quer['lookup'] = [];
 			
 			}
 			
-			
+		
 		//console.log(parserQueries[p_Q()]);
 		temp = parserQueries['lookup'][parserQueries[p_Q()][a]['term']];
 		
 		
 		if(temp == null)
 		{
+		var value = $(tempDrop).find(":selected").text();
+		
+		if(value != parserQueries[p_Q()][a]['term'])
+		{
+		if(tempDrop == "#ScopeChoice")
+			tempDrop = "#filterBy";
+		else {tempDrop = "#ScopeChoice";
+		alert('Scope choice...');
+		}
+		}
 		
 		var finalChoice = $(tempDrop).find(":selected").attr('current'); // 'previous' division (despite
-		var value = $(tempDrop).find(":selected").text();
+		value = $(tempDrop).find(":selected").text();
 		temp = parserQueries['lookup'][$(tempDrop).find(":selected").attr('current')];
 		
+		
+		/*
 		console.log('debugg');
 		console.log(finalChoice + "  =  " + value + "  == " ); console.log( temp);
+		console.log(tempFilterStorage);
+		console.log('-------------tempfilter/parser----------');
+		console.log(parserQueries[1]);
+		console.log('-------------parser/modfilter----------');
+		console.log(currentModFilter);
 		console.log('debugg');		
+		*/
 		//console.log(value + " = "+ value.indexOf('-Ep')  + " -> " + finalChoice);
 		
 		quer[a] =(isNaN(temp['i'])) ? p_fetchAnon(temp['a'], ['name', temp['i']], -1, -1) : p_populateArr(temp['a'], [0, temp['i']]);

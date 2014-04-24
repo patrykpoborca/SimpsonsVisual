@@ -13,6 +13,23 @@
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
+	  .loaded
+	  {
+	  color : #CC3300;
+	  }
+	  #borderama
+	  {
+	  background-color : #ffdd88;
+		border-style:solid;
+		border-width:6px;
+		border-radius: 25px;
+		border-color:black;
+		padding-top:5px;
+		padding-bottom:5px;
+		padding-right:5px;
+		padding-left:5px;
+	  
+	  }
     </style>
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -73,11 +90,26 @@
       <div class="span11">
 
 
-      	<h2>How to use</h2>
+     
+      		
+<h1 style = 'text-align:center;'>How to use the Parser </h1>
+<div id = 'borderama'>
+<p style = 'text-align:center;'>
+To begin with, the parser contains four query features: <br><br></p>
+<p class = 'lead'>
+1) <span class = 'loaded'>Scope </span>- The set amount of time we are viewing (All episodes, season x, episode y) <br>
+2) <span class = 'loaded'>Filters </span> - The filters we wish to see, meaning characters, writers, directors, etc. that appeared over the scope <br>
+3) <span class = 'loaded'>Min/Max slider </span>- The max / min % appearances required to be listed <br>
+4) <span class = 'loaded'>And/Or comparison </span> - The sum of your filters with an AND or an OR operator enacted upon them over their scope <br><br>
+</p>
+<p style = 'text-align:center;'>
+To enter a brod category, select the scope or filter, and then click on the button above the respective dropdown. Your selection will automatically be rendered as you choose it. If you wish to add additional filters,
+simply click the '+' button to the right of the filter dropdown and it shall be saved until you reset the scope, at which point all your filters will be cleared. Sort alphabetical changes the order of the dropdowns, so
+that they're no longer listed by their numerical/parsed order, but rather alphabetically. If you wish to see the results of your parses real time, switch the view away from the character/season explorer and onto the charts
+and auto generated table<br>
 
-      	<p>
-      		Info blurb.
-      	</p>
+</p>
+</div>      	
 
 	  </div>
 		
