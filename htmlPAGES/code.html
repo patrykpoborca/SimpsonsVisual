@@ -76,8 +76,27 @@
       	<h2>Getting and using the code</h2>
 
       	<p>
-      		Info blurb.
+        The following libraries were used in this project:<br>
+        Bootstrap: http://getbootstrap.com/<br>
+        CanvasJS: http://canvasjs.com/<br>
+        jQuery: http://jquery.com/<br>
       	</p>
+
+        <p>
+          A compressed file of the app can be found here: http://www2.hawaii.edu/~dylank/ICSDataVisProject3/app.zip<br>
+          Unzip the file and open index.html with a browser.<br>
+          This app was only tested on Chrome v34 and Firefox 28.<br>
+        </p>
+
+        <h2>About the code:</h2>
+        <p>
+          The files inside of the compressed zip only contain the files necessary to run the application. While this will include the datafiles necessary, it doesn't include the files used to parse and pre-process the data. Even with the data parsers there were a number of problems with making the data usable or knowing whether or not the data is correct. Unfamiliarity with the title and contents were contributing factors with regards to general accuracy checks. While accuracy was something that was difficult to check, more problematic was when data could not be detected because the data dump contents weren't always uniform. In some cases user error causes typos or shifts in how the structure of a page was. When these issues were encountered the parse would either skip over the data or break.
+        </p>
+        <p>
+          Single selection views were designed to be as non-intrusive as possible. Given a div and their intended subject to display information about, the functions to create the view manipulated the given array to contain all necessay divs and override css styling. This helped by allowing work to be done separately without having to worry too much about having conflicting divs.
+        </p>
+
+
 
 	  </div>
 		
