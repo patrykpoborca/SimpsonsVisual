@@ -6,6 +6,7 @@
 		<script type="text/javascript" src="../dylanWork/SChars.js"></script>
 		<script type="text/javascript" src="../dylanWork/SVoiceActors.js"></script>
 		<script type="text/javascript" src="../dylanWork/SEpisodes.js"></script>
+		<script type="text/javascript" src="../dylanWork/SVoiceActorsByAppearCount.js"></script>
 		<script type="text/javascript" src="sort.js"></script>
 		<script type="text/javascript" src="ArrayGeneration.js"></script>
 		<script type="text/javascript" src="select2.js"></script>
@@ -37,6 +38,28 @@
 				top: 180px;
 				left: 0px;
 			}
+			#vNext {
+				position: absolute;
+				top: 220px;
+				left: 1280px;
+				width: 61px;
+			}
+			#vLast {
+				position: absolute;
+				top: 220px;
+				left: 0px;
+				width: 59px;
+			}
+			#vNextGroup {
+				position: absolute;
+				top: 180px;
+				left: 1280px;
+			}
+			#vLastGroup {
+				position: absolute;
+				top: 180px;
+				left: 0px;
+			}
 			#chart_div {
 				position: absolute;
 				left: 70px;
@@ -49,6 +72,10 @@
 		<button id="nextGroup">Next 5</button>
 		<button id="last">&lt;</button>
 		<button id="lastGroup">Last 5</button>
+		<button id="vNext">&gt;</button>
+		<button id="vNextGroup">Next 10</button>
+		<button id="vLast">&lt;</button>
+		<button id="vLastGroup">Last 10</button>
 		<div></div>
 		<div id="chart_div" style="width: 1200; height: 720px;"></div>
 	</body>

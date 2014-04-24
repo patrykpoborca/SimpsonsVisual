@@ -310,7 +310,8 @@ currentGlobalTable = r_value;
 var HOLD = wrapForTable(r_value);
 $("#genTable").empty();
 initTable(HOLD.length, HOLD[0].length, "genTable", HOLD, true, false);
-
+//console.log(currentGlobalTrade);
+chartFunc2(currentGlobalTable);
 
 
 }

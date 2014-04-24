@@ -17,8 +17,91 @@ var seasonArray = new Array();
 generateSortedSeasons();
 
 $().ready(function() {
-	updatingChartFunc(1);
+	 top10VAAppearanceChart(0)
 });
+
+function chartFunc2(inArray) {
+	if(inArray[0].length < 100) {
+		var chart = new CanvasJS.Chart("chart_div", {
+			backgroundColor: "beige",
+			width: 1280,
+			theme: "theme3",
+			title: {
+				text: "The Simpsons",
+				fontSize: 30
+			},
+			axisX: {
+				title: "Seasons",
+				titleFontColor: "black",
+				titleFontSize: 20,
+				labelAutoFit: true,
+				labelFontSize: 16,
+				labelFontColor: "black",
+				interval: 1,
+				margin: 0,
+				gridColor: "gray",
+				tickColor: "gray"
+			},
+			axisY: {
+				title: "Appearances of Characters",
+				titleFontSize: 18,
+				titleFontColor: "black",
+				labelFontColor: "black",
+				labelFontSize: 16,
+				interval: 2,
+				gridColor: "gray",
+				tickColor: "gray"
+			},
+			legend: {
+				fontFamily: "sans-serif",
+				fontSize: 16,
+				verticalAlign: "bottom",
+				horizontalAlign: "center",
+				cursor: "pointer",
+				itemclick: function(e) {
+					$("#superDiv").show();
+					$("#chart_div").hide();
+					$("#genTable").hide();
+					givenACharacterNameFilloutTheView('superDiv', e.dataSeries.name);
+				},
+			},
+			creditText: "",
+			toolTip: {
+				shared: true,
+				//content: "{label} <br> {name}: {y}",
+			},
+			data: getTheValue(inArray),
+		});
+		//console.log(chart.options.data);
+		//console.log(allEpisodesByNumber);
+		chart.render();
+	}
+}
+
+function getTheValue(theArray) {
+				var data = [];
+				for(var i = 1; i < theArray.length; i++) {
+					var points = [];
+					for(var j = 2; j < theArray[i].length; j++) {
+						if(theArray[i][j] == true) {
+							points.push({label: theArray[0][j], y: 1});
+						} else {
+							points.push({label: theArray[0][j], y: 0});
+						}
+					}
+					var values = { 
+						name: theArray[i][0], 
+						type: "column",
+						legendText: theArray[i][0],
+						showInLegend: true,
+						//color: "#0F6F9D",
+						dataPoints: points,
+					}
+					data.push(values);
+				}
+				console.log(data);
+				return data;
+			}
 
 function chartFunc() {
 	var chart = new CanvasJS.Chart("chart_div", {
@@ -242,13 +325,20 @@ function updatingChartFunc(groupNum) {
 	//console.log(allEpisodesByNumber);
 	chart.render();
 	var group = 4;
+	var group2 = 0;
+	var groupNumber2 = 0;
 	var updateInterval = 300;
 	
 	// Add new character to chart based on their
 	// index in Dylan's file
 	var updateChart = function() {
 		if(group != allCharByAppearAmt.length-1) {
+			if(group < 4) {
+				group = 4;
+			}
 			group++;
+			groupNumber = group;
+			group2 = group-4;
 		}
 		chart.options.data.push(appendToDynamic(group)[0]);
 		if(chart.options.data.length > 5) {
@@ -268,8 +358,13 @@ function updatingChartFunc(groupNum) {
 	// Adds the next 5 characters to the chart
 	// Based on Dylan's file
 	var updateGroup = function() {
-		if(groupNumber != (groupNumber / 5 + 5/(groupNumber % 5))) {
-			groupNumber++;
+		//if(groupNumber != (groupNumber / 5 + 5/(groupNumber % 5))) {
+		if(groupNumber != allCharByAppearAmt.length) {	
+			groupNumber = group+1;
+			//console.log(groupNumber);
+			group = groupNumber+4;
+			//console.log(groupNumber);
+			group2 = group-4;
 		}
 		//console.log(groupNumber)
 		chart.options.data = generateDynamic(groupNumber);
@@ -287,11 +382,16 @@ function updatingChartFunc(groupNum) {
 	// Returns/shows the previous 5 characters on the chart
 	// Based on Dylan's file
 	var updateGroupM = function() {
-		groupNumber--;
-		if(groupNumber < 1) {
-			groupNumber = 1;
+		groupNumber2 = group2-5;
+		if(groupNumber2 < 0) {
+			groupNumber2 = 0;
 		}
-		chart.options.data = generateDynamic(groupNumber);
+		group = groupNumber2+4;
+		group2 = groupNumber2;
+		if(group < 0) {
+			group = 4;
+		}
+		chart.options.data = generateDynamic(groupNumber2);
 		if(chart.options.data.length > 4) {
 			chart.options.data[0].color = "#369EAD";
 			chart.options.data[1].color = "#C24642"
@@ -308,10 +408,15 @@ function updatingChartFunc(groupNum) {
 	// Homer is gone. Choose updateChartM, Homer is in the
 	// front of the chart.
 	var updateChartM = function() {
-		var group2 = group - 5;
-		group--;
+		group2--;
+		group = group2 + 4;
+		groupNumber = group;
+		console.log(groupNumber);
 		if(group < 4) {
 			group = 4;
+		} 
+		if(groupNumber < 0) {
+			groupNumber = 0;
 		}
 		chart.options.data.unshift(appendToDynamic(group2)[0]);
 		if(chart.options.data.length > 5) {
@@ -413,6 +518,168 @@ function top10VAChart(group) {
 
 //===========================================================================================================
 
+function top10VAAppearanceChart(group) {
+	var groupNumber = group;
+	//console.log(dataArray);
+	var chart = new CanvasJS.Chart("chart_div", {
+		backgroundColor: "beige",
+		//theme: "theme3",
+		width: 1198,
+		title: {
+			text: "The Simpsons VA",
+			fontSize: 30
+		},
+		axisX: {
+			title: "Voice Actors",
+			titleFontSize: 20,
+			titleFontColor: "black",
+			labelAutoFit: true,
+			labelFontSize: 14.5,
+			labelFontColor: "black",
+			interval: 1,
+			margin: 0,
+			gridColor: "gray",
+			tickColor: "gray"
+		},
+		axisY: {
+			title: "Appearances Per Episode",
+			titleFontSize: 20,
+			titleFontColor: "black",
+			labelFontColor: "black",
+			gridColor: "gray",
+			tickColor: "gray"
+		},
+		legend: {
+			fontFamily: "sans-serif",
+			fontSize: 18,
+			verticalAlign: "bottom",
+			horizontalAlign: "center",
+			cursor: "pointer",
+			itemclick: function(e) {
+				$("#superDiv").show();
+				$("#chart_div").hide();
+				$("#genTable").hide();
+				// If there is a method to call a specific VA
+				//givenACharacterNameFilloutTheView('superDiv', e.dataSeries.name);
+			},
+		},
+		toolTip: {
+			shared: true
+		},
+		creditText: "",
+		data: appearanceCountOfVA(group),
+	});
+	chart.render();
+	
+	var group = 4;
+	var group2 = 0;
+	var groupNumber2 = 0;
+	var updateInterval = 300;
+	
+	// Add new character to chart based on their
+	// index in Dylan's file
+	var updateChart = function() {
+		if(group != allCharByAppearAmt.length-1) {
+			if(group < 4) {
+				group = 4;
+			}
+			group++;
+			groupNumber = group;
+			group2 = group-4;
+		}
+		chart.options.data.push(appearanceCountOfVA(group)[0]);
+		if(chart.options.data.length > 5) {
+			chart.options.data.shift();
+		}
+		console.log(chart.options.data)
+		
+		chart.render();
+		//clearInterval(interval);
+	}
+	
+	// Adds the next 5 characters to the chart
+	// Based on Dylan's file
+	var updateGroup = function() {
+		//if(groupNumber != (groupNumber / 5 + 5/(groupNumber % 5))) {
+		if(groupNumber != allCharByAppearAmt.length) {	
+			groupNumber = group+1;
+			//console.log(groupNumber);
+			group = groupNumber+4;
+			//console.log(groupNumber);
+			group2 = group-4;
+		}
+		//console.log(groupNumber)
+		chart.options.data = appearanceCountOfVA(groupNumber);
+		//console.log(chart.options.data);
+		chart.render();
+	}
+
+	// Returns/shows the previous 5 characters on the chart
+	// Based on Dylan's file
+	var updateGroupM = function() {
+		groupNumber2 = group2-5;
+		if(groupNumber2 < 0) {
+			groupNumber2 = 0;
+		}
+		group = groupNumber2+4;
+		group2 = groupNumber2;
+		if(group < 0) {
+			group = 4;
+		}
+		chart.options.data = appearanceCountOfVA(groupNumber2);
+		chart.render();
+		//clearInterval(interval);
+	}
+	
+	// Returns the character that was removed from the chart
+	// Based on Dylan's files.  Ex. Choose updateChart,
+	// Homer is gone. Choose updateChartM, Homer is in the
+	// front of the chart.
+	var updateChartM = function() {
+		group2--;
+		group = group2 + 4;
+		groupNumber = group;
+		console.log(groupNumber);
+		if(group < 4) {
+			group = 4;
+		} 
+		if(groupNumber < 0) {
+			groupNumber = 0;
+		}
+		chart.options.data.unshift(appearanceCountOfVA(group2)[0]);
+		if(chart.options.data.length > 5) {
+			chart.options.data.pop();
+		}
+		console.log(chart.options.data)
+		
+		chart.render();
+		//clearInterval(interval);
+	}
+	
+	$("#nextGroup").hide();
+	$("#lastGroup").hide();
+	$("#next").hide();
+	$("#last").hide();
+	
+	$("#vNextGroup").click(function () {
+		updateGroup();
+	});
+	
+	$("#vLastGroup").click(function () {
+		updateGroupM();
+	});
+
+	$("#vNext").click(function () {
+		updateChart();
+	});
+	
+	$("#vLast").click(function () {
+		updateChartM();
+	});	
+} // End of top10VAAppearanceChart()
+
+//===========================================================================================================
+
 function roleCountOfVA() {
 	var data = [];
 	var points = [];
@@ -428,6 +695,37 @@ function roleCountOfVA() {
 	console.log(data);	
 	return data;
 } // End of roleCountOfVA
+
+//===========================================================================================================
+
+function appearanceCountOfVA(groupNum) {
+	var data = [];
+	var groupNumber = groupNum;
+	for(var i = 0; i < 5; i++) {
+		var points = [];
+		for(var j = 0; j < 10; j++) {
+			var va = {
+				label: j+1, 
+				y: allVoiceActorsByAppearanceCount[groupNumber][2][j]
+			};
+			points.push(va);
+			//console.log(points);
+		}
+		var values = {
+			type: "column",
+			name: allVoiceActorsByAppearanceCount[groupNumber][0],
+			legendText: allVoiceActorsByAppearanceCount[groupNumber][0],
+			showInLegend: true,
+			dataPoints: points,
+		}
+		data.push(values);
+		groupNumber++;
+		//console.log(data);
+	}
+	console.log(data);	
+	return data;
+} // End of appearanceCountOfVA()
+
 
 //===========================================================================================================
 
@@ -475,7 +773,8 @@ function generateDefaultData(name) {
 // Dylan's numerically sorted files.
 function generateDynamic(groupNum) {
 	var dataAS = [];
-	for(var i = (groupNum-1)*5; i < groupNum*5; i++) {
+	var groupNumber = groupNum;
+	for(var i = 0; i < 5; i++) {
 		var points = [];
 		var index = 0;
 		var k = 0;
@@ -483,8 +782,8 @@ function generateDynamic(groupNum) {
 		if(i == allCharByAppearAmt.length) {
 			return dataAS;
 		}
-		for(var j = 0; j < allCharByAppearAmt[i][7].length; j++) {
-			if(allCharByAppearAmt[i][7][j] == true) {
+		for(var j = 0; j < allCharByAppearAmt[groupNumber][7].length; j++) {
+			if(allCharByAppearAmt[groupNumber][7][j] == true) {
 				appearances++;
 				k++;
 				if(k == episodesSortedIntoSeasons[index][1].length) {
@@ -505,11 +804,12 @@ function generateDynamic(groupNum) {
 				}
 			}
 		}
-		if(i == (groupNum*5) -1) {
+		//console.log(i + "=" + groupNumber);
+		if(i == (groupNum+4)) {
 			var values = { 
-				name: allCharByAppearAmt[i][0], 
+				name: allCharByAppearAmt[groupNumber][0], 
 				type: "column",
-				legendText: allCharByAppearAmt[i][0],
+				legendText: allCharByAppearAmt[groupNumber][0],
 				showInLegend: true,
 				color: "#0F6F9D",
 				dataPoints: points,
@@ -519,15 +819,16 @@ function generateDynamic(groupNum) {
 				click: function(e) {
 					console.log(e);
 				},
-				name: allCharByAppearAmt[i][0], 
+				name: allCharByAppearAmt[groupNumber][0], 
 				type: "column",
-				legendText: allCharByAppearAmt[i][0],
+				legendText: allCharByAppearAmt[groupNumber][0],
 				showInLegend: true,
 				dataPoints: points,
 			}
 		}
+		groupNumber++;
 		dataAS.push(values);
-		//console.log(dataAS);
+		//console.log(groupNumber);
 	}
 	//console.log(dataAS);
 	return dataAS;
