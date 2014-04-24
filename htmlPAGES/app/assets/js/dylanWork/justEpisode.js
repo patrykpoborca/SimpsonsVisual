@@ -14,18 +14,13 @@ divs that will be created for single selection character view start with ssep
 
 
 //This method attempts to be lenient with whether or not episode is a number or the name.
-//number usage assumes index.
 function givenAnEpisodeFillADiv(divIdToFill, episodeToUse) {
 	document.getElementById(divIdToFill).innerHTML = ""; //remove all content in the div currently.
-
-	dkGlobalOverviewTable.divPassing = divIdToFill;
-
+alert('hi');
 	var episodeIndex = -1;
 
-	//number usage assumes index
 	if( typeof episodeToUse == "number"){ episodeIndex = episodeToUse; }
 	else if(typeof episodeToUse == "string"){
-		episodeToUse = episodeToUse.trim();
 		for(var i = 0; i < allEpisodesByNumber.length; i++){
 			if(allEpisodesByNumber[i][0] == episodeToUse){
 				episodeIndex = i;
@@ -42,9 +37,7 @@ function givenAnEpisodeFillADiv(divIdToFill, episodeToUse) {
 
 		//edit the created divs
 
-		document.getElementById('ssepToOverviewButton').innerHTML =
-			'<button onclick="backToOverviewFromEpisode()">Return to overview</button>'+
-			'<button onclick="backToSeasonFromEpisode('+episodeIndex+')">Go to Season of ' + getSeasonOfEpisodeNumber(episodeIndex+1) + '</button>';
+		document.getElementById('ssepToOverviewButton').innerHTML = '<button onclick="backToOverviewFromEpisode()">Return to overview</button></p>';
 		document.getElementById('ssepName').innerHTML = '<h1>Episode ' +(episodeIndex + 1)+ ':' + allEpisodesByNumber[episodeIndex][0] + '</h1>';
 		document.getElementById('ssepCharactersIn').innerHTML = 'Characters in the episode';
 		document.getElementById('ssepUniqueCharactersIn').innerHTML = 'Unique Characters';
@@ -61,9 +54,9 @@ function givenAnEpisodeFillADiv(divIdToFill, episodeToUse) {
 
 	}
 	else{
-		console.log("there was no match for the given episode:-" + episodeToUse+"-");
+		console.log("there was no match for the given episode:" + episodeToUse);
 	}
-	//hidePopupControlBox(); //because there is a chance got here from the overview.
+	hidePopupControlBox(); //because there is a chance got here from the overview.
 	//Note: hidepopup will likely error but because it errors at the end of the function it doesn't influence creation
 } //end findCharactersInGivenSeasonAndPopulateInteractiveTable
 
@@ -79,19 +72,19 @@ function createDivsForSsep(divIdToFill) {
 	document.getElementById(divIdToFill).innerHTML += 
 		'<div id="ssepName" style="position:absolute;top:50;left:50;"></div>\n';
 	document.getElementById(divIdToFill).innerHTML +=
-		'<div id="ssepCharactersIn" style="position:absolute;top:140;left:50;border: 1px solid black"></div>\n';
+		'<div id="ssepCharactersIn" style="position:absolute;top:190;left:50;border: 1px solid black"></div>\n';
 	document.getElementById(divIdToFill).innerHTML +=
-		'<div id="ssepVoiceActorsIn" style="position:absolute;top:140;left:400;border: 1px solid black"></div>\n';
+		'<div id="ssepVoiceActorsIn" style="position:absolute;top:190;left:400;border: 1px solid black"></div>\n';
 	document.getElementById(divIdToFill).innerHTML +=
-		'<div id="ssepUniqueVoiceActorsIn" style="position:absolute;top:450;left:400;border: 1px solid black"></div>\n';
+		'<div id="ssepUniqueVoiceActorsIn" style="position:absolute;top:500;left:400;border: 1px solid black"></div>\n';
 	document.getElementById(divIdToFill).innerHTML +=
-		'<div id="ssepUniqueCharactersIn" style="position:absolute;top:450;left:50;border: 1px solid black"></div>\n';
+		'<div id="ssepUniqueCharactersIn" style="position:absolute;top:500;left:50;border: 1px solid black"></div>\n';
 	document.getElementById(divIdToFill).innerHTML +=
-		'<div id="ssepVoiceActorPie" style="position:absolute;top:100;left:750;border: 1px solid black"></div>\n';
+		'<div id="ssepVoiceActorPie" style="position:absolute;top:150;left:750;border: 1px solid black"></div>\n';
 	document.getElementById(divIdToFill).innerHTML +=
-		'<div id="ssepLocationsIn" style="position:absolute;top:500;left:725;border: 1px solid black"></div>\n';
+		'<div id="ssepLocationsIn" style="position:absolute;top:550;left:725;border: 1px solid black"></div>\n';
 	document.getElementById(divIdToFill).innerHTML +=
-		'<div id="ssepUniqueLocationsIn" style="position:absolute;top:500;left:1035;border: 1px solid black"></div>\n';
+		'<div id="ssepUniqueLocationsIn" style="position:absolute;top:550;left:1035;border: 1px solid black"></div>\n';
 
 } // end createDivsForSsep
 
@@ -107,7 +100,7 @@ function ssepFillListCharactersInAndUnique(episodeIndex) {
 		"<select id='ssepListOfCharactersIn' onchange=\"ssepCharacterInClick()\"  multiple=\"multiple\" style=\"width:300px; height:280px\">\n"; 
 	for(var i = 0; i < allCharByAppearAmt.length; i++){
 		if(allCharByAppearAmt[i][7][episodeIndex]){
-			contentForDiv += "<option>&nbsp&nbsp"+ allCharByAppearAmt[i][0] +  "</option>\n";
+			contentForDiv += "<option>"+ allCharByAppearAmt[i][0] +  "</option>\n";
 			genericCounterSsep++;
 			if(socialNetOfChars[i][1] == 1){
 				uniqueCharsForThisEp.push(allCharByAppearAmt[i][0]);
@@ -116,7 +109,7 @@ function ssepFillListCharactersInAndUnique(episodeIndex) {
 	}
 	contentForDiv+= '</select>';
 
-	contentForDiv = "&nbsp<b>Characters in this episode("+genericCounterSsep+"):</b><br>" + contentForDiv;
+	contentForDiv = "Characters in this episode("+genericCounterSsep+"):<br>" + contentForDiv;
 	document.getElementById('ssepCharactersIn').innerHTML = contentForDiv;
 
 
@@ -124,10 +117,10 @@ function ssepFillListCharactersInAndUnique(episodeIndex) {
 	contentForDiv +=
 		"<select id='ssepListOfUniqueCharacters' onchange=\"ssepUniqueCharactersClick()\"  multiple=\"multiple\" style=\"width:300px; height:100px\">\n"; 
 	for(var i = 0; i < uniqueCharsForThisEp.length; i++){
-		contentForDiv += "<option>&nbsp&nbsp"+ uniqueCharsForThisEp[i] +  "</option>\n";
+		contentForDiv += "<option>"+ uniqueCharsForThisEp[i] +  "</option>\n";
 	}
 	contentForDiv+= '</select>';
-	contentForDiv = "&nbsp<b>Unique Characters in this episode("+uniqueCharsForThisEp.length+"):</b><br>" + contentForDiv;
+	contentForDiv = "Unique Characters in this episode("+uniqueCharsForThisEp.length+"):<br>" + contentForDiv;
 	document.getElementById('ssepUniqueCharactersIn').innerHTML = contentForDiv;
 
 
@@ -136,12 +129,10 @@ function ssepFillListCharactersInAndUnique(episodeIndex) {
 
 function ssepCharacterInClick() {
 	console.log("CharacterInList Selection:" + document.getElementById('ssepListOfCharactersIn').value);
-	givenACharacterNameFilloutTheView(dkGlobalOverviewTable.divPassing, document.getElementById('ssepListOfCharactersIn').value);
 }
 
 function ssepUniqueCharactersClick() {
 	console.log("UniqueCharacterList Selection:" + document.getElementById('ssepListOfUniqueCharacters').value);
-	givenACharacterNameFilloutTheView(dkGlobalOverviewTable.divPassing, document.getElementById('ssepListOfUniqueCharacters').value);
 }
 
 function ssepFillListVoiceActorsInAndUnique(episodeIndex){
@@ -155,7 +146,7 @@ function ssepFillListVoiceActorsInAndUnique(episodeIndex){
 		"<select id='ssepListOfVoiceActorsIn' onchange=\"ssepVoiceActorsInClick()\"  multiple=\"multiple\" style=\"width:300px; height:280\">\n"; 
 	for(var i = 0; i < allVoiceActorsByAppearanceCount.length; i++){
 		if(allVoiceActorsByAppearanceCount[i][2][episodeIndex] > 0){
-			contentForDiv += "<option>&nbsp&nbsp"+ allVoiceActorsByAppearanceCount[i][0] +  "</option>\n";
+			contentForDiv += "<option>"+ allVoiceActorsByAppearanceCount[i][0] +  "</option>\n";
 			genericCounterSsep++;
 			voiceActorIndexListForPie.push(i);
 			if(allVoiceActorsByAppearanceCount[i][1] == allVoiceActorsByAppearanceCount[i][2][episodeIndex]){
@@ -164,17 +155,17 @@ function ssepFillListVoiceActorsInAndUnique(episodeIndex){
 		}
 	}
 	contentForDiv+= '</select>';
-	contentForDiv = "&nbsp<b>Voice Actors in this episode("+genericCounterSsep+"):</b><br>" + contentForDiv;
+	contentForDiv = "Voice Actors in this episode("+genericCounterSsep+"):<br>" + contentForDiv;
 	document.getElementById('ssepVoiceActorsIn').innerHTML = contentForDiv;
 
 	contentForDiv = "";
 	contentForDiv +=
 		"<select id='ssepListOfUniqueVoiceActors' onchange=\"ssepUniqueVoiceActorsClick()\"  multiple=\"multiple\" style=\"width:300px; height:100px\">\n"; 
 	for(var i = 0; i < uniqueVAForThisEp.length; i++){
-		contentForDiv += "<option>&nbsp&nbsp"+ uniqueVAForThisEp[i] +  "</option>\n";
+		contentForDiv += "<option>"+ uniqueVAForThisEp[i] +  "</option>\n";
 	}
 	contentForDiv+= '</select>';
-	contentForDiv = "&nbsp<b>Unique Voice Actors in this episode("+uniqueVAForThisEp.length+"):</b><br>" + contentForDiv;
+	contentForDiv = "Unique Voice Actors in this episode("+uniqueVAForThisEp.length+"):<br>";
 	document.getElementById('ssepUniqueVoiceActorsIn').innerHTML = contentForDiv;
 	ssepMakeVoiceActorPie(voiceActorIndexListForPie, episodeIndex);
 } //end ssepFillListVoiceActorsInAndUnique
@@ -201,7 +192,7 @@ function ssepFillListLocationsInAndUnique(episodeIndex){
 	for(var i = 0; i < locationsByAppearAmt.length; i++){
 		for(var j = 0; j < locationsByAppearAmt[i][1].length;j++){
 			if(locationsByAppearAmt[i][1][j] == allEpisodesByNumber[episodeIndex][0]){
-				contentForDiv += "<option>&nbsp&nbsp"+ locationsByAppearAmt[i][0]+  "</option>\n";
+				contentForDiv += "<option>"+ locationsByAppearAmt[i][0]+  "</option>\n";
 				genericCounterSsep++;
 				if(locationsByAppearAmt[i][1].length == 1){
 					uniqueLocationsForThisEp.push(locationsByAppearAmt[i][0]);
@@ -210,17 +201,17 @@ function ssepFillListLocationsInAndUnique(episodeIndex){
 		}
 	}
 	contentForDiv+= '</select>';
-	contentForDiv = "&nbsp<b>Locations in this episode("+genericCounterSsep+"):</b><br>" + contentForDiv;
+	contentForDiv = "Locations in this episode("+genericCounterSsep+"):<br>" + contentForDiv;
 	document.getElementById('ssepLocationsIn').innerHTML = contentForDiv;
 
 	contentForDiv = "";
 	contentForDiv +=
 		"<select id='ssepListOfUniqueLocationsIn' onchange=\"ssepUniqueLocationsInClick()\"  multiple=\"multiple\" style=\"width:300px; height:100px\">\n"; 
 	for(var i = 0; i < uniqueLocationsForThisEp.length; i++){
-		contentForDiv += "<option>&nbsp&nbsp"+ uniqueLocationsForThisEp[i]+  "</option>\n";
+		contentForDiv += "<option>"+ uniqueLocationsForThisEp[i]+  "</option>\n";
 	}
 	contentForDiv+= '</select>';
-	contentForDiv = "&nbsp<b>Unique locations in this episode("+uniqueLocationsForThisEp.length+"):</b><br>" + contentForDiv;
+	contentForDiv = "Unique locations in this episode("+uniqueLocationsForThisEp.length+"):<br>" + contentForDiv;
 	document.getElementById('ssepUniqueLocationsIn').innerHTML = contentForDiv;
 
 } //end ssepFillListVoiceActorsInAndUnique
@@ -247,11 +238,7 @@ function ssepMakeVoiceActorPie(indexOfVAforPie, episodeIndex) {
 	for(var i = 0; i < indexOfVAforPie.length; i++){
 		objectMaker = {};
 		objectMaker.y = allVoiceActorsByAppearanceCount[indexOfVAforPie[i]][2][episodeIndex];
-		if( Math.floor((allVoiceActorsByAppearanceCount[indexOfVAforPie[i]][2][episodeIndex] / totalCharactersInThisEpisode * 100))  > 10
-		 || allVoiceActorsByAppearanceCount[indexOfVAforPie[i]][2][episodeIndex] > 2){
-			objectMaker.indexLabel = allVoiceActorsByAppearanceCount[indexOfVAforPie[i]][0].substring(0,6);
-		}
-		else {objectMaker.indexLabel = ""};
+		objectMaker.indexLabel = allVoiceActorsByAppearanceCount[indexOfVAforPie[i]][0].substring(0,6) + "("+allVoiceActorsByAppearanceCount[indexOfVAforPie[i]][2][episodeIndex]+"/" + totalCharactersInThisEpisode +") " + Math.floor((allVoiceActorsByAppearanceCount[indexOfVAforPie[i]][2][episodeIndex] / totalCharactersInThisEpisode * 100)) + "%";
 		objectMaker.name = allVoiceActorsByAppearanceCount[indexOfVAforPie[i]][0];
 		objectMaker.legendMarkerType = "circle";
 		dpToInsertIntoPie.push(objectMaker);
@@ -294,16 +281,6 @@ function ssepMakeVoiceActorPie(indexOfVAforPie, episodeIndex) {
 
 
 function backToOverviewFromEpisode() {
-	var charList = [];
-	for(var i =0; i < 40; i++){
-		charList.push(allCharByAppearAmt[i]);
-	}
-	fillOverviewTable(dkGlobalOverviewTable.divPassing, charList, true);
+	console.log("Back to overview currently disabled.");
 }
 
-function backToSeasonFromEpisode(episodeIndex) {
-	console.log("Back to season currently disabled.");
-	findCharactersInGivenSeasonAndPopulateInteractiveTable(dkGlobalOverviewTable.divPassing, getSeasonOfEpisodeNumber(episodeIndex + 1));
-}
-
-	

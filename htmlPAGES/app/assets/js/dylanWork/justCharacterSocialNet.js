@@ -14,11 +14,9 @@ intention is to prevent accidentally creating a div that already exists.
 function givenACharacterFillOutSocialNet(divIdToFill, characterToUse) {
 	document.getElementById(divIdToFill).innerHTML = "";
 
-	dkGlobalOverviewTable.divPassing = divIdToFill;
 
 	var characterIndexToMakeNetWith = -1;
 	if(typeof characterToUse == 'string'){
-		characterToUse = characterToUse.trim();
 		for(var i = 0; i < allCharByAppearAmt.length; i++){
 			if(characterToUse == allCharByAppearAmt[i][0]){
 				characterIndexToMakeNetWith = i;
@@ -37,13 +35,10 @@ function givenACharacterFillOutSocialNet(divIdToFill, characterToUse) {
 		//edit the divs
 		document.getElementById('ssnetToOverviewButton').innerHTML =
 			'<button onclick="backToOverviewFromSocialNet(\''+divIdToFill+'\')">Return to overview</button>   ' +
-			'<button onclick="backToCharacterFromSocialNet(\''+divIdToFill+'\',\''+ characterIndexToMakeNetWith +'\')">Return to character</button>';
+			'<button onclick="backToCharacterFromSocialNet(\''+divIdToFill+'\')">Return to character</button>';
 		document.getElementById('ssnetName').innerHTML = 
-			'<h1>Social Network of ' + socialNetOfChars[characterIndexToMakeNetWith][0] + ' ('+socialNetOfChars[characterIndexToMakeNetWith][1]+' episodes)</h1> ';
-		document.getElementById('ssnetPicture').innerHTML =
-			"<img width='140px' height='210px' src='" +
-			fetchImgUrlOfChar(allCharByAppearAmt[characterIndexToMakeNetWith][0]) + "'></img><br><center><b>"+
-			socialNetOfChars[characterIndexToMakeNetWith][0] + "</b></center>";
+			'<h1>Social Network of ' + allCharByAppearAmt[characterIndexToMakeNetWith][0] + '</h1>';
+		document.getElementById('ssnetPicture').innerHTML = "<img width='100px' height='150px' src='" + fetchImgUrlOfChar(allCharByAppearAmt[characterIndexToMakeNetWith][0]) + "'></img>";
 
 		document.getElementById('ssnetHighTier').innerHTML = "High";
 		document.getElementById('ssnetMedTier').innerHTML = "Med";
@@ -55,7 +50,7 @@ function givenACharacterFillOutSocialNet(divIdToFill, characterToUse) {
 	else{
 		console.log("there was no match for the given character name.");
 	}
-	//hidePopupControlBox(); //because there is a good chance got here from the overview.
+	hidePopupControlBox(); //because there is a good chance got here from the overview.
 } //end findCharactersInGivenSeasonAndPopulateInteractiveTable
 
 
@@ -69,48 +64,29 @@ function createDivsForSsnet(divIdToFill) {
 	document.getElementById(divIdToFill).innerHTML +=
 		'<div id="ssnetName" style="position:absolute;top:0;left:300;"></div>\n';
 	document.getElementById(divIdToFill).innerHTML += 
-		'<div id="ssnetPicture" style="position:absolute;top:250;left:25;width:140;"></div>\n';
-	
-	document.getElementById(divIdToFill).innerHTML += 
-		'<div id="ssnetHTLabel" style="position:absolute;top:80;left:225;height:450;"></div>';
+		'<div id="ssnetPicture" style="position:absolute;top:300;left:50;border: 1px solid black;"></div>\n';
 	document.getElementById(divIdToFill).innerHTML += 
 		'<div id="ssnetHighTier" '+
-		'style="position:absolute;top:100;left:225;width:250;height:550;'+
+		'style="position:absolute;top:100;left:200;width:300;height:500;'+
 		'overflow-y:scroll; border: 1px solid black;"></div>\n';
-	
-	document.getElementById(divIdToFill).innerHTML += 
-		'<div id="ssnetMTLabel" style="position:absolute;top:80;left:580;width:300;height:450;"></div>';
 	document.getElementById(divIdToFill).innerHTML += 
 		'<div id="ssnetMedTier" '+
-		'style="position:absolute;top:100;left:580;width:250;height:550;'+
+		'style="position:absolute;top:100;left:550;width:300;height:500;'+
 		'overflow-y:scroll; border: 1px solid black;"></div>\n';
-	
-
-	document.getElementById(divIdToFill).innerHTML += 
-		'<div id="ssnetLTLabel" style="position:absolute;top:80;left:930;width:300;height:550;"></div>';
 	document.getElementById(divIdToFill).innerHTML += 
 		'<div id="ssnetLowTier" '+
-		'style="position:absolute;top:100;left:930;width:250;height:550;'+
+		'style="position:absolute;top:100;left:900;width:300;height:500;'+
 		'overflow-y:scroll; border: 1px solid black;"></div>\n';
-
-	document.getElementById(divIdToFill).innerHTML += 
-		'<div id="ssnetExcludeLabel" style="position:absolute;top:660;left:800;"></div>';
 }
 
 //function to return back to overview. 
 function backToOverviewFromSocialNet(divIdToFill){
-	var charList = [];
-	for(var i =0; i < 40; i++){
-		charList.push(allCharByAppearAmt[i]);
-	}
-	fillOverviewTable(divIdToFill, charList, true);
+	console.log("back to overview currently disabled.");
 } //end
 
 //function to return back to character.
-function backToCharacterFromSocialNet(divIdToFill, indexOfGivenCharacter){
-	console.log("go back to " + allCharByAppearAmt[indexOfGivenCharacter][0]);
-	console.log("   populate div:" + divIdToFill + " index:" + allCharByAppearAmt[indexOfGivenCharacter][0]);
-	givenACharacterNameFilloutTheView(divIdToFill, allCharByAppearAmt[indexOfGivenCharacter][0]);
+function backToCharacterFromSocialNet(divIdToFill){
+	console.log("back to character currently disabled.");
 } //end
 
 
@@ -118,7 +94,6 @@ function backToCharacterFromSocialNet(divIdToFill, indexOfGivenCharacter){
 function ssnetFillTiers(indexOfGivenCharacter) {
 
 	var contentForDiv = "";
-	var tierAllArray = []; //get 50 characters.. or more?
 	var hTierArray = [];
 	var mTierArray = [];
 	var lTierArray = [];
@@ -129,215 +104,395 @@ function ssnetFillTiers(indexOfGivenCharacter) {
 	var tempTierValue;
 	var tempArrayForInsert;
 
-	var excludedEntries = 0;
 
-	
+	console.log("Testing socialnet data:" + socialNetOfChars.length);
+	console.log("Testing socialnet data:" + socialNetOfChars[0].length);
+	console.log("Testing socialnet data:" + socialNetOfChars[0][0]);
+	console.log("Testing socialnet data:" + socialNetOfChars[0][1]);
+	console.log("Testing socialnet data:" + socialNetOfChars[0][2].length);
+
 	//go through each character and see what their % rating is.
 	for(var i = 0; i < socialNetOfChars[indexOfGivenCharacter][2].length; i++)
 	{
-		//look for those who this character appears with.
-		if(socialNetOfChars[indexOfGivenCharacter][2][i] > 0){
-			tempArrayForInsert = [];
-			tempArrayForInsert.push(i);
-			tempArrayForInsert.push(socialNetOfChars[indexOfGivenCharacter][2][i]);
-			tempArrayForInsert.push(
-						Math.floor(
+		tempTierValue = Math.floor(
 						100 * socialNetOfChars[indexOfGivenCharacter][2][i] / 
-						socialNetOfChars[indexOfGivenCharacter][1] )
-				);
-			tierAllArray.push(tempArrayForInsert);
+						socialNetOfChars[indexOfGivenCharacter][1] );
+		tempArrayForInsert = [];
+		tempArrayForInsert.push(i);
+		tempArrayForInsert.push(tempTierValue);
+		tempArrayForInsert.push(socialNetOfChars[indexOfGivenCharacter][2][i]);
+		if(tempTierValue >= hTierLowerBound){
+			hTierArray.push(tempArrayForInsert);
+		}
+		else if(tempTierValue >= mTierLowerBound){
+			mTierArray.push(tempArrayForInsert);
+		}
+		else if(tempTierValue >= lTierLowerBound){
+			lTierArray.push(tempArrayForInsert);
 		}
 	}
-
-
-
-	var lowAppearance;
-	var highShare = 0;
-	var lowerBoundShave = 0; // start by shaving off characters with 1 appearance.
-								//inc happens before separation.
-
-	//if the current character appears more than 3 times
-	//count up single appearances, then try to figure out from there.
-	if(socialNetOfChars[indexOfGivenCharacter][1] > 3){
-
-		lowAppearance = 0;
-		do{
-			hTierArray = []; //clear out the tiers.
-			lTierArray = [];
-			lowerBoundShave++;
-
-			for(var i = 0; i < tierAllArray.length; i++){
-				if(tierAllArray[i][1] > highShare){ highShare = tierAllArray[i][1]; }
-
-				if(tierAllArray[i][1] <=  lowerBoundShave){
-					lowAppearance++;
-					lTierArray.push(tierAllArray[i]);
-				}
-				else{
-					hTierArray.push(tierAllArray[i]);
-				}
-			}
-			tierAllArray = hTierArray;
-		}while(tierAllArray.length > 50);
-
-		//keep them if there are less than 10. otherwise don't.
-		if(  !(lTierArray.length < 10)   ){
-			excludedEntries = lTierArray.length;
-			lTierArray = [];
-		}//*/
-
-		//after this loop completes, htier will have the sorted list.
-		hTierArray = []
-		var match = false;
-		for(var i = 0; i < tierAllArray.length; i++){
-			match = false;
-			for(var j = 0; j < hTierArray.length; j++){
-				if(tierAllArray[i][1] > hTierArray[j][1]){
-					hTierArray.splice(j,0,tierAllArray[i]);
-					match = true;
-					break;
-				}
-			}
-			if(!match){
-				hTierArray.push(tierAllArray[i]);
-			}
-		}
-
-		//move the sorted list into tier all array.
-		tierAllArray = hTierArray;
-		hTierArray = [];
-		mTierArray = [];
-		var currentEpCount = tierAllArray[0][1];
-		var originalSizeOfAllTier = tierAllArray.length;
-		//do move entries into hTier
-		do{
-			for(var i = 0; i < tierAllArray.length; i++){
-				if(tierAllArray[i][1] == currentEpCount){
-					hTierArray.push(tierAllArray[i]);
-				}
-				else {
-					mTierArray.push(tierAllArray[i]);
-				}
-			}
-			currentEpCount--;
-			tierAllArray = mTierArray;
-			mTierArray = [];
-		}
-		while(hTierArray.length < (originalSizeOfAllTier / 10));
-
-		originalSizeOfAllTier = tierAllArray.length;
-		mTierArray = tierAllArray;
-		do{
-			currentEpCount = mTierArray[ mTierArray.length -1][1];
-			do{
-				lTierArray.splice(0,0,  mTierArray[ mTierArray.length -1 ] );
-				mTierArray.splice( mTierArray.length-1, 1 );
-			}while( mTierArray[mTierArray.length -1][1] == currentEpCount);
-		}while(mTierArray > (originalSizeOfAllTier / 3 * 2));
-
-
-
-
-	} //end if more than 3 appearances.
-	else { //else there are 3 or less appearaces.
-
-		if(socialNetOfChars[indexOfGivenCharacter][1]  == 3){
-			for(var i = 0; i < tierAllArray.length; i++){
-				if(tierAllArray[i][1] == 3){ hTierArray.push(tierAllArray[i]); }
-				else if(tierAllArray[i][1] == 2){ mTierArray.push(tierAllArray[i]); }
-				else { lTierArray.push(tierAllArray[i]); }
-			}
-		}
-
-		else if(socialNetOfChars[indexOfGivenCharacter][1]  == 2){
-			for(var i = 0; i < tierAllArray.length; i++){
-				if(tierAllArray[i][1] == 2){ hTierArray.push(tierAllArray[i]); }
-				else { mTierArray.push(tierAllArray[i]); }
-			}
-		}
-		else{
-			hTierArray = tierAllArray;
-		}
-	} //end there are 3 or less appearances.
-
-
-
-
-
-
 
 
 	contentForDiv = "";
 	for(var i = 0; i < hTierArray.length; i++){
-		contentForDiv += "<div onclick='ssnetCharcterClick("+hTierArray[i][0]+")'><center>";
-		contentForDiv += "&nbsp&nbsp<img width='60px' height='90px' src='" + fetchImgUrlOfChar(allCharByAppearAmt[  hTierArray[i][0]  ]  [0]) + "'></img><br>&nbsp&nbsp&nbsp";
+		contentForDiv += "<div>";
 		contentForDiv += allCharByAppearAmt[  hTierArray[i][0]  ]  [0] + "<br>";
-		contentForDiv += "&nbsp&nbsp&nbspShared " + hTierArray[i][1] + " eps("+hTierArray[i][2]+"%)";
+		contentForDiv += "Shared " + hTierArray[i][2] + " eps("+hTierArray[i][1]+"%)";
 		contentForDiv += "<hr>";
-		contentForDiv += "</center></div>";
+		contentForDiv += "</div>";
 	}
 
 	document.getElementById('ssnetHighTier').innerHTML = contentForDiv;
-	document.getElementById('ssnetHTLabel').innerHTML = "&nbsp<b>Most seen with " + allCharByAppearAmt[indexOfGivenCharacter][0] + "("+hTierArray.length+"):</b>";
 
 
 	contentForDiv = "";
 	for(var i = 0; i < mTierArray.length; i++){
-		contentForDiv += "<div onclick='ssnetCharcterClick("+mTierArray[i][0]+")'><center>";
-		contentForDiv += "&nbsp&nbsp<img width='60px' height='90px' src='" + fetchImgUrlOfChar(allCharByAppearAmt[  mTierArray[i][0]  ]  [0]) + "'></img><br>&nbsp&nbsp&nbsp";
+		contentForDiv += "<div>";
 		contentForDiv += allCharByAppearAmt[  mTierArray[i][0]  ]  [0] + "<br>";
-		contentForDiv += "&nbsp&nbsp&nbspShared " + mTierArray[i][1] + " eps("+mTierArray[i][2]+"%)";
+		contentForDiv += "Shared " + mTierArray[i][2] + " eps("+mTierArray[i][1]+"%)";
 		contentForDiv += "<hr>";
-		contentForDiv += "</center></div>";
+		contentForDiv += "</div>";
 	}
 
 	document.getElementById('ssnetMedTier').innerHTML = contentForDiv;
-	document.getElementById('ssnetMTLabel').innerHTML = "&nbsp<b>Commonly seen with("+mTierArray.length+"):</b>";
 
 
 	contentForDiv = "";
 	for(var i = 0; i < lTierArray.length; i++){
-		contentForDiv += "<div onclick='ssnetCharcterClick("+lTierArray[i][0]+")'><center>";
-		contentForDiv += "&nbsp&nbsp<img width='60px' height='90px' src='" + fetchImgUrlOfChar(allCharByAppearAmt[  lTierArray[i][0]  ]  [0]) + "'></img><br>&nbsp&nbsp&nbsp";
+		contentForDiv += "<div>";
 		contentForDiv += allCharByAppearAmt[  lTierArray[i][0]  ]  [0] + "<br>";
-		contentForDiv += "&nbsp&nbsp&nbspShared " + lTierArray[i][1] + " eps("+lTierArray[i][2]+"%)";
+		contentForDiv += "Shared " + lTierArray[i][2] + " eps("+lTierArray[i][1]+"%)";
 		contentForDiv += "<hr>";
-		contentForDiv += "</center></div>";
+		contentForDiv += "</div>";
 	}
 
 	document.getElementById('ssnetLowTier').innerHTML = contentForDiv;
-	document.getElementById('ssnetLTLabel').innerHTML = "&nbsp<b>Occasionally seen with("+lTierArray.length+"):</b>";
-
-
-	if(excludedEntries > 0){
-		document.getElementById('ssnetExcludeLabel').innerHTML = "Excluding " + excludedEntries + " entries with " + lowerBoundShave + " appearances and less";
-	}
 
 
 } //end fill tiers
 
 
-function ssnetCharcterClick(indexOfGivenCharacter) {
-	console.log("Character was selected:" + allCharByAppearAmt[indexOfGivenCharacter][0]);
-	givenACharacterFillOutSocialNet(dkGlobalOverviewTable.divPassing, indexOfGivenCharacter);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Given a div to fill, array of character, highlight, and episode size, then can make div.
+enableHighlight should be a boolean.
+
+*/
+function fillCharacterTableAndOtherViewInfo(divIdToFill, arrayOfCharacters, enableHighlight, season, bEpRange, eEpRange) {
+	var contents = "";
+	contents += "<table onmouseout='chideInfoBox()' onmousemove='cshowInfoBox()'>\n";
+	contents += '<tr><th colspan="4"></th>';
+	var lineContent = "";
+
+	//determine how many episodes are being tracked to figure out how big to make the table.
+	var totaleps = allCharByAppearAmt[0][7].length;
+	console.log("Double check this, the total eps should be 541:" + totaleps);
+
+	dkGlobalOverviewTable.totalEps = totaleps;
+
+	//make one header tag per season. it should span as many columns as that season has episodes.
+	for(var i = 0; i < dkGlobalOverviewTable.arrayOfEpisodesInSeasons.length; i++ ){
+		lineContent += '<th colspan="' + dkGlobalOverviewTable.arrayOfEpisodesInSeasons[i] + '">' + (i+1) + "</th>\n"
+	}
+	contents += lineContent + "</tr>";
+
+	lineContent = "";
+
+	for(var i = 0; i < arrayOfCharacters.length; i++){
+
+		var appearCounter = 0;
+		for(var epc = 0; epc < arrayOfCharacters[i][7].length;epc++){
+			if(arrayOfCharacters[i][7][epc]){appearCounter++;}
+		}
+
+		//contain the names on one line
+		var shorterName = arrayOfCharacters[i][0];
+		if(shorterName.search(" ") != -1){ shorterName = shorterName.substring(0, shorterName.search(" "));	}
+		if(shorterName.length > 7) { shorterName = shorterName.substring(0,7);}
+
+		lineContent += '<tr><th class="name" colspan="4">' + shorterName +'('+appearCounter+')</th>\n';
+		
+
+		//fill out that array for the character.
+		//chars [  name, full, first appear, alias, jobs, relatives, voice actors, episode appearances   ]
+
+		//for each of the possible episodes being shown.
+		for(var e = 1; e <= totaleps; e++ ){
+
+			lineContent+= '<td id="ovtIDr' + i + 'c' + e + '" ';
+
+			//this would be a check if char is in that eps.
+			if(arrayOfCharacters[i][7][e -1]){  lineContent += '<td class="inThatEps '; }
+			else{ lineContent += '<td class="notInThatEps '; }
+
+			lineContent += 'ovtRow' + i;
+			lineContent += ' ovtCol' + getSeasonOfEpisodeNumber(e); //this needs to be season
+			lineContent += '" onmouseout="chideInfoBox('+i+','+e+')" onmousemove="cshowInfoBox(\''+ arrayOfCharacters[i][0] +'\',\'' + e;
+
+			var highlightRow = -1; //highlight start disabled.
+			var highlightCol = -1; //if true then give it the char and episode row/column.
+			if(enableHighlight){ highlightRow = i; highlightCol = e; }
+
+			if(arrayOfCharacters[i][7][e -1]){  lineContent += '\', true,'+i+','+e+')"'; }
+			else{ lineContent += '\', false,'+i+','+e+')"'; }
+
+			lineContent += 'onclick="ssnetShowMouseClickPanel('+e+',' +
+			  getSeasonOfEpisodeNumber(e)+' )"'+ '></th>\n';
+			
+
+		}
+		lineContent += "</tr>\n";
+	}
+
+	contents += lineContent;
+	contents += "</table>\n";
+
+	document.getElementById(divIdToFill).innerHTML = contents;
+
+	//seed the color
+	for(var row = 0; row < arrayOfCharacters.length; row++){
+		for(var col = 1; col <= totaleps; col++){
+			if(row %2 == 0){
+				if(document.getElementById('ovtIDr' + row + 'c' + col).className.search('notInThatEps') >= 0){
+					document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
+				}
+				else{  document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.inEpsColor;}
+			}
+			else{
+				if(document.getElementById('ovtIDr' + row + 'c' + col).className.search('notInThatEps') >= 0){
+					document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.notInEpsColor3;
+				}
+				else{  document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.inEpsColor3;}
+			}
+		}
+	}
+
+
+} //end filloverview table
+
+
+function chideInfoBox(row, col) {
+
+	if(row != null){
+		document.getElementById("ssnetMouseOverPanel").style.visibility = 'hidden';
+		document.getElementById("ssnetMouseOverPanel").style.top = 0;
+		document.getElementById("ssnetMouseOverPanel").style.left = 0;
+
+		document.getElementById("ssnetMouseOverPanel").innerHTML = "";
+
+		if(row %2 == 0){
+			if(document.getElementById('ovtIDr' + row + 'c' + col).className.search('notInThatEps') >= 0){
+				document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
+			}
+			else{  document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.inEpsColor;}
+		}
+		else{
+			if(document.getElementById('ovtIDr' + row + 'c' + col).className.search('notInThatEps') >= 0){
+				document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.notInEpsColor3;
+			}
+			else{  document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = dkGlobalOverviewTable.inEpsColor3;}
+		}
+	}
+
 }
 
 
+function cshowInfoBox(iname, iepisode, inEps, row, col) {
+
+	if(iname != null){
+
+		document.getElementById("ssnetMouseOverPanel").style.visibility = 'visible';
+		var infoTextAsOne = "" + iname + "<br>";
+		//console.log("Before the print:");
+		//console.log("Inside of the show info:" + infoTextAsOne);
+
+		if(inEps){
+			document.getElementById("ssnetMouseOverPanel").style.backgroundColor = dkGlobalOverviewTable.inEpsColor;
+			infoTextAsOne += "IS in ";
+		}
+		else{
+			document.getElementById("ssnetMouseOverPanel").style.backgroundColor = dkGlobalOverviewTable.notInEpsColor;
+			infoTextAsOne += "NOT in ";
+		}
+		infoTextAsOne +=  "Episode:" + iepisode + "(S"+ getSeasonOfEpisodeNumber(iepisode) + ")<br>";
+		infoTextAsOne +=  allEpisodesByNumber[iepisode-1][0] + "<br>";
+
+
+		//infoTextAsOne += "<img width='200px' height='200px' src='" + fetchImgUrlOfChar(iname) + "'></img>";
+
+		document.getElementById("ssnetMouseOverPanel").innerHTML = infoTextAsOne;
+		document.getElementById("ssnetMouseOverPanel").style.top = event.clientY + 10;
+		document.getElementById("ssnetMouseOverPanel").style.left = event.clientX + 10;
+
+		//highlight only that particular episode on that particular character
+		document.getElementById('ovtIDr' + row + 'c' + col).style.backgroundColor = '#A61000';
+
+
+	} //end if params were not null
+} //end show info box
+
+
+function ssnetFillListOfEpisodeNames(ssnetCharArrayInfo) {
+
+	var totalNumberOfEpisodeAppearance = 0;
+	for(var i = 0; i < ssnetCharArrayInfo[7].length; i++){
+		if(ssnetCharArrayInfo[7][i]){totalNumberOfEpisodeAppearance++;}
+	}
+
+	document.getElementById('ssnetListOfEpisodesByName').innerHTML = '<br><br>' + ssnetCharArrayInfo[0] + " episode appearances("+totalNumberOfEpisodeAppearance+"):<br>";
+
+
+	//for some strange reason this is needed. otherwise the /select line will be added before the options.
+	var contentForDiv = "";
+	contentForDiv +=
+		"<select id='ssnetEpNameList' onchange=\"ssnetEpNameClick()\"  multiple=\"multiple\" size=\"10\" style=\"width:300px\">\n"; 
+
+	for(var i = 0; i < ssnetCharArrayInfo[7].length; i++){
+		if(ssnetCharArrayInfo[7][i]){
+			contentForDiv += "<option>"+ allEpisodesByNumber[i][0]+ "</option>\n";
+		}
+	}
+
+	contentForDiv+= '</select>';
+	document.getElementById('ssnetListOfEpisodesByName').innerHTML += contentForDiv;
+
+}//ssnetFillListOfEpisodeNames
+
+function ssnetEpNameClick() {
+	console.log("an episode name was clicked:" + document.getElementById('ssnetEpNameList').value);
+}
+
+function ssnetFillListOfVoiceActors(ssnetCharArrayInfo){
+	var contentForDiv = "";
+
+	contentForDiv += "<br><br>" + ssnetCharArrayInfo[0] + "'s Voice Actor(s):<br>";
+	contentForDiv +=
+		"<select id='ssnetVaNameList' onchange=\"ssnetVaNameClick()\"  multiple=\"multiple\" style=\"width:300px; height:100px\">\n"; 
+
+	for(var i = 0; i < ssnetCharArrayInfo[6].length; i++){
+		contentForDiv += "<option>"+ ssnetCharArrayInfo[6][i] +  "</option>\n";
+	}
+
+	contentForDiv+= '</select>';
+	document.getElementById('ssnetVoiceActors').innerHTML = contentForDiv;
+
+} //end  ssnetFillListOfVoiceActors
+
+function ssnetVaNameClick() {
+	console.log("a va name was clicked:" + document.getElementById('ssnetVaNameList').value);
+}
+
+
+function ssnetFillListOfTopWith(ssnetCharArrayInfo) {
+
+	var indexOfGivenCharacter = 0;
+
+	for(var i = 0; i < allCharByAppearAmt.length; i++){
+		if(ssnetCharArrayInfo[0] == allCharByAppearAmt[i][0]){
+			indexOfGivenCharacter = i;
+		}
+	}
+
+	var top20epSharedChars = [];
+	var startingShare = socialNetOfChars[indexOfGivenCharacter][1];
+
+	while(startingShare > 0){
+		for(var c = 0; c < socialNetOfChars.length; c++){
+			if(socialNetOfChars[indexOfGivenCharacter][2][c] == startingShare){
+				top20epSharedChars.push(c);
+			}
+			if(top20epSharedChars.length >= 20){startingShare = 0; break;}
+		}
+		startingShare--;
+	}
+
+	var contentForDiv = "";
+
+	contentForDiv += "Those commonly with "+ssnetCharArrayInfo[0]+" in an episode:<br>";
+	contentForDiv +=
+		"<select id='ssnetTop10List' onchange=\"ssnetTopNameClick(1)\"  multiple=\"multiple\" size=\"11\" style=\"width:300px\">\n"; 
+
+	for(var i = 0; i < 10; i++){
+		contentForDiv += "<option>"+  socialNetOfChars[top20epSharedChars[i]][0] + "("+ socialNetOfChars[indexOfGivenCharacter][2][top20epSharedChars[i]] + ")</option>";
+	}
+	contentForDiv += "</select>";
+	document.getElementById('ssnetTop10CharsWith').innerHTML = contentForDiv;
+
+	contentForDiv = "<br>\n";
+	contentForDiv +=
+		"<select id='ssnetTop20List' onchange=\"ssnetTopNameClick(2)\"  multiple=\"multiple\" size=\"11\" style=\"width:300px\">\n"; 
+
+	for(var i = 10; i < 20; i++){
+		contentForDiv += "<option>"+  socialNetOfChars[top20epSharedChars[i]][0] + "("+ socialNetOfChars[indexOfGivenCharacter][2][top20epSharedChars[i]] + ")</option>";
+	}
+	contentForDiv += "</select>";
+	document.getElementById('ssnetTop20CharsWith').innerHTML = contentForDiv;
 
 
 
+} //end ssnetFillListOfTopWith
 
 
+function ssnetTopNameClick(whichList) {
+	//if came from list 1
+	if(1 == whichList){
+		console.log("top name selected:" + document.getElementById('ssnetTop10List').value);
+	}
+	//if came from list 2
+	if(2 == whichList){
+		console.log("top name selected:" + document.getElementById('ssnetTop20List').value);
+	}
+
+}
 
 
+function ssnetShowMouseClickPanel(epOfClick, seasonOfClick) {
+	var infoTextAsOne = "";
 
+	infoTextAsOne += "Click to <button onclick=\"ssnetHideMouseClickPanel()\">Hide</button> panel<br>";
+	infoTextAsOne += "Search by episode <button onclick=\"ssnetMouseClickEp("+epOfClick+")\">"+epOfClick+"</button><br>";
+	infoTextAsOne += "Search by season <button onclick=\"ssnetMouseClickSeason("+seasonOfClick+")\">"+seasonOfClick+"</button><br>";
 
+	document.getElementById("ssnetMouseClickPanel").innerHTML = infoTextAsOne;
+	document.getElementById("ssnetMouseClickPanel").style.visibility = 'visible';
+	document.getElementById("ssnetMouseClickPanel").style.backgroundColor = '#BF5B30';
+	document.getElementById("ssnetMouseClickPanel").style.top = event.clientY + 10;
+	document.getElementById("ssnetMouseClickPanel").style.left = event.clientX + 10;
+}
 
+function ssnetHideMouseClickPanel() {
+	document.getElementById("ssnetMouseClickPanel").style.visibility = 'hidden';
+}
 
+function ssnetMouseClickEp(epOfClick) {
+	console.log('clicked on the popup panel for episode:' + epOfClick);
+}
 
-
-
-
-
-
+function ssnetMouseClickSeason(seasonOfClick) {
+	console.log('clicked on the popup panel for season:' + seasonOfClick);
+}
 

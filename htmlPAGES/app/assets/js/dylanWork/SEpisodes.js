@@ -3,18 +3,18 @@
 // é = Ã?Â(copyright symbol)
 // è = ""(dots)
 // (reverse r) = Ã?Â¯ = &#1103;
-// ö = Ã?Â¶ = &ouml;
+//  ö = Ã?Â¶  = &ouml;
 
 var episodesInSeasons = 
   [ 13,22,24,22,22,25,25,25,25,23,22,21,22,22,22,21,22,22,20,21,23,22,22,22,11 ];
-//   1 2  3 4  5 6  7 8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+//   1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
 
 //Note: season 25 is only listed as having 11 episodes because there are only 541 recorded in the wikia as of the dump time.
 
 //Episodes are ordered by number but episodes with number 9999 had a parse error
 //Array follows format: name, number, prodcode, origAirDate, showRunner[], writtenBy[], directedBy[]
 
-var allEpisodesByNumber = [ //Beginning of array
+var allEpisodesByNumber = [  //Beginning of array
 [ "Simpsons Roasting on an Open Fire", 1,"7G08","December 17, 1989",
    ["James L. Brooks","Matt Groening","Sam Simon"], //end show runner array
    ["Mimi Pond"], //end written by array
@@ -80,7 +80,7 @@ var allEpisodesByNumber = [ //Beginning of array
    ["Matt Groening","Sam Simon"], //end written by array
    ["David Silverman","Kent Butterworth"] //end directed by array
 ], //end of the episode entry
-[ "Bart Gets an 'F '", 14," 7F03"," October 11, 1990",
+[ "Bart Gets an  'F '", 14," 7F03"," October 11, 1990",
    [], //end show runner array
    ["David M. Stern"], //end written by array
    ["David Silverman"] //end directed by array
@@ -120,7 +120,7 @@ var allEpisodesByNumber = [ //Beginning of array
    ["Jay Kogen","Wallace Wolodarsky"], //end written by array
    ["Wes Archer"] //end directed by array
 ], //end of the episode entry
-[ "Itchy amp; Scratchy amp; Marge", 22," 7F09"," December 20, 1990",
+[ "Itchy  amp; Scratchy  amp; Marge", 22," 7F09"," December 20, 1990",
    [], //end show runner array
    ["John Swartzwelder"], //end written by array
    ["Jim Reardon"] //end directed by array
@@ -335,7 +335,7 @@ var allEpisodesByNumber = [ //Beginning of array
    ["Al Jean","Mike Reiss","Wallace Wolodarsky","Jay Kogen","Sam Simon","Jon Vitti"], //end written by array
    ["Carlos Baeza"] //end directed by array
 ], //end of the episode entry
-[ "Itchy amp; Scratchy: The Movie", 65,"9F03","November 2, 1992",
+[ "Itchy  amp; Scratchy: The Movie", 65,"9F03","November 2, 1992",
    ["Al Jean","Mike Reiss"], //end show runner array
    ["John Swartzwelder"], //end written by array
    ["Rich Moore"] //end directed by array
@@ -545,7 +545,7 @@ var allEpisodesByNumber = [ //Beginning of array
    ["Jon Vitti","Penny Wise"], //end written by array
    ["David Silverman"] //end directed by array
 ], //end of the episode entry
-[ "Itchy amp; Scratchy Land", 107,"2F01","",
+[ "Itchy  amp; Scratchy Land", 107,"2F01","",
    ["David Mirkin"], //end show runner array
    [], //end written by array
    [] //end directed by array
@@ -760,7 +760,7 @@ var allEpisodesByNumber = [ //Beginning of array
    ["Richard Appel","David Cohen","Jonathan Collier","Jennifer Crittenden","Greg Daniels","Brent Forrester","Rachel Pulido","Steve Tompkins","Josh Weinstein","Bill Oakley","Matt Groening"], //end written by array
    [] //end directed by array
 ], //end of the episode entry
-[ "Raging Abe Simpson and His Grumbling Grandson in 'The Curse of the Flying Hellfish '", 150,"3F19","April 28, 1996",
+[ "Raging Abe Simpson and His Grumbling Grandson in  'The Curse of the Flying Hellfish '", 150,"3F19","April 28, 1996",
    [], //end show runner array
    ["Jonathan Collier"], //end written by array
    ["Jeffrey Lynch"] //end directed by array
@@ -845,7 +845,7 @@ var allEpisodesByNumber = [ //Beginning of array
    ["Al Jean","Mike Reiss"], //end written by array
    ["Chuck Sheetz"] //end directed by array
 ], //end of the episode entry
-[ "The Itchy amp; Scratchy amp; Poochie Show", 167," 4F12"," February 9, 1997",
+[ "The Itchy  amp; Scratchy  amp; Poochie Show", 167," 4F12"," February 9, 1997",
    ["Bill Oakley","Josh Weinstein"], //end show runner array
    ["David X. Cohen"], //end written by array
    ["Steven Dean Moore"] //end directed by array
@@ -1060,12 +1060,12 @@ var allEpisodesByNumber = [ //Beginning of array
    ["Donick Cary"], //end written by array
    ["Mark Kirkland","Matthew Nastuk"] //end directed by array
 ], //end of the episode entry
-[ "Lisa Gets an 'A '", 210," AABF03"," November 22, 1998",
+[ "Lisa Gets an  'A '", 210," AABF03"," November 22, 1998",
    [], //end show runner array
    ["Ian Maxtone-Graham"], //end written by array
    ["Bob Anderson"] //end directed by array
 ], //end of the episode entry
-[ "Homer Simpson in: 'Kidney Trouble '", 211,"AABF04","December 6, 1998",
+[ "Homer Simpson in:  'Kidney Trouble '", 211,"AABF04","December 6, 1998",
    [], //end show runner array
    ["John Swartzwelder"], //end written by array
    ["Mike B. Anderson"] //end directed by array
@@ -1100,7 +1100,7 @@ var allEpisodesByNumber = [ //Beginning of array
    ["Dan Greaney"], //end written by array
    ["Bob Anderson"] //end directed by array
 ], //end of the episode entry
-[ "Marge Simpson in: 'Screaming Yellow Honkers '", 218," AABF10"," February 21, 1999",
+[ "Marge Simpson in:  'Screaming Yellow Honkers '", 218," AABF10"," February 21, 1999",
    [], //end show runner array
    ["David M. Stern"], //end written by array
    ["Mark Kirkland"] //end directed by array
@@ -1125,7 +1125,7 @@ var allEpisodesByNumber = [ //Beginning of array
    ["Al Jean"], //end written by array
    ["Steven Dean Moore"] //end directed by array
 ], //end of the episode entry
-[ "The Old Man and the 'C ' Student", 223,"AABF16","April 25, 1999",
+[ "The Old Man and the  'C ' Student", 223,"AABF16","April 25, 1999",
    [], //end show runner array
    ["Julie Thacker"], //end written by array
    ["Mark Kirkland"] //end directed by array
@@ -1258,7 +1258,7 @@ var allEpisodesByNumber = [ //Beginning of array
 [ "Treehouse of Horror XI", 249," BABF21"," November 1, 2000",
    [], //end show runner array
    ["Rob LaZebnik","John Frink (writer)","John Frink","Don Payne","Carolyn Omine"], //end written by array
-   ["Matthew Nastuk","Matt 'Groening ' Nastuk"] //end directed by array
+   ["Matthew Nastuk","Matt  'Groening ' Nastuk"] //end directed by array
 ], //end of the episode entry
 [ "A Tale of Two Springfields", 250," BABF20"," November 5, 2000",
    [], //end show runner array
@@ -1825,7 +1825,7 @@ var allEpisodesByNumber = [ //Beginning of array
    ["Stephanie Gillis"], //end written by array
    ["Nancy Kruse"] //end directed by array
 ], //end of the episode entry
-[ "The Last of the Red Hat Mamas", 363," GABF22"," November 27, 2005 lt;ref name=imdb gt;http://www.imdb.com/title/tt0701248 lt;/ref gt;",
+[ "The Last of the Red Hat Mamas", 363," GABF22"," November 27, 2005  lt;ref name=imdb gt;http://www.imdb.com/title/tt0701248 lt;/ref gt;",
    [], //end show runner array
    ["Joel H. Cohen"], //end written by array
    ["Matthew Nastuk"] //end directed by array
@@ -1945,7 +1945,7 @@ var allEpisodesByNumber = [ //Beginning of array
    [], //end written by array
    [] //end directed by array
 ], //end of the episode entry
-[ "Kill Gil: Vols. 1 amp; 2", 387," JABF01"," December 17, 2006",
+[ "Kill Gil: Vols. 1  amp; 2", 387," JABF01"," December 17, 2006",
    [], //end show runner array
    ["Jeff Westbrook"], //end written by array
    ["Bob Anderson"] //end directed by array
@@ -2080,7 +2080,7 @@ var allEpisodesByNumber = [ //Beginning of array
    ["Joel H. Cohen"], //end written by array
    ["Matthew Nastuk"] //end directed by array
 ], //end of the episode entry
-[ "Dial 'N ' for Nerder", 414,"KABF07","March 9, [[2008]]",
+[ "Dial  'N ' for Nerder", 414,"KABF07","March 9, [[2008]]",
    [], //end show runner array
    ["Carolyn Omine","William Wright"], //end written by array
    ["Bob Anderson"] //end directed by array
@@ -2225,7 +2225,7 @@ var allEpisodesByNumber = [ //Beginning of array
    [], //end written by array
    ["Lance Kramer"] //end directed by array
 ], //end of the episode entry
-[ "Bart Gets a 'Z '", 443," LABF14"," October 4, 2009",
+[ "Bart Gets a  'Z '", 443," LABF14"," October 4, 2009",
    ["Al Jean"], //end show runner array
    ["Matt Selman"], //end written by array
    ["Mark Kirkland"] //end directed by array
@@ -2370,7 +2370,7 @@ var allEpisodesByNumber = [ //Beginning of array
    ["Kevin Curran"], //end written by array
    ["Michael Polcino"] //end directed by array
 ], //end of the episode entry
-[ "The Fight Before Christmas", 472,"MABF22"," December 5, 2010",
+[ "The Fight Before Christmas", 472,"MABF22","  December 5, 2010",
    ["Al Jean"], //end show runner array
    ["Dan Castellaneta","Deb Lacusta"], //end written by array
    ["Bob Anderson","Matthew Schofield"] //end directed by array
@@ -2385,7 +2385,7 @@ var allEpisodesByNumber = [ //Beginning of array
    [], //end written by array
    [] //end directed by array
 ], //end of the episode entry
-[ "Flaming Moe", 475,"NABF04"," January 16, 2011 lt;br gt; March 4, 2011 (UK)",
+[ "Flaming Moe", 475,"NABF04"," January 16, 2011  lt;br gt; March 4, 2011 (UK)",
    [], //end show runner array
    ["Matt Selman"], //end written by array
    ["Chuck Sheetz","Al Jean"] //end directed by array
