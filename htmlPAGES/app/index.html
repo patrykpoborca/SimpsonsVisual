@@ -125,6 +125,35 @@ UI for app
 		top : 10px;
 		}
 		
+		#iDiv
+		{
+		overflow: auto;
+		background-color : #BF9230;
+		position : absolute;
+		bottom : 0px;
+		left: 280;
+		width : 270px;
+		height : 300px;
+		z-offset : 100;
+		border-top-right-radius: 85px;
+		border-bottom-right-radius: 85px;
+		border-bottom-left-radius: 15px;
+		border-style:solid;
+		border-width:6px;
+		border-color: black;
+		}
+		
+		#iDiv p
+		{ color : black;
+		padding-top:5px;
+		padding-bottom:5px;
+		padding-right:5px;
+		padding-left:5px;
+		text-align:center
+		
+		}
+		
+		
 		#helpBox
 		{
 		background-color : black;
@@ -198,6 +227,8 @@ UI for app
 	
  <!-- ############################################expandSelectors indent##################################### --><div id = "Container"> <!-- Container -->
 			
+			
+		
 		<!-- 4 cornerDivs -->
 		<div id = "cornerTL" class = "cornerDivs" style = "top : 0px; left : 0px; background-image:url('assets/js/patrykWork/homer.gif');"> </div>
 		<div id = "cornerBL" class = "cornerDivs" style = "bottom : 0px; left : 0px; background-image:url('assets/js/patrykWork/bart.gif');"> </div>
@@ -248,7 +279,7 @@ UI for app
 						 <!-- ############################################LI SPLITER##################################### -->
 									<li>
 										<div id = 'helpSect'>
-										<button type="button" id = "help" class = "btn btn-info" style = "position: absolute; right : 18px; bottom : 55px; width : 3px; height : 15px;" ><span style = "position : absolute; left: 8px; top : -2px;">?<span></button>
+										<button type="button" id = "help" class = "btn btn-info" style = "position: absolute; right : 22px; bottom : 55px; width : 3px; height : 15px;" ><span style = "position : absolute; left: 8px; top : -2px;">?<span></button>
 											<div id = 'helpBox'>
 											<p>Select scope first (changing Scope resets your query), whenever you're satisfied with a filter, add a new one by clicking the '+' sign next to it. Click on corner of screen to show control panel when hidden.
 											</p>
@@ -279,8 +310,10 @@ UI for app
 											<option value="dddddd"> debug </option>
 										  <!-- append html info here with class class : scopeRemovable -->
 										</select>
-										
-										<button type="button" id = "pAddFilter" class = "btn btn-success" style = "position: absolute; right : 18px; bottom : 15px; width : 3px; height : 15px;" ><span style = "position : absolute; left: 8px; top : -2px;">+</span></button>
+									<div id = "iDiv">
+									
+									</div>
+										<button type="button" id = "pAddFilter" class = "btn btn-success" style = "position: absolute; right : 22px; bottom : 15px; width : 3px; height : 15px;" ><span style = "position : absolute; left: 8px; top : -2px;">+</span></button>
 										</li>
 						 <!-- ############################################LI SPLITER##################################### -->
 										<li>
@@ -355,7 +388,6 @@ UI for app
 											
 				</div>
 					
-					
  <!-- ############################################expandSelectors indent##################################### --></div> <!-- container -->
 	
 	<!--  Libraries below -->
@@ -398,7 +430,7 @@ UI for app
 
 	$(document).ready(function()
 	{//ready start #############################################################################################################
-	
+	$('#iDiv').hide();
 	$(".dataInit").each(function(){  updateItem($(this).attr("id"), $(this).val());  }); // initializes all values
 	var minObj = InitSlider("minSlider", "minTxt");  // initializes the slider code 
 	var maxObj = InitSlider("maxSlider", "maxTxt");
@@ -420,7 +452,7 @@ UI for app
 	//p_Groups();//post load generation..
 	//console.log(globalDirectorList);
 	
-
+	
 	}); //end of ready #############################################################################################################
 	
 	</script>

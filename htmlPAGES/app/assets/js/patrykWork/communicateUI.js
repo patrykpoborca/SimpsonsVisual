@@ -197,7 +197,7 @@ $("#sortButton").toggle(
 		 function(){ 
 		  $("#sideBar").animate({height : "500px"}, 500, 
 			function(){
-			 $("#sideBar *").each(function(){if($(this).attr('id') != "expandSelectors")$(this).show();});
+			 $("#sideBar *").each(function(){if($(this).attr('id') != "expandSelectors" && $(this).attr('id') != "iDiv" &&  $(this).attr('id') != "helpBox")$(this).show();});
 			 });
 		 });
 	  

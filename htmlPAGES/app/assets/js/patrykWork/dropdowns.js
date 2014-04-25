@@ -42,6 +42,34 @@ if(meh.indexOf(temp) != -1)
 repopulate("filterBy", "resetFilter", "Seasons", false);
 $("#filterCEText").on('click', changeFilter);
 $("#ScopeChoice").trigger('change');
+
+$("select").hover(function(e){
+
+var type = $(this).find(":selected").attr('current');
+if(type != 'Related Characters') return;
+$('#iDiv').empty();
+
+var name = $(this).find(":selected").text();
+var holder = globalCharGroups[name.substring(0, name.length-8)];
+
+var sTring = "";
+sTring += "<span style = 'color : teal;'> click this box to make it go away</span><br>";
+sTring += "<p># of Members ";
+for(key in holder)
+{
+if(key.indexOf('member') != -1)
+{
+sTring += holder[key] + "<br>";
+}
+}
+sTring += "</p>";
+$('#iDiv').append(sTring);
+
+$('#iDiv').show();
+});
+
+$("#iDiv").click(function(){$(this).hide()});
+
 }
 
 var p_rootOptionsArray = ["Seasons", "Characters", "Related Characters", "Location", "Voice Actor", "Show Runner", "Writers", "Directors", "Jobs"];
@@ -194,4 +222,7 @@ for(var x = 0 ; x < chosen.length; x++)
 //sTring += " </select>";
 //console2D(sTring);
 $("#"+dropdown).append(sTring);
+
+
+
 }
